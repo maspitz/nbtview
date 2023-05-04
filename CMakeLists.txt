@@ -15,14 +15,10 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_library(libnbtview
-	source/nbtview.cpp
-)
-target_include_directories(libnbtview PUBLIC include)
+set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 
-add_executable(nbtshow
-    apps/nbtshow.cpp
-)
+add_subdirectory(nbtview)
+add_subdirectory(doc)
+add_subdirectory(apps)
 
-target_link_libraries(nbtshow libnbtview)
-target_include_directories(nbtshow PRIVATE include)
+

@@ -1,4 +1,4 @@
-#include "nbtview/nbtview.hpp"
+#include "nbtview.hpp"
 
 namespace nbtview {
 std::string hello_string() { return "nbtview: Hello!"; }

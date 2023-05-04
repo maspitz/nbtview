@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "nbtview/nbtview.hpp"
+#include "nbtview.hpp"
 
 namespace nbt = nbtview;
 
