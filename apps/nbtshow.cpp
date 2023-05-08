@@ -1,3 +1,5 @@
+// nbtshow.cpp
+
 #include <iostream>
 
 #include "nbtview.hpp"
@@ -7,4 +9,5 @@ namespace nbt = nbtview;
 int main() {
     std::cout << "nbtshow: Hello!\n";
     std::cout << nbt::hello_string() << std::endl;
+    std::cout << nbt::my_add_one(17) << std::endl;
 }
