@@ -3,5 +3,3 @@ add_executable(nbtshow
 )
 
 target_link_libraries(nbtshow nbtview)
-target_include_directories(nbtshow PRIVATE include)
-
