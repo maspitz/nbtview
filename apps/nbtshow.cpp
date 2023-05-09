@@ -11,7 +11,7 @@
 namespace nbt = nbtview;
 
 std::vector<unsigned char>
-decompress_gzip(std::vector<unsigned char> &compressedData) {
+decompress_gzip(std::vector<unsigned char> &compressed_data) {
     constexpr int buffer_size = 128;
     char buffer[buffer_size];
 
@@ -19,16 +19,17 @@ decompress_gzip(std::vector<unsigned char> &compressedData) {
     stream.zalloc = Z_NULL;
     stream.zfree = Z_NULL;
     stream.opaque = Z_NULL;
-    stream.avail_in = static_cast<uInt>(compressedData.size());
-    stream.next_in = reinterpret_cast<Bytef *>(compressedData.data());
+    stream.avail_in = static_cast<uInt>(compressed_data.size());
+    stream.next_in = reinterpret_cast<Bytef *>(compressed_data.data());
 
     constexpr int AUTO_HEADER_DETECTION = 32;
+
     if (inflateInit2(&stream, AUTO_HEADER_DETECTION | MAX_WBITS) != Z_OK) {
         std::cerr << "Failed to initialize zlib inflate" << std::endl;
         return {};
     }
 
-    std::vector<unsigned char> decompressedData;
+    std::vector<unsigned char> decompressed_data;
     int ret;
 
     do {
@@ -45,13 +46,13 @@ decompress_gzip(std::vector<unsigned char> &compressedData) {
         }
 
         int bytesRead = buffer_size - stream.avail_out;
-        decompressedData.insert(decompressedData.end(), buffer,
-                                buffer + bytesRead);
+        decompressed_data.insert(decompressed_data.end(), buffer,
+                                 buffer + bytesRead);
     } while (ret != Z_STREAM_END);
 
     inflateEnd(&stream);
 
-    return decompressedData;
+    return decompressed_data;
 }
 
 std::vector<unsigned char> read_file(const std::string &filename) {
