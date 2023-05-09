@@ -7,10 +7,6 @@
 
 namespace nbtview {
 
-int my_add_one(int x);
-
-std::string hello_string();
-
 } // namespace nbtview
 
 #endif // NBTVIEW_H_
