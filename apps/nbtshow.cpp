@@ -4,9 +4,76 @@
 #include <iostream>
 #include <vector>
 
+#include <zlib.h>
+
 #include "nbtview.hpp"
 
 namespace nbt = nbtview;
+
+std::vector<unsigned char>
+decompress_gzip(std::vector<unsigned char> &compressedData) {
+    constexpr int buffer_size = 128;
+    char buffer[buffer_size];
+
+    z_stream stream;
+    stream.zalloc = Z_NULL;
+    stream.zfree = Z_NULL;
+    stream.opaque = Z_NULL;
+    stream.avail_in = static_cast<uInt>(compressedData.size());
+    stream.next_in = reinterpret_cast<Bytef *>(compressedData.data());
+
+    constexpr int AUTO_HEADER_DETECTION = 32;
+    if (inflateInit2(&stream, AUTO_HEADER_DETECTION | MAX_WBITS) != Z_OK) {
+        std::cerr << "Failed to initialize zlib inflate" << std::endl;
+        return {};
+    }
+
+    std::vector<unsigned char> decompressedData;
+    int ret;
+
+    do {
+        stream.avail_out = buffer_size;
+        stream.next_out = reinterpret_cast<Bytef *>(buffer);
+
+        ret = inflate(&stream, Z_NO_FLUSH);
+
+        if (ret < 0) {
+            std::cerr << "Error while decompressing: " << stream.msg
+                      << std::endl;
+            inflateEnd(&stream);
+            return {};
+        }
+
+        int bytesRead = buffer_size - stream.avail_out;
+        decompressedData.insert(decompressedData.end(), buffer,
+                                buffer + bytesRead);
+    } while (ret != Z_STREAM_END);
+
+    inflateEnd(&stream);
+
+    return decompressedData;
+}
+
+std::vector<unsigned char> read_file(const std::string &filename) {
+    // Get the file size
+    std::ifstream file(filename,
+                       std::ios::binary | std::ios::in | std::ios::ate);
+    auto size = file.tellg();
+    file.seekg(0, std::ios::beg);
+
+    // Read the entire file into a vector<unsigned char>
+    std::vector<unsigned char> bytes(size);
+
+    file.read(reinterpret_cast<char *>(bytes.data()), size);
+    return bytes;
+}
+
+bool has_gzip_header(std::vector<unsigned char> &data) {
+    if (data.size() < 4) {
+        return false;
+    }
+    return (data[0] == 0x1f) && (data[1] == 0x8b) && (data[2] == 0x08);
+}
 
 int main(int argc, const char *argv[]) {
     if (argc < 3) {
