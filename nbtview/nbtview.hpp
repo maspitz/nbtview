@@ -41,6 +41,17 @@ std::vector<unsigned char>::const_iterator
 fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
                     std::vector<unsigned char>::const_iterator nbt_stop,
                     tagtype tag_type, const std::string &tag_name);
+
+class nbt_tag {
+    tagtype type;
+};
+
+// emplace_tag reads the tag which begins at input, emplaces the constructed tag
+// at the output, and returns an iterator advanced just past the tag that was
+// read.
+template <typename InputIterator, typename OutputIterator>
+InputIterator emplace_tag(InputIterator input, OutputIterator output);
+
 } // namespace nbtview
 
 #endif // NBTVIEW_H_
