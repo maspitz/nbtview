@@ -84,16 +84,15 @@ int main(int argc, const char *argv[]) {
     std::string filename(argv[1]);
     std::string key(argv[2]);
 
-    // Get the file size
-    std::ifstream file(filename,
-                       std::ios::binary | std::ios::in | std::ios::ate);
-    auto size = file.tellg();
-    file.seekg(0, std::ios::beg);
+    auto bytes = read_file(filename);
+    if (bytes.size() < 8) {
+        std::cout << "Short file: exiting" << std::endl;
+        return 0;
+    }
 
-    // Read the entire file into a vector of bytes
-    std::vector<char> bytes(size);
-    //    file.read(reinterpret_cast<char *>(bytes.data()), size);
-    file.read(bytes.data(), size);
+    if (has_gzip_header(bytes)) {
+        bytes = decompress_gzip(bytes);
+    } 
 
     auto ret = nbt::fast_find_named_tag(bytes.begin(), bytes.end(),
                                         nbt::tagtype::TAG_Int, key);
