@@ -37,9 +37,9 @@ enum class tagtype : char {
 // payload of some other tag.  This is unlikely to happen by chance.
 // (2) It is the calling code's responsibility to check that the remaining NBT
 // data is large enough to contain the tag's expected payload.
-std::vector<char>::const_iterator
-fast_find_named_tag(std::vector<char>::const_iterator nbt_start,
-                    std::vector<char>::const_iterator nbt_stop,
+std::vector<unsigned char>::const_iterator
+fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
+                    std::vector<unsigned char>::const_iterator nbt_stop,
                     tagtype tag_type, const std::string &tag_name);
 } // namespace nbtview
 
