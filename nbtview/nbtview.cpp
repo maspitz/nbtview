@@ -57,4 +57,24 @@ class BinaryScanner {
     }
 };
 
+template <typename InputIterator, typename OutputIterator>
+InputIterator emplace_tag_typed(InputIterator input_start,
+                                InputIterator input_stop, OutputIterator output,
+                                tagtype type) {
+    if (type == tagtype::TAG_Unspecified) {
+        type = *(input_start++);
+    }
+    switch (type) {
+    case tagtype::TAG_End:
+        break;
+    }
+}
+
+template <typename InputIterator, typename OutputIterator>
+InputIterator emplace_tag(InputIterator input_start, InputIterator input_stop,
+                          OutputIterator output) {
+    return emplace_tag_typed(input_start, input_stop, output,
+                             tagtype::TAG_Unspecified);
+}
+
 } // namespace nbtview
