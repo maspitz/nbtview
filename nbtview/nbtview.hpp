@@ -46,67 +46,72 @@ fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
                     std::vector<unsigned char>::const_iterator nbt_stop,
                     tagtype tag_type, const std::string &tag_name);
 
-class Tag {
-    tagtype type;
+struct Tag {
+    const tagtype type;
+    Tag(tagtype type) : type(type) {}
 };
 
-class End_Tag : public Tag {
+struct End_Tag : public Tag {
+    End_Tag() : Tag(tagtype::TAG_End) {}
 };
 
-class Byte_Tag : public Tag {
+struct Byte_Tag : public Tag {
     int8_t data;
+    Byte_Tag(int8_t data) : Tag(tagtype::TAG_Byte) {}
 };
 
-class Short_Tag : public Tag {
+struct Short_Tag : public Tag {
     int16_t data;
+    Short_Tag(int16_t data) : Tag(tagtype::TAG_Short), data(data) {}
 };
-    
-class Int_Tag : public Tag {
-  public:
+
+struct Int_Tag : public Tag {
     int32_t data;
+    Int_Tag(int32_t data) : Tag(tagtype::TAG_Int), data(data) {}
 };
 
-class Long_Tag : public Tag {
-  public:
+struct Long_Tag : public Tag {
     int64_t data;
+    Long_Tag(int64_t data) : Tag(tagtype::TAG_Long), data(data) {}
 };
 
-class Float_Tag : public Tag {
+struct Float_Tag : public Tag {
     static_assert(std::numeric_limits<double>::is_iec559,
                   "IEEE 754 floating point");
     static_assert(sizeof(float) == 4, "float type is 32-bit");
     float data;
+    Float_Tag(float data) : Tag(tagtype::TAG_Float), data(data) {}
 };
 
-class Double_Tag : public Tag {
+struct Double_Tag : public Tag {
     static_assert(std::numeric_limits<double>::is_iec559,
                   "IEEE 754 floating point");
     static_assert(sizeof(double) == 8, "double type is 64-bit");
     double data;
+    Double_Tag(double data) : Tag(tagtype::TAG_Double), data(data) {}
 };
 
-class Byte_Array_Tag : public Tag {
+struct Byte_Array_Tag : public Tag {
     std::span<int8_t> data;
 };
 
-class String_Tag : public Tag {
+struct String_Tag : public Tag {
     std::string_view data;
 };
 
-class List_Tag : public Tag {
+struct List_Tag : public Tag {
     std::vector<std::unique_ptr<Tag>> data;
 };
 
-class Compound_Tag : public Tag {
-  public:
+struct Compound_Tag : public Tag {
     std::vector<std::unique_ptr<Tag>> data;
 };
 
-class Int_Array_Tag : public Tag {
+struct Int_Array_Tag : public Tag {
     std::span<int32_t> data;
 };
 
-class Long_Array_Tag : public Tag {
+struct Long_Array_Tag : public Tag {
     std::span<int64_t> data;
 };
 
