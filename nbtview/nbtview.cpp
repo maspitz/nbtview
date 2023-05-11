@@ -64,6 +64,18 @@ class BinaryScanner {
         T read_value = load_big_endian<T>(&data[read_index]);
         return read_value;
     }
+
+    std::optional<std::string_view> get_string_view() {
+        auto str_len = get_value<uint16_t>();
+        if (str_len == std::nullopt ||
+            read_index + str_len.value() > data.size()) {
+            return std::nullopt;
+        }
+        auto sv = std::string_view(reinterpret_cast<char *>(&data[read_index]),
+                                   str_len.value());
+        read_index += str_len.value();
+        return sv;
+    }
 };
 
 template <typename Tag_Struct, typename Payload_Type>
@@ -91,8 +103,12 @@ std::unique_ptr<Tag> make_typed_tag(tagtype type, BinaryScanner &s) {
         return make_tag_struct<Float_Tag, float>(s);
     case tagtype::TAG_Double:
         return make_tag_struct<Double_Tag, double>(s);
-        //    case tagtype::TAG_Byte_Array:
-
+    case tagtype::TAG_Byte_Array: {
+        auto size = s.get_value<int32_t>();
+        if (size == std::nullopt) {
+            throw EndOfInput;
+        }
+    }
     default:
         throw std::runtime_error("Unhandled tag type");
     }

@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <limits>
 #include <memory>
+#include <optional>
 #include <span>
 #include <stdexcept>
 #include <string>
@@ -48,6 +49,7 @@ fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
 
 struct Tag {
     const tagtype type;
+    std::optional<std::string_view> name;
     Tag(tagtype type) : type(type) {}
 };
 
