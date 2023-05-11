@@ -1,4 +1,11 @@
 #include "nbtview.hpp"
+#include <algorithm>
+#include <bit>
+#include <cstdint>
+#include <optional>
+#include <span>
+#include <type_traits>
+
 namespace nbtview {
 
 std::vector<unsigned char>::const_iterator
@@ -23,5 +30,31 @@ fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
         loc++;
     }
 }
+
+// BinaryScanner scans and reads big-endian binary data.
+
+class BinaryScanner {
+  public:
+    BinaryScanner(const std::span<uint8_t> &data) : data(data), read_index(0) {}
+    std::span<uint8_t> data;
+    size_t read_index;
+
+    template <typename T>
+    [[nodiscard]] T load_big_endian(
+        const uint8_t *const buf) noexcept requires std::is_trivial_v<T> {
+        T res;
+        std::reverse_copy(buf, buf + sizeof res,
+                          reinterpret_cast<uint8_t *>(&res));
+        return res;
+    }
+
+    template <typename T> std::optional<T> get_int() {
+        if (read_index + sizeof(T) > data.size())
+            return std::nullopt;
+        T read_value = load_big_endian<T>(&data[read_index]);
+        read_index += sizeof(T);
+        return read_value;
+    }
+};
 
 } // namespace nbtview
