@@ -111,12 +111,20 @@ TEST_CASE("nbtview::BinaryScanner Integer Types") {
 }
 
 TEST_CASE("nbtview::BinaryScanner Floating Point Types") {
-    auto v = std::vector<uint8_t>{0xc3, 0x78, 0xc0, 0x00};
-    auto s = nbtview::BinaryScanner(v);
-    auto a = s.get_value<float>();
+    auto v32 = std::vector<uint8_t>{0xc3, 0x78, 0xc0, 0x00};
+    auto s32 = nbtview::BinaryScanner(v32);
+    auto f32 = s32.get_value<float>();
 
-    REQUIRE(a != std::nullopt);
-    REQUIRE(a.value() == -248.75);
+    REQUIRE(f32 != std::nullopt);
+    REQUIRE(f32.value() == -248.75);
+
+    auto v64 =
+        std::vector<uint8_t>{0x3f, 0xc9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9a};
+    auto s64 = nbtview::BinaryScanner(v64);
+    auto f64 = s64.get_value<double>();
+
+    REQUIRE(f64 != std::nullopt);
+    REQUIRE(f64.value() == 0.2);
 }
 
 #endif
