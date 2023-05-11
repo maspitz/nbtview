@@ -16,7 +16,8 @@ fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
             return nbt_stop;
         }
         if (loc - nbt_start >= 3 && *(loc - 3) == byte_1 &&
-            *(loc - 2) == byte_2 && *(loc - 1) == byte_3) {
+            *(loc - 2) == byte_2 && *(loc - 1) == byte_3 &&
+            tag_name.length() < nbt_stop - loc) {
             return loc + tag_name.length();
         }
         loc++;
