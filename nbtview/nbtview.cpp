@@ -78,3 +78,28 @@ InputIterator emplace_tag(InputIterator input_start, InputIterator input_stop,
 }
 
 } // namespace nbtview
+
+#ifdef TEST_NBTVIEW_INTERNALS
+#include <catch2/catch_test_macros.hpp>
+
+TEST_CASE("nbtview::BinaryScanner") {
+    auto v =
+        std::vector<uint8_t>{0x17, 0x23, 0x01, 0xff, 0x01, 0x23, 0x45, 0x67};
+    auto s = nbtview::BinaryScanner(v);
+    auto a = s.get_int<int8_t>();
+    auto b = s.get_int<int8_t>();
+    auto c = s.get_int<int16_t>();
+    auto d = s.get_int<int32_t>();
+    auto e = s.get_int<int8_t>();
+
+    REQUIRE(a != std::nullopt);
+    REQUIRE(b != std::nullopt);
+    REQUIRE(c != std::nullopt);
+    REQUIRE(d != std::nullopt);
+    REQUIRE(e == std::nullopt);
+    REQUIRE(a.value() == 0x17);
+    REQUIRE(b.value() == 0x23);
+    REQUIRE(c.value() == 0x01ff);
+    REQUIRE(d.value() == 0x01234567);
+}
+#endif

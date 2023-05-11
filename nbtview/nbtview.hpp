@@ -26,7 +26,8 @@ enum class tagtype : char {
     TAG_List = 9,
     TAG_Compound = 10,
     TAG_Int_Array = 11,
-    TAG_Long_Array = 12
+    TAG_Long_Array = 12,
+    TAG_Unspecified = 127
 };
 
 // Attempts to find a named tag in a range of NBT data by searching for its
@@ -49,7 +50,8 @@ class Tag {
     tagtype type;
 };
 
-class End_Tag : public Tag {};
+class End_Tag : public Tag {
+};
 
 class Byte_Tag : public Tag {
     int8_t data;
@@ -58,7 +60,7 @@ class Byte_Tag : public Tag {
 class Short_Tag : public Tag {
     int16_t data;
 };
-
+    
 class Int_Tag : public Tag {
   public:
     int32_t data;
@@ -114,14 +116,6 @@ class Long_Array_Tag : public Tag {
 template <typename InputIterator, typename OutputIterator>
 InputIterator emplace_tag(InputIterator input_start, InputIterator input_stop,
                           OutputIterator output);
-
-// emplace_typed_tag reads the tag of a specified type from input and emplaces
-// the result atthe output.  It returns an iterator advanced to the end of the
-// tag that was read.
-template <typename InputIterator, typename OutputIterator>
-InputIterator emplace_typed_tag(InputIterator input_start,
-                                InputIterator input_stop, OutputIterator output,
-                                tagtype type);
 
 } // namespace nbtview
 
