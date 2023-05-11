@@ -4,7 +4,9 @@
 #define NBTVIEW_H_
 
 #include <algorithm>
+#include <limits>
 #include <memory>
+#include <span>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -47,6 +49,16 @@ class Tag {
     tagtype type;
 };
 
+class End_Tag : public Tag {};
+
+class Byte_Tag : public Tag {
+    int8_t data;
+};
+
+class Short_Tag : public Tag {
+    int16_t data;
+};
+
 class Int_Tag : public Tag {
   public:
     int32_t data;
@@ -57,16 +69,59 @@ class Long_Tag : public Tag {
     int64_t data;
 };
 
+class Float_Tag : public Tag {
+    static_assert(std::numeric_limits<double>::is_iec559,
+                  "IEEE 754 floating point");
+    static_assert(sizeof(float) == 4, "float type is 32-bit");
+    float data;
+};
+
+class Double_Tag : public Tag {
+    static_assert(std::numeric_limits<double>::is_iec559,
+                  "IEEE 754 floating point");
+    static_assert(sizeof(double) == 8, "double type is 64-bit");
+    double data;
+};
+
+class Byte_Array_Tag : public Tag {
+    std::span<int8_t> data;
+};
+
+class String_Tag : public Tag {
+    std::string_view data;
+};
+
+class List_Tag : public Tag {
+    std::vector<std::unique_ptr<Tag>> data;
+};
+
 class Compound_Tag : public Tag {
   public:
     std::vector<std::unique_ptr<Tag>> data;
 };
 
+class Int_Array_Tag : public Tag {
+    std::span<int32_t> data;
+};
+
+class Long_Array_Tag : public Tag {
+    std::span<int64_t> data;
+};
+
 // emplace_tag reads the tag which begins at input, emplaces the constructed tag
-// at the output, and returns an iterator advanced just past the tag that was
-// read.
+// at the output, and returns an iterator advanced to the end of the tag that
+// was read.
 template <typename InputIterator, typename OutputIterator>
-InputIterator emplace_tag(InputIterator input, OutputIterator output);
+InputIterator emplace_tag(InputIterator input_start, InputIterator input_stop,
+                          OutputIterator output);
+
+// emplace_typed_tag reads the tag of a specified type from input and emplaces
+// the result atthe output.  It returns an iterator advanced to the end of the
+// tag that was read.
+template <typename InputIterator, typename OutputIterator>
+InputIterator emplace_typed_tag(InputIterator input_start,
+                                InputIterator input_stop, OutputIterator output,
+                                tagtype type);
 
 } // namespace nbtview
 
