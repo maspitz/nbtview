@@ -31,6 +31,8 @@ fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
     }
 }
 
+auto EndOfInput = std::runtime_error("Unexpected end of input data");
+
 // BinaryScanner scans and reads big-endian binary data.
 
 class BinaryScanner {
@@ -68,7 +70,7 @@ template <typename Tag_Struct, typename Payload_Type>
 std::unique_ptr<Tag_Struct> make_tag_struct(BinaryScanner &s) {
     auto payload = s.get_value<Payload_Type>();
     if (payload == std::nullopt) {
-        throw std::runtime_error("Missing payload");
+        throw EndOfInput;
     }
     return std::make_unique<Tag_Struct>(payload.value());
 }
