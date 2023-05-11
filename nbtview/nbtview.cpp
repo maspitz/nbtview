@@ -48,7 +48,7 @@ class BinaryScanner {
         return res;
     }
 
-    template <typename T> std::optional<T> get_int() {
+    template <typename T> std::optional<T> get_value() {
         if (read_index + sizeof(T) > data.size())
             return std::nullopt;
         T read_value = load_big_endian<T>(&data[read_index]);
@@ -86,11 +86,11 @@ TEST_CASE("nbtview::BinaryScanner") {
     auto v =
         std::vector<uint8_t>{0x17, 0x23, 0x01, 0xff, 0x01, 0x23, 0x45, 0x67};
     auto s = nbtview::BinaryScanner(v);
-    auto a = s.get_int<int8_t>();
-    auto b = s.get_int<int8_t>();
-    auto c = s.get_int<int16_t>();
-    auto d = s.get_int<int32_t>();
-    auto e = s.get_int<int8_t>();
+    auto a = s.get_value<int8_t>();
+    auto b = s.get_value<int8_t>();
+    auto c = s.get_value<int16_t>();
+    auto d = s.get_value<int32_t>();
+    auto e = s.get_value<int8_t>();
 
     REQUIRE(a != std::nullopt);
     REQUIRE(b != std::nullopt);
