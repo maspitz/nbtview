@@ -4,6 +4,7 @@
 #define NBTVIEW_H_
 
 #include <algorithm>
+#include <memory>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -58,8 +59,8 @@ class Long_Tag : public Tag {
 
 class Compound_Tag : public Tag {
   public:
-    std::vector<unique_ptr<Tag>> data;
-}
+    std::vector<std::unique_ptr<Tag>> data;
+};
 
 // emplace_tag reads the tag which begins at input, emplaces the constructed tag
 // at the output, and returns an iterator advanced just past the tag that was
