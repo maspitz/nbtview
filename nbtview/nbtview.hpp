@@ -42,9 +42,24 @@ fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
                     std::vector<unsigned char>::const_iterator nbt_stop,
                     tagtype tag_type, const std::string &tag_name);
 
-class nbt_tag {
+class Tag {
     tagtype type;
 };
+
+class Int_Tag : public Tag {
+  public:
+    int32_t data;
+};
+
+class Long_Tag : public Tag {
+  public:
+    int64_t data;
+};
+
+class Compound_Tag : public Tag {
+  public:
+    std::vector<unique_ptr<Tag>> data;
+}
 
 // emplace_tag reads the tag which begins at input, emplaces the constructed tag
 // at the output, and returns an iterator advanced just past the tag that was
