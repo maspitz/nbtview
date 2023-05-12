@@ -52,34 +52,52 @@ struct Tag {
     std::optional<std::string_view> name;
     Tag(tagtype type, std::optional<std::string_view> name)
         : type(type), name(name) {}
+    virtual std::string to_string() = 0;
 };
 
 struct End_Tag : public Tag {
     End_Tag() : Tag(tagtype::TAG_End, std::nullopt) {}
+    std::string to_string() { return "End_Tag"; }
 };
 
 struct Byte_Tag : public Tag {
     int8_t data;
     Byte_Tag(std::optional<std::string_view> name, int8_t data)
         : Tag(tagtype::TAG_Byte, name), data(data) {}
+    std::string to_string() {
+        return (name) ? ("'" + std::string(name.value()) + "': ")
+                      : "'': " + std::to_string(data) + "B";
+    }
 };
 
 struct Short_Tag : public Tag {
     int16_t data;
     Short_Tag(std::optional<std::string_view> name, int16_t data)
         : Tag(tagtype::TAG_Short, name), data(data) {}
+    std::string to_string() {
+        return (name) ? ("'" + std::string(name.value()) + "': ")
+                      : "'': " + std::to_string(data) + "S";
+    }
 };
 
 struct Int_Tag : public Tag {
     int32_t data;
     Int_Tag(std::optional<std::string_view> name, int32_t data)
         : Tag(tagtype::TAG_Int, name), data(data) {}
+    std::string to_string() {
+        return (name) ? ("'" + std::string(name.value()) + "': ")
+                      : "'': " + std::to_string(data);
+    }
 };
 
 struct Long_Tag : public Tag {
     int64_t data;
     Long_Tag(std::optional<std::string_view> name, int64_t data)
         : Tag(tagtype::TAG_Long, name), data(data) {}
+    std::string to_string() {
+        return (name) ? ("'" + std::string(name.value()) + "': ")
+                      : "'': " + std::to_string(data) + "L";
+    }
 };
 
 struct Float_Tag : public Tag {
@@ -89,6 +107,10 @@ struct Float_Tag : public Tag {
     float data;
     Float_Tag(std::optional<std::string_view> name, float data)
         : Tag(tagtype::TAG_Float, name), data(data) {}
+    std::string to_string() {
+        return (name) ? ("'" + std::string(name.value()) + "': ")
+                      : "'': " + std::to_string(data) + "F";
+    }
 };
 
 struct Double_Tag : public Tag {
@@ -98,6 +120,10 @@ struct Double_Tag : public Tag {
     double data;
     Double_Tag(std::optional<std::string_view> name, double data)
         : Tag(tagtype::TAG_Double, name), data(data) {}
+    std::string to_string() {
+        return (name) ? ("'" + std::string(name.value()) + "': ")
+                      : "'': " + std::to_string(data) + "D";
+    }
 };
 
 struct Byte_Array_Tag : public Tag {
