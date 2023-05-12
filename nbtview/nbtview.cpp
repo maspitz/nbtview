@@ -51,16 +51,19 @@ class BinaryScanner {
     }
 
     template <typename T> std::optional<T> get_value() {
-        if (read_index + sizeof(T) > data.size())
+        if (read_index + sizeof(T) > data.size()) {
+            read_index = data.size();
             return std::nullopt;
+        }
         T read_value = load_big_endian<T>(&data[read_index]);
         read_index += sizeof(T);
         return read_value;
     }
 
     template <typename T> std::optional<T> peek_value() {
-        if (read_index + sizeof(T) > data.size())
+        if (read_index + sizeof(T) > data.size()) {
             return std::nullopt;
+        }
         T read_value = load_big_endian<T>(&data[read_index]);
         return read_value;
     }
@@ -69,6 +72,10 @@ class BinaryScanner {
         auto str_len = get_value<uint16_t>();
         if (str_len == std::nullopt ||
             read_index + str_len.value() > data.size()) {
+            read_index = data.size();
+            return std::nullopt;
+        }
+        if (str_len.value() == 0) {
             return std::nullopt;
         }
         auto sv = std::string_view(reinterpret_cast<char *>(&data[read_index]),
