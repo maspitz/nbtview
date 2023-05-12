@@ -86,30 +86,33 @@ class BinaryScanner {
 };
 
 template <typename Tag_Struct, typename Payload_Type>
-std::unique_ptr<Tag_Struct> make_tag_struct(BinaryScanner &s) {
+std::unique_ptr<Tag_Struct>
+make_tag_struct(std::optional<std::string_view> name, BinaryScanner &s) {
     auto payload = s.get_value<Payload_Type>();
     if (payload == std::nullopt) {
         throw EndOfInput;
     }
-    return std::make_unique<Tag_Struct>(payload.value());
+    return std::make_unique<Tag_Struct>(name, payload.value());
 }
 
-std::unique_ptr<Tag> make_typed_tag(tagtype type, BinaryScanner &s) {
+std::unique_ptr<Tag> make_typed_tag(tagtype type,
+                                    std::optional<std::string_view> name,
+                                    BinaryScanner &s) {
     switch (type) {
     case tagtype::TAG_End:
         return std::make_unique<End_Tag>();
     case tagtype::TAG_Byte:
-        return make_tag_struct<Byte_Tag, int8_t>(s);
+        return make_tag_struct<Byte_Tag, int8_t>(name, s);
     case tagtype::TAG_Short:
-        return make_tag_struct<Short_Tag, int16_t>(s);
+        return make_tag_struct<Short_Tag, int16_t>(name, s);
     case tagtype::TAG_Int:
-        return make_tag_struct<Int_Tag, int32_t>(s);
+        return make_tag_struct<Int_Tag, int32_t>(name, s);
     case tagtype::TAG_Long:
-        return make_tag_struct<Long_Tag, int64_t>(s);
+        return make_tag_struct<Long_Tag, int64_t>(name, s);
     case tagtype::TAG_Float:
-        return make_tag_struct<Float_Tag, float>(s);
+        return make_tag_struct<Float_Tag, float>(name, s);
     case tagtype::TAG_Double:
-        return make_tag_struct<Double_Tag, double>(s);
+        return make_tag_struct<Double_Tag, double>(name, s);
     case tagtype::TAG_Byte_Array: {
         auto size = s.get_value<int32_t>();
         if (size == std::nullopt) {
@@ -120,13 +123,20 @@ std::unique_ptr<Tag> make_typed_tag(tagtype type, BinaryScanner &s) {
         throw std::runtime_error("Unhandled tag type");
     }
 }
-
+// make_tag scans an NBT tag, including its type, name, and payload, and
+// returns a unique_ptr to it.  If the end of the data is encountered,
+// nullptr is returned instead.  As a side effect, make_tag advances the
+// BinaryScanner to the end of the tag's payload.
 std::unique_ptr<Tag> make_tag(BinaryScanner &s) {
     auto type = s.get_value<int8_t>();
     if (type == std::nullopt) {
         return nullptr;
     }
-    return make_typed_tag(static_cast<tagtype>(type.value()), s);
+    if (static_cast<tagtype>(type.value()) == tagtype::TAG_End) {
+        return std::make_unique<End_Tag>();
+    }
+    auto name = s.get_string_view();
+    return make_typed_tag(static_cast<tagtype>(type.value()), name, s);
 }
 
 template <typename InputIterator, typename OutputIterator>
