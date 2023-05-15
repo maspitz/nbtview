@@ -124,6 +124,15 @@ std::unique_ptr<Tag_Array> make_tag_array(std::optional<std::string_view> name,
     return std::make_unique<Tag_Array>(name, array_view.value());
 }
 
+std::unique_ptr<String_Tag>
+make_tag_string(std::optional<std::string_view> name, BinaryScanner &s) {
+    auto payload = s.get_string_view();
+    if (payload == std::nullopt) {
+        throw EndOfInput;
+    }
+    return std::make_unique<String_Tag>(name, payload.value());
+}
+
 std::unique_ptr<Tag> make_typed_tag(tagtype type,
                                     std::optional<std::string_view> name,
                                     BinaryScanner &s) {
@@ -144,6 +153,8 @@ std::unique_ptr<Tag> make_typed_tag(tagtype type,
         return make_tag_struct<Double_Tag, double>(name, s);
     case tagtype::TAG_Byte_Array:
         return make_tag_array<Byte_Array_Tag, int8_t>(name, s);
+    case tagtype::TAG_String:
+        return make_tag_string(name, s);
     case tagtype::TAG_Int_Array:
         return make_tag_array<Int_Array_Tag, int32_t>(name, s);
     case tagtype::TAG_Long_Array:
