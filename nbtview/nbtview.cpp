@@ -114,6 +114,16 @@ make_tag_struct(std::optional<std::string_view> name, BinaryScanner &s) {
     return std::make_unique<Tag_Struct>(name, payload.value());
 }
 
+template <typename Tag_Array, typename Element_Type>
+std::unique_ptr<Tag_Array> make_tag_array(std::optional<std::string_view> name,
+                                          BinaryScanner &s) {
+    auto array_view = s.get_array_view<Element_Type>();
+    if (array_view == std::nullopt) {
+        throw EndOfInput;
+    }
+    return std::make_unique<Tag_Array>(name, array_view.value());
+}
+
 std::unique_ptr<Tag> make_typed_tag(tagtype type,
                                     std::optional<std::string_view> name,
                                     BinaryScanner &s) {
