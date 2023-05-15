@@ -83,6 +83,25 @@ class BinaryScanner {
         read_index += str_len.value();
         return sv;
     }
+
+    template <typename Element_Type>
+    std::optional<std::span<Element_Type>> get_array_view() {
+        auto array_length = get_value<int32_t>();
+        if (array_length == std::nullopt) {
+            return std::nullopt;
+        }
+        if (array_length.value() < 0) {
+            throw std::runtime_error("Negative array length encountered");
+        }
+        if (read_index + sizeof(Element_Type) * array_length.value() >
+            data.size()) {
+            read_index = data.size();
+            return std::nullopt;
+        }
+        auto span_start = reinterpret_cast<Element_Type *>(&data[read_index]);
+        auto span_stop = span_start + array_length.value();
+        return std::span<Element_Type>(span_start, span_stop);
+    }
 };
 
 template <typename Tag_Struct, typename Payload_Type>
