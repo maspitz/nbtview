@@ -8,6 +8,7 @@
 #include <memory>
 #include <optional>
 #include <span>
+#include <sstream>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -128,6 +129,17 @@ struct Double_Tag : public Tag {
 
 struct Byte_Array_Tag : public Tag {
     std::span<int8_t> data;
+    Byte_Array_Tag(std::optional<std::string_view> name, std::span<int8_t> data)
+        : Tag(tagtype::TAG_Byte_Array, name), data(data) {}
+    std::string to_string() {
+        std::ostringstream oss;
+        oss << ((name) ? ("'" + std::string(name.value()) + "': [") : "'': [");
+        for (auto element : data) {
+            oss << element << "B, ";
+        }
+        oss << "]";
+        return oss.str();
+    }
 };
 
 struct String_Tag : public Tag {
