@@ -143,10 +143,6 @@ std::unique_ptr<Tag> make_typed_tag(tagtype type,
     case tagtype::TAG_Double:
         return make_tag_struct<Double_Tag, double>(name, s);
     case tagtype::TAG_Byte_Array: {
-        auto size = s.get_value<int32_t>();
-        if (size == std::nullopt) {
-            throw EndOfInput;
-        }
         return make_tag_array<Byte_Array_Tag, int8_t>(name, s);
     }
     default:
