@@ -135,6 +135,26 @@ make_tag_string(std::optional<std::string_view> name, BinaryScanner &s) {
 
 std::unique_ptr<Tag> make_typed_tag(tagtype type,
                                     std::optional<std::string_view> name,
+                                    BinaryScanner &s);
+
+std::unique_ptr<List_Tag> make_tag_list(std::optional<std::string_view> name,
+                                        BinaryScanner &s) {
+    auto list_type = s.get_value<int8_t>();
+    auto list_length = s.get_value<int32_t>();
+    if (list_type == std::nullopt || list_length == std::nullopt) {
+        throw EndOfInput;
+    }
+    auto ltype = static_cast<tagtype>(list_type.value());
+    auto list_tag = std::make_unique<List_Tag>(name);
+    list_tag->data.reserve(list_length.value());
+    for (int i = 0; i < list_length.value(); ++i) {
+        list_tag.data.emplace_back(make_typed_tag(ltype, std::nullopt, s));
+    }
+    return list_tag;
+}
+
+std::unique_ptr<Tag> make_typed_tag(tagtype type,
+                                    std::optional<std::string_view> name,
                                     BinaryScanner &s) {
     switch (type) {
     case tagtype::TAG_End:
@@ -155,6 +175,8 @@ std::unique_ptr<Tag> make_typed_tag(tagtype type,
         return make_tag_array<Byte_Array_Tag, int8_t>(name, s);
     case tagtype::TAG_String:
         return make_tag_string(name, s);
+    case tagtype::TAG_List:
+        return make_tag_list(name, s);
     case tagtype::TAG_Int_Array:
         return make_tag_array<Int_Array_Tag, int32_t>(name, s);
     case tagtype::TAG_Long_Array:

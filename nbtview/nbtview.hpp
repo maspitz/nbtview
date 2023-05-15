@@ -154,6 +154,18 @@ struct String_Tag : public Tag {
 
 struct List_Tag : public Tag {
     std::vector<std::unique_ptr<Tag>> data;
+    List_Tag(std::optional<std::string_view> name)
+        : Tag(tagtype::TAG_List, name) {}
+    std::string to_string() {
+        std::ostringstream oss;
+        oss << ((name) ? ("'" + std::string(name.value()) + "': List [")
+                       : "'': List [");
+        for (auto tag_it = data.begin(); tag_it != data.end(); ++tag_it) {
+            oss << *tag_it << ", ";
+        }
+        oss << "]";
+        return oss.str();
+    }
 };
 
 struct Compound_Tag : public Tag {
