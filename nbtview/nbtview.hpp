@@ -156,10 +156,33 @@ struct Compound_Tag : public Tag {
 
 struct Int_Array_Tag : public Tag {
     std::span<int32_t> data;
+    Int_Array_Tag(std::optional<std::string_view> name, std::span<int32_t> data)
+        : Tag(tagtype::TAG_Int_Array, name), data(data) {}
+    std::string to_string() {
+        std::ostringstream oss;
+        oss << ((name) ? ("'" + std::string(name.value()) + "': [") : "'': [");
+        for (auto element : data) {
+            oss << element << ", ";
+        }
+        oss << "]";
+        return oss.str();
+    }
 };
 
 struct Long_Array_Tag : public Tag {
     std::span<int64_t> data;
+    Long_Array_Tag(std::optional<std::string_view> name,
+                   std::span<int64_t> data)
+        : Tag(tagtype::TAG_Long_Array, name), data(data) {}
+    std::string to_string() {
+        std::ostringstream oss;
+        oss << ((name) ? ("'" + std::string(name.value()) + "': [") : "'': [");
+        for (auto element : data) {
+            oss << element << "L, ";
+        }
+        oss << "]";
+        return oss.str();
+    }
 };
 
 // emplace_tag reads the tag which begins at input, emplaces the constructed tag
