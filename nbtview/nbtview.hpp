@@ -144,6 +144,12 @@ struct Byte_Array_Tag : public Tag {
 
 struct String_Tag : public Tag {
     std::string_view data;
+    String_Tag(std::optional<std::string_view> name, std::string_view data)
+        : Tag(tagtype::TAG_String, name), data(data) {}
+    std::string to_string() {
+        return (name) ? ("'" + std::string(name.value()) + "': ")
+                      : "'': '" + std::string(data) + "'";
+    }
 };
 
 struct List_Tag : public Tag {
