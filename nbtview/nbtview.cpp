@@ -153,6 +153,21 @@ std::unique_ptr<List_Tag> make_tag_list(std::optional<std::string_view> name,
     return list_tag;
 }
 
+std::unique_ptr<List_Tag>
+make_tag_compound(std::optional<std::string_view> name, BinaryScanner &s) {
+    auto compound_tag = std::make_unique<Compound_Tag>(name);
+    while (true) {
+        auto next_type = s.peek_value<int8_t>();
+        if (next_type == std::nullopt) {
+            throw EndOfInput;
+        }
+        if (static_cast<tagtype>(next_type.value()) != tagtype::TAG_End) {
+            return compound_tag;
+        }
+        compound_tag.data.emplace_back(make_tag(s));
+    }
+}
+
 std::unique_ptr<Tag> make_typed_tag(tagtype type,
                                     std::optional<std::string_view> name,
                                     BinaryScanner &s) {
@@ -177,6 +192,8 @@ std::unique_ptr<Tag> make_typed_tag(tagtype type,
         return make_tag_string(name, s);
     case tagtype::TAG_List:
         return make_tag_list(name, s);
+    case tagtype::TAG_Compound:
+        return make_tag_compound(name, s);
     case tagtype::TAG_Int_Array:
         return make_tag_array<Int_Array_Tag, int32_t>(name, s);
     case tagtype::TAG_Long_Array:

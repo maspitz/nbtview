@@ -170,6 +170,18 @@ struct List_Tag : public Tag {
 
 struct Compound_Tag : public Tag {
     std::vector<std::unique_ptr<Tag>> data;
+    Compound_Tag(std::optional<std::string_view> name)
+        : Tag(tagtype::TAG_Compound, name) {}
+    std::string to_string() {
+        std::ostringstream oss;
+        oss << ((name) ? ("'" + std::string(name.value()) + "': Compound [")
+                       : "'': Compound [");
+        for (auto tag_it = data.begin(); tag_it != data.end(); ++tag_it) {
+            oss << *tag_it << ", ";
+        }
+        oss << "]";
+        return oss.str();
+    }
 };
 
 struct Int_Array_Tag : public Tag {
