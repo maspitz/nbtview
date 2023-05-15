@@ -152,12 +152,12 @@ std::unique_ptr<List_Tag> make_tag_list(std::optional<std::string_view> name,
     auto list_tag = std::make_unique<List_Tag>(name);
     list_tag->data.reserve(list_length.value());
     for (int i = 0; i < list_length.value(); ++i) {
-        list_tag.data.emplace_back(make_typed_tag(ltype, std::nullopt, s));
+        list_tag->data.emplace_back(make_typed_tag(ltype, std::nullopt, s));
     }
     return list_tag;
 }
 
-std::unique_ptr<List_Tag>
+std::unique_ptr<Compound_Tag>
 make_tag_compound(std::optional<std::string_view> name, BinaryScanner &s) {
     auto compound_tag = std::make_unique<Compound_Tag>(name);
     while (true) {
@@ -168,7 +168,7 @@ make_tag_compound(std::optional<std::string_view> name, BinaryScanner &s) {
         if (static_cast<tagtype>(next_type.value()) != tagtype::TAG_End) {
             return compound_tag;
         }
-        compound_tag.data.emplace_back(make_tag(s));
+        compound_tag->data.emplace_back(make_tag(s));
     }
 }
 
