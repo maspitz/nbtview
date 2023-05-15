@@ -142,9 +142,13 @@ std::unique_ptr<Tag> make_typed_tag(tagtype type,
         return make_tag_struct<Float_Tag, float>(name, s);
     case tagtype::TAG_Double:
         return make_tag_struct<Double_Tag, double>(name, s);
-    case tagtype::TAG_Byte_Array: {
+    case tagtype::TAG_Byte_Array:
         return make_tag_array<Byte_Array_Tag, int8_t>(name, s);
-    }
+    case tagtype::TAG_Int_Array:
+        return make_tag_array<Int_Array_Tag, int32_t>(name, s);
+    case tagtype::TAG_Long_Array:
+        return make_tag_array<Long_Array_Tag, int64_t>(name, s);
+
     default:
         throw std::runtime_error("Unhandled tag type");
     }
