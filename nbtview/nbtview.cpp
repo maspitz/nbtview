@@ -8,6 +8,14 @@
 
 namespace nbtview {
 
+class BinaryScanner;
+
+std::unique_ptr<Tag> make_typed_tag(tagtype type,
+                                    std::optional<std::string_view> name,
+                                    BinaryScanner &s);
+
+std::unique_ptr<Tag> make_tag(BinaryScanner &s);
+
 std::vector<unsigned char>::const_iterator
 fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
                     std::vector<unsigned char>::const_iterator nbt_stop,
@@ -132,10 +140,6 @@ make_tag_string(std::optional<std::string_view> name, BinaryScanner &s) {
     }
     return std::make_unique<String_Tag>(name, payload.value());
 }
-
-std::unique_ptr<Tag> make_typed_tag(tagtype type,
-                                    std::optional<std::string_view> name,
-                                    BinaryScanner &s);
 
 std::unique_ptr<List_Tag> make_tag_list(std::optional<std::string_view> name,
                                         BinaryScanner &s) {
