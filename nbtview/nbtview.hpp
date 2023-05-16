@@ -147,8 +147,8 @@ struct String_Tag : public Tag {
     String_Tag(std::optional<std::string_view> name, std::string_view data)
         : Tag(tagtype::TAG_String, name), data(data) {}
     std::string to_string() {
-        return (name) ? ("'" + std::string(name.value()) + "': ")
-                      : "'': '" + std::string(data) + "'";
+        return ((name) ? ("'" + std::string(name.value()) + "': ") : "'': '") +
+               std::string(data) + "'";
     }
 };
 

@@ -165,7 +165,7 @@ make_tag_compound(std::optional<std::string_view> name, BinaryScanner &s) {
         if (next_type == std::nullopt) {
             throw EndOfInput;
         }
-        if (static_cast<tagtype>(next_type.value()) != tagtype::TAG_End) {
+        if (static_cast<tagtype>(next_type.value()) == tagtype::TAG_End) {
             return compound_tag;
         }
         compound_tag->data.emplace_back(make_tag(s));
