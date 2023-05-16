@@ -14,7 +14,7 @@ numeric tags (Int, Long, Float, etc.) are copied.
 rendered as `std::vector<std::unique_ptr<Tag>>`, where Tag is a base class for NBT tags.
 * String tags provide a `std::string_view` of their payload.
 * Numeric array tags provide a `std::span<T>` of an appropriate numeric type.
-** However, the user of this view must take care of the byte ordering themselves.
+  However, the user of this view must take care of the byte ordering themselves.
   
 ## Tag Names
 * The names of all tags are
