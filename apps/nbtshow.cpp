@@ -149,5 +149,9 @@ int main(int argc, const char *argv[]) {
         print_long_tag(bytes, tag_name);
     }
 
+    auto bscr = nbtview::BinaryScanner(bytes);
+    auto root_tag = nbtview::make_tag(bscr);
+    std::cout << "root_tag: " << root_tag->to_string() << std::endl;
+
     return 0;
 }
