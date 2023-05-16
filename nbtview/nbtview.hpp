@@ -135,7 +135,7 @@ struct Byte_Array_Tag : public Tag {
         std::ostringstream oss;
         oss << ((name) ? ("'" + std::string(name.value()) + "': [") : "'': [");
         for (auto element : data) {
-            oss << element << "B, ";
+            oss << std::to_string(element) << "B, ";
         }
         oss << "]";
         return oss.str();
@@ -192,7 +192,7 @@ struct Int_Array_Tag : public Tag {
         std::ostringstream oss;
         oss << ((name) ? ("'" + std::string(name.value()) + "': [") : "'': [");
         for (auto element : data) {
-            oss << element << ", ";
+            oss << std::to_string(element) << ", ";
         }
         oss << "]";
         return oss.str();
@@ -208,7 +208,7 @@ struct Long_Array_Tag : public Tag {
         std::ostringstream oss;
         oss << ((name) ? ("'" + std::string(name.value()) + "': [") : "'': [");
         for (auto element : data) {
-            oss << element << "L, ";
+            oss << std::to_string(element) << "L, ";
         }
         oss << "]";
         return oss.str();
