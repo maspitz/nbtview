@@ -8,14 +8,6 @@
 
 namespace nbtview {
 
-class BinaryScanner;
-
-std::unique_ptr<Tag> make_typed_tag(tagtype type,
-                                    std::optional<std::string_view> name,
-                                    BinaryScanner &s);
-
-std::unique_ptr<Tag> make_tag(BinaryScanner &s);
-
 std::vector<unsigned char>::const_iterator
 fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
                     std::vector<unsigned char>::const_iterator nbt_stop,
@@ -40,77 +32,6 @@ fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
 }
 
 auto EndOfInput = std::runtime_error("Unexpected end of input data");
-
-// BinaryScanner scans and reads big-endian binary data.
-
-class BinaryScanner {
-  public:
-    BinaryScanner(const std::span<uint8_t> &data) : data(data), read_index(0) {}
-    std::span<uint8_t> data;
-    size_t read_index;
-
-    template <typename T>
-    [[nodiscard]] T load_big_endian(
-        const uint8_t *const buf) noexcept requires std::is_trivial_v<T> {
-        T res;
-        std::reverse_copy(buf, buf + sizeof res,
-                          reinterpret_cast<uint8_t *>(&res));
-        return res;
-    }
-
-    template <typename T> std::optional<T> get_value() {
-        if (read_index + sizeof(T) > data.size()) {
-            read_index = data.size();
-            return std::nullopt;
-        }
-        T read_value = load_big_endian<T>(&data[read_index]);
-        read_index += sizeof(T);
-        return read_value;
-    }
-
-    template <typename T> std::optional<T> peek_value() {
-        if (read_index + sizeof(T) > data.size()) {
-            return std::nullopt;
-        }
-        T read_value = load_big_endian<T>(&data[read_index]);
-        return read_value;
-    }
-
-    std::optional<std::string_view> get_string_view() {
-        auto str_len = get_value<uint16_t>();
-        if (str_len == std::nullopt ||
-            read_index + str_len.value() > data.size()) {
-            read_index = data.size();
-            return std::nullopt;
-        }
-        if (str_len.value() == 0) {
-            return std::nullopt;
-        }
-        auto sv = std::string_view(reinterpret_cast<char *>(&data[read_index]),
-                                   str_len.value());
-        read_index += str_len.value();
-        return sv;
-    }
-
-    template <typename Element_Type>
-    std::optional<std::span<Element_Type>> get_array_view() {
-        auto array_length = get_value<int32_t>();
-        if (array_length == std::nullopt) {
-            return std::nullopt;
-        }
-        if (array_length.value() < 0) {
-            throw std::runtime_error("Negative array length encountered");
-        }
-        if (read_index + sizeof(Element_Type) * array_length.value() >
-            data.size()) {
-            read_index = data.size();
-            return std::nullopt;
-        }
-        auto span_start = reinterpret_cast<Element_Type *>(&data[read_index]);
-        auto span_stop = span_start + array_length.value();
-        return std::span<Element_Type>(span_start, span_stop);
-    }
-};
 
 template <typename Tag_Struct, typename Payload_Type>
 std::unique_ptr<Tag_Struct>
