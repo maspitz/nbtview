@@ -177,7 +177,7 @@ struct Compound_Tag : public Tag {
         oss << ((name) ? ("'" + std::string(name.value()) + "': Compound [")
                        : "'': Compound [");
         for (auto tag_it = data.begin(); tag_it != data.end(); ++tag_it) {
-            oss << *tag_it << ", ";
+            oss << (*tag_it)->to_string() << ", ";
         }
         oss << "]";
         return oss.str();
