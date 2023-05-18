@@ -11,7 +11,7 @@ namespace nbtview {
 std::vector<unsigned char>::const_iterator
 fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
                     std::vector<unsigned char>::const_iterator nbt_stop,
-                    tagtype tag_type, const std::string &tag_name) {
+                    Tag::Type tag_type, const std::string &tag_name) {
 
     auto loc = nbt_start;
     const char byte_1 = static_cast<char>(tag_type);
@@ -69,7 +69,7 @@ std::unique_ptr<List_Tag> make_tag_list(std::optional<std::string_view> name,
     if (list_type == std::nullopt || list_length == std::nullopt) {
         throw EndOfInput;
     }
-    auto ltype = static_cast<tagtype>(list_type.value());
+    auto ltype = static_cast<Tag::Type>(list_type.value());
     auto list_tag = std::make_unique<List_Tag>(name);
     list_tag->data.reserve(list_length.value());
     for (int i = 0; i < list_length.value(); ++i) {
@@ -86,7 +86,15 @@ make_tag_compound(std::optional<std::string_view> name, BinaryScanner &s) {
         if (next_type == std::nullopt) {
             throw EndOfInput;
         }
-        if (static_cast<tagtype>(next_type.value()) == tagtype::TAG_End) {
+        // TODO next: store payload of compound tag in std::map.
+        // read type and name of elements in this loop
+        // use std::map::try_emplace (or similar)
+        // to insert a make_typed_tag into the map at the named location.
+        // (note: this copies the name, among other features....)
+        // (so maybe we'd rather avoid the map altogether???)
+        // (what are the advantages of the map anyway?  lookup time?)
+        // (QUERY: are all named tags actually elements of a compound tag???)
+        if (static_cast<Tag::Type>(next_type.value()) == Tag::Type::End) {
             s.get_value<int8_t>(); // consumes the TAG_End to complete reading
                                    // the compound payload
             return compound_tag;
@@ -95,35 +103,35 @@ make_tag_compound(std::optional<std::string_view> name, BinaryScanner &s) {
     }
 }
 
-std::unique_ptr<Tag> make_typed_tag(tagtype type,
+std::unique_ptr<Tag> make_typed_tag(Tag::Type type,
                                     std::optional<std::string_view> name,
                                     BinaryScanner &s) {
     switch (type) {
-    case tagtype::TAG_End:
+    case Tag::Type::End:
         return std::make_unique<End_Tag>();
-    case tagtype::TAG_Byte:
+    case Tag::Type::Byte:
         return make_tag_struct<Byte_Tag, int8_t>(name, s);
-    case tagtype::TAG_Short:
+    case Tag::Type::Short:
         return make_tag_struct<Short_Tag, int16_t>(name, s);
-    case tagtype::TAG_Int:
+    case Tag::Type::Int:
         return make_tag_struct<Int_Tag, int32_t>(name, s);
-    case tagtype::TAG_Long:
+    case Tag::Type::Long:
         return make_tag_struct<Long_Tag, int64_t>(name, s);
-    case tagtype::TAG_Float:
+    case Tag::Type::Float:
         return make_tag_struct<Float_Tag, float>(name, s);
-    case tagtype::TAG_Double:
+    case Tag::Type::Double:
         return make_tag_struct<Double_Tag, double>(name, s);
-    case tagtype::TAG_Byte_Array:
+    case Tag::Type::Byte_Array:
         return make_tag_array<Byte_Array_Tag, int8_t>(name, s);
-    case tagtype::TAG_String:
+    case Tag::Type::String:
         return make_tag_string(name, s);
-    case tagtype::TAG_List:
+    case Tag::Type::List:
         return make_tag_list(name, s);
-    case tagtype::TAG_Compound:
+    case Tag::Type::Compound:
         return make_tag_compound(name, s);
-    case tagtype::TAG_Int_Array:
+    case Tag::Type::Int_Array:
         return make_tag_array<Int_Array_Tag, int32_t>(name, s);
-    case tagtype::TAG_Long_Array:
+    case Tag::Type::Long_Array:
         return make_tag_array<Long_Array_Tag, int64_t>(name, s);
 
     default:
@@ -139,24 +147,24 @@ std::unique_ptr<Tag> make_tag(BinaryScanner &s) {
     if (type == std::nullopt) {
         return nullptr;
     }
-    if (static_cast<tagtype>(type.value()) == tagtype::TAG_End) {
+    if (static_cast<Tag::Type>(type.value()) == Tag::Type::End) {
         return std::make_unique<End_Tag>();
     }
     auto name = s.get_string_view();
-    return make_typed_tag(static_cast<tagtype>(type.value()), name, s);
+    return make_typed_tag(static_cast<Tag::Type>(type.value()), name, s);
 }
 
 template <typename InputIterator, typename OutputIterator>
 InputIterator emplace_tag_typed(InputIterator input_start,
                                 InputIterator input_stop, OutputIterator output,
-                                tagtype type) {
-    if (type == tagtype::TAG_Unspecified) {
+                                Tag::Type type) {
+    if (type == Tag::Type::Unspecified) {
         type = *(input_start++);
     }
     switch (type) {
-    case tagtype::TAG_End:
+    case Tag::Type::End:
         break;
-    case tagtype::TAG_Byte:
+    case Tag::Type::Byte:
         break;
     }
 }
@@ -165,7 +173,7 @@ template <typename InputIterator, typename OutputIterator>
 InputIterator emplace_tag(InputIterator input_start, InputIterator input_stop,
                           OutputIterator output) {
     return emplace_tag_typed(input_start, input_stop, output,
-                             tagtype::TAG_Unspecified);
+                             Tag::Type::Unspecified);
 }
 
 } // namespace nbtview

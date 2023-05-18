@@ -16,21 +16,30 @@
 
 namespace nbtview {
 
-enum class tagtype : char {
-    TAG_End = 0,
-    TAG_Byte = 1,
-    TAG_Short = 2,
-    TAG_Int = 3,
-    TAG_Long = 4,
-    TAG_Float = 5,
-    TAG_Double = 6,
-    TAG_Byte_Array = 7,
-    TAG_String = 8,
-    TAG_List = 9,
-    TAG_Compound = 10,
-    TAG_Int_Array = 11,
-    TAG_Long_Array = 12,
-    TAG_Unspecified = 127
+struct Tag {
+
+    enum class Type : char {
+        End = 0,
+        Byte = 1,
+        Short = 2,
+        Int = 3,
+        Long = 4,
+        Float = 5,
+        Double = 6,
+        Byte_Array = 7,
+        String = 8,
+        List = 9,
+        Compound = 10,
+        Int_Array = 11,
+        Long_Array = 12,
+        Unspecified = 127
+    };
+
+    const Tag::Type type;
+    std::optional<std::string_view> name;
+    Tag(Tag::Type type, std::optional<std::string_view> name)
+        : type(type), name(name) {}
+    virtual std::string to_string() = 0;
 };
 
 // Attempts to find a named tag in a range of NBT data by searching for its
@@ -44,28 +53,21 @@ enum class tagtype : char {
 // payload of some other tag.  This is unlikely to happen by chance.
 // (2) It is the calling code's responsibility to check that the remaining NBT
 // data is large enough to contain the tag's expected payload.
+
 std::vector<unsigned char>::const_iterator
 fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
                     std::vector<unsigned char>::const_iterator nbt_stop,
-                    tagtype tag_type, const std::string &tag_name);
-
-struct Tag {
-    const tagtype type;
-    std::optional<std::string_view> name;
-    Tag(tagtype type, std::optional<std::string_view> name)
-        : type(type), name(name) {}
-    virtual std::string to_string() = 0;
-};
+                    Tag::Type tag_type, const std::string &tag_name);
 
 struct End_Tag : public Tag {
-    End_Tag() : Tag(tagtype::TAG_End, std::nullopt) {}
+    End_Tag() : Tag(Tag::Type::End, std::nullopt) {}
     std::string to_string() { return "End_Tag"; }
 };
 
 struct Byte_Tag : public Tag {
     int8_t data;
     Byte_Tag(std::optional<std::string_view> name, int8_t data)
-        : Tag(tagtype::TAG_Byte, name), data(data) {}
+        : Tag(Tag::Type::Byte, name), data(data) {}
     std::string to_string() {
         return std::format("'{}': {}B", (name ? name.value() : ""), data);
     }
@@ -74,7 +76,7 @@ struct Byte_Tag : public Tag {
 struct Short_Tag : public Tag {
     int16_t data;
     Short_Tag(std::optional<std::string_view> name, int16_t data)
-        : Tag(tagtype::TAG_Short, name), data(data) {}
+        : Tag(Tag::Type::Short, name), data(data) {}
     std::string to_string() {
         return std::format("'{}': {}S", (name ? name.value() : ""), data);
     }
@@ -83,7 +85,7 @@ struct Short_Tag : public Tag {
 struct Int_Tag : public Tag {
     int32_t data;
     Int_Tag(std::optional<std::string_view> name, int32_t data)
-        : Tag(tagtype::TAG_Int, name), data(data) {}
+        : Tag(Tag::Type::Int, name), data(data) {}
     std::string to_string() {
         return std::format("'{}': {}", (name ? name.value() : ""), data);
     }
@@ -92,7 +94,7 @@ struct Int_Tag : public Tag {
 struct Long_Tag : public Tag {
     int64_t data;
     Long_Tag(std::optional<std::string_view> name, int64_t data)
-        : Tag(tagtype::TAG_Long, name), data(data) {}
+        : Tag(Tag::Type::Long, name), data(data) {}
     std::string to_string() {
         return std::format("'{}': {}L", (name ? name.value() : ""), data);
     }
@@ -104,7 +106,7 @@ struct Float_Tag : public Tag {
     static_assert(sizeof(float) == 4, "float type is 32-bit");
     float data;
     Float_Tag(std::optional<std::string_view> name, float data)
-        : Tag(tagtype::TAG_Float, name), data(data) {}
+        : Tag(Tag::Type::Float, name), data(data) {}
     std::string to_string() {
         return std::format("'{}': {}F", (name ? name.value() : ""), data);
     }
@@ -116,7 +118,7 @@ struct Double_Tag : public Tag {
     static_assert(sizeof(double) == 8, "double type is 64-bit");
     double data;
     Double_Tag(std::optional<std::string_view> name, double data)
-        : Tag(tagtype::TAG_Double, name), data(data) {}
+        : Tag(Tag::Type::Double, name), data(data) {}
     std::string to_string() {
         return std::format("'{}': {}D", (name ? name.value() : ""), data);
     }
@@ -125,7 +127,7 @@ struct Double_Tag : public Tag {
 struct Byte_Array_Tag : public Tag {
     std::span<int8_t> data;
     Byte_Array_Tag(std::optional<std::string_view> name, std::span<int8_t> data)
-        : Tag(tagtype::TAG_Byte_Array, name), data(data) {}
+        : Tag(Tag::Type::Byte_Array, name), data(data) {}
     std::string to_string() {
         std::ostringstream oss;
         oss << ((name) ? ("'" + std::string(name.value()) + "': [") : "'': [");
@@ -140,7 +142,7 @@ struct Byte_Array_Tag : public Tag {
 struct String_Tag : public Tag {
     std::string_view data;
     String_Tag(std::optional<std::string_view> name, std::string_view data)
-        : Tag(tagtype::TAG_String, name), data(data) {}
+        : Tag(Tag::Type::String, name), data(data) {}
     std::string to_string() {
         return ((name) ? ("'" + std::string(name.value()) + "': ") : "'': '") +
                std::string(data) + "'";
@@ -150,7 +152,7 @@ struct String_Tag : public Tag {
 struct List_Tag : public Tag {
     std::vector<std::unique_ptr<Tag>> data;
     List_Tag(std::optional<std::string_view> name)
-        : Tag(tagtype::TAG_List, name) {}
+        : Tag(Tag::Type::List, name) {}
     std::string to_string() {
         std::ostringstream oss;
         oss << ((name) ? ("'" + std::string(name.value()) + "': List [")
@@ -166,7 +168,7 @@ struct List_Tag : public Tag {
 struct Compound_Tag : public Tag {
     std::vector<std::unique_ptr<Tag>> data;
     Compound_Tag(std::optional<std::string_view> name)
-        : Tag(tagtype::TAG_Compound, name) {}
+        : Tag(Tag::Type::Compound, name) {}
     std::string to_string() {
         std::ostringstream oss;
         oss << ((name) ? ("'" + std::string(name.value()) + "': Compound [")
@@ -182,7 +184,7 @@ struct Compound_Tag : public Tag {
 struct Int_Array_Tag : public Tag {
     std::span<int32_t> data;
     Int_Array_Tag(std::optional<std::string_view> name, std::span<int32_t> data)
-        : Tag(tagtype::TAG_Int_Array, name), data(data) {}
+        : Tag(Tag::Type::Int_Array, name), data(data) {}
     std::string to_string() {
         std::ostringstream oss;
         oss << ((name) ? ("'" + std::string(name.value()) + "': [") : "'': [");
@@ -198,7 +200,7 @@ struct Long_Array_Tag : public Tag {
     std::span<int64_t> data;
     Long_Array_Tag(std::optional<std::string_view> name,
                    std::span<int64_t> data)
-        : Tag(tagtype::TAG_Long_Array, name), data(data) {}
+        : Tag(Tag::Type::Long_Array, name), data(data) {}
     std::string to_string() {
         std::ostringstream oss;
         oss << ((name) ? ("'" + std::string(name.value()) + "': [") : "'': [");
@@ -288,7 +290,7 @@ class BinaryScanner {
     }
 };
 
-std::unique_ptr<Tag> make_typed_tag(tagtype type,
+std::unique_ptr<Tag> make_typed_tag(Tag::Type type,
                                     std::optional<std::string_view> name,
                                     BinaryScanner &s);
 
