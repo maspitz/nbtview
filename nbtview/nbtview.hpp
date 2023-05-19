@@ -6,14 +6,19 @@
 #include <algorithm>
 #include <format>
 #include <limits>
+#include <map>
 #include <memory>
 #include <span>
 #include <sstream>
 #include <stdexcept>
 #include <string>
+#include <variant>
 #include <vector>
 
 namespace nbtview {
+
+class List_Tag;
+class Compound_Tag;
 
 struct Tag {
 
@@ -33,6 +38,13 @@ struct Tag {
         Long_Array = 12,
         Unspecified = 127
     };
+
+    using payload_type =
+        std::variant<int8_t, int16_t, int32_t, int64_t, float, double,
+                     std::unique_ptr<std::vector<int8_t>>, std::string,
+                     std::unique_ptr<List_Tag>, std::unique_ptr<Compound_Tag>,
+                     std::unique_ptr<std::vector<int32_t>>,
+                     std::unique_ptr<std::vector<int64_t>>>;
 
     const Tag::Type type;
     static constexpr std::string empty_name = "";
@@ -148,14 +160,22 @@ struct List_Tag : public Tag {
 };
 
 struct Compound_Tag : public Tag {
-    std::vector<std::unique_ptr<Tag>> data;
+    std::map<std::string, payload_type> data;
     Compound_Tag(std::string_view name) : Tag(Tag::Type::Compound, name) {}
+
+    template <typename T> T get(const std::string &name) const {
+        // throws std::out_of_range if name not present
+        return std::get<T>(data.at(
+            name)); // throws std::bad_variant_access if it isn't type T.
+    }
+
     std::string to_string() {
         std::ostringstream oss;
         oss << std::format("{}: Compound [", name);
-        for (auto tag_it = data.begin(); tag_it != data.end(); ++tag_it) {
-            oss << (*tag_it)->to_string() << ", ";
-        }
+        oss << "COMPOUND DATA NOT YET PRINTABLE"; // FIXME
+        // for (auto tag_it = data.begin(); tag_it != data.end(); ++tag_it) {
+        //     oss << (*tag_it)->to_string() << ", ";
+        // }
         oss << "]";
         return oss.str();
     }
@@ -262,6 +282,20 @@ class BinaryScanner {
         auto span_start = reinterpret_cast<Element_Type *>(&data[read_index]);
         auto span_stop = span_start + array_length;
         return std::span<Element_Type>(span_start, span_stop);
+    }
+    template <typename Element_Type>
+    std::unique_ptr<std::vector<Element_Type>> get_vector() {
+        auto array_length = get_value<int32_t>();
+        if (array_length < 0) {
+            throw std::runtime_error("Negative array length encountered");
+        }
+        if (read_index + sizeof(Element_Type) * array_length > data.size()) {
+            throw UnexpectedEndOfInputException();
+        }
+        auto span_start = reinterpret_cast<Element_Type *>(&data[read_index]);
+        auto span_stop = span_start + array_length;
+        return std::make_unique<std::vector<Element_Type>>(span_start,
+                                                           span_stop);
     }
 };
 

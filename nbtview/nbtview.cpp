@@ -64,21 +64,55 @@ std::unique_ptr<Compound_Tag> make_tag_compound(std::string_view name,
                                                 BinaryScanner &s) {
     auto compound_tag = std::make_unique<Compound_Tag>(name);
     while (true) {
-        auto next_type = s.peek_value<int8_t>();
-        // TODO next: store payload of compound tag in std::map.
-        // read type and name of elements in this loop
-        // use std::map::try_emplace (or similar)
-        // to insert a make_typed_tag into the map at the named location.
-        // (note: this copies the name, among other features....)
-        // (so maybe we'd rather avoid the map altogether???)
-        // (what are the advantages of the map anyway?  lookup time?)
-        // (QUERY: are all named tags actually elements of a compound tag???)
+        auto next_type = static_cast<Tag::Type>(s.get_value<int8_t>());
         if (static_cast<Tag::Type>(next_type) == Tag::Type::End) {
-            s.get_value<int8_t>(); // consumes the TAG_End to complete reading
-                                   // the compound payload
             return compound_tag;
         }
-        compound_tag->data.emplace_back(make_tag(s));
+        auto next_name = s.get_string_view();
+        switch (next_type) {
+        case Tag::Type::End:
+            return compound_tag;
+        case Tag::Type::Byte:
+            compound_tag->data.emplace(next_name, s.get_value<int8_t>());
+            break;
+        case Tag::Type::Short:
+            compound_tag->data.emplace(next_name, s.get_value<int16_t>());
+            break;
+        case Tag::Type::Int:
+            compound_tag->data.emplace(next_name, s.get_value<int32_t>());
+            break;
+        case Tag::Type::Long:
+            compound_tag->data.emplace(next_name, s.get_value<int64_t>());
+            break;
+        case Tag::Type::Float:
+            compound_tag->data.emplace(next_name, s.get_value<float>());
+            break;
+        case Tag::Type::Double:
+            compound_tag->data.emplace(next_name, s.get_value<double>());
+            break;
+        case Tag::Type::Byte_Array:
+            compound_tag->data.emplace(next_name, s.get_vector<int8_t>());
+            break;
+        case Tag::Type::String:
+            compound_tag->data.emplace(next_name,
+                                       std::string(s.get_string_view()));
+            break;
+        case Tag::Type::List:
+            compound_tag->data.emplace(next_name, make_tag_list(next_name, s));
+            break;
+        case Tag::Type::Compound:
+            compound_tag->data.emplace(next_name,
+                                       make_tag_compound(next_name, s));
+            break;
+        case Tag::Type::Int_Array:
+            compound_tag->data.emplace(next_name, s.get_vector<int32_t>());
+            break;
+        case Tag::Type::Long_Array:
+            compound_tag->data.emplace(next_name, s.get_vector<int64_t>());
+            break;
+        default:
+            throw std::runtime_error("Unhandled tag type");
+        }
     }
 }
 
