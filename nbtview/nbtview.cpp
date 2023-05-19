@@ -7,6 +7,9 @@
 
 namespace nbtview {
 
+std::unique_ptr<Compound_Tag> make_tag_compound(BinaryScanner &s);
+std::unique_ptr<List_Tag> make_tag_list(BinaryScanner &s);
+
 std::vector<unsigned char>::const_iterator
 fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
                     std::vector<unsigned char>::const_iterator nbt_stop,
@@ -30,158 +33,57 @@ fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
     }
 }
 
-template <typename Tag_Struct, typename Payload_Type>
-std::unique_ptr<Tag_Struct> make_tag_struct(std::string_view name,
-                                            BinaryScanner &s) {
-    return std::make_unique<Tag_Struct>(name, s.get_value<Payload_Type>());
+Tag::payload_type decode_payload(Tag::Type type, BinaryScanner &s) {
+    switch (type) {
+    case Tag::Type::End:
+        throw std::runtime_error("Unexpected End Tag");
+    case Tag::Type::Byte:
+        return s.get_value<int8_t>();
+    case Tag::Type::Int:
+        return s.get_value<int32_t>();
+    case Tag::Type::Long:
+        return s.get_value<int64_t>();
+    case Tag::Type::Float:
+        return s.get_value<float>();
+    case Tag::Type::Double:
+        return s.get_value<double>();
+    case Tag::Type::Byte_Array:
+        return s.get_vector<int8_t>();
+    case Tag::Type::String:
+        return s.get_string();
+    case Tag::Type::List:
+        return make_tag_list(s);
+    case Tag::Type::Compound:
+        return make_tag_compound(s);
+    case Tag::Type::Int_Array:
+        return s.get_vector<int32_t>();
+    case Tag::Type::Long_Array:
+        return s.get_vector<int64_t>();
+    default:
+        throw std::runtime_error("Unhandled tag type");
+    }
+    return 0;
 }
 
-template <typename Tag_Array, typename Element_Type>
-std::unique_ptr<Tag_Array> make_tag_array(std::string_view name,
-                                          BinaryScanner &s) {
-    return std::make_unique<Tag_Array>(name, s.get_array_view<Element_Type>());
-}
-
-std::unique_ptr<String_Tag> make_tag_string(std::string_view name,
-                                            BinaryScanner &s) {
-    return std::make_unique<String_Tag>(name, s.get_string_view());
-}
-
-std::unique_ptr<List_Tag> make_tag_list(std::string_view name,
-                                        BinaryScanner &s) {
-    auto list_type = s.get_value<int8_t>();
+std::unique_ptr<List_Tag> make_tag_list(BinaryScanner &s) {
+    auto list_tag = std::make_unique<List_Tag>();
+    auto list_type = static_cast<Tag::Type>(s.get_value<int8_t>());
     auto list_length = s.get_value<int32_t>();
-    auto ltype = static_cast<Tag::Type>(list_type);
-    auto list_tag = std::make_unique<List_Tag>(name);
     list_tag->data.reserve(list_length);
-    for (int i = 0; i < list_length; ++i) {
-        list_tag->data.emplace_back(make_typed_tag(ltype, Tag::empty_name, s));
+    for (int32_t i = 0; i < list_length; ++i) {
+        list_tag->data.emplace_back(decode_payload(list_type, s));
     }
     return list_tag;
 }
 
-std::unique_ptr<Compound_Tag> make_tag_compound(std::string_view name,
-                                                BinaryScanner &s) {
-    auto compound_tag = std::make_unique<Compound_Tag>(name);
-    while (true) {
-        auto next_type = static_cast<Tag::Type>(s.get_value<int8_t>());
-        if (static_cast<Tag::Type>(next_type) == Tag::Type::End) {
-            return compound_tag;
-        }
-        auto next_name = s.get_string_view();
-        switch (next_type) {
-        case Tag::Type::End:
-            return compound_tag;
-        case Tag::Type::Byte:
-            compound_tag->data.emplace(next_name, s.get_value<int8_t>());
-            break;
-        case Tag::Type::Short:
-            compound_tag->data.emplace(next_name, s.get_value<int16_t>());
-            break;
-        case Tag::Type::Int:
-            compound_tag->data.emplace(next_name, s.get_value<int32_t>());
-            break;
-        case Tag::Type::Long:
-            compound_tag->data.emplace(next_name, s.get_value<int64_t>());
-            break;
-        case Tag::Type::Float:
-            compound_tag->data.emplace(next_name, s.get_value<float>());
-            break;
-        case Tag::Type::Double:
-            compound_tag->data.emplace(next_name, s.get_value<double>());
-            break;
-        case Tag::Type::Byte_Array:
-            compound_tag->data.emplace(next_name, s.get_vector<int8_t>());
-            break;
-        case Tag::Type::String:
-            compound_tag->data.emplace(next_name,
-                                       std::string(s.get_string_view()));
-            break;
-        case Tag::Type::List:
-            compound_tag->data.emplace(next_name, make_tag_list(next_name, s));
-            break;
-        case Tag::Type::Compound:
-            compound_tag->data.emplace(next_name,
-                                       make_tag_compound(next_name, s));
-            break;
-        case Tag::Type::Int_Array:
-            compound_tag->data.emplace(next_name, s.get_vector<int32_t>());
-            break;
-        case Tag::Type::Long_Array:
-            compound_tag->data.emplace(next_name, s.get_vector<int64_t>());
-            break;
-        default:
-            throw std::runtime_error("Unhandled tag type");
-        }
+std::unique_ptr<Compound_Tag> make_tag_compound(BinaryScanner &s) {
+    auto compound_tag = std::make_unique<Compound_Tag>();
+    auto next_type = static_cast<Tag::Type>(s.get_value<int8_t>());
+    while (next_type != Tag::Type::End) {
+        auto next_name = s.get_string();
+        compound_tag->data.emplace(next_name, decode_payload(next_type, s));
     }
-}
-
-std::unique_ptr<Tag> make_typed_tag(Tag::Type type, std::string_view name,
-                                    BinaryScanner &s) {
-    switch (type) {
-    case Tag::Type::End:
-        return std::make_unique<End_Tag>();
-    case Tag::Type::Byte:
-        return make_tag_struct<Byte_Tag, int8_t>(name, s);
-    case Tag::Type::Short:
-        return make_tag_struct<Short_Tag, int16_t>(name, s);
-    case Tag::Type::Int:
-        return make_tag_struct<Int_Tag, int32_t>(name, s);
-    case Tag::Type::Long:
-        return make_tag_struct<Long_Tag, int64_t>(name, s);
-    case Tag::Type::Float:
-        return make_tag_struct<Float_Tag, float>(name, s);
-    case Tag::Type::Double:
-        return make_tag_struct<Double_Tag, double>(name, s);
-    case Tag::Type::Byte_Array:
-        return make_tag_array<Byte_Array_Tag, int8_t>(name, s);
-    case Tag::Type::String:
-        return make_tag_string(name, s);
-    case Tag::Type::List:
-        return make_tag_list(name, s);
-    case Tag::Type::Compound:
-        return make_tag_compound(name, s);
-    case Tag::Type::Int_Array:
-        return make_tag_array<Int_Array_Tag, int32_t>(name, s);
-    case Tag::Type::Long_Array:
-        return make_tag_array<Long_Array_Tag, int64_t>(name, s);
-
-    default:
-        throw std::runtime_error("Unhandled tag type");
-    }
-}
-// make_tag scans an NBT tag, including its type, name, and payload, and
-// returns a unique_ptr to it.  If the end of the data is encountered,
-// nullptr is returned instead.  As a side effect, make_tag advances the
-// BinaryScanner to the end of the tag's payload.
-std::unique_ptr<Tag> make_tag(BinaryScanner &s) {
-    auto type = s.get_value<int8_t>();
-    if (static_cast<Tag::Type>(type) == Tag::Type::End) {
-        return std::make_unique<End_Tag>();
-    }
-    return make_typed_tag(static_cast<Tag::Type>(type), s.get_string_view(), s);
-}
-
-template <typename InputIterator, typename OutputIterator>
-InputIterator emplace_tag_typed(InputIterator input_start,
-                                InputIterator input_stop, OutputIterator output,
-                                Tag::Type type) {
-    if (type == Tag::Type::Unspecified) {
-        type = *(input_start++);
-    }
-    switch (type) {
-    case Tag::Type::End:
-        break;
-    case Tag::Type::Byte:
-        break;
-    }
-}
-
-template <typename InputIterator, typename OutputIterator>
-InputIterator emplace_tag(InputIterator input_start, InputIterator input_stop,
-                          OutputIterator output) {
-    return emplace_tag_typed(input_start, input_stop, output,
-                             Tag::Type::Unspecified);
+    return compound_tag;
 }
 
 } // namespace nbtview

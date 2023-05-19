@@ -47,9 +47,7 @@ struct Tag {
                      std::unique_ptr<std::vector<int64_t>>>;
 
     const Tag::Type type;
-    static constexpr std::string empty_name = "";
-    std::string_view name;
-    Tag(Tag::Type type, std::string_view name) : type(type), name(name) {}
+    Tag(Tag::Type type) : type(type) {}
     virtual std::string to_string() = 0;
 };
 
@@ -70,109 +68,18 @@ fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
                     std::vector<unsigned char>::const_iterator nbt_stop,
                     Tag::Type tag_type, const std::string &tag_name);
 
-struct End_Tag : public Tag {
-    End_Tag() : Tag(Tag::Type::End, Tag::empty_name) {}
-    std::string to_string() { return "End_Tag"; }
-};
-
-struct Byte_Tag : public Tag {
-    int8_t data;
-    Byte_Tag(std::string_view name, int8_t data)
-        : Tag(Tag::Type::Byte, name), data(data) {}
-    std::string to_string() { return std::format("'{}': {}B", name, data); }
-};
-
-struct Short_Tag : public Tag {
-    int16_t data;
-    Short_Tag(std::string_view name, int16_t data)
-        : Tag(Tag::Type::Short, name), data(data) {}
-    std::string to_string() { return std::format("'{}': {}S", name, data); }
-};
-
-struct Int_Tag : public Tag {
-    int32_t data;
-    Int_Tag(std::string_view name, int32_t data)
-        : Tag(Tag::Type::Int, name), data(data) {}
-    std::string to_string() { return std::format("'{}': {}", name, data); }
-};
-
-struct Long_Tag : public Tag {
-    int64_t data;
-    Long_Tag(std::string_view name, int64_t data)
-        : Tag(Tag::Type::Long, name), data(data) {}
-    std::string to_string() { return std::format("'{}': {}L", name, data); }
-};
-
-struct Float_Tag : public Tag {
-    static_assert(std::numeric_limits<double>::is_iec559,
-                  "IEEE 754 floating point");
-    static_assert(sizeof(float) == 4, "float type is 32-bit");
-    float data;
-    Float_Tag(std::string_view name, float data)
-        : Tag(Tag::Type::Float, name), data(data) {}
-    std::string to_string() { return std::format("'{}': {}F", name, data); }
-};
-
-struct Double_Tag : public Tag {
-    static_assert(std::numeric_limits<double>::is_iec559,
-                  "IEEE 754 floating point");
-    static_assert(sizeof(double) == 8, "double type is 64-bit");
-    double data;
-    Double_Tag(std::string_view name, double data)
-        : Tag(Tag::Type::Double, name), data(data) {}
-    std::string to_string() { return std::format("'{}': {}D", name, data); }
-};
-
-struct Byte_Array_Tag : public Tag {
-    std::span<int8_t> data;
-    Byte_Array_Tag(std::string_view name, std::span<int8_t> data)
-        : Tag(Tag::Type::Byte_Array, name), data(data) {}
-    std::string to_string() {
-        std::ostringstream oss;
-        oss << name << ": [";
-        for (auto element : data) {
-            oss << std::to_string(element) << "B, ";
-        }
-        oss << "]";
-        return oss.str();
-    }
-};
-
-struct String_Tag : public Tag {
-    std::string_view data;
-    String_Tag(std::string_view name, std::string_view data)
-        : Tag(Tag::Type::String, name), data(data) {}
-    std::string to_string() { return std::format("{}: '{}'", name, data); }
-};
-
 struct List_Tag : public Tag {
-    std::vector<std::unique_ptr<Tag>> data;
-    List_Tag(std::string_view name) : Tag(Tag::Type::List, name) {}
+    std::vector<payload_type> data;
+    List_Tag() : Tag(Tag::Type::List) {}
+    // throws std::out_of_range if idx out of range
+    // throws std::bad_variant_access if element isn't type T.
+    template <typename T> T get(int32_t idx) const {
+        return std::get<T>(data.at(idx));
+    }
     std::string to_string() {
         std::ostringstream oss;
-        oss << std::format("{}: List [", name);
-        for (auto tag_it = data.begin(); tag_it != data.end(); ++tag_it) {
-            oss << (*tag_it)->to_string() << ", ";
-        }
-        oss << "]";
-        return oss.str();
-    }
-};
-
-struct Compound_Tag : public Tag {
-    std::map<std::string, payload_type> data;
-    Compound_Tag(std::string_view name) : Tag(Tag::Type::Compound, name) {}
-
-    template <typename T> T get(const std::string &name) const {
-        // throws std::out_of_range if name not present
-        return std::get<T>(data.at(
-            name)); // throws std::bad_variant_access if it isn't type T.
-    }
-
-    std::string to_string() {
-        std::ostringstream oss;
-        oss << std::format("{}: Compound [", name);
-        oss << "COMPOUND DATA NOT YET PRINTABLE"; // FIXME
+        oss << std::format("List [");
+        oss << "LIST DATA NOT YET PRINTABLE"; // FIXME
         // for (auto tag_it = data.begin(); tag_it != data.end(); ++tag_it) {
         //     oss << (*tag_it)->to_string() << ", ";
         // }
@@ -181,31 +88,23 @@ struct Compound_Tag : public Tag {
     }
 };
 
-struct Int_Array_Tag : public Tag {
-    std::span<int32_t> data;
-    Int_Array_Tag(std::string_view name, std::span<int32_t> data)
-        : Tag(Tag::Type::Int_Array, name), data(data) {}
-    std::string to_string() {
-        std::ostringstream oss;
-        oss << std::format("{}: [", name);
-        for (auto element : data) {
-            oss << std::to_string(element) << ", ";
-        }
-        oss << "]";
-        return oss.str();
-    }
-};
+struct Compound_Tag : public Tag {
+    std::map<std::string, payload_type> data;
+    Compound_Tag() : Tag(Tag::Type::Compound) {}
 
-struct Long_Array_Tag : public Tag {
-    std::span<int64_t> data;
-    Long_Array_Tag(std::string_view name, std::span<int64_t> data)
-        : Tag(Tag::Type::Long_Array, name), data(data) {}
+    // throws std::out_of_range if name not present
+    // throws std::bad_variant_access if element isn't type T.
+    template <typename T> T get(const std::string &name) const {
+        return std::get<T>(data.at(name));
+    }
+
     std::string to_string() {
         std::ostringstream oss;
-        oss << std::format("{}: [", name);
-        for (auto element : data) {
-            oss << std::to_string(element) << "L, ";
-        }
+        oss << std::format("Compound [");
+        oss << "COMPOUND DATA NOT YET PRINTABLE"; // FIXME
+        // for (auto tag_it = data.begin(); tag_it != data.end(); ++tag_it) {
+        //     oss << (*tag_it)->to_string() << ", ";
+        // }
         oss << "]";
         return oss.str();
     }
@@ -249,26 +148,14 @@ class BinaryScanner {
         return read_value;
     }
 
-    template <typename T> T peek_value() {
-        if (read_index + sizeof(T) > data.size()) {
-            throw UnexpectedEndOfInputException();
-        }
-        T read_value = load_big_endian<T>(&data[read_index]);
-        return read_value;
-    }
-
-    std::string_view get_string_view() {
+    std::string get_string() {
         auto str_len = get_value<uint16_t>();
         if (read_index + str_len > data.size()) {
             throw UnexpectedEndOfInputException();
         }
-        if (str_len == 0) {
-            return "";
-        }
-        auto sv = std::string_view(reinterpret_cast<char *>(&data[read_index]),
-                                   str_len);
+        auto str_start = read_index;
         read_index += str_len;
-        return sv;
+        return std::string(reinterpret_cast<char *>(&data[str_start]), str_len);
     }
 
     template <typename Element_Type> std::span<Element_Type> get_array_view() {
@@ -283,6 +170,7 @@ class BinaryScanner {
         auto span_stop = span_start + array_length;
         return std::span<Element_Type>(span_start, span_stop);
     }
+
     template <typename Element_Type>
     std::unique_ptr<std::vector<Element_Type>> get_vector() {
         auto array_length = get_value<int32_t>();
@@ -298,11 +186,6 @@ class BinaryScanner {
                                                            span_stop);
     }
 };
-
-std::unique_ptr<Tag> make_typed_tag(Tag::Type type, std::string_view name,
-                                    BinaryScanner &s);
-
-std::unique_ptr<Tag> make_tag(BinaryScanner &s);
 
 } // namespace nbtview
 
