@@ -7,7 +7,6 @@
 #include <format>
 #include <limits>
 #include <memory>
-#include <optional>
 #include <span>
 #include <sstream>
 #include <stdexcept>
@@ -199,8 +198,13 @@ template <typename InputIterator, typename OutputIterator>
 InputIterator emplace_tag(InputIterator input_start, InputIterator input_stop,
                           OutputIterator output);
 
-// BinaryScanner scans and reads big-endian binary data.
+class UnexpectedEndOfInputException : public std::runtime_error {
+  public:
+    UnexpectedEndOfInputException()
+        : std::runtime_error("Unexpected end of input") {}
+};
 
+// BinaryScanner scans and reads big-endian binary data.
 class BinaryScanner {
   public:
     BinaryScanner(const std::span<uint8_t> &data) : data(data), read_index(0) {}
@@ -216,56 +220,47 @@ class BinaryScanner {
         return res;
     }
 
-    template <typename T> std::optional<T> get_value() {
+    template <typename T> T get_value() {
         if (read_index + sizeof(T) > data.size()) {
-            read_index = data.size();
-            return std::nullopt;
+            throw UnexpectedEndOfInputException();
         }
         T read_value = load_big_endian<T>(&data[read_index]);
         read_index += sizeof(T);
         return read_value;
     }
 
-    template <typename T> std::optional<T> peek_value() {
+    template <typename T> T peek_value() {
         if (read_index + sizeof(T) > data.size()) {
-            return std::nullopt;
+            throw UnexpectedEndOfInputException();
         }
         T read_value = load_big_endian<T>(&data[read_index]);
         return read_value;
     }
 
-    std::optional<std::string_view> get_string_view() {
+    std::string_view get_string_view() {
         auto str_len = get_value<uint16_t>();
-        if (str_len == std::nullopt ||
-            read_index + str_len.value() > data.size()) {
-            read_index = data.size();
-            return std::nullopt;
+        if (read_index + str_len > data.size()) {
+            throw UnexpectedEndOfInputException();
         }
-        if (str_len.value() == 0) {
-            return std::nullopt;
+        if (str_len == 0) {
+            return "";
         }
         auto sv = std::string_view(reinterpret_cast<char *>(&data[read_index]),
-                                   str_len.value());
-        read_index += str_len.value();
+                                   str_len);
+        read_index += str_len;
         return sv;
     }
 
-    template <typename Element_Type>
-    std::optional<std::span<Element_Type>> get_array_view() {
+    template <typename Element_Type> std::span<Element_Type> get_array_view() {
         auto array_length = get_value<int32_t>();
-        if (array_length == std::nullopt) {
-            return std::nullopt;
-        }
-        if (array_length.value() < 0) {
+        if (array_length < 0) {
             throw std::runtime_error("Negative array length encountered");
         }
-        if (read_index + sizeof(Element_Type) * array_length.value() >
-            data.size()) {
-            read_index = data.size();
-            return std::nullopt;
+        if (read_index + sizeof(Element_Type) * array_length > data.size()) {
+            throw UnexpectedEndOfInputException();
         }
         auto span_start = reinterpret_cast<Element_Type *>(&data[read_index]);
-        auto span_stop = span_start + array_length.value();
+        auto span_stop = span_start + array_length;
         return std::span<Element_Type>(span_start, span_stop);
     }
 };

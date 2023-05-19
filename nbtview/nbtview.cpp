@@ -2,7 +2,6 @@
 #include <algorithm>
 #include <bit>
 #include <cstdint>
-#include <optional>
 #include <span>
 #include <type_traits>
 
@@ -31,48 +30,31 @@ fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
     }
 }
 
-auto EndOfInput = std::runtime_error("Unexpected end of input data");
-
 template <typename Tag_Struct, typename Payload_Type>
 std::unique_ptr<Tag_Struct> make_tag_struct(std::string_view name,
                                             BinaryScanner &s) {
-    auto payload = s.get_value<Payload_Type>();
-    if (payload == std::nullopt) {
-        throw EndOfInput;
-    }
-    return std::make_unique<Tag_Struct>(name, payload.value());
+    return std::make_unique<Tag_Struct>(name, s.get_value<Payload_Type>());
 }
 
 template <typename Tag_Array, typename Element_Type>
 std::unique_ptr<Tag_Array> make_tag_array(std::string_view name,
                                           BinaryScanner &s) {
-    auto array_view = s.get_array_view<Element_Type>();
-    if (array_view == std::nullopt) {
-        throw EndOfInput;
-    }
-    return std::make_unique<Tag_Array>(name, array_view.value());
+    return std::make_unique<Tag_Array>(name, s.get_array_view<Element_Type>());
 }
 
 std::unique_ptr<String_Tag> make_tag_string(std::string_view name,
                                             BinaryScanner &s) {
-    auto payload = s.get_string_view();
-    if (payload == std::nullopt) {
-        throw EndOfInput;
-    }
-    return std::make_unique<String_Tag>(name, payload.value());
+    return std::make_unique<String_Tag>(name, s.get_string_view());
 }
 
 std::unique_ptr<List_Tag> make_tag_list(std::string_view name,
                                         BinaryScanner &s) {
     auto list_type = s.get_value<int8_t>();
     auto list_length = s.get_value<int32_t>();
-    if (list_type == std::nullopt || list_length == std::nullopt) {
-        throw EndOfInput;
-    }
-    auto ltype = static_cast<Tag::Type>(list_type.value());
+    auto ltype = static_cast<Tag::Type>(list_type);
     auto list_tag = std::make_unique<List_Tag>(name);
-    list_tag->data.reserve(list_length.value());
-    for (int i = 0; i < list_length.value(); ++i) {
+    list_tag->data.reserve(list_length);
+    for (int i = 0; i < list_length; ++i) {
         list_tag->data.emplace_back(make_typed_tag(ltype, Tag::empty_name, s));
     }
     return list_tag;
@@ -83,9 +65,6 @@ std::unique_ptr<Compound_Tag> make_tag_compound(std::string_view name,
     auto compound_tag = std::make_unique<Compound_Tag>(name);
     while (true) {
         auto next_type = s.peek_value<int8_t>();
-        if (next_type == std::nullopt) {
-            throw EndOfInput;
-        }
         // TODO next: store payload of compound tag in std::map.
         // read type and name of elements in this loop
         // use std::map::try_emplace (or similar)
@@ -94,7 +73,7 @@ std::unique_ptr<Compound_Tag> make_tag_compound(std::string_view name,
         // (so maybe we'd rather avoid the map altogether???)
         // (what are the advantages of the map anyway?  lookup time?)
         // (QUERY: are all named tags actually elements of a compound tag???)
-        if (static_cast<Tag::Type>(next_type.value()) == Tag::Type::End) {
+        if (static_cast<Tag::Type>(next_type) == Tag::Type::End) {
             s.get_value<int8_t>(); // consumes the TAG_End to complete reading
                                    // the compound payload
             return compound_tag;
@@ -143,15 +122,10 @@ std::unique_ptr<Tag> make_typed_tag(Tag::Type type, std::string_view name,
 // BinaryScanner to the end of the tag's payload.
 std::unique_ptr<Tag> make_tag(BinaryScanner &s) {
     auto type = s.get_value<int8_t>();
-    if (type == std::nullopt) {
-        return nullptr;
-    }
-    if (static_cast<Tag::Type>(type.value()) == Tag::Type::End) {
+    if (static_cast<Tag::Type>(type) == Tag::Type::End) {
         return std::make_unique<End_Tag>();
     }
-    auto name = s.get_string_view();
-    return make_typed_tag(static_cast<Tag::Type>(type.value()),
-                          (name ? name.value() : Tag::empty_name), s);
+    return make_typed_tag(static_cast<Tag::Type>(type), s.get_string_view(), s);
 }
 
 template <typename InputIterator, typename OutputIterator>
