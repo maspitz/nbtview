@@ -89,7 +89,9 @@ std::unique_ptr<Compound_Tag> make_tag_compound(BinaryScanner &s) {
 } // namespace nbtview
 
 #ifdef TEST_NBTVIEW_INTERNALS
-#include <catch2/catch_test_macros.hpp>
+//#include <catch2/catch_test_macros.hpp>
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#include "doctest.h"
 
 TEST_CASE("nbtview::BinaryScanner Integer Types") {
     auto v =
@@ -99,17 +101,12 @@ TEST_CASE("nbtview::BinaryScanner Integer Types") {
     auto b = s.get_value<int8_t>();
     auto c = s.get_value<int16_t>();
     auto d = s.get_value<int32_t>();
-    auto e = s.get_value<int8_t>();
+    CHECK_THROWS_AS(s.get_value<int8_t>(), std::runtime_error);
 
-    REQUIRE(a != std::nullopt);
-    REQUIRE(b != std::nullopt);
-    REQUIRE(c != std::nullopt);
-    REQUIRE(d != std::nullopt);
-    REQUIRE(e == std::nullopt);
-    REQUIRE(a.value() == 0x17);
-    REQUIRE(b.value() == 0x23);
-    REQUIRE(c.value() == 0x01ff);
-    REQUIRE(d.value() == 0x01234567);
+    REQUIRE(a == 0x17);
+    REQUIRE(b == 0x23);
+    REQUIRE(c == 0x01ff);
+    REQUIRE(d == 0x01234567);
 }
 
 TEST_CASE("nbtview::BinaryScanner Floating Point Types") {
@@ -117,16 +114,14 @@ TEST_CASE("nbtview::BinaryScanner Floating Point Types") {
     auto s32 = nbtview::BinaryScanner(v32);
     auto f32 = s32.get_value<float>();
 
-    REQUIRE(f32 != std::nullopt);
-    REQUIRE(f32.value() == -248.75);
+    REQUIRE(f32 == -248.75);
 
     auto v64 =
         std::vector<uint8_t>{0x3f, 0xc9, 0x99, 0x99, 0x99, 0x99, 0x99, 0x9a};
     auto s64 = nbtview::BinaryScanner(v64);
     auto f64 = s64.get_value<double>();
 
-    REQUIRE(f64 != std::nullopt);
-    REQUIRE(f64.value() == 0.2);
+    REQUIRE(f64 == 0.2);
 }
 
 #endif
