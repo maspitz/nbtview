@@ -4,7 +4,6 @@
 #define NBTVIEW_H_
 
 #include <algorithm>
-#include <format>
 #include <limits>
 #include <map>
 #include <memory>
@@ -78,7 +77,7 @@ struct List_Tag : public Tag {
     }
     std::string to_string() {
         std::ostringstream oss;
-        oss << std::format("List [");
+        oss << "List [";
         oss << "LIST DATA NOT YET PRINTABLE"; // FIXME
         // for (auto tag_it = data.begin(); tag_it != data.end(); ++tag_it) {
         //     oss << (*tag_it)->to_string() << ", ";
@@ -100,7 +99,7 @@ struct Compound_Tag : public Tag {
 
     std::string to_string() {
         std::ostringstream oss;
-        oss << std::format("Compound [");
+        oss << "Compound [";
         oss << "COMPOUND DATA NOT YET PRINTABLE"; // FIXME
         // for (auto tag_it = data.begin(); tag_it != data.end(); ++tag_it) {
         //     oss << (*tag_it)->to_string() << ", ";
