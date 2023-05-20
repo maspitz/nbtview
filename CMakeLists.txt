@@ -20,13 +20,9 @@ include(CTest)
 
 enable_testing() 
 add_subdirectory(nbtview)
-add_subdirectory(doc)
+#add_subdirectory(doc)
 add_subdirectory(apps)
 
-find_package(Catch2)
-include(Catch)
-
 add_executable(test_nbtview nbtview/test_nbtview.cpp)
-#target_include_directories(test_nbtview PUBLIC "${PROJECT_SOURCE_DIR}/nbtview")
-catch_discover_tests(test_nbtview)
-target_link_libraries(test_nbtview PRIVATE Catch2::Catch2WithMain)
+target_include_directories(test_nbtview PRIVATE "${PROJECT_SOURCE_DIR}/doctest")
+add_test(Test_nbtview test_nbtview)
