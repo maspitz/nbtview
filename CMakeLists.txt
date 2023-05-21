@@ -26,4 +26,8 @@ add_subdirectory(apps)
 add_executable(test_nbtview_detail nbtview/test_nbtview_detail.cpp)
 target_include_directories(test_nbtview_detail PRIVATE "${PROJECT_SOURCE_DIR}/doctest")
 add_test(Test_nbtview_detail test_nbtview_detail)
+
+add_executable(test_nbtview test/test_nbtview.cpp)
+target_link_libraries(test_nbtview nbtview)
+target_include_directories(test_nbtview PRIVATE "${PROJECT_SOURCE_DIR}/doctest")
 add_test(Test_nbtview test_nbtview)
