@@ -76,6 +76,17 @@ std::unique_ptr<List_Tag> make_tag_list(BinaryScanner &s) {
     return list_tag;
 }
 
+// TODO: return name of root tag if desired
+std::unique_ptr<Compound_Tag> make_tag_root(BinaryScanner &s) {
+    auto compound_tag = std::make_unique<Compound_Tag>();
+    auto root_type = static_cast<Tag::Type>(s.get_value<int8_t>());
+    if (root_type != Tag::Type::Compound) {
+        throw std::runtime_error("Root tag is not a compound tag");
+    }
+    auto root_name = s.get_string();
+    return make_tag_compound(s);
+}
+
 std::unique_ptr<Compound_Tag> make_tag_compound(BinaryScanner &s) {
     auto compound_tag = std::make_unique<Compound_Tag>();
     auto next_type = static_cast<Tag::Type>(s.get_value<int8_t>());

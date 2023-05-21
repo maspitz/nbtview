@@ -186,6 +186,8 @@ class BinaryScanner {
     }
 };
 
+std::unique_ptr<Compound_Tag> make_tag_root(BinaryScanner &s);
+
 } // namespace nbtview
 
 #endif // NBTVIEW_H_
