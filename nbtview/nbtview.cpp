@@ -93,7 +93,7 @@ std::unique_ptr<Compound_Tag> make_tag_compound(BinaryScanner &s) {
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
 
-TEST_CASE("nbtview::BinaryScanner Integer Types") {
+TEST_CASE("nbtview::detail::BinaryScanner Integer Types") {
     auto v =
         std::vector<uint8_t>{0x17, 0x23, 0x01, 0xff, 0x01, 0x23, 0x45, 0x67};
     auto s = nbtview::BinaryScanner(v);
@@ -109,7 +109,7 @@ TEST_CASE("nbtview::BinaryScanner Integer Types") {
     REQUIRE(d == 0x01234567);
 }
 
-TEST_CASE("nbtview::BinaryScanner Floating Point Types") {
+TEST_CASE("nbtview::detail::BinaryScanner Floating Point Types") {
     auto v32 = std::vector<uint8_t>{0xc3, 0x78, 0xc0, 0x00};
     auto s32 = nbtview::BinaryScanner(v32);
     auto f32 = s32.get_value<float>();
