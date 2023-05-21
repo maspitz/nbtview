@@ -93,6 +93,7 @@ std::unique_ptr<Compound_Tag> make_tag_compound(BinaryScanner &s) {
     while (next_type != Tag::Type::End) {
         auto next_name = s.get_string();
         compound_tag->data.emplace(next_name, decode_payload(next_type, s));
+        next_type = static_cast<Tag::Type>(s.get_value<int8_t>());
     }
     return compound_tag;
 }
