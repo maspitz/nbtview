@@ -90,8 +90,9 @@ std::unique_ptr<Compound_Tag> make_tag_root(BinaryScanner &s) {
 std::unique_ptr<Compound_Tag> make_tag_compound(BinaryScanner &s) {
     auto compound_tag = std::make_unique<Compound_Tag>();
     auto next_type = static_cast<Tag::Type>(s.get_value<int8_t>());
+    std::string next_name;
     while (next_type != Tag::Type::End) {
-        auto next_name = s.get_string();
+        next_name = s.get_string();
         compound_tag->data.emplace(next_name, decode_payload(next_type, s));
         next_type = static_cast<Tag::Type>(s.get_value<int8_t>());
     }
