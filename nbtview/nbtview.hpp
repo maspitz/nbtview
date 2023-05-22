@@ -34,8 +34,7 @@ struct Tag {
         List = 9,
         Compound = 10,
         Int_Array = 11,
-        Long_Array = 12,
-        Unspecified = 127
+        Long_Array = 12
     };
 
     using payload_type =
