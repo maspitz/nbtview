@@ -39,6 +39,8 @@ Tag::payload_type decode_payload(Tag::Type type, BinaryScanner &s) {
         throw std::runtime_error("Unexpected End Tag");
     case Tag::Type::Byte:
         return s.get_value<int8_t>();
+    case Tag::Type::Short:
+        return s.get_value<int16_t>();
     case Tag::Type::Int:
         return s.get_value<int32_t>();
     case Tag::Type::Long:
