@@ -96,6 +96,12 @@ struct Compound_Tag : public Tag {
         return std::get<T>(data.at(name));
     }
 
+    // throws std::out_of_range if name not present
+    // throws std::bad_variant_access if element isn't type T.
+    template <typename T> const T &getref(const std::string &name) const {
+        return std::get<T>(data.at(name));
+    }
+
     std::string to_string() {
         std::ostringstream oss;
         oss << "Compound [";
