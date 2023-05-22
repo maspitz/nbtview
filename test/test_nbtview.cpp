@@ -22,4 +22,28 @@ TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
         auto value_bar = root_tag->get<std::string>("foo");
         CHECK(value_bar == "bar");
     }
+
+    SUBCASE("read named compound tag") {
+        auto v_foo_bar = std::vector<uint8_t>{
+            0x0a, 0x00, 0x08, 't',  'e', 's', 't',  '_',  't',  'a',  'g',
+
+            0x01, 0x00, 0x04, 'b',  'y', 't', 'e',  0x12,
+
+            0x02, 0x00, 0x05, 's',  'h', 'o', 'r',  't',  0x12, 0x34,
+
+            0x03, 0x00, 0x03, 'i',  'n', 't', 0x12, 0x34, 0x56, 0x78,
+
+            0x04, 0x00, 0x04, 'l',  'o', 'n', 'g',  0x12, 0x03, 0x04, 0x05,
+            0x06, 0x07, 0x08, 0x9a,
+
+            0x00};
+        auto s = nbtview::BinaryScanner(v_foo_bar);
+        auto root_tag = nbtview::make_tag_root(s);
+        REQUIRE(root_tag->data.size() == 4);
+
+        CHECK(root_tag->get<std::int8_t>("byte") == 0x12);
+        CHECK(root_tag->get<std::int16_t>("short") == 0x1234);
+        CHECK(root_tag->get<std::int32_t>("int") == 0x12345678);
+        CHECK(root_tag->get<std::int64_t>("long") == 0x120304050607089aL);
+    }
 }
