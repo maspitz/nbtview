@@ -1,3 +1,4 @@
+#include <memory>
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
 #include "nbtview.hpp"
@@ -23,7 +24,7 @@ TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
         CHECK(value_bar == "bar");
     }
 
-    SUBCASE("read named compound tag") {
+    SUBCASE("read integer types from named compound tag") {
         auto v_foo_bar = std::vector<uint8_t>{
             0x0a, 0x00, 0x08, 't',  'e', 's', 't',  '_',  't',  'a',  'g',
 
@@ -45,5 +46,31 @@ TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
         CHECK(root_tag->get<std::int16_t>("short") == 0x1234);
         CHECK(root_tag->get<std::int32_t>("int") == 0x12345678);
         CHECK(root_tag->get<std::int64_t>("long") == 0x120304050607089aL);
+    }
+
+    SUBCASE("read floating point types from nested compound tag") {
+        auto v_foo_bar = std::vector<uint8_t>{
+            0x0a, 0x00, 0x08, 'o',  'u',  't', 'e', 'r', 't',  'a',  'g',
+
+            0x0a, 0x00, 0x08, 'i',  'n',  'n', 'e', 'r', 't',  'a',  'g',
+
+            0x05, 0x00, 0x05, 'F',  'l',  'o', 'a', 't', 0xc3, 0x78, 0xc0, 0x00,
+
+            0x06, 0x00, 0x06, 'D',  'o',  'u', 'b', 'l', 'e',  0x3f, 0xc9, 0x99,
+            0x99, 0x99, 0x99, 0x99, 0x9a,
+
+            0x00,
+
+            0x00};
+        auto s = nbtview::BinaryScanner(v_foo_bar);
+        auto root_tag = nbtview::make_tag_root(s);
+        REQUIRE(root_tag->data.size() == 1);
+
+        auto &inner_tag =
+            root_tag->getref<std::unique_ptr<nbtview::Compound_Tag>>(
+                "innertag");
+        REQUIRE(inner_tag != nullptr);
+        CHECK(inner_tag->get<float>("Float") == -248.75);
+        CHECK(inner_tag->get<double>("Double") == +0.2);
     }
 }
