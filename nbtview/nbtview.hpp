@@ -102,6 +102,10 @@ struct Compound_Tag : public Tag {
         return std::get<T>(data.at(name));
     }
 
+    const Compound_Tag *get_compound(const std::string &name) const {
+        return std::get<std::unique_ptr<Compound_Tag>>(data.at(name)).get();
+    }
+
     std::string to_string() {
         std::ostringstream oss;
         oss << "Compound [";

@@ -66,9 +66,7 @@ TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
         auto root_tag = nbtview::make_tag_root(s);
         REQUIRE(root_tag->data.size() == 1);
 
-        auto &inner_tag =
-            root_tag->getref<std::unique_ptr<nbtview::Compound_Tag>>(
-                "innertag");
+        auto inner_tag = root_tag->get_compound("innertag");
         REQUIRE(inner_tag != nullptr);
         CHECK(inner_tag->get<float>("Float") == -248.75);
         CHECK(inner_tag->get<double>("Double") == +0.2);
