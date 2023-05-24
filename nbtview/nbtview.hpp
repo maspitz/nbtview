@@ -7,6 +7,7 @@
 #include <limits>
 #include <map>
 #include <memory>
+#include <optional>
 #include <span>
 #include <sstream>
 #include <stdexcept>
@@ -94,6 +95,20 @@ struct Compound_Tag : public Tag {
     // throws std::bad_variant_access if element isn't type T.
     template <typename T> T get(const std::string &name) const {
         return std::get<T>(data.at(name));
+    }
+
+    template <typename T>
+    std::optional<T> get_opt(const std::string &name) const {
+        auto it = data.find(name);
+        if (it == data.end()) {
+            return std::nullopt;
+        }
+        if (!std::holds_alternative<T>(it->second)) {
+            return std::nullopt;
+        }
+        // auto valptr = std::get_if<T>(it->second);
+        // return (valptr != nullptr) ? *valptr : std::nullopt;
+        return std::get<T>(it->second);
     }
 
     // throws std::out_of_range if name not present
