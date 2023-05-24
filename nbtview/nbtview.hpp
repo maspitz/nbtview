@@ -106,8 +106,6 @@ struct Compound_Tag : public Tag {
         if (!std::holds_alternative<T>(it->second)) {
             return std::nullopt;
         }
-        // auto valptr = std::get_if<T>(it->second);
-        // return (valptr != nullptr) ? *valptr : std::nullopt;
         return std::get<T>(it->second);
     }
 
