@@ -73,6 +73,10 @@ TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
         auto x = inner_tag->get_opt<float>("Float");
         REQUIRE(x);
         CHECK(x.value() == -248.75);
+        x = inner_tag->get_float("Float");
+        REQUIRE(x);
+        CHECK(x.value() == -248.75);
+
         x = inner_tag->get_opt<float>("Not_Present");
         REQUIRE(!x);
         x = inner_tag->get_opt<float>("Double");
