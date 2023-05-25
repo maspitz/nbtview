@@ -103,7 +103,7 @@ int64_t extract_int64(const std::vector<unsigned char> &data,
 
 void print_int_tag(std::vector<unsigned char> &data, const std::string &name) {
     auto ret = nbt::fast_find_named_tag(data.begin(), data.end(),
-                                        nbt::Tag::Type::Int, name);
+                                        nbt::Tag::TypeCode::Int, name);
     if (ret != data.end()) {
         auto val = extract_int32(data, ret);
         std::cout << "Found '" << name << " = " << val << " at "
@@ -113,7 +113,7 @@ void print_int_tag(std::vector<unsigned char> &data, const std::string &name) {
 
 void print_long_tag(std::vector<unsigned char> &data, const std::string &name) {
     auto ret = nbt::fast_find_named_tag(data.begin(), data.end(),
-                                        nbt::Tag::Type::Long, name);
+                                        nbt::Tag::TypeCode::Long, name);
     if (ret != data.end()) {
         auto val = extract_int64(data, ret);
         std::cout << "Found '" << name << " = " << val << " at "

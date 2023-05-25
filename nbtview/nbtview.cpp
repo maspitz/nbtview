@@ -13,7 +13,7 @@ std::unique_ptr<List_Tag> make_tag_list(BinaryScanner &s);
 std::vector<unsigned char>::const_iterator
 fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
                     std::vector<unsigned char>::const_iterator nbt_stop,
-                    Tag::Type tag_type, const std::string &tag_name) {
+                    Tag::TypeCode tag_type, const std::string &tag_name) {
 
     auto loc = nbt_start;
     const char byte_1 = static_cast<char>(tag_type);
@@ -33,33 +33,33 @@ fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
     }
 }
 
-Tag::payload_type decode_payload(Tag::Type type, BinaryScanner &s) {
+Tag::payload_type decode_payload(Tag::TypeCode type, BinaryScanner &s) {
     switch (type) {
-    case Tag::Type::End:
+    case Tag::TypeCode::End:
         throw std::runtime_error("Unexpected End Tag");
-    case Tag::Type::Byte:
+    case Tag::TypeCode::Byte:
         return s.get_value<int8_t>();
-    case Tag::Type::Short:
+    case Tag::TypeCode::Short:
         return s.get_value<int16_t>();
-    case Tag::Type::Int:
+    case Tag::TypeCode::Int:
         return s.get_value<int32_t>();
-    case Tag::Type::Long:
+    case Tag::TypeCode::Long:
         return s.get_value<int64_t>();
-    case Tag::Type::Float:
+    case Tag::TypeCode::Float:
         return s.get_value<float>();
-    case Tag::Type::Double:
+    case Tag::TypeCode::Double:
         return s.get_value<double>();
-    case Tag::Type::Byte_Array:
+    case Tag::TypeCode::Byte_Array:
         return s.get_vector<int8_t>();
-    case Tag::Type::String:
+    case Tag::TypeCode::String:
         return s.get_string();
-    case Tag::Type::List:
+    case Tag::TypeCode::List:
         return make_tag_list(s);
-    case Tag::Type::Compound:
+    case Tag::TypeCode::Compound:
         return make_tag_compound(s);
-    case Tag::Type::Int_Array:
+    case Tag::TypeCode::Int_Array:
         return s.get_vector<int32_t>();
-    case Tag::Type::Long_Array:
+    case Tag::TypeCode::Long_Array:
         return s.get_vector<int64_t>();
     default:
         throw std::runtime_error("Unhandled tag type");
@@ -69,7 +69,7 @@ Tag::payload_type decode_payload(Tag::Type type, BinaryScanner &s) {
 
 std::unique_ptr<List_Tag> make_tag_list(BinaryScanner &s) {
     auto list_tag = std::make_unique<List_Tag>();
-    auto list_type = static_cast<Tag::Type>(s.get_value<int8_t>());
+    auto list_type = static_cast<Tag::TypeCode>(s.get_value<int8_t>());
     auto list_length = s.get_value<int32_t>();
     list_tag->data.reserve(list_length);
     for (int32_t i = 0; i < list_length; ++i) {
@@ -81,8 +81,8 @@ std::unique_ptr<List_Tag> make_tag_list(BinaryScanner &s) {
 // TODO: return name of root tag if desired
 std::unique_ptr<Compound_Tag> make_tag_root(BinaryScanner &s) {
     auto compound_tag = std::make_unique<Compound_Tag>();
-    auto root_type = static_cast<Tag::Type>(s.get_value<int8_t>());
-    if (root_type != Tag::Type::Compound) {
+    auto root_type = static_cast<Tag::TypeCode>(s.get_value<int8_t>());
+    if (root_type != Tag::TypeCode::Compound) {
         throw std::runtime_error("Root tag is not a compound tag");
     }
     auto root_name = s.get_string();
@@ -91,12 +91,12 @@ std::unique_ptr<Compound_Tag> make_tag_root(BinaryScanner &s) {
 
 std::unique_ptr<Compound_Tag> make_tag_compound(BinaryScanner &s) {
     auto compound_tag = std::make_unique<Compound_Tag>();
-    auto next_type = static_cast<Tag::Type>(s.get_value<int8_t>());
+    auto next_type = static_cast<Tag::TypeCode>(s.get_value<int8_t>());
     std::string next_name;
-    while (next_type != Tag::Type::End) {
+    while (next_type != Tag::TypeCode::End) {
         next_name = s.get_string();
         compound_tag->data.emplace(next_name, decode_payload(next_type, s));
-        next_type = static_cast<Tag::Type>(s.get_value<int8_t>());
+        next_type = static_cast<Tag::TypeCode>(s.get_value<int8_t>());
     }
     return compound_tag;
 }

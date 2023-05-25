@@ -23,13 +23,17 @@ using Int = int32_t;
 using Long = int64_t;
 using Float = float;
 using Double = double;
+using Byte_Array = std::vector<Byte>;
+
+using Int_Array = std::vector<Int>;
+using Long_Array = std::vector<Long>;
 
 class List_Tag;
 class Compound_Tag;
 
 struct Tag {
 
-    enum class Type : char {
+    enum class TypeCode : char {
         End = 0,
         Byte = 1,
         Short = 2,
@@ -46,14 +50,14 @@ struct Tag {
     };
 
     using payload_type =
-        std::variant<int8_t, int16_t, int32_t, int64_t, float, double,
-                     std::unique_ptr<std::vector<int8_t>>, std::string,
+        std::variant<Byte, Short, Int, Long, Float, Double,
+                     std::unique_ptr<Byte_Array>, std::string,
                      std::unique_ptr<List_Tag>, std::unique_ptr<Compound_Tag>,
                      std::unique_ptr<std::vector<int32_t>>,
                      std::unique_ptr<std::vector<int64_t>>>;
 
-    const Tag::Type type;
-    Tag(Tag::Type type) : type(type) {}
+    const Tag::TypeCode type;
+    Tag(Tag::TypeCode type) : type(type) {}
     virtual std::string to_string() = 0;
 };
 
@@ -72,11 +76,11 @@ struct Tag {
 std::vector<unsigned char>::const_iterator
 fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
                     std::vector<unsigned char>::const_iterator nbt_stop,
-                    Tag::Type tag_type, const std::string &tag_name);
+                    Tag::TypeCode tag_type, const std::string &tag_name);
 
 struct List_Tag : public Tag {
     std::vector<payload_type> data;
-    List_Tag() : Tag(Tag::Type::List) {}
+    List_Tag() : Tag(Tag::TypeCode::List) {}
     // throws std::out_of_range if idx out of range
     // throws std::bad_variant_access if element isn't type T.
     template <typename T> T get(int32_t idx) const {
@@ -96,7 +100,7 @@ struct List_Tag : public Tag {
 
 struct Compound_Tag : public Tag {
     std::map<std::string, payload_type> data;
-    Compound_Tag() : Tag(Tag::Type::Compound) {}
+    Compound_Tag() : Tag(Tag::TypeCode::Compound) {}
 
     // throws std::out_of_range if name not present
     // throws std::bad_variant_access if element isn't type T.
@@ -208,19 +212,6 @@ class BinaryScanner {
         auto str_start = read_index;
         read_index += str_len;
         return std::string(reinterpret_cast<char *>(&data[str_start]), str_len);
-    }
-
-    template <typename Element_Type> std::span<Element_Type> get_array_view() {
-        auto array_length = get_value<int32_t>();
-        if (array_length < 0) {
-            throw std::runtime_error("Negative array length encountered");
-        }
-        if (read_index + sizeof(Element_Type) * array_length > data.size()) {
-            throw UnexpectedEndOfInputException();
-        }
-        auto span_start = reinterpret_cast<Element_Type *>(&data[read_index]);
-        auto span_stop = span_start + array_length;
-        return std::span<Element_Type>(span_start, span_stop);
     }
 
     template <typename Element_Type>
