@@ -20,8 +20,9 @@ TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
         auto root_tag = nbtview::make_tag_root(s);
         REQUIRE(root_tag->data.size() == 1);
 
-        auto value_bar = root_tag->get<std::string>("foo");
-        CHECK(value_bar == "bar");
+        auto str_foo = root_tag->get_String("foo");
+        REQUIRE(str_foo);
+        CHECK(*str_foo == "bar");
     }
 
     SUBCASE("read integer types from named compound tag") {
@@ -42,10 +43,14 @@ TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
         auto root_tag = nbtview::make_tag_root(s);
         REQUIRE(root_tag->data.size() == 4);
 
-        CHECK(root_tag->get<std::int8_t>("byte") == 0x12);
-        CHECK(root_tag->get<std::int16_t>("short") == 0x1234);
-        CHECK(root_tag->get<std::int32_t>("int") == 0x12345678);
-        CHECK(root_tag->get<std::int64_t>("long") == 0x120304050607089aL);
+        REQUIRE(root_tag->get_Byte("byte"));
+        CHECK(root_tag->get_Byte("byte").value() == 0x12);
+        REQUIRE(root_tag->get_Short("short"));
+        CHECK(root_tag->get_Short("short").value() == 0x1234);
+        REQUIRE(root_tag->get_Int("int"));
+        CHECK(root_tag->get_Int("int").value() == 0x12345678);
+        REQUIRE(root_tag->get_Long("long"));
+        CHECK(root_tag->get_Long("long").value() == 0x120304050607089aL);
     }
 
     SUBCASE("read floating point types from nested compound tag") {
@@ -66,7 +71,7 @@ TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
         auto root_tag = nbtview::make_tag_root(s);
         REQUIRE(root_tag->data.size() == 1);
 
-        auto inner_tag = root_tag->get_compound("innertag");
+        auto inner_tag = root_tag->get_Compound("innertag");
         REQUIRE(inner_tag != nullptr);
 
         auto double_tag = inner_tag->get_Double("Double");

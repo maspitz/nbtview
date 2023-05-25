@@ -100,12 +100,6 @@ struct Compound : public Tag {
     std::map<std::string, payload_type> data;
     Compound() : Tag(TypeCode::Compound) {}
 
-    // throws std::out_of_range if name not present
-    // throws std::bad_variant_access if element isn't type T.
-    template <typename T> T get(const std::string &name) const {
-        return std::get<T>(data.at(name));
-    }
-
     template <typename T>
     std::optional<T> get_opt(const std::string &name) const {
         auto it = data.find(name);
@@ -142,8 +136,12 @@ struct Compound : public Tag {
         return get_opt<Double>(name);
     }
 
-    const Compound *get_compound(const std::string &name) const {
+    const Compound *get_Compound(const std::string &name) const {
         return std::get<std::unique_ptr<Compound>>(data.at(name)).get();
+    }
+
+    std::optional<String> get_String(const std::string &name) const {
+        return get_opt<String>(name);
     }
 
     std::string to_string() {
