@@ -142,12 +142,6 @@ struct Compound : public Tag {
         return get_opt<Double>(name);
     }
 
-    // throws std::out_of_range if name not present
-    // throws std::bad_variant_access if element isn't type T.
-    template <typename T> const T &getref(const std::string &name) const {
-        return std::get<T>(data.at(name));
-    }
-
     const Compound *get_compound(const std::string &name) const {
         return std::get<std::unique_ptr<Compound>>(data.at(name)).get();
     }
