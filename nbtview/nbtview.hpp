@@ -185,13 +185,6 @@ struct Compound : public Tag {
     }
 };
 
-// emplace_tag reads the tag which begins at input, emplaces the constructed tag
-// at the output, and returns an iterator advanced to the end of the tag that
-// was read.
-template <typename InputIterator, typename OutputIterator>
-InputIterator emplace_tag(InputIterator input_start, InputIterator input_stop,
-                          OutputIterator output);
-
 class UnexpectedEndOfInputException : public std::runtime_error {
   public:
     UnexpectedEndOfInputException()
