@@ -38,19 +38,19 @@ Tag::payload_type decode_payload(TypeCode type, BinaryScanner &s) {
     case TypeCode::End:
         throw std::runtime_error("Unexpected End Tag");
     case TypeCode::Byte:
-        return s.get_value<int8_t>();
+        return s.get_value<Byte>();
     case TypeCode::Short:
-        return s.get_value<int16_t>();
+        return s.get_value<Short>();
     case TypeCode::Int:
-        return s.get_value<int32_t>();
+        return s.get_value<Int>();
     case TypeCode::Long:
-        return s.get_value<int64_t>();
+        return s.get_value<Long>();
     case TypeCode::Float:
-        return s.get_value<float>();
+        return s.get_value<Float>();
     case TypeCode::Double:
-        return s.get_value<double>();
+        return s.get_value<Double>();
     case TypeCode::Byte_Array:
-        return s.get_vector<int8_t>();
+        return s.get_vector<Byte>();
     case TypeCode::String:
         return s.get_string();
     case TypeCode::List:
@@ -58,9 +58,9 @@ Tag::payload_type decode_payload(TypeCode type, BinaryScanner &s) {
     case TypeCode::Compound:
         return make_tag_compound(s);
     case TypeCode::Int_Array:
-        return s.get_vector<int32_t>();
+        return s.get_vector<Int>();
     case TypeCode::Long_Array:
-        return s.get_vector<int64_t>();
+        return s.get_vector<Long>();
     default:
         throw std::runtime_error("Unhandled tag type");
     }
