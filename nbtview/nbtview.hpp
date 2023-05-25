@@ -24,6 +24,7 @@ using Long = int64_t;
 using Float = float;
 using Double = double;
 using Byte_Array = std::vector<Byte>;
+using String = std::string;
 class List;
 class Compound;
 using Int_Array = std::vector<Int>;
@@ -49,9 +50,9 @@ struct Tag {
 
     using payload_type =
         std::variant<Byte, Short, Int, Long, Float, Double,
-                     std::unique_ptr<Byte_Array>, std::string,
-                     std::unique_ptr<List>, std::unique_ptr<Compound>,
-                     std::unique_ptr<Int_Array>, std::unique_ptr<Long_Array>>;
+                     std::unique_ptr<Byte_Array>, String, std::unique_ptr<List>,
+                     std::unique_ptr<Compound>, std::unique_ptr<Int_Array>,
+                     std::unique_ptr<Long_Array>>;
 
     const TypeCode type;
     Tag(TypeCode type) : type(type) {}
