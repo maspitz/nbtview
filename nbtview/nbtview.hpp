@@ -113,6 +113,10 @@ struct Compound_Tag : public Tag {
         return get_opt<float>(name);
     }
 
+    std::optional<double> get_double(const std::string &name) const {
+        return get_opt<double>(name);
+    }
+
     // throws std::out_of_range if name not present
     // throws std::bad_variant_access if element isn't type T.
     template <typename T> const T &getref(const std::string &name) const {

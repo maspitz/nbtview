@@ -68,20 +68,19 @@ TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
 
         auto inner_tag = root_tag->get_compound("innertag");
         REQUIRE(inner_tag != nullptr);
-        CHECK(inner_tag->get<float>("Float") == -248.75);
-        CHECK(inner_tag->get<double>("Double") == +0.2);
-        auto x = inner_tag->get_opt<float>("Float");
-        REQUIRE(x);
-        CHECK(x.value() == -248.75);
-        x = inner_tag->get_float("Float");
+
+        REQUIRE(inner_tag->get_double("Double"));
+        CHECK(inner_tag->get_double("Double").value() == +0.2);
+
+        auto x = inner_tag->get_float("Float");
         REQUIRE(x);
         CHECK(x.value() == -248.75);
 
-        x = inner_tag->get_opt<float>("Not_Present");
+        x = inner_tag->get_float("Not_Present");
         REQUIRE(!x);
-        x = inner_tag->get_opt<float>("Double");
+        x = inner_tag->get_float("Double");
         REQUIRE(!x);
-        auto y = inner_tag->get_opt<double>("Float");
+        auto y = inner_tag->get_double("Float");
         REQUIRE(!y);
     }
 }
