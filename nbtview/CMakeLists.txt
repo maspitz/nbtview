@@ -1,4 +1,4 @@
-add_library(nbtview STATIC nbtview.cpp nbtview.hpp)
+add_library(nbtview STATIC nbtview.cpp nbtview.hpp BinaryScanner.cpp BinaryScanner.hpp)
 
 target_include_directories(${PROJECT_NAME} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 
