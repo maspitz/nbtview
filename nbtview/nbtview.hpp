@@ -24,40 +24,37 @@ using Long = int64_t;
 using Float = float;
 using Double = double;
 using Byte_Array = std::vector<Byte>;
-
+class List_Tag;
+class Compound_Tag;
 using Int_Array = std::vector<Int>;
 using Long_Array = std::vector<Long>;
 
-class List_Tag;
-class Compound_Tag;
+enum class TypeCode : char {
+    End = 0,
+    Byte = 1,
+    Short = 2,
+    Int = 3,
+    Long = 4,
+    Float = 5,
+    Double = 6,
+    Byte_Array = 7,
+    String = 8,
+    List = 9,
+    Compound = 10,
+    Int_Array = 11,
+    Long_Array = 12
+};
 
 struct Tag {
-
-    enum class TypeCode : char {
-        End = 0,
-        Byte = 1,
-        Short = 2,
-        Int = 3,
-        Long = 4,
-        Float = 5,
-        Double = 6,
-        Byte_Array = 7,
-        String = 8,
-        List = 9,
-        Compound = 10,
-        Int_Array = 11,
-        Long_Array = 12
-    };
 
     using payload_type =
         std::variant<Byte, Short, Int, Long, Float, Double,
                      std::unique_ptr<Byte_Array>, std::string,
                      std::unique_ptr<List_Tag>, std::unique_ptr<Compound_Tag>,
-                     std::unique_ptr<std::vector<int32_t>>,
-                     std::unique_ptr<std::vector<int64_t>>>;
+                     std::unique_ptr<Int_Array>, std::unique_ptr<Long_Array>>;
 
-    const Tag::TypeCode type;
-    Tag(Tag::TypeCode type) : type(type) {}
+    const TypeCode type;
+    Tag(TypeCode type) : type(type) {}
     virtual std::string to_string() = 0;
 };
 
@@ -76,11 +73,11 @@ struct Tag {
 std::vector<unsigned char>::const_iterator
 fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
                     std::vector<unsigned char>::const_iterator nbt_stop,
-                    Tag::TypeCode tag_type, const std::string &tag_name);
+                    TypeCode tag_type, const std::string &tag_name);
 
 struct List_Tag : public Tag {
     std::vector<payload_type> data;
-    List_Tag() : Tag(Tag::TypeCode::List) {}
+    List_Tag() : Tag(TypeCode::List) {}
     // throws std::out_of_range if idx out of range
     // throws std::bad_variant_access if element isn't type T.
     template <typename T> T get(int32_t idx) const {
@@ -100,7 +97,7 @@ struct List_Tag : public Tag {
 
 struct Compound_Tag : public Tag {
     std::map<std::string, payload_type> data;
-    Compound_Tag() : Tag(Tag::TypeCode::Compound) {}
+    Compound_Tag() : Tag(TypeCode::Compound) {}
 
     // throws std::out_of_range if name not present
     // throws std::bad_variant_access if element isn't type T.
