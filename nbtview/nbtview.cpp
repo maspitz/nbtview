@@ -7,8 +7,8 @@
 
 namespace nbtview {
 
-std::unique_ptr<Compound_Tag> make_tag_compound(BinaryScanner &s);
-std::unique_ptr<List_Tag> make_tag_list(BinaryScanner &s);
+std::unique_ptr<Compound> make_tag_compound(BinaryScanner &s);
+std::unique_ptr<List> make_tag_list(BinaryScanner &s);
 
 std::vector<unsigned char>::const_iterator
 fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
@@ -67,8 +67,8 @@ Tag::payload_type decode_payload(TypeCode type, BinaryScanner &s) {
     return 0;
 }
 
-std::unique_ptr<List_Tag> make_tag_list(BinaryScanner &s) {
-    auto list_tag = std::make_unique<List_Tag>();
+std::unique_ptr<List> make_tag_list(BinaryScanner &s) {
+    auto list_tag = std::make_unique<List>();
     auto list_type = static_cast<TypeCode>(s.get_value<int8_t>());
     auto list_length = s.get_value<int32_t>();
     list_tag->data.reserve(list_length);
@@ -79,8 +79,8 @@ std::unique_ptr<List_Tag> make_tag_list(BinaryScanner &s) {
 }
 
 // TODO: return name of root tag if desired
-std::unique_ptr<Compound_Tag> make_tag_root(BinaryScanner &s) {
-    auto compound_tag = std::make_unique<Compound_Tag>();
+std::unique_ptr<Compound> make_tag_root(BinaryScanner &s) {
+    auto compound_tag = std::make_unique<Compound>();
     auto root_type = static_cast<TypeCode>(s.get_value<int8_t>());
     if (root_type != TypeCode::Compound) {
         throw std::runtime_error("Root tag is not a compound tag");
@@ -89,8 +89,8 @@ std::unique_ptr<Compound_Tag> make_tag_root(BinaryScanner &s) {
     return make_tag_compound(s);
 }
 
-std::unique_ptr<Compound_Tag> make_tag_compound(BinaryScanner &s) {
-    auto compound_tag = std::make_unique<Compound_Tag>();
+std::unique_ptr<Compound> make_tag_compound(BinaryScanner &s) {
+    auto compound_tag = std::make_unique<Compound>();
     auto next_type = static_cast<TypeCode>(s.get_value<int8_t>());
     std::string next_name;
     while (next_type != TypeCode::End) {

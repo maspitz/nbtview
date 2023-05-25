@@ -24,8 +24,8 @@ using Long = int64_t;
 using Float = float;
 using Double = double;
 using Byte_Array = std::vector<Byte>;
-class List_Tag;
-class Compound_Tag;
+class List;
+class Compound;
 using Int_Array = std::vector<Int>;
 using Long_Array = std::vector<Long>;
 
@@ -50,7 +50,7 @@ struct Tag {
     using payload_type =
         std::variant<Byte, Short, Int, Long, Float, Double,
                      std::unique_ptr<Byte_Array>, std::string,
-                     std::unique_ptr<List_Tag>, std::unique_ptr<Compound_Tag>,
+                     std::unique_ptr<List>, std::unique_ptr<Compound>,
                      std::unique_ptr<Int_Array>, std::unique_ptr<Long_Array>>;
 
     const TypeCode type;
@@ -75,9 +75,9 @@ fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
                     std::vector<unsigned char>::const_iterator nbt_stop,
                     TypeCode tag_type, const std::string &tag_name);
 
-struct List_Tag : public Tag {
+struct List : public Tag {
     std::vector<payload_type> data;
-    List_Tag() : Tag(TypeCode::List) {}
+    List() : Tag(TypeCode::List) {}
     // throws std::out_of_range if idx out of range
     // throws std::bad_variant_access if element isn't type T.
     template <typename T> T get(int32_t idx) const {
@@ -95,9 +95,9 @@ struct List_Tag : public Tag {
     }
 };
 
-struct Compound_Tag : public Tag {
+struct Compound : public Tag {
     std::map<std::string, payload_type> data;
-    Compound_Tag() : Tag(TypeCode::Compound) {}
+    Compound() : Tag(TypeCode::Compound) {}
 
     // throws std::out_of_range if name not present
     // throws std::bad_variant_access if element isn't type T.
@@ -147,8 +147,8 @@ struct Compound_Tag : public Tag {
         return std::get<T>(data.at(name));
     }
 
-    const Compound_Tag *get_compound(const std::string &name) const {
-        return std::get<std::unique_ptr<Compound_Tag>>(data.at(name)).get();
+    const Compound *get_compound(const std::string &name) const {
+        return std::get<std::unique_ptr<Compound>>(data.at(name)).get();
     }
 
     std::string to_string() {
@@ -227,7 +227,7 @@ class BinaryScanner {
     }
 };
 
-std::unique_ptr<Compound_Tag> make_tag_root(BinaryScanner &s);
+std::unique_ptr<Compound> make_tag_root(BinaryScanner &s);
 
 } // namespace nbtview
 
