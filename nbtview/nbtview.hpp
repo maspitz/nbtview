@@ -46,17 +46,75 @@ enum class TypeCode : char {
     Long_Array = 12
 };
 
-struct Tag {
+class UnexpectedEndOfInputException : public std::runtime_error {
+  public:
+    UnexpectedEndOfInputException()
+        : std::runtime_error("Unexpected end of input") {}
+};
 
-    using payload_type =
-        std::variant<Byte, Short, Int, Long, Float, Double,
-                     std::unique_ptr<Byte_Array>, String, std::unique_ptr<List>,
-                     std::unique_ptr<Compound>, std::unique_ptr<Int_Array>,
-                     std::unique_ptr<Long_Array>>;
+// BinaryScanner scans and reads big-endian binary data.
+class BinaryScanner {
+  public:
+    BinaryScanner(const std::span<uint8_t> &data) : data(data), read_index(0) {}
+    std::span<uint8_t> data;
+    size_t read_index;
 
-    const TypeCode type;
-    Tag(TypeCode type) : type(type) {}
-    virtual std::string to_string() = 0;
+    template <typename T>
+    [[nodiscard]] T load_big_endian(
+        const uint8_t *const buf) noexcept requires std::is_trivial_v<T> {
+        T res;
+        std::reverse_copy(buf, buf + sizeof res,
+                          reinterpret_cast<uint8_t *>(&res));
+        return res;
+    }
+
+    template <typename T> T get_value() {
+        if (read_index + sizeof(T) > data.size()) {
+            throw UnexpectedEndOfInputException();
+        }
+        T read_value = load_big_endian<T>(&data[read_index]);
+        read_index += sizeof(T);
+        return read_value;
+    }
+
+    std::string get_string() {
+        auto str_len = get_value<uint16_t>();
+        if (read_index + str_len > data.size()) {
+            throw UnexpectedEndOfInputException();
+        }
+        auto str_start = read_index;
+        read_index += str_len;
+        return std::string(reinterpret_cast<char *>(&data[str_start]), str_len);
+    }
+
+    template <typename Element_Type>
+    std::unique_ptr<std::vector<Element_Type>> get_vector() {
+        auto array_length = get_value<int32_t>();
+        if (array_length < 0) {
+            throw std::runtime_error("Negative array length encountered");
+        }
+        if (read_index + sizeof(Element_Type) * array_length > data.size()) {
+            throw UnexpectedEndOfInputException();
+        }
+        auto span_start = reinterpret_cast<Element_Type *>(&data[read_index]);
+        auto span_stop = span_start + array_length;
+        return std::make_unique<std::vector<Element_Type>>(span_start,
+                                                           span_stop);
+    }
+};
+
+std::unique_ptr<Compound> make_tag_root(BinaryScanner &s);
+
+using Payload =
+    std::variant<Byte, Short, Int, Long, Float, Double,
+                 std::unique_ptr<Byte_Array>, String, std::unique_ptr<List>,
+                 std::unique_ptr<Compound>, std::unique_ptr<Int_Array>,
+                 std::unique_ptr<Long_Array>>;
+
+Payload decode_payload(TypeCode type, BinaryScanner &s);
+
+struct Tag : public Payload {
+    Tag(BinaryScanner &s, TypeCode type) : Payload(decode_payload(type, s)) {}
 };
 
 // Attempts to find a named tag in a range of NBT data by searching for its
@@ -76,31 +134,20 @@ fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
                     std::vector<unsigned char>::const_iterator nbt_stop,
                     TypeCode tag_type, const std::string &tag_name);
 
-struct List : public Tag {
-    std::vector<payload_type> data;
-    List() : Tag(TypeCode::List) {}
-    // throws std::out_of_range if idx out of range
-    // throws std::bad_variant_access if element isn't type T.
-    template <typename T> T get(int32_t idx) const {
-        return std::get<T>(data.at(idx));
-    }
-    std::string to_string() {
-        std::ostringstream oss;
-        oss << "List [";
-        oss << "LIST DATA NOT YET PRINTABLE"; // FIXME
-        // for (auto tag_it = data.begin(); tag_it != data.end(); ++tag_it) {
-        //     oss << (*tag_it)->to_string() << ", ";
-        // }
-        oss << "]";
-        return oss.str();
-    }
+// TODO: implement appropriate stringify methods etc.
+struct List : public std::vector<Payload> {
+  public:
+    using base = std::vector<Payload>;
+
+    // inherit constructors from std::vector
+    using base::base;
 };
 
-struct Compound : public Tag {
+struct Compound {
 
   public:
-    std::map<std::string, payload_type> data;
-    Compound() : Tag(TypeCode::Compound) {}
+    std::map<std::string, Payload> data;
+    Compound() {}
 
     std::optional<Byte> get_Byte(const std::string &name) const {
         return get_value<Byte>(name);
@@ -184,65 +231,6 @@ struct Compound : public Tag {
         return std::get<std::unique_ptr<T>>(it->second).get();
     }
 };
-
-class UnexpectedEndOfInputException : public std::runtime_error {
-  public:
-    UnexpectedEndOfInputException()
-        : std::runtime_error("Unexpected end of input") {}
-};
-
-// BinaryScanner scans and reads big-endian binary data.
-class BinaryScanner {
-  public:
-    BinaryScanner(const std::span<uint8_t> &data) : data(data), read_index(0) {}
-    std::span<uint8_t> data;
-    size_t read_index;
-
-    template <typename T>
-    [[nodiscard]] T load_big_endian(
-        const uint8_t *const buf) noexcept requires std::is_trivial_v<T> {
-        T res;
-        std::reverse_copy(buf, buf + sizeof res,
-                          reinterpret_cast<uint8_t *>(&res));
-        return res;
-    }
-
-    template <typename T> T get_value() {
-        if (read_index + sizeof(T) > data.size()) {
-            throw UnexpectedEndOfInputException();
-        }
-        T read_value = load_big_endian<T>(&data[read_index]);
-        read_index += sizeof(T);
-        return read_value;
-    }
-
-    std::string get_string() {
-        auto str_len = get_value<uint16_t>();
-        if (read_index + str_len > data.size()) {
-            throw UnexpectedEndOfInputException();
-        }
-        auto str_start = read_index;
-        read_index += str_len;
-        return std::string(reinterpret_cast<char *>(&data[str_start]), str_len);
-    }
-
-    template <typename Element_Type>
-    std::unique_ptr<std::vector<Element_Type>> get_vector() {
-        auto array_length = get_value<int32_t>();
-        if (array_length < 0) {
-            throw std::runtime_error("Negative array length encountered");
-        }
-        if (read_index + sizeof(Element_Type) * array_length > data.size()) {
-            throw UnexpectedEndOfInputException();
-        }
-        auto span_start = reinterpret_cast<Element_Type *>(&data[read_index]);
-        auto span_stop = span_start + array_length;
-        return std::make_unique<std::vector<Element_Type>>(span_start,
-                                                           span_stop);
-    }
-};
-
-std::unique_ptr<Compound> make_tag_root(BinaryScanner &s);
 
 } // namespace nbtview
 

@@ -33,7 +33,18 @@ fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
     }
 }
 
-Tag::payload_type decode_payload(TypeCode type, BinaryScanner &s) {
+// TODO: return name of root tag if desired
+std::unique_ptr<Compound> make_tag_root(BinaryScanner &s) {
+    auto compound_tag = std::make_unique<Compound>();
+    auto root_type = static_cast<TypeCode>(s.get_value<int8_t>());
+    if (root_type != TypeCode::Compound) {
+        throw std::runtime_error("Root tag is not a compound tag");
+    }
+    auto root_name = s.get_string();
+    return make_tag_compound(s);
+}
+
+Payload decode_payload(TypeCode type, BinaryScanner &s) {
     switch (type) {
     case TypeCode::End:
         throw std::runtime_error("Unexpected End Tag");
@@ -71,22 +82,11 @@ std::unique_ptr<List> make_tag_list(BinaryScanner &s) {
     auto list_tag = std::make_unique<List>();
     auto list_type = static_cast<TypeCode>(s.get_value<int8_t>());
     auto list_length = s.get_value<int32_t>();
-    list_tag->data.reserve(list_length);
+    list_tag->reserve(list_length);
     for (int32_t i = 0; i < list_length; ++i) {
-        list_tag->data.emplace_back(decode_payload(list_type, s));
+        list_tag->emplace_back(Tag(s, list_type));
     }
     return list_tag;
-}
-
-// TODO: return name of root tag if desired
-std::unique_ptr<Compound> make_tag_root(BinaryScanner &s) {
-    auto compound_tag = std::make_unique<Compound>();
-    auto root_type = static_cast<TypeCode>(s.get_value<int8_t>());
-    if (root_type != TypeCode::Compound) {
-        throw std::runtime_error("Root tag is not a compound tag");
-    }
-    auto root_name = s.get_string();
-    return make_tag_compound(s);
 }
 
 std::unique_ptr<Compound> make_tag_compound(BinaryScanner &s) {
@@ -95,7 +95,7 @@ std::unique_ptr<Compound> make_tag_compound(BinaryScanner &s) {
     std::string next_name;
     while (next_type != TypeCode::End) {
         next_name = s.get_string();
-        compound_tag->data.emplace(next_name, decode_payload(next_type, s));
+        compound_tag->data.emplace(next_name, Tag(s, next_type));
         next_type = static_cast<TypeCode>(s.get_value<int8_t>());
     }
     return compound_tag;
