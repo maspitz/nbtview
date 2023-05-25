@@ -17,6 +17,13 @@
 
 namespace nbtview {
 
+using Byte = int8_t;
+using Short = int16_t;
+using Int = int32_t;
+using Long = int64_t;
+using Float = float;
+using Double = double;
+
 class List_Tag;
 class Compound_Tag;
 
@@ -109,12 +116,28 @@ struct Compound_Tag : public Tag {
         return std::get<T>(it->second);
     }
 
-    std::optional<float> get_float(const std::string &name) const {
-        return get_opt<float>(name);
+    std::optional<Byte> get_Byte(const std::string &name) const {
+        return get_opt<Byte>(name);
     }
 
-    std::optional<double> get_double(const std::string &name) const {
-        return get_opt<double>(name);
+    std::optional<Short> get_Short(const std::string &name) const {
+        return get_opt<Short>(name);
+    }
+
+    std::optional<Int> get_Int(const std::string &name) const {
+        return get_opt<Int>(name);
+    }
+
+    std::optional<Long> get_Long(const std::string &name) const {
+        return get_opt<Long>(name);
+    }
+
+    std::optional<Float> get_Float(const std::string &name) const {
+        return get_opt<Float>(name);
+    }
+
+    std::optional<Double> get_Double(const std::string &name) const {
+        return get_opt<Double>(name);
     }
 
     // throws std::out_of_range if name not present
