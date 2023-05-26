@@ -32,3 +32,24 @@ TEST_CASE("nbtview::detail::BinaryScanner Floating Point Types") {
 
     REQUIRE(f64 == 0.2);
 }
+
+TEST_CASE("nbtview::BinaryScanner String") {
+    // Test a valid string
+    std::vector<uint8_t> data1 = {0x00, 0x05, 'H', 'e', 'l', 'l', 'o'};
+    nbtview::BinaryScanner scanner1(data1);
+    std::string str1 = scanner1.get_string();
+    CHECK(str1 == "Hello");
+
+    // Test an empty string
+    std::vector<uint8_t> data2 = {0x00, 0x00};
+    nbtview::BinaryScanner scanner2(data2);
+    std::string str2 = scanner2.get_string();
+    CHECK(str2 == "");
+
+    // Test a string with unexpected end of input
+    std::vector<uint8_t> data3 = {0x00, 0x05, 'W', 'o', 'r'};
+    nbtview::BinaryScanner scanner3(data3);
+    CHECK_THROWS_AS(scanner3.get_string(),
+                    nbtview::UnexpectedEndOfInputException);
+}
+
