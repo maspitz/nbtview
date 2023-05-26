@@ -153,11 +153,11 @@ struct Compound {
 
     std::string to_string() {
         std::ostringstream oss;
-        oss << "Compound [";
+        oss << "{";
         for (auto tag_it = data.begin(); tag_it != data.end(); ++tag_it) {
-            oss << tag_it->second.to_string() << ", ";
+            oss << tag_it->first << ": " << tag_it->second.to_string() << ", ";
         }
-        oss << "]";
+        oss << "}";
         return oss.str();
     }
 
