@@ -6,6 +6,7 @@
 
 #include <zlib.h>
 
+#include "BinaryScanner.hpp"
 #include "nbtview.hpp"
 
 namespace nbt = nbtview;
