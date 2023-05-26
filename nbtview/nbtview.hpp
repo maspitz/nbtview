@@ -87,7 +87,15 @@ struct List : public std::vector<Tag> {
     // inherit constructors from std::vector
     using base::base;
 
-    std::string to_string() { return "LIST"; }
+    std::string to_string() {
+        std::ostringstream oss;
+        oss << "[ ";
+        for (auto tag_it = this->begin(); tag_it != this->end(); ++tag_it) {
+            oss << tag_it->to_string() << " ";
+        }
+        oss << "]";
+        return oss.str();
+    }
 };
 
 struct Compound {
