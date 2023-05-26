@@ -67,8 +67,9 @@ class BinaryScanner {
         return std::string(reinterpret_cast<char *>(&data[str_start]), str_len);
     }
 
+    // METHOD 1
     template <typename Element_Type>
-    std::unique_ptr<std::vector<Element_Type>> get_vector() {
+    std::unique_ptr<std::vector<Element_Type>> get_vector2() {
         auto array_length = get_value<int32_t>();
         if (array_length < 0) {
             throw std::runtime_error("Negative array length encountered");
@@ -76,10 +77,37 @@ class BinaryScanner {
         if (read_index + sizeof(Element_Type) * array_length > data.size()) {
             throw UnexpectedEndOfInputException();
         }
+
         auto span_start = reinterpret_cast<Element_Type *>(&data[read_index]);
         auto span_stop = span_start + array_length;
-        return std::make_unique<std::vector<Element_Type>>(span_start,
-                                                           span_stop);
+        auto vec =
+            std::make_unique<std::vector<Element_Type>>(span_start, span_stop);
+        for (auto it = vec->begin(); it != vec->end(); ++it) {
+            swap_endian(*it);
+        }
+        read_index += sizeof(Element_Type) * array_length;
+        return vec;
+    }
+
+    // METHOD 2
+    template <typename Element_Type>
+    std::unique_ptr<std::vector<Element_Type>> get_vector() {
+        auto array_length = get_value<int32_t>();
+        if (array_length < 0) {
+            throw std::runtime_error("Negative array length encountered");
+        }
+        auto stop_index = read_index + sizeof(Element_Type) * array_length;
+        if (stop_index > data.size()) {
+            throw UnexpectedEndOfInputException();
+        }
+
+        auto vec = std::make_unique<std::vector<Element_Type>>();
+        vec->reserve(array_length);
+        for (; read_index < stop_index; read_index += sizeof(Element_Type)) {
+            vec->push_back(load_big_endian<Element_Type>(&data[read_index]));
+        }
+        read_index = stop_index;
+        return vec;
     }
 };
 
