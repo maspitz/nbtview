@@ -17,21 +17,36 @@ class UnexpectedEndOfInputException : public std::runtime_error {
         : std::runtime_error("Unexpected end of input") {}
 };
 
+template <typename T>
+void swap_endian(T &val,
+                 typename std::enable_if<std::is_arithmetic<T>::value,
+                                         std::nullptr_t>::type = nullptr) {
+    auto ptr = reinterpret_cast<std::uint8_t *>(&val);
+    std::array<std::uint8_t, sizeof(T)> raw_src, raw_dst;
+
+    for (std::size_t i = 0; i < sizeof(T); ++i)
+        raw_src[i] = ptr[i];
+
+    std::reverse_copy(raw_src.begin(), raw_src.end(), raw_dst.begin());
+
+    for (std::size_t i = 0; i < sizeof(T); ++i)
+        ptr[i] = raw_dst[i];
+}
+
+template <typename T>
+[[nodiscard]] T load_big_endian(
+    const uint8_t *const buf) noexcept requires std::is_trivial_v<T> {
+    T res;
+    std::reverse_copy(buf, buf + sizeof res, reinterpret_cast<uint8_t *>(&res));
+    return res;
+}
+
 // BinaryScanner scans and reads big-endian binary data.
 class BinaryScanner {
   public:
     BinaryScanner(const std::span<uint8_t> &data) : data(data), read_index(0) {}
     std::span<uint8_t> data;
     size_t read_index;
-
-    template <typename T>
-    [[nodiscard]] T load_big_endian(
-        const uint8_t *const buf) noexcept requires std::is_trivial_v<T> {
-        T res;
-        std::reverse_copy(buf, buf + sizeof res,
-                          reinterpret_cast<uint8_t *>(&res));
-        return res;
-    }
 
     template <typename T> T get_value() {
         if (read_index + sizeof(T) > data.size()) {
