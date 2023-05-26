@@ -58,32 +58,36 @@ Payload decode_payload(TypeCode type, BinaryScanner &s);
 
 struct Tag : public Payload {
     Tag(BinaryScanner &s, TypeCode type) : Payload(decode_payload(type, s)) {}
+
+    std::string to_string() const;
 };
 
-// Attempts to find a named tag in a range of NBT data by searching for its
-// initial byte sequence.
+// Attempts to find a named tag in a range of NBT data by searching for
+// its initial byte sequence.
 //
-// If the tag is found, an iterator to the beginning of its payload is returned.
-// Otherwise, nbt_stop is returned.
+// If the tag is found, an iterator to the beginning of its payload is
+// returned. Otherwise, nbt_stop is returned.
 //
 // Caveats:
 // (1) This method can be fooled if the tag's name appears in the
 // payload of some other tag.  This is unlikely to happen by chance.
-// (2) It is the calling code's responsibility to check that the remaining NBT
-// data is large enough to contain the tag's expected payload.
+// (2) It is the calling code's responsibility to check that the
+// remaining NBT data is large enough to contain the tag's expected
+// payload.
 
 std::vector<unsigned char>::const_iterator
 fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
                     std::vector<unsigned char>::const_iterator nbt_stop,
                     TypeCode tag_type, const std::string &tag_name);
 
-// TODO: implement appropriate stringify methods etc.
 struct List : public std::vector<Tag> {
   public:
     using base = std::vector<Tag>;
 
     // inherit constructors from std::vector
     using base::base;
+
+    std::string to_string() { return "LIST"; }
 };
 
 struct Compound {
@@ -142,10 +146,9 @@ struct Compound {
     std::string to_string() {
         std::ostringstream oss;
         oss << "Compound [";
-        oss << "COMPOUND DATA NOT YET PRINTABLE"; // FIXME
-        // for (auto tag_it = data.begin(); tag_it != data.end(); ++tag_it) {
-        //     oss << (*tag_it)->to_string() << ", ";
-        // }
+        for (auto tag_it = data.begin(); tag_it != data.end(); ++tag_it) {
+            oss << tag_it->second.to_string() << ", ";
+        }
         oss << "]";
         return oss.str();
     }
@@ -174,6 +177,56 @@ struct Compound {
         return std::get<std::unique_ptr<T>>(it->second).get();
     }
 };
+
+inline std::string Tag::to_string() const {
+    if (std::holds_alternative<Byte>(*this)) {
+        return std::to_string(std::get<Byte>(*this)) + "b";
+    } else if (std::holds_alternative<Short>(*this)) {
+        return std::to_string(std::get<Short>(*this)) + "s";
+    } else if (std::holds_alternative<Int>(*this)) {
+        return std::to_string(std::get<Int>(*this));
+    } else if (std::holds_alternative<Long>(*this)) {
+        return std::to_string(std::get<Long>(*this)) + "L";
+    } else if (std::holds_alternative<Float>(*this)) {
+        return std::to_string(std::get<Float>(*this)) + "f";
+    } else if (std::holds_alternative<Double>(*this)) {
+        return std::to_string(std::get<Double>(*this)) + "d";
+    } else if (std::holds_alternative<std::unique_ptr<Byte_Array>>(*this)) {
+        auto &arr = std::get<std::unique_ptr<Byte_Array>>(*this);
+        if (arr == nullptr) {
+            return "[null byte array]";
+        }
+        return "[" + std::to_string(arr->size()) + " bytes]";
+    } else if (std::holds_alternative<String>(*this)) {
+        return "'" + std::get<String>(*this) + "''";
+    } else if (std::holds_alternative<std::unique_ptr<List>>(*this)) {
+        auto &lst = std::get<std::unique_ptr<List>>(*this);
+        if (lst == nullptr) {
+            return "[null list]";
+        }
+        return lst->to_string();
+    } else if (std::holds_alternative<std::unique_ptr<Compound>>(*this)) {
+        auto &cpd = std::get<std::unique_ptr<Compound>>(*this);
+        if (cpd == nullptr) {
+            return "[null compound]";
+        }
+        return cpd->to_string();
+    } else if (std::holds_alternative<std::unique_ptr<Int_Array>>(*this)) {
+        auto &arr = std::get<std::unique_ptr<Int_Array>>(*this);
+        if (arr == nullptr) {
+            return "[null int array]";
+        }
+        return "[" + std::to_string(arr->size()) + " ints]";
+    } else if (std::holds_alternative<std::unique_ptr<Long_Array>>(*this)) {
+        auto &arr = std::get<std::unique_ptr<Long_Array>>(*this);
+        if (arr == nullptr) {
+            return "[null long array]";
+        }
+        return "[" + std::to_string(arr->size()) + " longs]";
+    } else {
+        return "<Unhandled Variant>";
+    }
+}
 
 } // namespace nbtview
 
