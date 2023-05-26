@@ -1,6 +1,7 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
 #include "nbtview.hpp"
+#include <vector>
 
 TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
     SUBCASE("empty compound tag") {

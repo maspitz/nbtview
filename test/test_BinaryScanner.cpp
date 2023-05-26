@@ -1,21 +1,21 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "BinaryScanner.hpp"
 #include "doctest.h"
+#include <vector>
 
 TEST_CASE("nbtview::detail::BinaryScanner Integer Types") {
     auto v =
         std::vector<uint8_t>{0x17, 0x23, 0x01, 0xff, 0x01, 0x23, 0x45, 0x67};
     auto s = nbtview::BinaryScanner(v);
     auto a = s.get_value<int8_t>();
+    CHECK(a == 0x17);
     auto b = s.get_value<int8_t>();
+    CHECK(b == 0x23);
     auto c = s.get_value<int16_t>();
+    CHECK(c == 0x01ff);
     auto d = s.get_value<int32_t>();
+    CHECK(d == 0x01234567);
     CHECK_THROWS_AS(s.get_value<int8_t>(), std::runtime_error);
-
-    REQUIRE(a == 0x17);
-    REQUIRE(b == 0x23);
-    REQUIRE(c == 0x01ff);
-    REQUIRE(d == 0x01234567);
 }
 
 TEST_CASE("nbtview::detail::BinaryScanner Floating Point Types") {
