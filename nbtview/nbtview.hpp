@@ -78,9 +78,9 @@ fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
                     TypeCode tag_type, const std::string &tag_name);
 
 // TODO: implement appropriate stringify methods etc.
-struct List : public std::vector<Payload> {
+struct List : public std::vector<Tag> {
   public:
-    using base = std::vector<Payload>;
+    using base = std::vector<Tag>;
 
     // inherit constructors from std::vector
     using base::base;
@@ -89,7 +89,7 @@ struct List : public std::vector<Payload> {
 struct Compound {
 
   public:
-    std::map<std::string, Payload> data;
+    std::map<std::string, Tag> data;
     Compound() {}
 
     std::optional<Byte> get_Byte(const std::string &name) const {
