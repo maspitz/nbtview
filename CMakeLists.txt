@@ -23,9 +23,10 @@ add_subdirectory(nbtview)
 #add_subdirectory(doc)
 add_subdirectory(apps)
 
-add_executable(test_nbtview_detail nbtview/test_nbtview_detail.cpp)
-target_include_directories(test_nbtview_detail PRIVATE "${PROJECT_SOURCE_DIR}/doctest")
-add_test(Test_nbtview_detail test_nbtview_detail)
+add_executable(test_BinaryScanner test/test_BinaryScanner.cpp)
+target_link_libraries(test_BinaryScanner nbtview)
+target_include_directories(test_BinaryScanner PRIVATE "${PROJECT_SOURCE_DIR}/doctest")
+add_test(Test_BinaryScanner test_BinaryScanner)
 
 add_executable(test_nbtview test/test_nbtview.cpp)
 target_link_libraries(test_nbtview nbtview)
