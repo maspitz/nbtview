@@ -204,7 +204,14 @@ inline std::string Tag::to_string() const {
         if (arr == nullptr) {
             return "[null byte array]";
         }
-        return "[" + std::to_string(arr->size()) + " bytes]";
+        // return "[" + std::to_string(arr->size()) + " bytes]";
+        std::ostringstream oss;
+        oss << "[";
+        for (auto x : *arr) {
+            oss << int(x) << "b ";
+        }
+        oss << "]";
+        return oss.str();
     } else if (std::holds_alternative<String>(*this)) {
         return "'" + std::get<String>(*this) + "''";
     } else if (std::holds_alternative<std::unique_ptr<List>>(*this)) {
@@ -224,13 +231,27 @@ inline std::string Tag::to_string() const {
         if (arr == nullptr) {
             return "[null int array]";
         }
-        return "[" + std::to_string(arr->size()) + " ints]";
+        // return "[" + std::to_string(arr->size()) + " ints]";
+        std::ostringstream oss;
+        oss << "[";
+        for (auto x : *arr) {
+            oss << x << " ";
+        }
+        oss << "]";
+        return oss.str();
     } else if (std::holds_alternative<std::unique_ptr<Long_Array>>(*this)) {
         auto &arr = std::get<std::unique_ptr<Long_Array>>(*this);
         if (arr == nullptr) {
             return "[null long array]";
         }
-        return "[" + std::to_string(arr->size()) + " longs]";
+        // return "[" + std::to_string(arr->size()) + " longs]";
+        std::ostringstream oss;
+        oss << "[";
+        for (auto x : *arr) {
+            oss << x << "L ";
+        }
+        oss << "]";
+        return oss.str();
     } else {
         return "<Unhandled Variant>";
     }
