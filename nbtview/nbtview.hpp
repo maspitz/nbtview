@@ -186,6 +186,23 @@ struct Compound {
     }
 };
 
+template <typename T>
+std::string comma_delimited_array(const std::vector<T> &vec,
+                                  const std::string &array_prefix,
+                                  const std::string &elt_suffix,
+                                  const std::string &array_suffix) {
+    std::ostringstream oss;
+    oss << array_prefix;
+    for (size_t i = 0; i != vec.size(); ++i) {
+        oss << std::to_string(vec[i]) << elt_suffix;
+        if (i != vec.size() - 1) {
+            oss << ",";
+        }
+    }
+    oss << array_suffix;
+    return oss.str();
+}
+
 inline std::string Tag::to_string() const {
     if (std::holds_alternative<Byte>(*this)) {
         return std::to_string(std::get<Byte>(*this)) + "b";
@@ -204,54 +221,33 @@ inline std::string Tag::to_string() const {
         if (arr == nullptr) {
             return "[null byte array]";
         }
-        // return "[" + std::to_string(arr->size()) + " bytes]";
-        std::ostringstream oss;
-        oss << "[";
-        for (auto x : *arr) {
-            oss << int(x) << "b ";
-        }
-        oss << "]";
-        return oss.str();
+        return comma_delimited_array(*arr, "[B;", "b", "]");
     } else if (std::holds_alternative<String>(*this)) {
         return "'" + std::get<String>(*this) + "''";
     } else if (std::holds_alternative<std::unique_ptr<List>>(*this)) {
         auto &lst = std::get<std::unique_ptr<List>>(*this);
         if (lst == nullptr) {
-            return "[null list]";
+            return "[]";
         }
         return lst->to_string();
     } else if (std::holds_alternative<std::unique_ptr<Compound>>(*this)) {
         auto &cpd = std::get<std::unique_ptr<Compound>>(*this);
         if (cpd == nullptr) {
-            return "[null compound]";
+            return "{}";
         }
         return cpd->to_string();
     } else if (std::holds_alternative<std::unique_ptr<Int_Array>>(*this)) {
         auto &arr = std::get<std::unique_ptr<Int_Array>>(*this);
         if (arr == nullptr) {
-            return "[null int array]";
+            return "[I;]";
         }
-        // return "[" + std::to_string(arr->size()) + " ints]";
-        std::ostringstream oss;
-        oss << "[";
-        for (auto x : *arr) {
-            oss << x << " ";
-        }
-        oss << "]";
-        return oss.str();
+        return comma_delimited_array(*arr, "[I;", "", "]");
     } else if (std::holds_alternative<std::unique_ptr<Long_Array>>(*this)) {
         auto &arr = std::get<std::unique_ptr<Long_Array>>(*this);
         if (arr == nullptr) {
-            return "[null long array]";
+            return "[L;]";
         }
-        // return "[" + std::to_string(arr->size()) + " longs]";
-        std::ostringstream oss;
-        oss << "[";
-        for (auto x : *arr) {
-            oss << x << "L ";
-        }
-        oss << "]";
-        return oss.str();
+        return comma_delimited_array(*arr, "[L;", "L", "]");
     } else {
         return "<Unhandled Variant>";
     }
