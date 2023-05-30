@@ -87,15 +87,7 @@ struct List : public std::vector<Tag> {
     // inherit constructors from std::vector
     using base::base;
 
-    std::string to_string() {
-        std::ostringstream oss;
-        oss << "[ ";
-        for (auto tag_it = this->begin(); tag_it != this->end(); ++tag_it) {
-            oss << tag_it->to_string() << " ";
-        }
-        oss << "]";
-        return oss.str();
-    }
+    std::string to_string();
 };
 
 struct Compound {
@@ -151,15 +143,7 @@ struct Compound {
         return get_ptr<Long_Array>(name);
     }
 
-    std::string to_string() {
-        std::ostringstream oss;
-        oss << "{";
-        for (auto tag_it = data.begin(); tag_it != data.end(); ++tag_it) {
-            oss << tag_it->first << ": " << tag_it->second.to_string() << ", ";
-        }
-        oss << "}";
-        return oss.str();
-    }
+    std::string to_string() const;
 
   private:
     template <typename T>
@@ -185,73 +169,6 @@ struct Compound {
         return std::get<std::unique_ptr<T>>(it->second).get();
     }
 };
-
-template <typename T>
-std::string comma_delimited_array(const std::vector<T> &vec,
-                                  const std::string &array_prefix,
-                                  const std::string &elt_suffix,
-                                  const std::string &array_suffix) {
-    std::ostringstream oss;
-    oss << array_prefix;
-    for (size_t i = 0; i != vec.size(); ++i) {
-        oss << std::to_string(vec[i]) << elt_suffix;
-        if (i != vec.size() - 1) {
-            oss << ",";
-        }
-    }
-    oss << array_suffix;
-    return oss.str();
-}
-
-inline std::string Tag::to_string() const {
-    if (std::holds_alternative<Byte>(*this)) {
-        return std::to_string(std::get<Byte>(*this)) + "b";
-    } else if (std::holds_alternative<Short>(*this)) {
-        return std::to_string(std::get<Short>(*this)) + "s";
-    } else if (std::holds_alternative<Int>(*this)) {
-        return std::to_string(std::get<Int>(*this));
-    } else if (std::holds_alternative<Long>(*this)) {
-        return std::to_string(std::get<Long>(*this)) + "L";
-    } else if (std::holds_alternative<Float>(*this)) {
-        return std::to_string(std::get<Float>(*this)) + "f";
-    } else if (std::holds_alternative<Double>(*this)) {
-        return std::to_string(std::get<Double>(*this)) + "d";
-    } else if (std::holds_alternative<std::unique_ptr<Byte_Array>>(*this)) {
-        auto &arr = std::get<std::unique_ptr<Byte_Array>>(*this);
-        if (arr == nullptr) {
-            return "[null byte array]";
-        }
-        return comma_delimited_array(*arr, "[B;", "b", "]");
-    } else if (std::holds_alternative<String>(*this)) {
-        return "'" + std::get<String>(*this) + "''";
-    } else if (std::holds_alternative<std::unique_ptr<List>>(*this)) {
-        auto &lst = std::get<std::unique_ptr<List>>(*this);
-        if (lst == nullptr) {
-            return "[]";
-        }
-        return lst->to_string();
-    } else if (std::holds_alternative<std::unique_ptr<Compound>>(*this)) {
-        auto &cpd = std::get<std::unique_ptr<Compound>>(*this);
-        if (cpd == nullptr) {
-            return "{}";
-        }
-        return cpd->to_string();
-    } else if (std::holds_alternative<std::unique_ptr<Int_Array>>(*this)) {
-        auto &arr = std::get<std::unique_ptr<Int_Array>>(*this);
-        if (arr == nullptr) {
-            return "[I;]";
-        }
-        return comma_delimited_array(*arr, "[I;", "", "]");
-    } else if (std::holds_alternative<std::unique_ptr<Long_Array>>(*this)) {
-        auto &arr = std::get<std::unique_ptr<Long_Array>>(*this);
-        if (arr == nullptr) {
-            return "[L;]";
-        }
-        return comma_delimited_array(*arr, "[L;", "L", "]");
-    } else {
-        return "<Unhandled Variant>";
-    }
-}
 
 } // namespace nbtview
 

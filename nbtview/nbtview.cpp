@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <bit>
 #include <cstdint>
+#include <regex>
 #include <span>
 #include <type_traits>
 
@@ -99,6 +100,123 @@ std::unique_ptr<Compound> make_tag_compound(BinaryScanner &s) {
         next_type = static_cast<TypeCode>(s.get_value<int8_t>());
     }
     return compound_tag;
+}
+
+bool snbt_requires_quoting(const std::string &str);
+
+bool snbt_requires_quoting(const std::string &str) {
+    std::regex pattern("^[a-zA-Z0-9_\\-\\.\\+]*$");
+    return std::regex_match(str, pattern) == false;
+}
+
+std::string quoted_string(const std::string &str);
+
+std::string quoted_string(const std::string &str) {
+    std::regex pattern("\"");
+    // std::regex replacement("\\\"");
+    return "\"" + std::regex_replace(str, pattern, "\\\"") + "\"";
+}
+
+template <typename T>
+std::string comma_delimited_array(const std::vector<T> &vec,
+                                  const std::string &array_prefix,
+                                  const std::string &elt_suffix,
+                                  const std::string &array_suffix) {
+    std::string output_string;
+    for (size_t i = 0; i != vec.size(); ++i) {
+        if (output_string.empty()) {
+            output_string = array_prefix;
+        } else {
+            output_string += ",";
+        }
+        output_string += std::to_string(vec[i]) + elt_suffix;
+    }
+    output_string += array_suffix;
+    return output_string;
+}
+
+std::string List::to_string() {
+    std::string output_string;
+    for (auto tag_it = this->begin(); tag_it != this->end(); ++tag_it) {
+        if (output_string.empty()) {
+            output_string = "[";
+        } else {
+            output_string += ",";
+        }
+        output_string += tag_it->to_string();
+    }
+    output_string += "]";
+    return output_string;
+}
+
+std::string Compound::to_string() const {
+    std::string output_string;
+    for (auto tag_iter = data.begin(); tag_iter != data.end(); ++tag_iter) {
+        if (output_string.empty()) {
+            output_string = "{";
+        } else {
+            output_string += ",";
+        }
+        if (snbt_requires_quoting(tag_iter->first)) {
+            output_string += quoted_string(tag_iter->first);
+        } else {
+            output_string += tag_iter->first;
+        }
+        output_string += ":";
+        output_string += tag_iter->second.to_string();
+    }
+    output_string += "}";
+    return output_string;
+}
+
+std::string Tag::to_string() const {
+    if (std::holds_alternative<Byte>(*this)) {
+        return std::to_string(std::get<Byte>(*this)) + "b";
+    } else if (std::holds_alternative<Short>(*this)) {
+        return std::to_string(std::get<Short>(*this)) + "s";
+    } else if (std::holds_alternative<Int>(*this)) {
+        return std::to_string(std::get<Int>(*this));
+    } else if (std::holds_alternative<Long>(*this)) {
+        return std::to_string(std::get<Long>(*this)) + "L";
+    } else if (std::holds_alternative<Float>(*this)) {
+        return std::to_string(std::get<Float>(*this)) + "f";
+    } else if (std::holds_alternative<Double>(*this)) {
+        return std::to_string(std::get<Double>(*this)) + "d";
+    } else if (std::holds_alternative<std::unique_ptr<Byte_Array>>(*this)) {
+        auto &arr = std::get<std::unique_ptr<Byte_Array>>(*this);
+        if (arr == nullptr) {
+            return "[B;]";
+        }
+        return comma_delimited_array(*arr, "[B;", "b", "]");
+    } else if (std::holds_alternative<String>(*this)) {
+        return quoted_string(std::get<String>(*this));
+    } else if (std::holds_alternative<std::unique_ptr<List>>(*this)) {
+        auto &lst = std::get<std::unique_ptr<List>>(*this);
+        if (lst == nullptr) {
+            return "[]";
+        }
+        return lst->to_string();
+    } else if (std::holds_alternative<std::unique_ptr<Compound>>(*this)) {
+        auto &cpd = std::get<std::unique_ptr<Compound>>(*this);
+        if (cpd == nullptr) {
+            return "{}";
+        }
+        return cpd->to_string();
+    } else if (std::holds_alternative<std::unique_ptr<Int_Array>>(*this)) {
+        auto &arr = std::get<std::unique_ptr<Int_Array>>(*this);
+        if (arr == nullptr) {
+            return "[I;]";
+        }
+        return comma_delimited_array(*arr, "[I;", "", "]");
+    } else if (std::holds_alternative<std::unique_ptr<Long_Array>>(*this)) {
+        auto &arr = std::get<std::unique_ptr<Long_Array>>(*this);
+        if (arr == nullptr) {
+            return "[L;]";
+        }
+        return comma_delimited_array(*arr, "[L;", "L", "]");
+    } else {
+        return "<Unhandled Variant>";
+    }
 }
 
 } // namespace nbtview
