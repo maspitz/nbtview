@@ -2,9 +2,12 @@
 #include <algorithm>
 #include <bit>
 #include <cstdint>
+#include <memory>
 #include <regex>
 #include <span>
 #include <type_traits>
+
+#include "List.hpp"
 
 namespace nbtview {
 
@@ -132,20 +135,6 @@ std::string comma_delimited_array(const std::vector<T> &vec,
         output_string += std::to_string(vec[i]) + elt_suffix;
     }
     output_string += array_suffix;
-    return output_string;
-}
-
-std::string List::to_string() {
-    std::string output_string;
-    for (auto tag_it = this->begin(); tag_it != this->end(); ++tag_it) {
-        if (output_string.empty()) {
-            output_string = "[";
-        } else {
-            output_string += ",";
-        }
-        output_string += tag_it->to_string();
-    }
-    output_string += "]";
     return output_string;
 }
 

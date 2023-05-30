@@ -11,6 +11,7 @@
 #include <vector>
 
 #include "BinaryScanner.hpp"
+#include "List.hpp"
 
 namespace nbtview {
 
@@ -76,16 +77,6 @@ std::vector<unsigned char>::const_iterator
 fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
                     std::vector<unsigned char>::const_iterator nbt_stop,
                     TypeCode tag_type, const std::string &tag_name);
-
-struct List : public std::vector<Tag> {
-  public:
-    using base = std::vector<Tag>;
-
-    // inherit constructors from std::vector
-    using base::base;
-
-    std::string to_string();
-};
 
 struct Compound {
 
