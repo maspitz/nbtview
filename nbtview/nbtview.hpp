@@ -3,12 +3,9 @@
 #ifndef NBTVIEW_H_
 #define NBTVIEW_H_
 
-#include <limits>
 #include <map>
 #include <memory>
 #include <optional>
-#include <sstream>
-#include <stdexcept>
 #include <string>
 #include <variant>
 #include <vector>
