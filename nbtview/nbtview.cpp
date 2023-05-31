@@ -105,14 +105,10 @@ std::unique_ptr<Compound> make_tag_compound(BinaryScanner &s) {
     return compound_tag;
 }
 
-bool snbt_requires_quoting(const std::string &str);
-
 bool snbt_requires_quoting(const std::string &str) {
     std::regex pattern("^[a-zA-Z0-9_\\-\\.\\+]*$");
     return std::regex_match(str, pattern) == false;
 }
-
-std::string quoted_string(const std::string &str);
 
 std::string quoted_string(const std::string &str) {
     std::regex pattern("\"");
