@@ -1,4 +1,3 @@
-#include "nbtview.hpp"
 #include <algorithm>
 #include <bit>
 #include <cstdint>
@@ -7,7 +6,10 @@
 #include <span>
 #include <type_traits>
 
+#include "Compound.hpp"
 #include "List.hpp"
+#include "nbtview.hpp"
+#include "utils.hpp"
 
 namespace nbtview {
 
@@ -105,17 +107,6 @@ std::unique_ptr<Compound> make_tag_compound(BinaryScanner &s) {
     return compound_tag;
 }
 
-bool snbt_requires_quoting(const std::string &str) {
-    std::regex pattern("^[a-zA-Z0-9_\\-\\.\\+]*$");
-    return std::regex_match(str, pattern) == false;
-}
-
-std::string quoted_string(const std::string &str) {
-    std::regex pattern("\"");
-    // std::regex replacement("\\\"");
-    return "\"" + std::regex_replace(str, pattern, "\\\"") + "\"";
-}
-
 template <typename T>
 std::string comma_delimited_array(const std::vector<T> &vec,
                                   const std::string &array_prefix,
@@ -131,26 +122,6 @@ std::string comma_delimited_array(const std::vector<T> &vec,
         output_string += std::to_string(vec[i]) + elt_suffix;
     }
     output_string += array_suffix;
-    return output_string;
-}
-
-std::string Compound::to_string() const {
-    std::string output_string;
-    for (auto tag_iter = data.begin(); tag_iter != data.end(); ++tag_iter) {
-        if (output_string.empty()) {
-            output_string = "{";
-        } else {
-            output_string += ",";
-        }
-        if (snbt_requires_quoting(tag_iter->first)) {
-            output_string += quoted_string(tag_iter->first);
-        } else {
-            output_string += tag_iter->first;
-        }
-        output_string += ":";
-        output_string += tag_iter->second.to_string();
-    }
-    output_string += "}";
     return output_string;
 }
 

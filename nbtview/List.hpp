@@ -2,6 +2,7 @@
 #ifndef NBT_LIST_H_
 #define NBT_LIST_H_
 
+#include "nbt_types.hpp"
 #include <string>
 #include <vector>
 
