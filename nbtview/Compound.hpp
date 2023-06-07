@@ -3,6 +3,7 @@
 #ifndef NBT_COMPOUND_H_
 #define NBT_COMPOUND_H_
 
+#include "BinaryScanner.hpp"
 #include "nbt_types.hpp"
 #include "nbtview.hpp" // for Tag declaration
 #include <optional>
@@ -13,7 +14,15 @@ struct Compound {
 
   public:
     std::map<std::string, Tag> data;
-    Compound() {}
+    Compound(BinaryScanner &s) {
+        auto next_type = static_cast<TypeCode>(s.get_value<int8_t>());
+        std::string next_name;
+        while (next_type != TypeCode::End) {
+            next_name = s.get_string();
+            data.emplace(next_name, Tag(s, next_type));
+            next_type = static_cast<TypeCode>(s.get_value<int8_t>());
+        }
+    }
 
     std::optional<Byte> get_Byte(const std::string &name) const {
         return get_value<Byte>(name);
