@@ -49,6 +49,7 @@ struct Compound {
     std::optional<String> get_String(const std::string &name) const {
         return get_value<String>(name);
     }
+
     const List *get_List(const std::string &name) const {
         return get_ptr<List>(name);
     }

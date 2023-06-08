@@ -3,6 +3,7 @@
 
 #include "doctest.h"
 
+#include "BinaryScanner.hpp"
 #include "Compound.hpp"
 #include "List.hpp"
 #include "nbtview.hpp"

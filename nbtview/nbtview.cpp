@@ -6,6 +6,7 @@
 #include <span>
 #include <type_traits>
 
+#include "BinaryScanner.hpp"
 #include "Compound.hpp"
 #include "List.hpp"
 #include "nbtview.hpp"
