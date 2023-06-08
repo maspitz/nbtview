@@ -2,10 +2,11 @@
 #ifndef NBT_LIST_H_
 #define NBT_LIST_H_
 
-#include "BinaryScanner.hpp"
-#include "Tag.hpp"
 #include <string>
 #include <vector>
+
+#include "BinaryScanner.hpp"
+#include "Tag.hpp"
 
 namespace nbtview {
 

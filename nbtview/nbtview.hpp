@@ -3,20 +3,42 @@
 #ifndef NBTVIEW_H_
 #define NBTVIEW_H_
 
-#include <map>
 #include <memory>
-#include <optional>
 #include <string>
-#include <variant>
 #include <vector>
 
-#include "Tag.hpp"
-
 #include "BinaryScanner.hpp"
-#include "Compound.hpp"
-#include "List.hpp"
 
 namespace nbtview {
+
+using Byte = int8_t;
+using Short = int16_t;
+using Int = int32_t;
+using Long = int64_t;
+using Float = float;
+using Double = double;
+using Byte_Array = std::vector<Byte>;
+using String = std::string;
+class List;
+class Compound;
+using Int_Array = std::vector<Int>;
+using Long_Array = std::vector<Long>;
+
+enum class TypeCode : char {
+    End = 0,
+    Byte = 1,
+    Short = 2,
+    Int = 3,
+    Long = 4,
+    Float = 5,
+    Double = 6,
+    Byte_Array = 7,
+    String = 8,
+    List = 9,
+    Compound = 10,
+    Int_Array = 11,
+    Long_Array = 12
+};
 
 std::unique_ptr<Compound> make_tag_root(BinaryScanner &s);
 

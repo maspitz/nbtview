@@ -3,11 +3,23 @@
 #include <map>
 #include <variant>
 
+#include "BinaryScanner.hpp"
 #include "Compound.hpp"
+#include "List.hpp"
 #include "Tag.hpp"
 #include "utils.hpp"
 
 namespace nbtview {
+
+Compound::Compound(BinaryScanner &s) {
+    auto next_type = static_cast<TypeCode>(s.get_value<int8_t>());
+    std::string next_name;
+    while (next_type != TypeCode::End) {
+        next_name = s.get_string();
+        data.emplace(next_name, Tag(s, next_type));
+        next_type = static_cast<TypeCode>(s.get_value<int8_t>());
+    }
+}
 
 std::string Compound::to_string() const {
     std::string output_string;

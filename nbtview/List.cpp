@@ -1,6 +1,8 @@
 // List.cpp
+#include <string>
+
+#include "Compound.hpp"
 #include "List.hpp"
-#include "nbtview.hpp" // for Tag interface
 
 namespace nbtview {
 
