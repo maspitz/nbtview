@@ -9,8 +9,6 @@
 
 namespace nbtview {
 
-struct Tag;
-
 struct List : public std::vector<Tag> {
   public:
     TypeCode list_type;
