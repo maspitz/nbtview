@@ -9,7 +9,6 @@
 #include <variant>
 #include <vector>
 
-#include "BinaryScanner.hpp"
 #include "nbtview.hpp"
 
 namespace nbtview {

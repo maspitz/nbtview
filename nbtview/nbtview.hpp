@@ -7,8 +7,6 @@
 #include <string>
 #include <vector>
 
-#include "BinaryScanner.hpp"
-
 namespace nbtview {
 
 using Byte = int8_t;
@@ -39,6 +37,8 @@ enum class TypeCode : char {
     Int_Array = 11,
     Long_Array = 12
 };
+
+class BinaryScanner;
 
 std::unique_ptr<Compound> make_tag_root(BinaryScanner &s);
 
