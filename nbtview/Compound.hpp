@@ -4,7 +4,7 @@
 #define NBT_COMPOUND_H_
 
 #include "BinaryScanner.hpp"
-#include "nbt_types.hpp"
+#include "Tag.hpp"
 #include "nbtview.hpp" // for Tag declaration
 #include <optional>
 
@@ -80,10 +80,10 @@ struct Compound {
         if (it == data.end()) {
             return std::nullopt;
         }
-        if (!std::holds_alternative<T>(it->second)) {
+        if (!std::holds_alternative<T>(it->second.data)) {
             return std::nullopt;
         }
-        return std::get<T>(it->second);
+        return std::get<T>(it->second.data);
     }
 
     template <typename T> const T *get_ptr(const std::string &name) const {
@@ -91,10 +91,10 @@ struct Compound {
         if (it == data.end()) {
             return nullptr;
         }
-        if (!std::holds_alternative<std::unique_ptr<T>>(it->second)) {
+        if (!std::holds_alternative<std::unique_ptr<T>>(it->second.data)) {
             return nullptr;
         }
-        return std::get<std::unique_ptr<T>>(it->second).get();
+        return std::get<std::unique_ptr<T>>(it->second.data).get();
     }
 };
 

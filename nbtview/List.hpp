@@ -3,7 +3,7 @@
 #define NBT_LIST_H_
 
 #include "BinaryScanner.hpp"
-#include "nbt_types.hpp"
+#include "Tag.hpp"
 #include <string>
 #include <vector>
 

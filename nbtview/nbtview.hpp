@@ -10,7 +10,7 @@
 #include <variant>
 #include <vector>
 
-#include "nbt_types.hpp"
+#include "Tag.hpp"
 
 #include "BinaryScanner.hpp"
 #include "Compound.hpp"

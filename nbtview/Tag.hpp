@@ -1,7 +1,7 @@
-// nbt_types.hpp
+// Tag.hpp
 
-#ifndef NBT_TYPES_H_
-#define NBT_TYPES_H_
+#ifndef NBT_TAG_H_
+#define NBT_TAG_H_
 
 #include <cstdint>
 #include <memory>
@@ -42,20 +42,20 @@ enum class TypeCode : char {
     Long_Array = 12
 };
 
-using Payload =
+using TagData =
     std::variant<Byte, Short, Int, Long, Float, Double,
                  std::unique_ptr<Byte_Array>, String, std::unique_ptr<List>,
                  std::unique_ptr<Compound>, std::unique_ptr<Int_Array>,
                  std::unique_ptr<Long_Array>>;
 
-Payload decode_payload(TypeCode type, BinaryScanner &s);
+struct Tag {
+    Tag(BinaryScanner &s, TypeCode type);
 
-struct Tag : public Payload {
-    Tag(BinaryScanner &s, TypeCode type) : Payload(decode_payload(type, s)) {}
+    TagData data;
 
     std::string to_string() const;
 };
 
 } // namespace nbtview
 
-#endif // NBT_TYPES_H_
+#endif // NBT_TAG_H_

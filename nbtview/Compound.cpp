@@ -4,7 +4,7 @@
 #include <variant>
 
 #include "Compound.hpp"
-#include "nbt_types.hpp"
+#include "Tag.hpp"
 #include "utils.hpp"
 
 namespace nbtview {
