@@ -13,8 +13,6 @@
 
 namespace nbtview {
 
-std::unique_ptr<List> make_tag_list(BinaryScanner &s);
-
 std::vector<unsigned char>::const_iterator
 fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
                     std::vector<unsigned char>::const_iterator nbt_stop,
@@ -69,7 +67,7 @@ Payload decode_payload(TypeCode type, BinaryScanner &s) {
     case TypeCode::String:
         return s.get_string();
     case TypeCode::List:
-        return make_tag_list(s);
+        return std::make_unique<List>(s);
     case TypeCode::Compound:
         return std::make_unique<Compound>(s);
     case TypeCode::Int_Array:
@@ -80,17 +78,6 @@ Payload decode_payload(TypeCode type, BinaryScanner &s) {
         throw std::runtime_error("Unhandled tag type");
     }
     return 0;
-}
-
-std::unique_ptr<List> make_tag_list(BinaryScanner &s) {
-    auto list_tag = std::make_unique<List>();
-    auto list_type = static_cast<TypeCode>(s.get_value<int8_t>());
-    auto list_length = s.get_value<int32_t>();
-    list_tag->reserve(list_length);
-    for (int32_t i = 0; i < list_length; ++i) {
-        list_tag->emplace_back(Tag(s, list_type));
-    }
-    return list_tag;
 }
 
 template <typename T>

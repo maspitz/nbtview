@@ -2,6 +2,7 @@
 #ifndef NBT_LIST_H_
 #define NBT_LIST_H_
 
+#include "BinaryScanner.hpp"
 #include "nbt_types.hpp"
 #include <string>
 #include <vector>
@@ -12,11 +13,16 @@ struct Tag;
 
 struct List : public std::vector<Tag> {
   public:
-    using base = std::vector<Tag>;
+    TypeCode list_type;
 
-    // inherit constructors from std::vector
-    using base::base;
-
+    List(BinaryScanner &s) : std::vector<Tag>() {
+        list_type = static_cast<TypeCode>(s.get_value<int8_t>());
+        auto list_length = s.get_value<int32_t>();
+        this->reserve(list_length);
+        for (int32_t i = 0; i < list_length; ++i) {
+            this->emplace_back(Tag(s, list_type));
+        }
+    }
     std::string to_string();
 };
 
