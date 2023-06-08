@@ -14,7 +14,7 @@ namespace nbtview {
 struct Compound {
 
   public:
-    std::map<std::string, Tag> data;
+    std::map<std::string, Tag> tags;
 
     Compound(BinaryScanner &s);
 
@@ -71,8 +71,8 @@ struct Compound {
   private:
     template <typename T>
     std::optional<T> get_value(const std::string &name) const {
-        auto it = data.find(name);
-        if (it == data.end()) {
+        auto it = tags.find(name);
+        if (it == tags.end()) {
             return std::nullopt;
         }
         if (!std::holds_alternative<T>(it->second.data)) {
@@ -82,8 +82,8 @@ struct Compound {
     }
 
     template <typename T> const T *get_ptr(const std::string &name) const {
-        auto it = data.find(name);
-        if (it == data.end()) {
+        auto it = tags.find(name);
+        if (it == tags.end()) {
             return nullptr;
         }
         if (!std::holds_alternative<std::unique_ptr<T>>(it->second.data)) {

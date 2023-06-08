@@ -7,14 +7,17 @@
 
 #include "Tag.hpp"
 
+class BinaryScanner;
+
 namespace nbtview {
 
-struct List : public std::vector<Tag> {
+struct List {
   public:
+    std::vector<Tag> tags;
     TypeCode list_type;
 
     List(BinaryScanner &s);
-    std::string to_string();
+    std::string to_string() const;
 };
 
 } // namespace nbtview

@@ -15,7 +15,7 @@ TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
         auto s = nbtview::BinaryScanner(v_empty_compound_tag);
 
         auto root_tag = nbtview::make_tag_root(s);
-        CHECK(root_tag->data.size() == 0);
+        CHECK(root_tag->tags.size() == 0);
     }
     SUBCASE("string tag 'foo' contains 'bar'") {
         auto v_foo_bar =
@@ -23,7 +23,7 @@ TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
                                  'o',  0x00, 0x03, 'b',  'a',  'r',  0x00};
         auto s = nbtview::BinaryScanner(v_foo_bar);
         auto root_tag = nbtview::make_tag_root(s);
-        REQUIRE(root_tag->data.size() == 1);
+        REQUIRE(root_tag->tags.size() == 1);
 
         auto str_foo = root_tag->get_String("foo");
         REQUIRE(str_foo);
@@ -46,7 +46,7 @@ TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
             0x00};
         auto s = nbtview::BinaryScanner(v_foo_bar);
         auto root_tag = nbtview::make_tag_root(s);
-        REQUIRE(root_tag->data.size() == 4);
+        REQUIRE(root_tag->tags.size() == 4);
 
         REQUIRE(root_tag->get_Byte("byte"));
         CHECK(root_tag->get_Byte("byte").value() == 0x12);
@@ -74,7 +74,7 @@ TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
             0x00};
         auto s = nbtview::BinaryScanner(v_foo_bar);
         auto root_tag = nbtview::make_tag_root(s);
-        REQUIRE(root_tag->data.size() == 1);
+        REQUIRE(root_tag->tags.size() == 1);
 
         auto inner_tag = root_tag->get_Compound("innertag");
         REQUIRE(inner_tag != nullptr);
