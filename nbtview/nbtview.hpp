@@ -40,8 +40,6 @@ enum class TypeCode : char {
     Long_Array = 12
 };
 
-class BinaryScanner;
-
 // Attempts to find a named tag in a range of NBT data by searching
 // for its initial byte sequence.
 //
