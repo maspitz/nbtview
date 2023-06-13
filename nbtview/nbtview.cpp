@@ -37,14 +37,4 @@ fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
     }
 }
 
-// TODO: return name of root tag if desired
-std::unique_ptr<Compound> make_tag_root(BinaryScanner &s) {
-    auto root_type = static_cast<TypeCode>(s.get_value<int8_t>());
-    if (root_type != TypeCode::Compound) {
-        throw std::runtime_error("Root tag is not a compound tag");
-    }
-    auto root_name = s.get_string();
-    return std::make_unique<Compound>(s);
-}
-
 } // namespace nbtview
