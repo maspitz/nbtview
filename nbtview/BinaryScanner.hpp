@@ -20,23 +20,30 @@ class UnexpectedEndOfInputException : public std::runtime_error {
 // BinaryScanner scans and reads big-endian binary data.
 class BinaryScanner {
   private:
-  public:
-    std::span<uint8_t> data;
-    size_t read_index;
+    const std::vector<unsigned char> read_data;
+    const unsigned char *const read_begin;
+    const unsigned char *const read_end;
+    const unsigned char *read_ptr;
+    const size_t data_size;
 
   public:
-    BinaryScanner(const std::span<uint8_t> &data) : data(data), read_index(0) {}
+    BinaryScanner(std::vector<unsigned char> bytes)
+        : read_data(std::move(bytes)), read_begin(read_data.data()),
+          read_end(read_begin + read_data.size()), read_ptr(read_begin),
+          data_size(read_end - read_begin) {}
 
     template <typename T> T get_value();
 
+    size_t read_pos() { return read_ptr - read_begin; }
+
     std::string get_string() {
         auto str_len = get_value<uint16_t>();
-        if (read_index + str_len > data.size()) {
+        if (read_pos() + str_len > data_size) {
             throw UnexpectedEndOfInputException();
         }
-        auto str_start = read_index;
-        read_index += str_len;
-        return std::string(reinterpret_cast<char *>(&data[str_start]), str_len);
+        std::string ret_str(reinterpret_cast<const char *>(read_ptr), str_len);
+        read_ptr += str_len;
+        return ret_str;
     }
 
     template <typename Element_Type>
@@ -65,21 +72,21 @@ namespace detail {
 
     template <typename T>
     [[nodiscard]] T load_big_endian(
-        const uint8_t *const buf) noexcept requires std::is_trivial_v<T> {
+        const unsigned char *const buf) noexcept requires std::is_trivial_v<T> {
         T res;
         std::reverse_copy(buf, buf + sizeof res,
-                          reinterpret_cast<uint8_t *>(&res));
+                          reinterpret_cast<unsigned char *>(&res));
         return res;
     }
 
 } // namespace detail
 
 template <typename T> T BinaryScanner::get_value() {
-    if (read_index + sizeof(T) > data.size()) {
+    if (read_pos() + sizeof(T) > data_size) {
         throw UnexpectedEndOfInputException();
     }
-    T read_value = detail::load_big_endian<T>(&data[read_index]);
-    read_index += sizeof(T);
+    T read_value = detail::load_big_endian<T>(read_ptr);
+    read_ptr += sizeof(T);
     return read_value;
 }
 
@@ -90,18 +97,19 @@ std::unique_ptr<std::vector<Element_Type>> BinaryScanner::get_vector() {
     if (array_length < 0) {
         throw std::runtime_error("Negative array length encountered");
     }
-    if (read_index + sizeof(Element_Type) * array_length > data.size()) {
+    auto data_length = array_length * sizeof(Element_Type);
+    if (read_pos() + data_length > data_size) {
         throw UnexpectedEndOfInputException();
     }
 
-    auto span_start = reinterpret_cast<Element_Type *>(&data[read_index]);
-    auto span_stop = span_start + array_length;
+    auto span_start = reinterpret_cast<const Element_Type *>(read_ptr);
+    read_ptr += data_length;
+    auto span_stop = reinterpret_cast<const Element_Type *>(read_ptr);
     auto vec =
         std::make_unique<std::vector<Element_Type>>(span_start, span_stop);
     for (auto it = vec->begin(); it != vec->end(); ++it) {
         detail::swap_endian(*it);
     }
-    read_index += sizeof(Element_Type) * array_length;
     return vec;
 }
 
@@ -112,18 +120,16 @@ std::unique_ptr<std::vector<Element_Type>> BinaryScanner::get_vector2() {
     if (array_length < 0) {
         throw std::runtime_error("Negative array length encountered");
     }
-    auto stop_index = read_index + sizeof(Element_Type) * array_length;
-    if (stop_index > data.size()) {
+    auto read_stop = read_ptr + sizeof(Element_Type) * array_length;
+    if (read_stop > read_end) {
         throw UnexpectedEndOfInputException();
     }
 
     auto vec = std::make_unique<std::vector<Element_Type>>();
     vec->reserve(array_length);
-    for (; read_index < stop_index; read_index += sizeof(Element_Type)) {
-        vec->push_back(
-            detail::load_big_endian<Element_Type>(&data[read_index]));
+    for (; read_ptr < read_stop; read_ptr += sizeof(Element_Type)) {
+        vec->push_back(detail::load_big_endian<Element_Type>(read_ptr));
     }
-    read_index = stop_index;
     return vec;
 }
 
