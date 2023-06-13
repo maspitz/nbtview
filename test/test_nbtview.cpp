@@ -6,26 +6,25 @@
 #include "BinaryScanner.hpp"
 #include "Compound.hpp"
 #include "List.hpp"
+#include "NbtReader.hpp"
 #include "nbtview.hpp"
 
 TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
     SUBCASE("empty compound tag") {
         auto v_empty_compound_tag =
             std::vector<uint8_t>{0x0a, 0x00, 0x00, 0x00};
-        auto s = nbtview::BinaryScanner(v_empty_compound_tag);
-
-        auto root_tag = nbtview::make_tag_root(s);
-        CHECK(root_tag->tags.size() == 0);
+        auto root_tag =
+            nbtview::NbtReader::read_from_bytes(v_empty_compound_tag);
+        CHECK(root_tag.tags.size() == 0);
     }
     SUBCASE("string tag 'foo' contains 'bar'") {
         auto v_foo_bar =
             std::vector<uint8_t>{0x0a, 0x00, 0x00, 0x08, 0x00, 0x03, 'f', 'o',
                                  'o',  0x00, 0x03, 'b',  'a',  'r',  0x00};
-        auto s = nbtview::BinaryScanner(v_foo_bar);
-        auto root_tag = nbtview::make_tag_root(s);
-        REQUIRE(root_tag->tags.size() == 1);
+        auto root_tag = nbtview::NbtReader::read_from_bytes(v_foo_bar);
+        REQUIRE(root_tag.tags.size() == 1);
 
-        auto str_foo = root_tag->get_String("foo");
+        auto str_foo = root_tag.get_String("foo");
         REQUIRE(str_foo);
         CHECK(*str_foo == "bar");
     }
@@ -44,18 +43,17 @@ TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
             0x06, 0x07, 0x08, 0x9a,
 
             0x00};
-        auto s = nbtview::BinaryScanner(v_foo_bar);
-        auto root_tag = nbtview::make_tag_root(s);
-        REQUIRE(root_tag->tags.size() == 4);
+        auto root_tag = nbtview::NbtReader::read_from_bytes(v_foo_bar);
+        REQUIRE(root_tag.tags.size() == 4);
 
-        REQUIRE(root_tag->get_Byte("byte"));
-        CHECK(root_tag->get_Byte("byte").value() == 0x12);
-        REQUIRE(root_tag->get_Short("short"));
-        CHECK(root_tag->get_Short("short").value() == 0x1234);
-        REQUIRE(root_tag->get_Int("int"));
-        CHECK(root_tag->get_Int("int").value() == 0x12345678);
-        REQUIRE(root_tag->get_Long("long"));
-        CHECK(root_tag->get_Long("long").value() == 0x120304050607089aL);
+        REQUIRE(root_tag.get_Byte("byte"));
+        CHECK(root_tag.get_Byte("byte").value() == 0x12);
+        REQUIRE(root_tag.get_Short("short"));
+        CHECK(root_tag.get_Short("short").value() == 0x1234);
+        REQUIRE(root_tag.get_Int("int"));
+        CHECK(root_tag.get_Int("int").value() == 0x12345678);
+        REQUIRE(root_tag.get_Long("long"));
+        CHECK(root_tag.get_Long("long").value() == 0x120304050607089aL);
     }
 
     SUBCASE("read floating point types from nested compound tag") {
@@ -72,11 +70,11 @@ TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
             0x00,
 
             0x00};
-        auto s = nbtview::BinaryScanner(v_foo_bar);
-        auto root_tag = nbtview::make_tag_root(s);
-        REQUIRE(root_tag->tags.size() == 1);
 
-        auto inner_tag = root_tag->get_Compound("innertag");
+        auto root_tag = nbtview::NbtReader::read_from_bytes(v_foo_bar);
+        REQUIRE(root_tag.tags.size() == 1);
+
+        auto inner_tag = root_tag.get_Compound("innertag");
         REQUIRE(inner_tag != nullptr);
 
         auto double_tag = inner_tag->get_Double("Double");

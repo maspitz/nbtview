@@ -3,6 +3,8 @@
 #ifndef NBTVIEW_H_
 #define NBTVIEW_H_
 
+#include <fstream>
+#include <iostream>
 #include <memory>
 #include <string>
 #include <vector>
@@ -40,13 +42,11 @@ enum class TypeCode : char {
 
 class BinaryScanner;
 
-std::unique_ptr<Compound> make_tag_root(BinaryScanner &s);
-
-// Attempts to find a named tag in a range of NBT data by searching for
-// its initial byte sequence.
+// Attempts to find a named tag in a range of NBT data by searching
+// for its initial byte sequence.
 //
-// If the tag is found, an iterator to the beginning of its payload is
-// returned. Otherwise, nbt_stop is returned.
+// If the tag is found, an iterator to the beginning of its payload
+// is returned. Otherwise, nbt_stop is returned.
 //
 // Caveats:
 // (1) This method can be fooled if the tag's name appears in the
