@@ -13,7 +13,6 @@
 namespace nbtview {
 
 class BinaryScanner;
-class Tag;
 
 template <typename T> bool Compound::contains(const std::string &name) const {
     auto it = tags.find(name);
