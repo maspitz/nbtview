@@ -3,9 +3,6 @@
 #ifndef NBTVIEW_H_
 #define NBTVIEW_H_
 
-#include <fstream>
-#include <iostream>
-#include <memory>
 #include <string>
 #include <vector>
 
@@ -19,8 +16,6 @@ using Float = float;
 using Double = double;
 using Byte_Array = std::vector<Byte>;
 using String = std::string;
-class List;
-class Compound;
 using Int_Array = std::vector<Int>;
 using Long_Array = std::vector<Long>;
 

@@ -39,10 +39,10 @@ Tag::Tag(BinaryScanner &s, TypeCode type) {
         data = s.get_string();
         break;
     case TypeCode::List:
-        data = std::make_unique<List>(s);
+        data = List(s);
         break;
     case TypeCode::Compound:
-        data = std::make_unique<Compound>(s);
+        data = Compound(s);
         break;
     case TypeCode::Int_Array:
         data = s.get_vector<Int>();
@@ -86,38 +86,23 @@ std::string Tag::to_string() const {
         return std::to_string(std::get<Float>(data)) + "f";
     } else if (std::holds_alternative<Double>(data)) {
         return std::to_string(std::get<Double>(data)) + "d";
-    } else if (std::holds_alternative<std::unique_ptr<Byte_Array>>(data)) {
-        auto &arr = std::get<std::unique_ptr<Byte_Array>>(data);
-        if (arr == nullptr) {
-            return "[B;]";
-        }
-        return comma_delimited_array(*arr, "[B;", "b", "]");
+    } else if (std::holds_alternative<Byte_Array>(data)) {
+        auto arr = std::get<Byte_Array>(data);
+        return comma_delimited_array(arr, "[B;", "b", "]");
     } else if (std::holds_alternative<String>(data)) {
         return quoted_string(std::get<String>(data));
-    } else if (std::holds_alternative<std::unique_ptr<List>>(data)) {
-        auto &lst = std::get<std::unique_ptr<List>>(data);
-        if (lst == nullptr) {
-            return "[]";
-        }
-        return lst->to_string();
-    } else if (std::holds_alternative<std::unique_ptr<Compound>>(data)) {
-        auto &cpd = std::get<std::unique_ptr<Compound>>(data);
-        if (cpd == nullptr) {
-            return "{}";
-        }
-        return cpd->to_string();
-    } else if (std::holds_alternative<std::unique_ptr<Int_Array>>(data)) {
-        auto &arr = std::get<std::unique_ptr<Int_Array>>(data);
-        if (arr == nullptr) {
-            return "[I;]";
-        }
-        return comma_delimited_array(*arr, "[I;", "", "]");
-    } else if (std::holds_alternative<std::unique_ptr<Long_Array>>(data)) {
-        auto &arr = std::get<std::unique_ptr<Long_Array>>(data);
-        if (arr == nullptr) {
-            return "[L;]";
-        }
-        return comma_delimited_array(*arr, "[L;", "L", "]");
+    } else if (std::holds_alternative<List>(data)) {
+        auto lst = std::get<List>(data);
+        return lst.to_string();
+    } else if (std::holds_alternative<Compound>(data)) {
+        auto cpd = std::get<Compound>(data);
+        return cpd.to_string();
+    } else if (std::holds_alternative<Int_Array>(data)) {
+        auto arr = std::get<Int_Array>(data);
+        return comma_delimited_array(arr, "[I;", "", "]");
+    } else if (std::holds_alternative<Long_Array>(data)) {
+        auto &arr = std::get<Long_Array>(data);
+        return comma_delimited_array(arr, "[L;", "L", "]");
     } else {
         return "<Unhandled Variant>";
     }

@@ -5,20 +5,17 @@
 #include <string>
 #include <vector>
 
+#include "List_fwd.hpp"
 #include "Tag.hpp"
-
-class BinaryScanner;
+#include "nbtview.hpp"
 
 namespace nbtview {
 
-struct List {
-  public:
-    std::vector<Tag> tags;
-    TypeCode list_type;
+class BinaryScanner;
+class Tag;
 
-    List(BinaryScanner &s);
-    std::string to_string() const;
-};
+// Any templated methods on List that must appear in a header file should go
+// here, just like in Compound.hpp.  (There aren't any yet.)
 
 } // namespace nbtview
 

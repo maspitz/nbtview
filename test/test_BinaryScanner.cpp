@@ -59,20 +59,18 @@ TEST_CASE("nbtview::BinaryScanner Vector") {
                                         0x01, 0x02, 0x03};
     nbtview::BinaryScanner scanner1(data1);
     auto vec1 = scanner1.get_vector<int8_t>();
-    REQUIRE(vec1 != nullptr);
-    CHECK(vec1->size() == 3);
-    CHECK((*vec1)[0] == 0x01);
-    CHECK((*vec1)[1] == 0x02);
-    CHECK((*vec1)[2] == 0x03);
+    CHECK(vec1.size() == 3);
+    CHECK(vec1[0] == 0x01);
+    CHECK(vec1[1] == 0x02);
+    CHECK(vec1[2] == 0x03);
 
     std::vector<unsigned char> data2 = {0x00, 0x00, 0x00, 0x02, 0x01, 0x02,
                                         0x03, 0x04, 0x05, 0x06, 0x07, 0x08};
     nbtview::BinaryScanner scanner2(data2);
     auto vec2 = scanner2.get_vector<int32_t>();
-    REQUIRE(vec2 != nullptr);
-    CHECK(vec2->size() == 2);
-    CHECK((*vec2)[0] == 0x01020304);
-    CHECK((*vec2)[1] == 0x05060708);
+    CHECK(vec2.size() == 2);
+    CHECK(vec2[0] == 0x01020304);
+    CHECK(vec2[1] == 0x05060708);
 
     // Test a vector with negative array length
     std::vector<unsigned char> data3 = {0x00, 0x00, 0x00, 0xFF};

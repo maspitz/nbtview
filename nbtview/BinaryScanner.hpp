@@ -47,11 +47,9 @@ class BinaryScanner {
         return ret_str;
     }
 
-    template <typename Element_Type>
-    std::unique_ptr<std::vector<Element_Type>> get_vector();
+    template <typename Element_Type> std::vector<Element_Type> get_vector();
 
-    template <typename Element_Type>
-    std::unique_ptr<std::vector<Element_Type>> get_vector2();
+    template <typename Element_Type> std::vector<Element_Type> get_vector2();
 };
 
 namespace detail {
@@ -93,7 +91,7 @@ template <typename T> T BinaryScanner::get_value() {
 
 // swap_endian in-place method
 template <typename Element_Type>
-std::unique_ptr<std::vector<Element_Type>> BinaryScanner::get_vector() {
+std::vector<Element_Type> BinaryScanner::get_vector() {
     auto array_length = get_value<int32_t>();
     if (array_length < 0) {
         throw std::runtime_error("Negative array length encountered");
@@ -106,9 +104,8 @@ std::unique_ptr<std::vector<Element_Type>> BinaryScanner::get_vector() {
     auto span_start = reinterpret_cast<const Element_Type *>(read_ptr);
     read_ptr += data_length;
     auto span_stop = reinterpret_cast<const Element_Type *>(read_ptr);
-    auto vec =
-        std::make_unique<std::vector<Element_Type>>(span_start, span_stop);
-    for (auto it = vec->begin(); it != vec->end(); ++it) {
+    auto vec = std::vector<Element_Type>(span_start, span_stop);
+    for (auto it = vec.begin(); it != vec.end(); ++it) {
         detail::swap_endian(*it);
     }
     return vec;
@@ -116,7 +113,7 @@ std::unique_ptr<std::vector<Element_Type>> BinaryScanner::get_vector() {
 
 // load_big_endian method
 template <typename Element_Type>
-std::unique_ptr<std::vector<Element_Type>> BinaryScanner::get_vector2() {
+std::vector<Element_Type> BinaryScanner::get_vector2() {
     auto array_length = get_value<int32_t>();
     if (array_length < 0) {
         throw std::runtime_error("Negative array length encountered");
@@ -126,7 +123,7 @@ std::unique_ptr<std::vector<Element_Type>> BinaryScanner::get_vector2() {
         throw UnexpectedEndOfInputException();
     }
 
-    auto vec = std::make_unique<std::vector<Element_Type>>();
+    auto vec = std::vector<Element_Type>();
     vec->reserve(array_length);
     for (; read_ptr < read_stop; read_ptr += sizeof(Element_Type)) {
         vec->push_back(detail::load_big_endian<Element_Type>(read_ptr));

@@ -3,23 +3,24 @@
 #ifndef NBT_TAG_H_
 #define NBT_TAG_H_
 
-#include <cstdint>
-#include <memory>
 #include <string>
 #include <variant>
-#include <vector>
 
+#include "Compound_fwd.hpp"
+#include "List_fwd.hpp"
 #include "nbtview.hpp"
 
 namespace nbtview {
 
-using TagData =
-    std::variant<Byte, Short, Int, Long, Float, Double,
-                 std::unique_ptr<Byte_Array>, String, std::unique_ptr<List>,
-                 std::unique_ptr<Compound>, std::unique_ptr<Int_Array>,
-                 std::unique_ptr<Long_Array>>;
+class BinaryScanner;
+class Compound;
+class List;
 
-struct Tag {
+using TagData = std::variant<Byte, Short, Int, Long, Float, Double, Byte_Array,
+                             String, List, Compound, Int_Array, Long_Array>;
+
+class Tag {
+  public:
     Tag(BinaryScanner &s, TypeCode type);
 
     TagData data;
