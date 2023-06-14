@@ -1,5 +1,6 @@
 // nbtshow.cpp
 
+#include <cstdint>
 #include <iostream>
 #include <vector>
 
