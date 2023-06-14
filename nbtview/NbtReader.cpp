@@ -10,7 +10,6 @@
 #include <zlib.h>
 
 #include "BinaryScanner.hpp"
-#include "List.hpp"
 #include "NbtReader.hpp"
 
 namespace nbtview {
