@@ -1,11 +1,11 @@
 // Compound.cpp
 
 #include <map>
+#include <string>
 #include <variant>
 
 #include "BinaryScanner.hpp"
 #include "Compound.hpp"
-#include "List.hpp"
 #include "Tag.hpp"
 #include "utils.hpp"
 
