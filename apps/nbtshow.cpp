@@ -1,12 +1,9 @@
 // nbtshow.cpp
 
-#include <fstream>
 #include <iostream>
 #include <vector>
 
-#include "BinaryScanner.hpp"
 #include "Compound.hpp"
-#include "List.hpp"
 #include "NbtReader.hpp"
 #include "nbtview.hpp"
 
