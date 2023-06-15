@@ -19,6 +19,24 @@ inline std::string quoted_string(const std::string &str) {
     return "\"" + std::regex_replace(str, pattern, "\\\"") + "\"";
 }
 
+template <typename T>
+std::string comma_delimited_array(const std::vector<T> &vec,
+                                  const std::string &array_prefix,
+                                  const std::string &elt_suffix,
+                                  const std::string &array_suffix) {
+    std::string output_string;
+    for (size_t i = 0; i != vec.size(); ++i) {
+        if (output_string.empty()) {
+            output_string = array_prefix;
+        } else {
+            output_string += ",";
+        }
+        output_string += std::to_string(vec[i]) + elt_suffix;
+    }
+    output_string += array_suffix;
+    return output_string;
+}
+
 } // namespace nbtview
 
 #endif // NBT_UTILS_H_

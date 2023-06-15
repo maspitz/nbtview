@@ -57,24 +57,6 @@ Tag::Tag(BinaryScanner &s, TypeCode type) {
     }
 }
 
-template <typename T>
-std::string comma_delimited_array(const std::vector<T> &vec,
-                                  const std::string &array_prefix,
-                                  const std::string &elt_suffix,
-                                  const std::string &array_suffix) {
-    std::string output_string;
-    for (size_t i = 0; i != vec.size(); ++i) {
-        if (output_string.empty()) {
-            output_string = array_prefix;
-        } else {
-            output_string += ",";
-        }
-        output_string += std::to_string(vec[i]) + elt_suffix;
-    }
-    output_string += array_suffix;
-    return output_string;
-}
-
 std::string Tag::to_string() const {
     if (std::holds_alternative<Byte>(data)) {
         return std::to_string(std::get<Byte>(data)) + "b";
