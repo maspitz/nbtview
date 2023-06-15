@@ -7,6 +7,8 @@
 #include "utils.hpp"
 #include <memory>
 #include <string>
+#include <variant>
+#include <vector>
 
 namespace nbtview {
 
