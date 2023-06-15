@@ -24,7 +24,7 @@ Compound::Compound(BinaryScanner &s) {
 
 std::string Compound::to_string() const {
     std::string output_string;
-    for (auto tag_iter = tags.begin(); tag_iter != tags.end(); ++tag_iter) {
+    for (auto tag_iter = tags.cbegin(); tag_iter != tags.cend(); ++tag_iter) {
         if (output_string.empty()) {
             output_string = "{";
         } else {
