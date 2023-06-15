@@ -1,16 +1,8 @@
 #include <algorithm>
-#include <bit>
-#include <cstdint>
-#include <memory>
-#include <regex>
-#include <span>
-#include <type_traits>
+#include <string>
+#include <vector>
 
-#include "BinaryScanner.hpp"
-#include "Compound.hpp"
-#include "List.hpp"
 #include "nbtview.hpp"
-#include "utils.hpp"
 
 namespace nbtview {
 
