@@ -72,7 +72,9 @@ std::string Tag::to_string() const {
         return std::to_string(std::get<Double>(data)) + "d";
     } else if (std::holds_alternative<Byte_Array>(data)) {
         auto arr = std::get<Byte_Array>(data);
-        return comma_delimited_array(arr, "[B;", "b", "]");
+        return comma_delimited_array(arr, array_format{.array_prefix = "[B;",
+                                                       .array_suffix = "]",
+                                                       .elt_suffix = "b"});
     } else if (std::holds_alternative<String>(data)) {
         return quoted_string(std::get<String>(data));
     } else if (std::holds_alternative<List>(data)) {
@@ -83,10 +85,14 @@ std::string Tag::to_string() const {
         return cpd.to_string();
     } else if (std::holds_alternative<Int_Array>(data)) {
         auto arr = std::get<Int_Array>(data);
-        return comma_delimited_array(arr, "[I;", "", "]");
+        return comma_delimited_array(arr, array_format{.array_prefix = "[I;",
+                                                       .array_suffix = "]",
+                                                       .elt_suffix = ""});
     } else if (std::holds_alternative<Long_Array>(data)) {
         auto &arr = std::get<Long_Array>(data);
-        return comma_delimited_array(arr, "[L;", "L", "]");
+        return comma_delimited_array(arr, array_format{.array_prefix = "[L;",
+                                                       .array_suffix = "]",
+                                                       .elt_suffix = "L"});
     } else {
         return "<Unhandled Variant>";
     }

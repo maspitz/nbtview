@@ -19,21 +19,25 @@ inline std::string quoted_string(const std::string &str) {
     return "\"" + std::regex_replace(str, pattern, "\\\"") + "\"";
 }
 
+struct array_format {
+    const std::string array_prefix;
+    const std::string array_suffix;
+    const std::string elt_suffix;
+};
+
 template <typename T>
 std::string comma_delimited_array(const std::vector<T> &vec,
-                                  const std::string &array_prefix,
-                                  const std::string &elt_suffix,
-                                  const std::string &array_suffix) {
+                                  const array_format &fmt) {
     std::string output_string;
     for (size_t i = 0; i != vec.size(); ++i) {
         if (output_string.empty()) {
-            output_string = array_prefix;
+            output_string = fmt.array_prefix;
         } else {
             output_string += ",";
         }
-        output_string += std::to_string(vec[i]) + elt_suffix;
+        output_string += std::to_string(vec[i]) + fmt.elt_suffix;
     }
-    output_string += array_suffix;
+    output_string += fmt.array_suffix;
     return output_string;
 }
 
