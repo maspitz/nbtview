@@ -12,12 +12,13 @@
 namespace nbtview {
 
 Compound::Compound(BinaryScanner &s) {
-    auto next_type = static_cast<TypeCode>(s.get_value<int8_t>());
-    std::string next_name;
-    while (next_type != TypeCode::End) {
-        next_name = s.get_string();
-        tags.emplace(next_name, Tag(s, next_type));
-        next_type = static_cast<TypeCode>(s.get_value<int8_t>());
+    auto get_next_type = [&s]() -> TypeCode {
+        return static_cast<TypeCode>(s.get_value<int8_t>());
+    };
+    for (TypeCode tag_type = get_next_type(); tag_type != TypeCode::End;
+         tag_type = get_next_type()) {
+        auto tag_name = s.get_string();
+        tags.emplace(std::move(tag_name), Tag(s, tag_type));
     }
 }
 
