@@ -13,8 +13,6 @@
 namespace nbtview {
 
 class BinaryScanner;
-class Compound;
-class List;
 
 using TagData = std::variant<Byte, Short, Int, Long, Float, Double, Byte_Array,
                              String, List, Compound, Int_Array, Long_Array>;
