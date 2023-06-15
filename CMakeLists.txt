@@ -9,7 +9,7 @@ project(
 )
 
 #set(CMAKE_VERBOSE_MAKEFILE ON)
-#set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_BUILD_TYPE Debug)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
@@ -32,3 +32,11 @@ add_executable(test_nbtview test/test_nbtview.cpp)
 target_link_libraries(test_nbtview nbtview)
 target_include_directories(test_nbtview PRIVATE "${PROJECT_SOURCE_DIR}/doctest")
 add_test(Test_nbtview test_nbtview)
+
+add_executable(test_bigtest test/test_bigtest.cpp)
+target_link_libraries(test_bigtest nbtview)
+target_include_directories(test_bigtest PRIVATE "${PROJECT_SOURCE_DIR}/doctest")
+add_test(Test_bigtest test_bigtest)
+
+# provision test data
+file(COPY test/test_data DESTINATION ${CMAKE_BINARY_DIR}/)
