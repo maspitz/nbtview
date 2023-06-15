@@ -3,10 +3,11 @@
 #define BINARYSCANNER_H_
 
 #include <algorithm>
+#include <array>
 #include <cstdint>
-#include <memory>
-#include <span>
+#include <stdexcept>
 #include <string>
+#include <type_traits>
 #include <utility>
 #include <vector>
 
