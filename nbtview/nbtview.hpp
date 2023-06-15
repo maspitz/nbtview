@@ -3,6 +3,7 @@
 #ifndef NBTVIEW_H_
 #define NBTVIEW_H_
 
+#include <cstdint>
 #include <string>
 #include <vector>
 
