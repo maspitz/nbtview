@@ -1,6 +1,9 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
 
+#include <variant>
+#include <vector>
+
 #include "Compound.hpp"
 #include "List.hpp"
 #include "NbtReader.hpp"
@@ -12,6 +15,10 @@ TEST_CASE("nbtview: bigtest.nbt values") {
     const auto filename = "test_data/bigtest.nbt";
     auto root_tag = nbt::NbtReader::read_from_file(filename);
 
+    SUBCASE("byteTest") {
+        CHECK(root_tag.contains<nbt::Byte>("byteTest"));
+        CHECK(root_tag.at<nbt::Byte>("byteTest") == 127);
+    }
     SUBCASE("longTest") {
         CHECK(root_tag.contains<nbt::Long>("longTest"));
         CHECK(root_tag.at<nbt::Long>("longTest") == 9223372036854775807L);
@@ -51,6 +58,14 @@ TEST_CASE("nbtview: bigtest.nbt values") {
             auto ham = nested.at<nbt::Compound>("ham");
             CHECK(ham.at<nbt::String>("name") == "Hampus");
             CHECK(ham.at<nbt::Float>("value") == doctest::Approx(0.75));
+        }
+    }
+    SUBCASE("list test (long)") {
+        auto list_long = root_tag.at<nbt::List>("listTest (long)");
+        REQUIRE(list_long.tags.size() == 5);
+        auto longvals = std::vector<nbt::Long>{11, 12, 13, 14, 15};
+        for (std::size_t i = 0; i < list_long.tags.size(); ++i) {
+            CHECK(std::get<nbt::Long>(list_long.tags[i].data) == longvals[i]);
         }
     }
 }
