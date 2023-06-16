@@ -13,28 +13,30 @@ TEST_CASE("nbtview: bigtest.nbt values") {
     auto root_tag = nbt::NbtReader::read_from_file(filename);
 
     SUBCASE("longTest") {
-        REQUIRE(root_tag.contains<nbt::Long>("longTest"));
+        CHECK(root_tag.contains<nbt::Long>("longTest"));
         CHECK(root_tag.at<nbt::Long>("longTest") == 9223372036854775807L);
     }
     SUBCASE("shortTest") {
-        REQUIRE(root_tag.contains<nbt::Short>("shortTest"));
+        CHECK(root_tag.contains<nbt::Short>("shortTest"));
         CHECK(root_tag.at<nbt::Short>("shortTest") == 32767);
     }
     SUBCASE("stringTest") {
-        REQUIRE(root_tag.contains<nbt::String>("stringTest"));
+        CHECK(root_tag.contains<nbt::String>("stringTest"));
         CHECK(root_tag.at<nbt::String>("stringTest") ==
               "HELLO WORLD THIS IS A TEST STRING ÅÄÖ!");
     }
     SUBCASE("floatTest") {
-        REQUIRE(root_tag.contains<nbt::Float>("floatTest"));
-        CHECK(root_tag.at<nbt::Float>("floatTest") == doctest::Approx(0.49823147));
+        CHECK(root_tag.contains<nbt::Float>("floatTest"));
+        CHECK(root_tag.at<nbt::Float>("floatTest") ==
+              doctest::Approx(0.49823147));
     }
     SUBCASE("intTest") {
-        REQUIRE(root_tag.contains<nbt::Int>("intTest"));
+        CHECK(root_tag.contains<nbt::Int>("intTest"));
         CHECK(root_tag.at<nbt::Int>("intTest") == 2147483647);
     }
     SUBCASE("doubleTest") {
-        REQUIRE(root_tag.contains<nbt::Double>("doubleTest"));
-        CHECK(root_tag.at<nbt::Double>("doubleTest") == doctest::Approx(0.4931287132182315));
+        CHECK(root_tag.contains<nbt::Double>("doubleTest"));
+        CHECK(root_tag.at<nbt::Double>("doubleTest") ==
+              doctest::Approx(0.4931287132182315));
     }
 }
