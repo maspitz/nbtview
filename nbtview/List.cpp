@@ -9,11 +9,11 @@
 namespace nbtview {
 
 List::List(BinaryScanner &s) {
-    list_type = static_cast<TypeCode>(s.get_value<int8_t>());
+    list_type_ = static_cast<TypeCode>(s.get_value<int8_t>());
     auto list_length = s.get_value<int32_t>();
     tags.reserve(list_length);
     for (int32_t i = 0; i < list_length; ++i) {
-        tags.emplace_back(Tag(s, list_type));
+        tags.emplace_back(Tag(s, list_type_));
     }
 }
 
@@ -30,5 +30,7 @@ std::string List::to_string() const {
     output_string += "]";
     return output_string;
 }
+
+List::size_type List::size() { return tags.size(); }
 
 } // namespace nbtview

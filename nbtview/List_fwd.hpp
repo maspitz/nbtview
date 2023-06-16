@@ -13,12 +13,18 @@ class BinaryScanner;
 class Tag;
 
 class List {
-  public:
+  private:
     std::vector<Tag> tags;
-    TypeCode list_type;
+    TypeCode list_type_;
+
+  public:
+    using size_type = std::vector<Tag>::size_type;
 
     List(BinaryScanner &s);
     std::string to_string() const;
+    TypeCode list_type() const { return list_type_; }
+    template <typename T> T &at(size_type pos);
+    size_type size();
 };
 
 } // namespace nbtview
