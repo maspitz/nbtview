@@ -39,4 +39,18 @@ TEST_CASE("nbtview: bigtest.nbt values") {
         CHECK(root_tag.at<nbt::Double>("doubleTest") ==
               doctest::Approx(0.4931287132182315));
     }
+    SUBCASE("nested compound test") {
+        CHECK(root_tag.contains<nbt::Compound>("nested compound test"));
+        auto nested = root_tag.at<nbt::Compound>("nested compound test");
+        SUBCASE("egg") {
+            auto egg = nested.at<nbt::Compound>("egg");
+            CHECK(egg.at<nbt::String>("name") == "Eggbert");
+            CHECK(egg.at<nbt::Float>("value") == doctest::Approx(0.5));
+        }
+        SUBCASE("ham") {
+            auto ham = nested.at<nbt::Compound>("ham");
+            CHECK(ham.at<nbt::String>("name") == "Hampus");
+            CHECK(ham.at<nbt::Float>("value") == doctest::Approx(0.75));
+        }
+    }
 }
