@@ -27,7 +27,7 @@ TEST_CASE("nbtview: bigtest.nbt values") {
     }
     SUBCASE("floatTest") {
         REQUIRE(root_tag.contains<nbt::Float>("floatTest"));
-        CHECK(root_tag.at<nbt::Float>("floatTest") == 0.49823147);
+        CHECK(root_tag.at<nbt::Float>("floatTest") == doctest::Approx(0.49823147));
     }
     SUBCASE("intTest") {
         REQUIRE(root_tag.contains<nbt::Int>("intTest"));
@@ -35,6 +35,6 @@ TEST_CASE("nbtview: bigtest.nbt values") {
     }
     SUBCASE("doubleTest") {
         REQUIRE(root_tag.contains<nbt::Double>("doubleTest"));
-        CHECK(root_tag.at<nbt::Double>("doubleTest") == 0.4931287132182315);
+        CHECK(root_tag.at<nbt::Double>("doubleTest") == doctest::Approx(0.4931287132182315));
     }
 }
