@@ -69,4 +69,15 @@ TEST_CASE("nbtview: bigtest.nbt values") {
             CHECK(list_long.at<nbt::Long>(i) == longvals[i]);
         }
     }
+    SUBCASE("list test (compound)") {
+        auto list_cmpd = root_tag.at<nbt::List>("listTest (compound)");
+        CHECK(list_cmpd.list_type() == nbt::TypeCode::Compound);
+        REQUIRE(list_cmpd.size() == 2);
+        auto cmpd0 = list_cmpd.at<nbt::Compound>(0);
+        CHECK(cmpd0.at<nbt::Long>("created-on") == 1264099775885L);
+        CHECK(cmpd0.at<nbt::String>("name") == "Compound tag #0");
+        auto cmpd1 = list_cmpd.at<nbt::Compound>(1);
+        CHECK(cmpd1.at<nbt::Long>("created-on") == 1264099775885L);
+        CHECK(cmpd1.at<nbt::String>("name") == "Compound tag #1");
+    }
 }
