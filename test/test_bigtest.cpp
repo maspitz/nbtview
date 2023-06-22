@@ -62,6 +62,7 @@ TEST_CASE("nbtview: bigtest.nbt values") {
     }
     SUBCASE("list test (long)") {
         auto list_long = root_tag.at<nbt::List>("listTest (long)");
+        CHECK(list_long.list_type() == nbt::TypeCode::Long);
         REQUIRE(list_long.size() == 5);
         auto longvals = std::vector<nbt::Long>{11, 12, 13, 14, 15};
         for (std::size_t i = 0; i < list_long.size(); ++i) {
