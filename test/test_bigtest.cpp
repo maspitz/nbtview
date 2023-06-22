@@ -80,4 +80,16 @@ TEST_CASE("nbtview: bigtest.nbt values") {
         CHECK(cmpd1.at<nbt::Long>("created-on") == 1264099775885L);
         CHECK(cmpd1.at<nbt::String>("name") == "Compound tag #1");
     }
+    SUBCASE("byteArrayTest") {
+        auto byte_array_name = "byteArrayTest "
+                               "(the first 1000 values of (n*n*255+n*7)%100, "
+                               "starting with n=0 (0, 62, 34, 16, 8, ...))";
+
+        CHECK(root_tag.contains<nbt::Byte_Array>(byte_array_name));
+        auto byte_array = root_tag.at<nbt::Byte_Array>(byte_array_name);
+        REQUIRE(byte_array.size() == 1000);
+        for (int n = 0; n < 1000; ++n) {
+            CHECK(byte_array[n] == (n * n * 255 + n * 7) % 100);
+        }
+    }
 }
