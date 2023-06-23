@@ -8,7 +8,6 @@
 
 namespace nbtview {
 
-class BinaryScanner;
 class Tag;
 
 class Compound {
@@ -17,14 +16,18 @@ class Compound {
     std::map<std::string, Tag> tags;
 
   public:
-    Compound(BinaryScanner &s);
-
     auto size() { return tags.size(); }
     std::string to_string() const;
 
     template <typename T> bool contains(const std::string &name) const;
 
     template <typename T> T &at(const std::string &name);
+
+    template <class... Types>
+    std::pair<typename std::map<std::string, Tag>::iterator, bool>
+    emplace(Types &&...args) {
+        return tags.emplace(std::forward<Types>(args)...);
+    }
 };
 
 } // namespace nbtview

@@ -1,61 +1,16 @@
 // Tag.cpp
 
-#include "Tag.hpp"
-#include "BinaryScanner.hpp"
-#include "Compound.hpp"
-#include "List.hpp"
-#include "utils.hpp"
 #include <memory>
 #include <string>
 #include <variant>
 #include <vector>
 
-namespace nbtview {
+#include "Compound.hpp"
+#include "List.hpp"
+#include "Tag.hpp"
+#include "utils.hpp"
 
-Tag::Tag(BinaryScanner &s, TypeCode type) {
-    switch (type) {
-    case TypeCode::End:
-        throw std::runtime_error("Unexpected End Tag");
-    case TypeCode::Byte:
-        data = s.get_value<Byte>();
-        break;
-    case TypeCode::Short:
-        data = s.get_value<Short>();
-        break;
-    case TypeCode::Int:
-        data = s.get_value<Int>();
-        break;
-    case TypeCode::Long:
-        data = s.get_value<Long>();
-        break;
-    case TypeCode::Float:
-        data = s.get_value<Float>();
-        break;
-    case TypeCode::Double:
-        data = s.get_value<Double>();
-        break;
-    case TypeCode::Byte_Array:
-        data = s.get_vector<Byte>();
-        break;
-    case TypeCode::String:
-        data = s.get_string();
-        break;
-    case TypeCode::List:
-        data = List(s);
-        break;
-    case TypeCode::Compound:
-        data = Compound(s);
-        break;
-    case TypeCode::Int_Array:
-        data = s.get_vector<Int>();
-        break;
-    case TypeCode::Long_Array:
-        data = s.get_vector<Long>();
-        break;
-    default:
-        throw std::runtime_error("Unhandled tag type");
-    }
-}
+namespace nbtview {
 
 std::string Tag::to_string() const {
     if (std::holds_alternative<Byte>(data)) {

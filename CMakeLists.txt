@@ -28,6 +28,11 @@ target_link_libraries(test_BinaryScanner nbtview)
 target_include_directories(test_BinaryScanner PRIVATE "${PROJECT_SOURCE_DIR}/doctest")
 add_test(Test_BinaryScanner test_BinaryScanner)
 
+add_executable(test_BinaryDeserializer test/test_BinaryDeserializer.cpp)
+target_link_libraries(test_BinaryDeserializer nbtview)
+target_include_directories(test_BinaryDeserializer PRIVATE "${PROJECT_SOURCE_DIR}/doctest")
+add_test(Test_BinaryDeserializer test_BinaryDeserializer)
+
 add_executable(test_nbtview test/test_nbtview.cpp)
 target_link_libraries(test_nbtview nbtview)
 target_include_directories(test_nbtview PRIVATE "${PROJECT_SOURCE_DIR}/doctest")

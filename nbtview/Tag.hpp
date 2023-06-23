@@ -14,15 +14,14 @@ namespace nbtview {
 
 class BinaryScanner;
 
-using TagData = std::variant<Byte, Short, Int, Long, Float, Double, Byte_Array,
-                             String, List, Compound, Int_Array, Long_Array>;
+using TagData =
+    std::variant<End, Byte, Short, Int, Long, Float, Double, Byte_Array, String,
+                 List, Compound, Int_Array, Long_Array>;
 
-class Tag {
+struct Tag {
   public:
-    Tag(BinaryScanner &s, TypeCode type);
-
     TagData data;
-
+    Tag(TagData d) : data(d) {}
     std::string to_string() const;
 };
 

@@ -5,11 +5,12 @@
 #include <iostream>
 #include <string>
 #include <utility>
+#include <variant>
 #include <vector>
 
 #include <zlib.h>
 
-#include "BinaryScanner.hpp"
+#include "BinaryDeserializer.hpp"
 #include "NbtReader.hpp"
 
 namespace nbtview {
@@ -93,13 +94,13 @@ Compound NbtReader::read_from_bytes(std::vector<unsigned char> bytes) {
     if (has_gzip_header(bytes)) {
         bytes = decompress_gzip(bytes);
     }
-    BinaryScanner s(std::move(bytes));
-    auto root_type = static_cast<TypeCode>(s.get_value<int8_t>());
-    if (root_type != TypeCode::Compound) {
+    BinaryDeserializer reader(std::move(bytes));
+    auto root_data = reader.deserialize();
+    auto root_name = root_data.first;
+    if (!std::holds_alternative<Compound>(root_data.second.data)) {
         throw std::runtime_error("Root tag is not a compound tag");
     }
-    auto root_name = s.get_string();
-    return Compound(s);
+    return std::get<Compound>(root_data.second.data);
 }
 
 } // namespace nbtview

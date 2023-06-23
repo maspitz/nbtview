@@ -9,6 +9,7 @@
 
 namespace nbtview {
 
+using End = unsigned char;
 using Byte = int8_t;
 using Short = int16_t;
 using Int = int32_t;
