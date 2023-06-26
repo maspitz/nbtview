@@ -7,6 +7,7 @@
 #include "Compound.hpp"
 #include "NbtReader.hpp"
 #include "nbtview.hpp"
+#include "tag_utilities.hpp"
 
 namespace nbt = nbtview;
 
@@ -78,6 +79,8 @@ int main(int argc, const char *argv[]) {
 
     auto root_tag = nbt::NbtReader::read_from_file(filename);
     std::cout << "root_tag: " << root_tag.to_string() << std::endl;
+    std::cout << "tag_to_string: " << nbt::tag_to_string(nbt::Tag(root_tag))
+              << std::endl;
 
     return 0;
 }
