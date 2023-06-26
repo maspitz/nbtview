@@ -7,4 +7,4 @@ target_link_libraries(nbtview ZLIB::ZLIB)
 
 install(TARGETS nbtview DESTINATION lib)
 
-install(FILES nbtview.hpp Tag.hpp Compound.hpp List.hpp BinaryScanner.hpp NbtReader.hpp tag_utilities.hpp DESTINATION include)
+install(FILES nbtview.hpp Tag.hpp Compound.hpp List.hpp NbtReader.hpp tag_utilities.hpp DESTINATION include)
