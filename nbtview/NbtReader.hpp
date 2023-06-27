@@ -12,9 +12,9 @@
 namespace nbtview {
 class NbtReader {
   public:
-    static Compound read_from_file(const std::string &filename);
-    static Compound read_from_bytes(std::vector<unsigned char> bytes);
-    static Compound read_from_stream(std::ifstream &input);
+    static Tag read_from_file(const std::string &filename);
+    static Tag read_from_bytes(std::vector<unsigned char> bytes);
+    static Tag read_from_stream(std::ifstream &input);
 };
 
 } // namespace nbtview

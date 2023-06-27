@@ -5,6 +5,10 @@
 #include <variant>
 #include <vector>
 
+#include "Compound_fwd.hpp"
+#include "List_fwd.hpp"
+#include "Tag.hpp"
+
 #include "BinaryDeserializer.hpp"
 #include "BinaryScanner.hpp"
 
@@ -28,7 +32,8 @@ std::pair<std::string, Tag> BinaryDeserializer::deserialize() {
 List BinaryDeserializer::deserialize_list() {
     auto list_type = static_cast<TypeCode>(scanner_->get_value<int8_t>());
     auto list_length = scanner_->get_value<int32_t>();
-    auto lst = List(list_type, list_length);
+    auto lst = List(list_type);
+    lst.reserve(list_length);
     for (int32_t idx = 0; idx < list_length; ++idx) {
         auto next_tag = deserialize_typed_value(list_type);
         lst.emplace_back(std::move(next_tag));
@@ -40,14 +45,14 @@ Compound BinaryDeserializer::deserialize_compound() {
     auto cmpd = Compound();
     while (true) {
         auto next_tag = deserialize();
-        if (std::holds_alternative<End>(next_tag.second.data)) {
+        if (std::holds_alternative<End>(next_tag.second)) {
             return cmpd;
         }
         cmpd.emplace(std::move(next_tag.first), std::move(next_tag.second));
     }
 }
 
-TagData BinaryDeserializer::deserialize_typed_value(TypeCode type) {
+Tag BinaryDeserializer::deserialize_typed_value(TypeCode type) {
     switch (type) {
     case TypeCode::Byte:
         return scanner_->get_value<Byte>();

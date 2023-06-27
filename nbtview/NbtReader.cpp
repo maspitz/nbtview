@@ -67,7 +67,7 @@ decompress_gzip(std::vector<unsigned char> &compressed_data) {
     return decompressed_data;
 }
 
-Compound NbtReader::read_from_file(const std::string &filename) {
+Tag NbtReader::read_from_file(const std::string &filename) {
     std::ifstream file(filename, std::ifstream::binary);
 
     if (!file) {
@@ -78,7 +78,7 @@ Compound NbtReader::read_from_file(const std::string &filename) {
     return read_from_stream(file);
 }
 
-Compound NbtReader::read_from_stream(std::ifstream &input) {
+Tag NbtReader::read_from_stream(std::ifstream &input) {
     // Get stream size
     input.seekg(0, input.end);
     std::streampos n_bytes = input.tellg();
@@ -90,17 +90,14 @@ Compound NbtReader::read_from_stream(std::ifstream &input) {
     return read_from_bytes(std::move(bytes));
 }
 
-Compound NbtReader::read_from_bytes(std::vector<unsigned char> bytes) {
+Tag NbtReader::read_from_bytes(std::vector<unsigned char> bytes) {
     if (has_gzip_header(bytes)) {
         bytes = decompress_gzip(bytes);
     }
     BinaryDeserializer reader(std::move(bytes));
     auto root_data = reader.deserialize();
-    auto root_name = root_data.first;
-    if (!std::holds_alternative<Compound>(root_data.second.data)) {
-        throw std::runtime_error("Root tag is not a compound tag");
-    }
-    return std::get<Compound>(root_data.second.data);
+    auto &root_name = root_data.first;
+    return std::move(root_data.second);
 }
 
 } // namespace nbtview

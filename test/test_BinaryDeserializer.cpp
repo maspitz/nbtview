@@ -19,8 +19,8 @@ TEST_CASE("nbtview::BinaryDeserializer explicit compound tags") {
         auto root_name = root_data.first;
         CHECK(root_name == "");
 
-        CHECK(std::holds_alternative<nbt::Compound>(root_data.second.data));
-        auto cmpd = std::get<nbt::Compound>(root_data.second.data);
+        CHECK(std::holds_alternative<nbt::Compound>(root_data.second));
+        auto &cmpd = std::get<nbt::Compound>(root_data.second);
         CHECK(cmpd.size() == 0);
     }
 
@@ -33,8 +33,8 @@ TEST_CASE("nbtview::BinaryDeserializer explicit compound tags") {
         auto root_name = root_data.first;
         CHECK(root_name == "Tag");
 
-        CHECK(std::holds_alternative<nbt::String>(root_data.second.data));
-        auto str_data = std::get<nbt::String>(root_data.second.data);
+        CHECK(std::holds_alternative<nbt::String>(root_data.second));
+        auto str_data = std::get<nbt::String>(root_data.second);
         CHECK(str_data == "Hello");
     }
 }

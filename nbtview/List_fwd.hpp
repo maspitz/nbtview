@@ -2,42 +2,46 @@
 #ifndef NBT_LIST_FWD_H_
 #define NBT_LIST_FWD_H_
 
-#include <string>
-#include <utility>
+#include <memory>
 #include <vector>
 
-#include "nbtview.hpp"
+#include "Tag.hpp"
 
 namespace nbtview {
 
-class Tag;
-
 class List {
-  private:
-    std::vector<Tag> tags;
-    TypeCode list_type_;
-
   public:
-    using size_type = std::vector<Tag>::size_type;
+    List(TypeCode type)
+        : data(std::make_unique<std::vector<Tag>>()), list_type_(type) {}
 
-    List(TypeCode type, int32_t reserve_length) : list_type_(type) {
-        tags.reserve(reserve_length);
+    auto begin() { return data->begin(); }
+    auto end() { return data->end(); }
+    auto begin() const { return data->begin(); }
+    auto end() const { return data->end(); }
+    auto cbegin() const { return data->cbegin(); }
+    auto cend() const { return data->cend(); }
+
+    size_t size() const { return data->size(); }
+    bool empty() const { return data->empty(); }
+    void reserve(size_t new_cap) { data->reserve(new_cap); }
+
+    Tag &at(size_t position) { return data->at(position); }
+    const Tag &at(size_t position) const { return data->at(position); }
+
+    // construct element directly in the List
+    template <typename... Args> void emplace_back(Args &&...args) {
+        data->emplace_back(std::forward<Args>(args)...);
     }
 
-    template <class... Types> void emplace_back(Types &&...args) {
-        tags.emplace_back(std::forward<Types>(args)...);
-    }
+    template <typename T> T &get(size_t pos);
 
-    TypeCode list_type() const { return list_type_; }
-    template <typename T> T &at(size_type pos);
-    std::vector<Tag>::iterator begin() { return tags.begin(); }
-    std::vector<Tag>::iterator end() { return tags.end(); }
-    std::vector<Tag>::const_iterator begin() const { return tags.begin(); }
-    std::vector<Tag>::const_iterator end() const { return tags.end(); }
-    std::vector<Tag>::const_iterator cbegin() const { return tags.cbegin(); }
-    std::vector<Tag>::const_iterator cend() const { return tags.cend(); }
+    void push_back(int j) { data->push_back(j); }
 
-    size_type size();
+    TypeCode list_type() { return list_type_; }
+
+  private:
+    std::unique_ptr<std::vector<Tag>> data;
+    TypeCode list_type_;
 };
 
 } // namespace nbtview

@@ -8,6 +8,7 @@
 #include <variant>
 
 #include "Compound_fwd.hpp"
+#include "List_fwd.hpp"
 #include "Tag.hpp"
 
 namespace nbtview {
@@ -15,18 +16,18 @@ namespace nbtview {
 class BinaryScanner;
 
 template <typename T> bool Compound::contains(const std::string &name) const {
-    auto it = tags.find(name);
-    if (it == tags.end()) {
+    auto it = data->find(name);
+    if (it == data->end()) {
         return false;
     }
-    if (!std::holds_alternative<T>(it->second.data)) {
+    if (!std::holds_alternative<T>(it->second)) {
         return false;
     }
     return true;
 }
 
-template <typename T> T &Compound::at(const std::string &name) {
-    return std::get<T>(tags.at(name).data);
+template <typename T> T &Compound::get(const std::string &name) {
+    return std::get<T>(data->at(name));
 }
 
 } // namespace nbtview

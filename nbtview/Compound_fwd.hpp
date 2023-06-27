@@ -4,43 +4,45 @@
 #define NBT_COMPOUND_FWD_H_
 
 #include <map>
+#include <memory>
 #include <string>
+
+#include "Tag.hpp"
 
 namespace nbtview {
 
-class Tag;
-
 class Compound {
-
-  private:
-    std::map<std::string, Tag> tags;
-
   public:
-    auto size() { return tags.size(); }
+    Compound() : data(std::make_unique<std::map<std::string, Tag>>()) {}
+
+    using iterator = std::map<std::string, Tag>::iterator;
+    using const_iterator = std::map<std::string, Tag>::const_iterator;
+
+    auto begin() { return data->begin(); }
+    auto end() { return data->end(); }
+    auto begin() const { return data->begin(); }
+    auto end() const { return data->end(); }
+    auto cbegin() const { return data->cbegin(); }
+    auto cend() const { return data->cend(); }
+
+    size_t size() const { return data->size(); }
+    bool empty() const { return data->empty(); }
+
+    Tag &at(const std::string &key) { return data->at(key); }
+    const Tag &at(const std::string &key) const { return data->at(key); }
+
+    // construct element directly in the Compound
+    template <typename... Args>
+    std::pair<iterator, bool> emplace(Args &&...args) {
+        return data->emplace(std::forward<Args>(args)...);
+    }
 
     template <typename T> bool contains(const std::string &name) const;
 
-    template <typename T> T &at(const std::string &name);
+    template <typename T> T &get(const std::string &name);
 
-    template <class... Types>
-    std::pair<typename std::map<std::string, Tag>::iterator, bool>
-    emplace(Types &&...args) {
-        return tags.emplace(std::forward<Types>(args)...);
-    }
-    std::map<std::string, Tag>::const_iterator begin() { return tags.begin(); }
-    std::map<std::string, Tag>::const_iterator end() { return tags.end(); }
-    std::map<std::string, Tag>::const_iterator begin() const {
-        return tags.begin();
-    }
-    std::map<std::string, Tag>::const_iterator end() const {
-        return tags.end();
-    }
-    std::map<std::string, Tag>::const_iterator cbegin() const {
-        return tags.cbegin();
-    }
-    std::map<std::string, Tag>::const_iterator cend() const {
-        return tags.cend();
-    }
+  private:
+    std::unique_ptr<std::map<std::string, Tag>> data;
 };
 
 } // namespace nbtview

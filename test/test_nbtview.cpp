@@ -14,18 +14,20 @@ TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
     SUBCASE("empty compound tag") {
         auto v_empty_compound_tag =
             std::vector<uint8_t>{0x0a, 0x00, 0x00, 0x00};
-        auto root_tag = nbt::NbtReader::read_from_bytes(v_empty_compound_tag);
+        auto rot_tag = nbt::NbtReader::read_from_bytes(v_empty_compound_tag);
+        auto &root_tag = std::get<nbt::Compound>(rot_tag);
         CHECK(root_tag.size() == 0);
     }
     SUBCASE("string tag 'foo' contains 'bar'") {
         auto v_foo_bar =
             std::vector<uint8_t>{0x0a, 0x00, 0x00, 0x08, 0x00, 0x03, 'f', 'o',
                                  'o',  0x00, 0x03, 'b',  'a',  'r',  0x00};
-        auto root_tag = nbt::NbtReader::read_from_bytes(v_foo_bar);
+        auto rot_tag = nbt::NbtReader::read_from_bytes(v_foo_bar);
+        auto &root_tag = std::get<nbt::Compound>(rot_tag);
         CHECK(root_tag.size() == 1);
 
         REQUIRE(root_tag.contains<nbt::String>("foo"));
-        CHECK(root_tag.at<nbt::String>("foo") == "bar");
+        CHECK(root_tag.get<nbt::String>("foo") == "bar");
     }
 
     SUBCASE("read integer types from named compound tag") {
@@ -42,20 +44,21 @@ TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
             0x06, 0x07, 0x08, 0x9a,
 
             0x00};
-        auto root_tag = nbtview::NbtReader::read_from_bytes(v_foo_bar);
+        auto rot_tag = nbt::NbtReader::read_from_bytes(v_foo_bar);
+        auto &root_tag = std::get<nbt::Compound>(rot_tag);
         CHECK(root_tag.size() == 4);
 
         REQUIRE(root_tag.contains<nbt::Byte>("byte"));
-        CHECK(root_tag.at<nbt::Byte>("byte") == 0x12);
+        CHECK(root_tag.get<nbt::Byte>("byte") == 0x12);
 
         REQUIRE(root_tag.contains<nbt::Short>("short"));
-        CHECK(root_tag.at<nbt::Short>("short") == 0x1234);
+        CHECK(root_tag.get<nbt::Short>("short") == 0x1234);
 
         REQUIRE(root_tag.contains<nbt::Int>("int"));
-        CHECK(root_tag.at<nbt::Int>("int") == 0x12345678);
+        CHECK(root_tag.get<nbt::Int>("int") == 0x12345678);
 
         REQUIRE(root_tag.contains<nbt::Long>("long"));
-        CHECK(root_tag.at<nbt::Long>("long") == 0x120304050607089aL);
+        CHECK(root_tag.get<nbt::Long>("long") == 0x120304050607089aL);
     }
 
     SUBCASE("read floating point types from nested compound tag") {
@@ -74,19 +77,20 @@ TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
 
             0x00};
 
-        auto root_tag = nbtview::NbtReader::read_from_bytes(v_foo_bar);
+        auto rot_tag = nbt::NbtReader::read_from_bytes(v_foo_bar);
+        auto &root_tag = std::get<nbt::Compound>(rot_tag);
         CHECK(root_tag.size() == 1);
 
         REQUIRE(root_tag.contains<nbt::Compound>("innertag"));
 
-        auto inner_tag = root_tag.at<nbt::Compound>("innertag");
+        auto &inner_tag = root_tag.get<nbt::Compound>("innertag");
         CHECK(inner_tag.size() == 2);
 
         REQUIRE(inner_tag.contains<nbt::Double>("Double"));
-        CHECK(inner_tag.at<nbt::Double>("Double") == +0.2);
+        CHECK(inner_tag.get<nbt::Double>("Double") == +0.2);
 
         REQUIRE(inner_tag.contains<nbt::Float>("Float"));
-        CHECK(inner_tag.at<nbt::Float>("Float") == -248.75);
+        CHECK(inner_tag.get<nbt::Float>("Float") == -248.75);
 
         CHECK(!inner_tag.contains<nbt::Float>("Not_Present"));
         CHECK(!inner_tag.contains<nbt::Double>("Float"));

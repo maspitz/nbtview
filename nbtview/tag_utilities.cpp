@@ -4,6 +4,8 @@
 #include <variant>
 #include <vector>
 
+#include "Compound_fwd.hpp"
+#include "List_fwd.hpp"
 #include "Tag.hpp"
 #include "tag_utilities.hpp"
 #include "utils.hpp"
@@ -71,7 +73,7 @@ struct StringifyTag {
 };
 
 std::string tag_to_string(const Tag &tag) {
-    return std::visit(StringifyTag(), tag.data);
+    return std::visit(StringifyTag(), tag);
 }
 
 // std::vector<unsigned char> serialize_tag(const Tag& tag) { }

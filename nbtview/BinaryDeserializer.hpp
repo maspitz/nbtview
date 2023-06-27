@@ -33,7 +33,7 @@ class BinaryDeserializer : public Deserializer {
 
     Compound deserialize_compound();
 
-    TagData deserialize_typed_value(TypeCode type);
+    Tag deserialize_typed_value(TypeCode type);
 };
 
 } // namespace nbtview
