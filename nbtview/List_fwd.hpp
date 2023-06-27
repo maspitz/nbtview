@@ -31,6 +31,9 @@ class List {
     std::string to_string() const;
     TypeCode list_type() const { return list_type_; }
     template <typename T> T &at(size_type pos);
+    std::vector<Tag>::const_iterator cbegin() const { return tags.cbegin(); }
+    std::vector<Tag>::const_iterator cend() const { return tags.cend(); }
+
     size_type size();
 };
 
