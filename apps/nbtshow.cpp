@@ -78,8 +78,7 @@ int main(int argc, const char *argv[]) {
     */
 
     auto root_tag = nbt::NbtReader::read_from_file(filename);
-    std::cout << "root_tag: " << root_tag.to_string() << std::endl;
-    std::cout << "tag_to_string: " << nbt::tag_to_string(nbt::Tag(root_tag))
+    std::cout << "root_tag: " << nbt::tag_to_string(nbt::Tag(root_tag))
               << std::endl;
 
     return 0;
