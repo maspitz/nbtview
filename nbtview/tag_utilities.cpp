@@ -12,7 +12,25 @@ namespace nbtview {
 
 struct StringifyTag {
     std::string operator()(const End &x) { return "END_TAG"; }
-    std::string operator()(const Compound &x) { return "COMPOUND"; }
+    std::string operator()(const Compound &x) {
+        std::string output_string;
+        for (auto tag_iter = x.cbegin(); tag_iter != x.cend(); ++tag_iter) {
+            if (output_string.empty()) {
+                output_string = "{";
+            } else {
+                output_string += ",";
+            }
+            if (snbt_requires_quoting(tag_iter->first)) {
+                output_string += quoted_string(tag_iter->first);
+            } else {
+                output_string += tag_iter->first;
+            }
+            output_string += ":";
+            output_string += tag_iter->second.to_string();
+        }
+        output_string += "}";
+        return output_string;
+    }
     std::string operator()(const Byte &x) { return std::to_string(x) + "b"; }
     std::string operator()(const Short &x) { return std::to_string(x) + "s"; }
     std::string operator()(const Int &x) { return std::to_string(x); }
