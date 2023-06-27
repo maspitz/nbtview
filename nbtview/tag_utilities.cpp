@@ -26,7 +26,7 @@ struct StringifyTag {
                 output_string += tag_iter->first;
             }
             output_string += ":";
-            output_string += tag_iter->second.to_string();
+            output_string += tag_to_string(tag_iter->second);
         }
         output_string += "}";
         return output_string;
@@ -51,7 +51,7 @@ struct StringifyTag {
             } else {
                 output_string += ",";
             }
-            output_string += tag_it->to_string();
+            output_string += tag_to_string(*tag_it);
         }
         output_string += "]";
         return output_string;
