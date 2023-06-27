@@ -28,6 +28,12 @@ class Compound {
     emplace(Types &&...args) {
         return tags.emplace(std::forward<Types>(args)...);
     }
+    std::map<std::string, Tag>::const_iterator cbegin() const {
+        return tags.cbegin();
+    }
+    std::map<std::string, Tag>::const_iterator cend() const {
+        return tags.cend();
+    }
 };
 
 } // namespace nbtview
