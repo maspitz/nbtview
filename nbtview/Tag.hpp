@@ -22,7 +22,6 @@ struct Tag {
   public:
     TagData data;
     Tag(TagData d) : data(d) {}
-    std::string to_string() const;
 };
 
 } // namespace nbtview

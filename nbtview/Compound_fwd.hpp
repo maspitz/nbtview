@@ -17,7 +17,6 @@ class Compound {
 
   public:
     auto size() { return tags.size(); }
-    std::string to_string() const;
 
     template <typename T> bool contains(const std::string &name) const;
 
