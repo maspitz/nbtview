@@ -30,6 +30,10 @@ class List {
 
     TypeCode list_type() const { return list_type_; }
     template <typename T> T &at(size_type pos);
+    std::vector<Tag>::iterator begin() { return tags.begin(); }
+    std::vector<Tag>::iterator end() { return tags.end(); }
+    std::vector<Tag>::const_iterator begin() const { return tags.begin(); }
+    std::vector<Tag>::const_iterator end() const { return tags.end(); }
     std::vector<Tag>::const_iterator cbegin() const { return tags.cbegin(); }
     std::vector<Tag>::const_iterator cend() const { return tags.cend(); }
 

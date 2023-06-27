@@ -27,6 +27,14 @@ class Compound {
     emplace(Types &&...args) {
         return tags.emplace(std::forward<Types>(args)...);
     }
+    std::map<std::string, Tag>::const_iterator begin() { return tags.begin(); }
+    std::map<std::string, Tag>::const_iterator end() { return tags.end(); }
+    std::map<std::string, Tag>::const_iterator begin() const {
+        return tags.begin();
+    }
+    std::map<std::string, Tag>::const_iterator end() const {
+        return tags.end();
+    }
     std::map<std::string, Tag>::const_iterator cbegin() const {
         return tags.cbegin();
     }
