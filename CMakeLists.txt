@@ -16,6 +16,12 @@ set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 
 set(CMAKE_CXX_STANDARD 20)
 
+if(CMAKE_CXX_BYTE_ORDER STREQUAL "BIG_ENDIAN")
+  add_definitions(-DTARGET_BIG_ENDIAN)
+else()
+  add_definitions(-DTARGET_LITTLE_ENDIAN)
+endif()
+
 include(CTest)
 
 enable_testing() 
@@ -27,6 +33,11 @@ add_executable(test_BinaryScanner test/test_BinaryScanner.cpp)
 target_link_libraries(test_BinaryScanner nbtview)
 target_include_directories(test_BinaryScanner PRIVATE "${PROJECT_SOURCE_DIR}/doctest")
 add_test(Test_BinaryScanner test_BinaryScanner)
+
+add_executable(test_BinaryWriter test/test_BinaryWriter.cpp)
+target_link_libraries(test_BinaryWriter nbtview)
+target_include_directories(test_BinaryWriter PRIVATE "${PROJECT_SOURCE_DIR}/doctest")
+add_test(Test_BinaryWriter test_BinaryWriter)
 
 add_executable(test_BinaryDeserializer test/test_BinaryDeserializer.cpp)
 target_link_libraries(test_BinaryDeserializer nbtview)
