@@ -1,11 +1,5 @@
 // Binarydeserializer.hpp
 
-#include <memory>
-
-#include "BinaryScanner.hpp"
-#include "Deserializer.hpp"
-#include "Tag.hpp"
-
 #ifndef BINARYDESERIALIZER_H_
 #define BINARYDESERIALIZER_H_
 
@@ -14,6 +8,7 @@
 #include <vector>
 
 #include "Deserializer.hpp"
+#include "Tag.hpp"
 
 namespace nbtview {
 
@@ -21,10 +16,11 @@ class BinaryScanner;
 
 class BinaryDeserializer : public Deserializer {
   private:
-    std::unique_ptr<BinaryScanner> scanner_;
+    std::unique_ptr<BinaryScanner> scanner;
 
   public:
     BinaryDeserializer(std::vector<unsigned char> bytes);
+    ~BinaryDeserializer();
 
     std::pair<std::string, Tag> deserialize() override;
 
