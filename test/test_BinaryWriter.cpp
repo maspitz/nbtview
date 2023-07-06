@@ -63,6 +63,26 @@ TEST_CASE("nbtview::BinaryWriter functions") {
             CHECK(output == std::vector<unsigned char>{0x01, 0x23, 0x45, 0x67,
                                                        0x89, 0xab, 0xcd, 0xef});
         }
+
+        SUBCASE("Test floating point representation") {
+            REQUIRE(sizeof(float) == 4);
+            REQUIRE(sizeof(double) == 8);
+            REQUIRE(std::numeric_limits<float>::is_iec559 == true);
+            REQUIRE(std::numeric_limits<float>::digits == 24);
+            REQUIRE(std::numeric_limits<double>::is_iec559 == true);
+            REQUIRE(std::numeric_limits<double>::digits == 53);
+        }
+
+        SUBCASE("Test write with float") {
+            bw.write(float(-248.75));
+            CHECK(output == std::vector<unsigned char>{0xc3, 0x78, 0xc0, 0x00});
+        }
+
+        SUBCASE("Test write with double") {
+            bw.write(double(0.2));
+            CHECK(output == std::vector<unsigned char>{0x3f, 0xc9, 0x99, 0x99,
+                                                       0x99, 0x99, 0x99, 0x9a});
+        }
     }
 
     SUBCASE("nbtview::BinaryWriter::write_string()") {
