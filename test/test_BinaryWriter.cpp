@@ -2,7 +2,6 @@
 #include "doctest.h"
 
 #include <ios>
-#include <iterator>
 #include <sstream>
 #include <string_view>
 #include <vector>
@@ -13,14 +12,13 @@ namespace nbt = nbtview;
 
 namespace doctest {
 
-template <> struct StringMaker<std::vector<unsigned char>> {
-    static String convert(const std::vector<unsigned char> &in) {
+template <> struct StringMaker<std::vector<char>> {
+    static String convert(const std::vector<char> &in) {
         std::ostringstream oss;
 
         oss << "[";
         oss << std::hex << std::setfill('0');
-        for (typename std::vector<unsigned char>::const_iterator it =
-                 in.begin();
+        for (typename std::vector<char>::const_iterator it = in.begin();
              it != in.end(); ++it)
             oss << "0x" << std::setw(2) << static_cast<unsigned int>(*it)
                 << ", ";
