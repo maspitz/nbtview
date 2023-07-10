@@ -39,6 +39,11 @@ target_link_libraries(test_BinaryWriter nbtview)
 target_include_directories(test_BinaryWriter PRIVATE "${PROJECT_SOURCE_DIR}/doctest")
 add_test(Test_BinaryWriter test_BinaryWriter)
 
+add_executable(test_Serializer test/test_Serializer.cpp)
+target_link_libraries(test_Serializer nbtview)
+target_include_directories(test_Serializer PRIVATE "${PROJECT_SOURCE_DIR}/doctest")
+add_test(Test_Serializer test_Serializer)
+
 add_executable(test_BinaryDeserializer test/test_BinaryDeserializer.cpp)
 target_link_libraries(test_BinaryDeserializer nbtview)
 target_include_directories(test_BinaryDeserializer PRIVATE "${PROJECT_SOURCE_DIR}/doctest")
