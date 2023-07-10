@@ -32,7 +32,6 @@ namespace detail {
             BinaryWriter::write_vector(t, output);
         }
         void operator()(const String &t) {
-            BinaryWriter::write(static_cast<uint16_t>(t.size()), output);
             BinaryWriter::write_string(t, output);
         }
         void operator()(const List &t) {
