@@ -14,8 +14,6 @@ template <typename T> T &List::get(size_t pos) {
     return std::get<T>(data->at(pos));
 }
 
-// void List::reserve(size_t new_cap) { data->reserve(new_cap); }
-
 } // namespace nbtview
 
 #endif // NBT_LIST_H_
