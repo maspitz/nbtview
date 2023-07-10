@@ -4,6 +4,7 @@
 #include <ios>
 #include <iterator>
 #include <sstream>
+#include <string_view>
 #include <vector>
 
 #include "BinaryWriter.hpp"
@@ -30,38 +31,50 @@ template <> struct StringMaker<std::vector<unsigned char>> {
 };
 } // namespace doctest
 
+std::vector<char> stream_chars(std::ostringstream &stream) {
+    auto outview = stream.view();
+    return std::vector<char>(outview.begin(), outview.end());
+}
+
 TEST_CASE("nbtview::BinaryWriter functions") {
-    std::vector<unsigned char> output;
-    auto inserter = std::back_inserter(output);
-    nbt::BinaryWriter bw(inserter);
+    std::ostringstream output(std::ios::binary);
 
     SUBCASE("nbtview::BinaryWriter::write()") {
 
         SUBCASE("Test write with int8_t") {
             int8_t value = 0x7a;
-            bw.write(value);
-            CHECK(output == std::vector<unsigned char>{0x7a});
+            nbt::BinaryWriter::write(value, output);
+            CHECK(stream_chars(output) == std::vector<char>{0x7a});
             value = 0xff;
-            bw.write(value);
+            nbt::BinaryWriter::write(value, output);
             value = 0x00;
-            bw.write(value);
-            CHECK(output == std::vector<unsigned char>{0x7a, 0xff, 0x00});
+            nbt::BinaryWriter::write(value, output);
+            CHECK(stream_chars(output) ==
+                  std::vector<char>{0x7a, static_cast<char>(0xff), 0x00});
         }
 
         SUBCASE("Test write with int16_t") {
-            bw.write(int16_t(0xcafe));
-            CHECK(output == std::vector<unsigned char>{0xca, 0xfe});
+            nbt::BinaryWriter::write(int16_t(0xcafe), output);
+            CHECK(stream_chars(output) ==
+                  std::vector<char>{static_cast<char>(0xca),
+                                    static_cast<char>(0xfe)});
         }
 
         SUBCASE("Test write with int32_t") {
-            bw.write(int32_t(0x12cafe89));
-            CHECK(output == std::vector<unsigned char>{0x12, 0xca, 0xfe, 0x89});
+            nbt::BinaryWriter::write(int32_t(0x12cafe89), output);
+            CHECK(stream_chars(output) ==
+                  std::vector<char>{0x12, static_cast<char>(0xca),
+                                    static_cast<char>(0xfe),
+                                    static_cast<char>(0x89)});
         }
 
         SUBCASE("Test write with int64_t") {
-            bw.write(int64_t(0x0123456789abcdef));
-            CHECK(output == std::vector<unsigned char>{0x01, 0x23, 0x45, 0x67,
-                                                       0x89, 0xab, 0xcd, 0xef});
+            nbt::BinaryWriter::write(int64_t(0x0123456789abcdef), output);
+            CHECK(stream_chars(output) ==
+                  std::vector<char>{
+                      0x01, 0x23, 0x45, 0x67, static_cast<char>(0x89),
+                      static_cast<char>(0xab), static_cast<char>(0xcd),
+                      static_cast<char>(0xef)});
         }
 
         SUBCASE("Test floating point representation") {
@@ -74,59 +87,70 @@ TEST_CASE("nbtview::BinaryWriter functions") {
         }
 
         SUBCASE("Test write with float") {
-            bw.write(float(-248.75));
-            CHECK(output == std::vector<unsigned char>{0xc3, 0x78, 0xc0, 0x00});
+            nbt::BinaryWriter::write(-248.75f, output);
+            CHECK(stream_chars(output) ==
+                  std::vector<char>{static_cast<char>(0xc3), 0x78, static_cast<char>(0xc0), 0x00});
         }
 
         SUBCASE("Test write with double") {
-            bw.write(double(0.2));
-            CHECK(output == std::vector<unsigned char>{0x3f, 0xc9, 0x99, 0x99,
-                                                       0x99, 0x99, 0x99, 0x9a});
+            nbt::BinaryWriter::write(double(0.2), output);
+            CHECK(stream_chars(output) ==
+                  std::vector<char>{
+                      0x3f, static_cast<char>(0xc9), static_cast<char>(0x99),
+                      static_cast<char>(0x99), static_cast<char>(0x99),
+                      static_cast<char>(0x99), static_cast<char>(0x99),
+                      static_cast<char>(0x9a)});
         }
     }
 
     SUBCASE("nbtview::BinaryWriter::write_string()") {
 
         SUBCASE("Test write_string(\"foo\"), write_string(\"bar\")") {
-            bw.write_string("foo");
-            CHECK(output ==
-                  std::vector<unsigned char>{0x00, 0x03, 'f', 'o', 'o'});
-            bw.write_string("bar");
-            CHECK(output == std::vector<unsigned char>{0x00, 0x03, 'f', 'o',
-                                                       'o', 0x00, 0x03, 'b',
-                                                       'a', 'r'});
+            nbt::BinaryWriter::write_string("foo", output);
+            CHECK(stream_chars(output) ==
+                  std::vector<char>{0x00, 0x03, 'f', 'o', 'o'});
+            nbt::BinaryWriter::write_string("bar", output);
+            CHECK(stream_chars(output) ==
+                  std::vector<char>{0x00, 0x03, 'f', 'o', 'o', 0x00, 0x03, 'b',
+                                    'a', 'r'});
         }
     }
 
     SUBCASE("nbtview::BinaryWriter::write_vector()") {
 
         SUBCASE("Test write_vector with vector<int8_t>") {
-            std::vector<int8_t> values = {0x7b, 0x2d, 0x00, 0x7f};
-            bw.write_vector(values);
-            CHECK(output == std::vector<unsigned char>{0x7b, 0x2d, 0x00, 0x7f});
+            const std::vector<int8_t> values = {0x7b, 0x2d, 0x00, 0x7f};
+            nbt::BinaryWriter::write_vector(values, output);
+            CHECK(stream_chars(output) ==
+                  std::vector<char>{0x7b, 0x2d, 0x00, 0x7f});
         }
 
         SUBCASE("Test write_vector with vector<int16_t>") {
-            std::vector<int16_t> values = {0x12, 0x789a, 0x00, 0x5555};
-            bw.write_vector(values);
-            CHECK(output == std::vector<unsigned char>{0x00, 0x12, 0x78, 0x9a,
-                                                       0x00, 0x00, 0x55, 0x55});
+            const std::vector<int16_t> values = {0x12, 0x789a, 0x00, 0x5555};
+            nbt::BinaryWriter::write_vector(values, output);
+            CHECK(stream_chars(output) ==
+                  std::vector<char>{0x00, 0x12, 0x78, static_cast<char>(0x9a),
+                                    0x00, 0x00, 0x55, 0x55});
         }
 
         SUBCASE("Test write_vector with vector<int32_t>") {
-            std::vector<int32_t> values = {0x01, 0x789abcde};
-            bw.write_vector(values);
-            CHECK(output == std::vector<unsigned char>{0x00, 0x00, 0x00, 0x01,
-                                                       0x78, 0x9a, 0xbc, 0xde});
+            const std::vector<int32_t> values = {0x01, 0x789abcde};
+            nbt::BinaryWriter::write_vector(values, output);
+            CHECK(stream_chars(output) ==
+                  std::vector<char>{
+                      0x00, 0x00, 0x00, 0x01, 0x78, static_cast<char>(0x9a),
+                      static_cast<char>(0xbc), static_cast<char>(0xde)});
         }
 
         SUBCASE("Test write_vector with vector<int64_t>") {
-            std::vector<int64_t> values = {0x1234, 0x0123456789abcdef};
-            bw.write_vector(values);
-            CHECK(output == std::vector<unsigned char>{0x00, 0x00, 0x00, 0x00,
-                                                       0x00, 0x00, 0x12, 0x34,
-                                                       0x01, 0x23, 0x45, 0x67,
-                                                       0x89, 0xab, 0xcd, 0xef});
+            const std::vector<int64_t> values = {0x1234, 0x0123456789abcdef};
+            nbt::BinaryWriter::write_vector(values, output);
+            CHECK(stream_chars(output) ==
+                  std::vector<char>{
+                      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x12, 0x34, 0x01,
+                      0x23, 0x45, 0x67, static_cast<char>(0x89),
+                      static_cast<char>(0xab), static_cast<char>(0xcd),
+                      static_cast<char>(0xef)});
         }
     }
 }

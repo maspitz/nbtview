@@ -4,48 +4,44 @@
 
 #include <algorithm>
 #include <cstdint>
+#include <ostream>
 #include <string_view>
 #include <type_traits>
 #include <vector>
 
 namespace nbtview {
 
-// BinaryWriter writes big-endian binary data to a given output iterator.
-// such as a std::back_inserter or a std::ostreambuf_iterator
-template <class OutputIterator> class BinaryWriter {
-  public:
-    BinaryWriter(OutputIterator &stream) : output(stream) {}
+// BinaryWriter encodes and writes big-endian binary data to a given output
+// stream
 
+class BinaryWriter {
+  public:
     template <typename T>
     typename std::enable_if<std::is_trivial_v<T> && !std::is_array_v<T>,
-                            void>::type
-    write(T value) {
+                            void>::type static write(T value,
+                                                     std::ostream &output) {
         char *bytePointer = reinterpret_cast<char *>(&value);
 #ifndef TARGET_BIG_ENDIAN
         // If targeted architecture is not big endian, do byte swapping and
         // output.
         std::reverse(bytePointer, bytePointer + sizeof(T));
 #endif
-        // Otherwise, just output
-        std::copy(bytePointer, bytePointer + sizeof(T), output);
+        output.write(bytePointer, sizeof(T));
     }
 
-    void write_string(std::string_view s) {
-        uint16_t s_len = s.length();
-        write<uint16_t>(s_len);
-        std::copy(s.begin(), s.end(), output);
+    static void write_string(std::string_view s, std::ostream &output) {
+        write(static_cast<uint16_t>(s.size()), output);
+        output.write(s.data(), s.size());
     }
 
     template <typename T>
-    typename std::enable_if<std::is_trivial_v<T>, void>::type
-    write_vector(const std::vector<T> &values) {
+    typename std::enable_if<std::is_trivial_v<T>, void>::
+        type static write_vector(const std::vector<T> &values,
+                                 std::ostream &output) {
         for (auto val : values) {
-            write(val);
+            write(val, output);
         }
     }
-
-  private:
-    OutputIterator &output;
 };
 
 } // namespace nbtview
