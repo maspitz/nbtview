@@ -37,7 +37,7 @@ class List {
 
     void push_back(int j) { data->push_back(j); }
 
-    TypeCode list_type() { return list_type_; }
+    TypeCode list_type() const { return list_type_; }
 
   private:
     std::unique_ptr<std::vector<Tag>> data;
