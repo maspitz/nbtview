@@ -12,8 +12,6 @@ namespace nbtview {
 
 std::string tag_to_string(const Tag &tag);
 
-// std::vector<unsigned char> serialize_tag(const Tag& tag);
-
 } // namespace nbtview
 
 #endif // TAG_UTILITIES_H

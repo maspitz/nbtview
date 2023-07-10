@@ -76,6 +76,4 @@ std::string tag_to_string(const Tag &tag) {
     return std::visit(StringifyTag(), tag);
 }
 
-// std::vector<unsigned char> serialize_tag(const Tag& tag) { }
-
 } // namespace nbtview
