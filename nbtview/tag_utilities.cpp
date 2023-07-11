@@ -84,4 +84,67 @@ std::string tag_to_string(const Tag &tag) {
 
 std::string tag_to_string(const List &tag) { return StringifyTag{}(tag); }
 std::string tag_to_string(const Compound &tag) { return StringifyTag{}(tag); }
+
+struct StringifyTagType {
+    std::string operator()(const End &x) { return "End"; }
+    std::string operator()(const Compound &x) { return "Compound"; }
+    std::string operator()(const Byte &x) { return "Byte"; }
+    std::string operator()(const Short &x) { return "Short"; }
+    std::string operator()(const Int &x) { return "Int"; }
+    std::string operator()(const Long &x) { return "Long"; }
+    std::string operator()(const Float &x) { return "Float"; }
+    std::string operator()(const Double &x) { return "Double"; }
+    std::string operator()(const Byte_Array &x) { return "Byte_Array"; }
+    std::string operator()(const String &x) { return "String"; }
+    std::string operator()(const List &x) {
+        return std::string("List of ") + tag_code_to_string(x.list_type());
+    }
+    std::string operator()(const Int_Array &x) { return "Int_Array"; }
+    std::string operator()(const Long_Array &x) { return "Long_Array"; }
+};
+
+std::string tag_type_to_string(const Tag &tag) {
+    return std::visit(StringifyTagType(), tag);
+}
+
+std::string tag_type_to_string(const List &tag) {
+    return StringifyTagType{}(tag);
+}
+std::string tag_type_to_string(const Compound &tag) {
+    return StringifyTagType{}(tag);
+}
+
+std::string tag_code_to_string(TypeCode type) {
+    switch (type) {
+    case TypeCode::End:
+        return "End";
+    case TypeCode::Byte:
+        return "Byte";
+    case TypeCode::Short:
+        return "Short";
+    case TypeCode::Int:
+        return "Int";
+    case TypeCode::Long:
+        return "Long";
+    case TypeCode::Float:
+        return "Float";
+    case TypeCode::Double:
+        return "Double";
+    case TypeCode::Byte_Array:
+        return "Byte_Array";
+    case TypeCode::String:
+        return "String";
+    case TypeCode::List:
+        return "List";
+    case TypeCode::Compound:
+        return "Compound";
+    case TypeCode::Int_Array:
+        return "Int_Array";
+    case TypeCode::Long_Array:
+        return "Long_Array";
+    default:
+        return "Unknown Tag Type";
+    }
+}
+
 } // namespace nbtview
