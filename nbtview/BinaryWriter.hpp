@@ -38,6 +38,7 @@ class BinaryWriter {
     typename std::enable_if<std::is_trivial_v<T>, void>::
         type static write_vector(const std::vector<T> &values,
                                  std::ostream &output) {
+        write(static_cast<int32_t>(values.size()), output);
         for (auto val : values) {
             write(val, output);
         }

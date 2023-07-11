@@ -87,7 +87,8 @@ TEST_CASE("nbtview::BinaryWriter functions") {
         SUBCASE("Test write with float") {
             nbt::BinaryWriter::write(-248.75f, output);
             CHECK(stream_chars(output) ==
-                  std::vector<char>{static_cast<char>(0xc3), 0x78, static_cast<char>(0xc0), 0x00});
+                  std::vector<char>{static_cast<char>(0xc3), 0x78,
+                                    static_cast<char>(0xc0), 0x00});
         }
 
         SUBCASE("Test write with double") {
@@ -119,36 +120,54 @@ TEST_CASE("nbtview::BinaryWriter functions") {
         SUBCASE("Test write_vector with vector<int8_t>") {
             const std::vector<int8_t> values = {0x7b, 0x2d, 0x00, 0x7f};
             nbt::BinaryWriter::write_vector(values, output);
-            CHECK(stream_chars(output) ==
-                  std::vector<char>{0x7b, 0x2d, 0x00, 0x7f});
+            CHECK(stream_chars(output) == std::vector<char>{0x00, 0x00, 0x00,
+                                                            0x04, 0x7b, 0x2d,
+                                                            0x00, 0x7f});
         }
 
         SUBCASE("Test write_vector with vector<int16_t>") {
             const std::vector<int16_t> values = {0x12, 0x789a, 0x00, 0x5555};
             nbt::BinaryWriter::write_vector(values, output);
             CHECK(stream_chars(output) ==
-                  std::vector<char>{0x00, 0x12, 0x78, static_cast<char>(0x9a),
-                                    0x00, 0x00, 0x55, 0x55});
+                  std::vector<char>{0x00, 0x00, 0x00, 0x04, 0x00, 0x12, 0x78,
+                                    static_cast<char>(0x9a), 0x00, 0x00, 0x55,
+                                    0x55});
         }
 
         SUBCASE("Test write_vector with vector<int32_t>") {
             const std::vector<int32_t> values = {0x01, 0x789abcde};
             nbt::BinaryWriter::write_vector(values, output);
             CHECK(stream_chars(output) ==
-                  std::vector<char>{
-                      0x00, 0x00, 0x00, 0x01, 0x78, static_cast<char>(0x9a),
-                      static_cast<char>(0xbc), static_cast<char>(0xde)});
+                  std::vector<char>{0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00,
+                                    0x01, 0x78, static_cast<char>(0x9a),
+                                    static_cast<char>(0xbc),
+                                    static_cast<char>(0xde)});
         }
 
         SUBCASE("Test write_vector with vector<int64_t>") {
             const std::vector<int64_t> values = {0x1234, 0x0123456789abcdef};
             nbt::BinaryWriter::write_vector(values, output);
-            CHECK(stream_chars(output) ==
-                  std::vector<char>{
-                      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x12, 0x34, 0x01,
-                      0x23, 0x45, 0x67, static_cast<char>(0x89),
-                      static_cast<char>(0xab), static_cast<char>(0xcd),
-                      static_cast<char>(0xef)});
+            std::vector<char> correct_output{0x00,
+                                             0x00,
+                                             0x00,
+                                             0x02,
+                                             0x00,
+                                             0x00,
+                                             0x00,
+                                             0x00,
+                                             0x00,
+                                             0x00,
+                                             0x12,
+                                             0x34,
+                                             0x01,
+                                             0x23,
+                                             0x45,
+                                             0x67,
+                                             static_cast<char>(0x89),
+                                             static_cast<char>(0xab),
+                                             static_cast<char>(0xcd),
+                                             static_cast<char>(0xef)};
+            CHECK(stream_chars(output) == correct_output);
         }
     }
 }
