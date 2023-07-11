@@ -24,6 +24,10 @@ template <typename T> bool Compound::contains(const std::string &name) const {
     return true;
 }
 
+template <typename T> void Compound::put(const std::string &name, T &&value) {
+    data->insert_or_assign(name, std::move(value));
+}
+
 template <typename T> T &Compound::get(const std::string &name) {
     return std::get<T>(data->at(name));
 }

@@ -39,6 +39,8 @@ class Compound {
 
     template <typename T> bool contains(const std::string &name) const;
 
+    template <typename T> void put(const std::string &name, T &&value);
+
     template <typename T> T &get(const std::string &name);
 
   private:
