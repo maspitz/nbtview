@@ -6,8 +6,9 @@
 #include <variant>
 #include <vector>
 
+#include "Compound.hpp"
+
 #include "Tag.hpp"
-#include "tag_utilities.hpp"
 
 namespace nbtview {
 
@@ -37,16 +38,7 @@ class List {
 
     template <typename T> T &get(size_t pos);
 
-    void push_back(Tag &&t) {
-        if (std::visit(TagID(), t) != list_type_) {
-            auto error_str = std::string("Type mismatch when appending ") +
-                             tag_type_to_string(t) + " " + tag_to_string(t) +
-                             " to " + tag_type_to_string(*this) + " " +
-                             tag_to_string(*this);
-            throw std::runtime_error(error_str);
-        }
-        data->push_back(std::move(t));
-    }
+    void push_back(Tag &&t);
 
     TypeCode list_type() const { return list_type_; }
 
