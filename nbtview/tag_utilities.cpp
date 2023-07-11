@@ -76,4 +76,12 @@ std::string tag_to_string(const Tag &tag) {
     return std::visit(StringifyTag(), tag);
 }
 
+// tag_to_string(const Tag &tag) cannot be invoked
+// on a non-const List or Compound because the implicit conversion to a const
+// Tag& would require copy construction of a List or Compound, which we have
+// intentionally left deleted (due to their noncopyable member data).  Instead,
+// simply allow override resolution to handle those situations:
+
+std::string tag_to_string(const List &tag) { return StringifyTag{}(tag); }
+std::string tag_to_string(const Compound &tag) { return StringifyTag{}(tag); }
 } // namespace nbtview
