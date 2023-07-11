@@ -69,6 +69,27 @@ TEST_CASE("nbtview::Serializer functions") {
         CHECK(stream_chars(output) == v_root_string_tag);
     }
 
+    SUBCASE("Serialize list tags") {
+        SUBCASE("List tag of longs") {
+            nbt::Tag list_tag(nbt::List{nbt::TypeCode::Long});
+            nbt::List &myList = std::get<nbt::List>(list_tag);
+            myList.push_back(nbt::Long(10));
+            myList.push_back(nbt::Long(15));
+            nbt::Serializer::serialize(list_tag, "A", output);
+            auto v_empty_compound_tag = std::vector<char>{
+                0x09,                   // TypeCode::List
+                0x00, 0x01,             // Name length
+                0x41,                   // "A"
+                0x04,                   // TypeCode::Long
+                0x00, 0x00, 0x00, 0x02, // list length of 2
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0a, // 10L
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0f  // 15L
+
+            };
+            CHECK(stream_chars(output) == v_empty_compound_tag);
+        }
+    }
+
     SUBCASE("Serialize compound tags") {
         SUBCASE("Empty compound tag (unnamed)") {
             nbt::Tag empty_compound(nbt::Compound{});
