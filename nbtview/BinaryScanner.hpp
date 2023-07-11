@@ -71,8 +71,9 @@ namespace detail {
     }
 
     template <typename T>
-    [[nodiscard]] T load_big_endian(
-        const unsigned char *const buf) noexcept requires std::is_trivial_v<T> {
+    [[nodiscard]] T load_big_endian(const unsigned char *const buf) noexcept
+        requires std::is_trivial_v<T>
+    {
         T res;
         std::reverse_copy(buf, buf + sizeof res,
                           reinterpret_cast<unsigned char *>(&res));
