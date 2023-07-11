@@ -1,6 +1,6 @@
 find_package(ZLIB REQUIRED)
 
-add_library(nbtview STATIC nbtview.cpp Compound.cpp List.cpp BinaryScanner.cpp BinaryDeserializer.cpp NbtReader.cpp Tag.cpp tag_utilities.cpp)
+add_library(nbtview STATIC nbtview.cpp BinaryDeserializer.cpp NbtReader.cpp tag_utilities.cpp)
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(nbtview ZLIB::ZLIB)
