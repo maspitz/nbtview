@@ -3,17 +3,46 @@
 #ifndef NBT_TAG_H_
 #define NBT_TAG_H_
 
+#include <cstdint>
+#include <string>
 #include <variant>
-
-#include "nbtview.hpp"
+#include <vector>
 
 namespace nbtview {
+
+using End = unsigned char;
+using Byte = int8_t;
+using Short = int16_t;
+using Int = int32_t;
+using Long = int64_t;
+using Float = float;
+using Double = double;
+using Byte_Array = std::vector<Byte>;
+using String = std::string;
+using Int_Array = std::vector<Int>;
+using Long_Array = std::vector<Long>;
 
 class List;
 class Compound;
 
 using Tag = std::variant<End, Byte, Short, Int, Long, Float, Double, Byte_Array,
                          String, List, Compound, Int_Array, Long_Array>;
+
+enum class TypeCode : char {
+    End = 0,
+    Byte = 1,
+    Short = 2,
+    Int = 3,
+    Long = 4,
+    Float = 5,
+    Double = 6,
+    Byte_Array = 7,
+    String = 8,
+    List = 9,
+    Compound = 10,
+    Int_Array = 11,
+    Long_Array = 12
+};
 
 struct TagID {
     auto operator()(const End &x) { return TypeCode::End; }
