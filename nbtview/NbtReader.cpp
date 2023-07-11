@@ -79,7 +79,7 @@ Tag NbtReader::read_from_file(const std::string &filename) {
     return read_from_stream(file);
 }
 
-Tag NbtReader::read_from_stream(std::ifstream &input) {
+Tag NbtReader::read_from_stream(std::istream &input) {
     // Get stream size
     input.seekg(0, input.end);
     std::streampos n_bytes = input.tellg();
