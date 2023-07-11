@@ -4,7 +4,7 @@
 #include <variant>
 #include <vector>
 
-#include "Compound_fwd.hpp"
+#include "Compound.hpp"
 #include "List.hpp"
 #include "Tag.hpp"
 #include "tag_utilities.hpp"

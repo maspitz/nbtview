@@ -9,6 +9,7 @@
 #include "Tag.hpp"
 
 class List;
+class Compound;
 
 namespace nbtview {
 
