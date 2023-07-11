@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <fstream>
 #include <iostream>
+#include <istream>
 #include <string>
 #include <utility>
 #include <variant>
