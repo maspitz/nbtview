@@ -41,16 +41,18 @@ using Long_Array = std::vector<Long>;
 class List;
 class Compound;
 
-//! Tag holds the value of an NBT tag.
-
-//! If the NBT tag has a name, it is stored in the Compound tag that contains
-//! it. The root tag's name (if it has one) is not stored.
-//!
-//! You can use the functions provided by <a
-//! href="https://en.cppreference.com/w/cpp/header/variant">&lt;variant&gt;</a>
-//! to access a Tag's type and value. However, because you usually know what
-//! type you expect a given tag to be, it is generally more convenient to get an
-//! NBT value of that type via the Compound::get<T> method.
+/**
+ *  @brief Tag holds the value of an NBT tag.
+ *
+ *  If the NBT tag has a name, it is stored in the Compound tag that contains
+ *  it. The root tag's name (if it has one) is not stored.
+ *
+ *  You can use the functions provided by <a
+ *  href="https://en.cppreference.com/w/cpp/header/variant">&lt;variant&gt;</a>
+ *  to access a Tag's type and value. However, because you usually know what
+ *  type you expect a given tag to be, it is generally more convenient to get an
+ *  NBT value of that type via the Compound::get<T> method.
+ */
 using Tag = std::variant<End, Byte, Short, Int, Long, Float, Double, Byte_Array,
                          String, List, Compound, Int_Array, Long_Array>;
 
@@ -71,6 +73,7 @@ enum class TypeCode : char {
     Long_Array = 12
 };
 
+//! TagID is used with std::visit to get the TypeCode of a given Tag
 struct TagID {
     auto operator()(const End &x) { return TypeCode::End; }
     auto operator()(const Byte &x) { return TypeCode::Byte; }
@@ -87,14 +90,54 @@ struct TagID {
     auto operator()(const Long_Array &x) { return TypeCode::Long_Array; }
 };
 
-/*! \brief An NBT Compound tag
+/**
+ * @brief  Compound is an associative container that holds Tags by their string
+ * names.
  *
- * A Compound object maintains a map with strings for keys and other Tags for
- * values.
+ *  The most typical use is to retrieve a reference
+ *  to an existing tag of a given type using Compound::get, which can then be
+ *  read or modified in place. New tags of a given type can be added via
+ *  Compound::put<T>.
+ *
+ *  For less typical use, Compound does provide access via iterators as well
+ *  as more access to Tag references with Compound::at() and in-place
+ *  construction of elements with Compound::emplace().
  */
 class Compound {
   public:
     Compound() : data(std::make_unique<std::map<std::string, Tag>>()) {}
+
+    /**
+     *  @brief Tests whether the Compound contains a particular Tag
+     *
+     *  @tparam T the type of the Tag's data
+     *  @param name the name of the Tag
+     *  @return True only if the Compound contains a tag with both the correct
+     * name and type
+     */
+    template <typename T> bool contains(const std::string &name) const;
+
+    /**
+     * @brief   Provides access to the data of a particular %Tag in the
+     * %Compound
+     *
+     * @tparam T the type of the data to be accessed
+     * @param name the name of the %Tag to be accessed
+     * @return  Read/write reference to a %Tag's data.
+     * @throw  std::out_of_range  If @a name is not present.
+     * @throw  std::bad_variant_access  If @a T is the wrong type.
+     */
+    template <typename T> T &get(const std::string &name);
+
+    /**
+     *  @brief Assigns a value to a particular %Tag in the %Compound, inserting
+     * a new %Tag if no %Tag by that name already exists.
+     *
+     *  @tparam T the type of the data to be assigned
+     *  @param name the name of the tag to be assigned
+     *  @param value the value of the data to be assigned
+     */
+    template <typename T> void put(const std::string &name, T &&value);
 
     using iterator = std::map<std::string, Tag>::iterator;
     using const_iterator = std::map<std::string, Tag>::const_iterator;
@@ -118,20 +161,38 @@ class Compound {
         return data->emplace(std::forward<Args>(args)...);
     }
 
-    template <typename T> bool contains(const std::string &name) const;
-
-    template <typename T> void put(const std::string &name, T &&value);
-
-    template <typename T> T &get(const std::string &name);
-
   private:
     std::unique_ptr<std::map<std::string, Tag>> data;
 };
 
+/**
+ *  @brief List is a sequence container that holds Tags of a particular type.
+ *
+ *  The type of values being contained is determined at constuction and is
+ *  available from List::list_type()
+ *
+ *  List exposes access to its Tag contents via methods analogous to
+ *  std::vector.
+ *
+ *  In addition, if you already know the list's value type, you may want to
+ *  access elements via List::get<T>(pos).
+ */
 class List {
   public:
     List(TypeCode type)
         : data(std::make_unique<std::vector<Tag>>()), list_type_(type) {}
+
+    /**
+     *  @brief  Provides access to the data contained in the %List.
+     *  @tparam T The value type of the element to be accessed.
+     *  @param pos The index of the element to be accessed.
+     *  @return  Read/write reference to a Tag's value data.
+     *  @throw  std::out_of_range  If @a pos is an invalid index.
+     *  @throw  std::bad_variant_access  If @a T is the wrong type.
+     */
+    template <typename T> T &get(size_t pos);
+
+    TypeCode list_type() const { return list_type_; }
 
     auto begin() { return data->begin(); }
     auto end() { return data->end(); }
@@ -152,11 +213,7 @@ class List {
         data->emplace_back(std::forward<Args>(args)...);
     }
 
-    template <typename T> T &get(size_t pos);
-
     void push_back(Tag &&t);
-
-    TypeCode list_type() const { return list_type_; }
 
   private:
     std::unique_ptr<std::vector<Tag>> data;
