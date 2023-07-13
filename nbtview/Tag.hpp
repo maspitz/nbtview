@@ -13,26 +13,48 @@
 #include <variant>
 #include <vector>
 
+//! Utilities to read, write, and manipulate NBT data
 namespace nbtview {
 
+//! NBT End tag: marks the end of a Compound Tag's payload
 using End = unsigned char;
+//! 8-bit signed integer
 using Byte = int8_t;
+//! 16-bit signed integer
 using Short = int16_t;
+//! 32-bit signed integer
 using Int = int32_t;
+//! 64-bit signed integer
 using Long = int64_t;
+//! 32-bit floating point data
 using Float = float;
+//! 64-bit floating point data
 using Double = double;
+//! array of Byte
 using Byte_Array = std::vector<Byte>;
+//! string of characters (supports UTF-8)
 using String = std::string;
+//! array of Int
 using Int_Array = std::vector<Int>;
+//! array of Long
 using Long_Array = std::vector<Long>;
-
 class List;
 class Compound;
 
+//! Tag holds the value of an NBT tag.
+
+//! If the NBT tag has a name, it is stored in the Compound tag that contains
+//! it. The root tag's name (if it has one) is not stored.
+//!
+//! You can use the functions provided by <a
+//! href="https://en.cppreference.com/w/cpp/header/variant">&lt;variant&gt;</a>
+//! to access a Tag's type and value. However, because you usually know what
+//! type you expect a given tag to be, it is generally more convenient to get an
+//! NBT value of that type via the Compound::get<T> method.
 using Tag = std::variant<End, Byte, Short, Int, Long, Float, Double, Byte_Array,
                          String, List, Compound, Int_Array, Long_Array>;
 
+//! TypeCode describes the type of an NBT tag.
 enum class TypeCode : char {
     End = 0,
     Byte = 1,
