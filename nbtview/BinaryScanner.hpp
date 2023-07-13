@@ -1,4 +1,13 @@
-// BinaryScanner.hpp
+/**
+ * @file BinaryScanner.hpp
+ * @brief Read big-endian numeric values, arrays, and strings
+ * @author Michael Spitznagel
+ * @copyright Copyright 2023 Michael Spitznagel. Released under the Boost
+ * Software License 1.0
+ *
+ * https://github.com/maspitz/nbtview
+ */
+
 #ifndef BINARYSCANNER_H_
 #define BINARYSCANNER_H_
 
@@ -71,9 +80,8 @@ namespace detail {
     }
 
     template <typename T>
-    [[nodiscard]] T load_big_endian(const unsigned char *const buf) noexcept
-        requires std::is_trivial_v<T>
-    {
+    [[nodiscard]] T load_big_endian(
+        const unsigned char *const buf) noexcept requires std::is_trivial_v<T> {
         T res;
         std::reverse_copy(buf, buf + sizeof res,
                           reinterpret_cast<unsigned char *>(&res));

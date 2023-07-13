@@ -1,4 +1,12 @@
-// Serializer.hpp
+/**
+ * @file Serializer.hpp
+ * @brief Methods for binary serialization of NBT data
+ * @author Michael Spitznagel
+ * @copyright Copyright 2023 Michael Spitznagel. Released under the Boost
+ * Software License 1.0
+ *
+ * https://github.com/maspitz/nbtview
+ */
 
 #ifndef SERIALIZER_H_
 #define SERIALIZER_H_

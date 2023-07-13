@@ -1,4 +1,12 @@
-// Binarydeserializer.hpp
+/**
+ * @file BinaryDeserializer.hpp
+ * @brief Read binary encoded NBT data
+ * @author Michael Spitznagel
+ * @copyright Copyright 2023 Michael Spitznagel. Released under the Boost
+ * Software License 1.0
+ *
+ * https://github.com/maspitz/nbtview
+ */
 
 #ifndef BINARYDESERIALIZER_H_
 #define BINARYDESERIALIZER_H_

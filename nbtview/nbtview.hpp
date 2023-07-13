@@ -1,4 +1,12 @@
-// nbtview.hpp
+/**
+ * @file nbtview.hpp
+ * @brief Find a named tag without decoding NBT structure
+ * @author Michael Spitznagel
+ * @copyright Copyright 2023 Michael Spitznagel. Released under the Boost
+ * Software License 1.0
+ *
+ * https://github.com/maspitz/nbtview
+ */
 
 #ifndef NBTVIEW_H_
 #define NBTVIEW_H_

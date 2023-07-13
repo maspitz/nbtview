@@ -1,4 +1,12 @@
-// utils.hpp
+/**
+ * @file utils.hpp
+ * @brief Convert strings and vectors to quoted, human-readable form
+ * @author Michael Spitznagel
+ * @copyright Copyright 2023 Michael Spitznagel. Released under the Boost
+ * Software License 1.0
+ *
+ * https://github.com/maspitz/nbtview
+ */
 
 #ifndef NBT_UTILS_H_
 #define NBT_UTILS_H_

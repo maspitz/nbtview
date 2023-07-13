@@ -1,4 +1,13 @@
-// BinaryWriter.hpp
+/**
+ * @file BinaryWriter.hpp
+ * @brief Write big-endian numeric values, arrays, and strings
+ * @author Michael Spitznagel
+ * @copyright Copyright 2023 Michael Spitznagel. Released under the Boost
+ * Software License 1.0
+ *
+ * https://github.com/maspitz/nbtview
+ */
+
 #ifndef BINARYWRITER_H_
 #define BINARYWRITER_H_
 

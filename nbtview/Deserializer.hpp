@@ -1,4 +1,12 @@
-// Deserializer.hpp
+/**
+ * @file Deserializer.hpp
+ * @brief Abstract Interface for the deserialization of NBT data
+ * @author Michael Spitznagel
+ * @copyright Copyright 2023 Michael Spitznagel. Released under the Boost
+ * Software License 1.0
+ *
+ * https://github.com/maspitz/nbtview
+ */
 
 #include <string>
 #include <utility>
