@@ -6,8 +6,6 @@
 #include <string_view>
 #include <vector>
 
-#include "Compound.hpp"
-#include "List.hpp"
 #include "Serializer.hpp"
 #include "Tag.hpp"
 #include "nbtview.hpp"

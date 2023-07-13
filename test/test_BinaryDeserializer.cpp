@@ -1,11 +1,12 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+
+#include <vector>
+
 #include "BinaryDeserializer.hpp"
 #include "BinaryScanner.hpp"
-#include "Compound.hpp"
-#include "List.hpp"
+#include "Tag.hpp"
 #include "doctest.h"
 #include "nbtview.hpp"
-#include <vector>
 
 namespace nbt = nbtview;
 

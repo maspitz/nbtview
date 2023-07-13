@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 
-#include "Compound.hpp"
+#include "Tag.hpp"
 
 namespace nbtview {
 class NbtReader {

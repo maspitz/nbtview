@@ -5,8 +5,6 @@
 #include <variant>
 #include <vector>
 
-#include "Compound.hpp"
-#include "List.hpp"
 #include "Tag.hpp"
 
 #include "BinaryDeserializer.hpp"

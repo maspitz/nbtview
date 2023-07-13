@@ -4,9 +4,8 @@
 #include <variant>
 #include <vector>
 
-#include "Compound.hpp"
-#include "List.hpp"
 #include "NbtReader.hpp"
+#include "Tag.hpp"
 #include "nbtview.hpp"
 
 namespace nbt = nbtview;

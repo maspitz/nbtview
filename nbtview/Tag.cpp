@@ -1,10 +1,10 @@
-// List.cpp
+// Tag.cpp
 
+#include <stdexcept>
+#include <string>
 #include <variant>
 #include <vector>
 
-#include "Compound.hpp"
-#include "List.hpp"
 #include "Tag.hpp"
 #include "tag_utilities.hpp"
 

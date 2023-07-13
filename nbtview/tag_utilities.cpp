@@ -4,8 +4,6 @@
 #include <variant>
 #include <vector>
 
-#include "Compound.hpp"
-#include "List.hpp"
 #include "Tag.hpp"
 #include "tag_utilities.hpp"
 #include "utils.hpp"

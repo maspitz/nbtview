@@ -3,9 +3,8 @@
 
 #include "doctest.h"
 
-#include "Compound.hpp"
-#include "List.hpp"
 #include "NbtReader.hpp"
+#include "Tag.hpp"
 #include "nbtview.hpp"
 
 namespace nbt = nbtview;

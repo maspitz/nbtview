@@ -10,8 +10,6 @@
 #include <vector>
 
 #include "BinaryWriter.hpp"
-#include "Compound.hpp"
-#include "List.hpp"
 #include "Tag.hpp"
 
 namespace nbtview {
