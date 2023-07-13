@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.16)
 project(
   nbtview
   VERSION 0.1.0
-  DESCRIPTION "A C++ library for fast, read-only access to data in the NBT format"
+  DESCRIPTION "A C++ library to read and write data in the NBT format"
   HOMEPAGE_URL "https://github.com/maspitz/nbtview"
   LANGUAGES CXX
 )
@@ -28,6 +28,26 @@ enable_testing()
 add_subdirectory(nbtview)
 #add_subdirectory(doc)
 add_subdirectory(apps)
+
+# look for Doxygen package
+find_package(Doxygen)
+
+if(DOXYGEN_FOUND)
+
+#  set(DOXYGEN_SOURCE_BROWSER YES)
+#  set(DOXYGEN_EXTRACT_PRIVATE YES)
+  set(DOXYGEN_GENERATE_XML YES)
+  set(DOXYGEN_XML_OUTPUT "xml")
+  set(DOXYGEN_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/doxygen")
+
+  # this target will only be built if specifically requested:
+  # run "make docs" to generate the documentation
+  doxygen_add_docs(
+    docs
+    "${PROJECT_SOURCE_DIR}/nbtview"
+    COMMENT "Generate documentation for nbtview."
+  )
+endif(DOXYGEN_FOUND)
 
 add_executable(test_BinaryScanner test/test_BinaryScanner.cpp)
 target_link_libraries(test_BinaryScanner nbtview)
