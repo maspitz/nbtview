@@ -1,7 +1,12 @@
-// Tag.hpp
-
-/// \file
-/// here is my file
+/**
+ * @file Tag.hpp
+ * @brief Interfaces for read/write access to NBT tag data
+ * @author Michael Spitznagel
+ * @copyright Copyright 2023 Michael Spitznagel. Released under the Boost
+ * Software License 1.0
+ *
+ * https://github.com/maspitz/nbtview
+ */
 
 #ifndef NBT_TAG_H_
 #define NBT_TAG_H_
@@ -56,7 +61,7 @@ class Compound;
 using Tag = std::variant<End, Byte, Short, Int, Long, Float, Double, Byte_Array,
                          String, List, Compound, Int_Array, Long_Array>;
 
-//! TypeCode describes the type of an NBT tag.
+//! TypeCode is a one-byte encoding of the data type of an NBT tag.
 enum class TypeCode : char {
     End = 0,
     Byte = 1,
