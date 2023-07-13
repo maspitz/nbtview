@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+# Compilation Database
+compile_commands.json
+
+# CMake build directory
+build
+
+# working notes
+NOTES.txt
