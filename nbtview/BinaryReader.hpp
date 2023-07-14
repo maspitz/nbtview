@@ -1,5 +1,5 @@
 /**
- * @file BinaryScanner.hpp
+ * @file BinaryReader.hpp
  * @brief Read big-endian numeric values, arrays, and strings
  * @author Michael Spitznagel
  * @copyright Copyright 2023 Michael Spitznagel. Released under the Boost
@@ -8,8 +8,8 @@
  * https://github.com/maspitz/nbtview
  */
 
-#ifndef BINARYSCANNER_H_
-#define BINARYSCANNER_H_
+#ifndef BINARYREADER_H_
+#define BINARYREADER_H_
 
 #include <algorithm>
 #include <array>
@@ -28,8 +28,8 @@ class UnexpectedEndOfInputException : public std::runtime_error {
         : std::runtime_error("Unexpected end of input") {}
 };
 
-// BinaryScanner scans and reads big-endian binary data.
-class BinaryScanner {
+// BinaryReader scans and reads big-endian binary data.
+class BinaryReader {
   private:
     const std::vector<unsigned char> read_data;
     const unsigned char *const read_begin;
@@ -38,7 +38,7 @@ class BinaryScanner {
     const size_t data_size;
 
   public:
-    BinaryScanner(std::vector<unsigned char> bytes)
+    BinaryReader(std::vector<unsigned char> bytes)
         : read_data(std::move(bytes)), read_begin(read_data.data()),
           read_end(read_begin + read_data.size()), read_ptr(read_begin),
           data_size(read_end - read_begin) {}
@@ -90,7 +90,7 @@ namespace detail {
 
 } // namespace detail
 
-template <typename T> T BinaryScanner::get_value() {
+template <typename T> T BinaryReader::get_value() {
     if (read_pos() + sizeof(T) > data_size) {
         throw UnexpectedEndOfInputException();
     }
@@ -101,7 +101,7 @@ template <typename T> T BinaryScanner::get_value() {
 
 // swap_endian in-place method
 template <typename Element_Type>
-std::vector<Element_Type> BinaryScanner::get_vector() {
+std::vector<Element_Type> BinaryReader::get_vector() {
     auto array_length = get_value<int32_t>();
     if (array_length < 0) {
         throw std::runtime_error("Negative array length encountered");
@@ -123,7 +123,7 @@ std::vector<Element_Type> BinaryScanner::get_vector() {
 
 // load_big_endian method
 template <typename Element_Type>
-std::vector<Element_Type> BinaryScanner::get_vector2() {
+std::vector<Element_Type> BinaryReader::get_vector2() {
     auto array_length = get_value<int32_t>();
     if (array_length < 0) {
         throw std::runtime_error("Negative array length encountered");
@@ -143,4 +143,4 @@ std::vector<Element_Type> BinaryScanner::get_vector2() {
 
 } // namespace nbtview
 
-#endif // BINARYSCANNER_H_
+#endif // BINARYREADER_H_

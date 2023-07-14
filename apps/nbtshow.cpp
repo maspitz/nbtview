@@ -73,7 +73,7 @@ int main(int argc, const char *argv[]) {
         print_long_tag(bytes, tag_name);
     }
 
-    auto bscr = nbtview::BinaryScanner(bytes);
+    auto bscr = nbtview::BinaryReader(bytes);
 
     */
 

@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "BinaryDeserializer.hpp"
-#include "BinaryScanner.hpp"
+#include "BinaryReader.hpp"
 #include "Tag.hpp"
 #include "doctest.h"
 #include "nbtview.hpp"

@@ -8,12 +8,12 @@
 #include "Tag.hpp"
 
 #include "BinaryDeserializer.hpp"
-#include "BinaryScanner.hpp"
+#include "BinaryReader.hpp"
 
 namespace nbtview {
 
 BinaryDeserializer::BinaryDeserializer(std::vector<unsigned char> bytes)
-    : scanner(std::make_unique<BinaryScanner>(std::move(bytes))) {}
+    : scanner(std::make_unique<BinaryReader>(std::move(bytes))) {}
 
 BinaryDeserializer::~BinaryDeserializer() = default;
 

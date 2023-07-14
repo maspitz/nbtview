@@ -20,11 +20,11 @@
 
 namespace nbtview {
 
-class BinaryScanner;
+class BinaryReader;
 
 class BinaryDeserializer : public Deserializer {
   private:
-    std::unique_ptr<BinaryScanner> scanner;
+    std::unique_ptr<BinaryReader> scanner;
 
   public:
     BinaryDeserializer(std::vector<unsigned char> bytes);
