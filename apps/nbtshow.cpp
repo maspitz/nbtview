@@ -5,7 +5,6 @@
 #include <iostream>
 #include <vector>
 
-#include "NbtReader.hpp"
 #include "Tag.hpp"
 #include "nbtview.hpp"
 #include "tag_utilities.hpp"
