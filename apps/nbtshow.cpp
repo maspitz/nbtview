@@ -1,6 +1,7 @@
 // nbtshow.cpp
 
 #include <cstdint>
+#include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <vector>
@@ -54,7 +55,7 @@ void print_long_tag(std::vector<unsigned char> &data, const std::string &name) {
 int main(int argc, const char *argv[]) {
     if (argc < 2) {
         std::cerr << "Usage: " << argv[0] << " filename" << std::endl;
-        return -1;
+        return EXIT_FAILURE;
     }
     std::string filename(argv[1]);
     std::ifstream infile(filename);
@@ -63,5 +64,5 @@ int main(int argc, const char *argv[]) {
     std::cout << "root_name: " << root_name << std::endl;
     std::cout << "root_tag: " << root_tag << std::endl;
 
-    return 0;
+    return EXIT_SUCCESS;
 }
