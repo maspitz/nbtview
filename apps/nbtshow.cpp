@@ -1,6 +1,7 @@
 // nbtshow.cpp
 
 #include <cstdint>
+#include <fstream>
 #include <iostream>
 #include <vector>
 
@@ -77,7 +78,10 @@ int main(int argc, const char *argv[]) {
 
     */
 
-    auto root_tag = nbt::NbtReader::read_from_file(filename);
+    std::ifstream infile(filename);
+    auto [root_name, root_tag] = nbt::read_binary(infile);
+    //    auto root_tag = nbt::NbtReader::read_from_file(filename);
+    std::cout << "root_name: " << root_name << std::endl;
     std::cout << "root_tag: " << nbt::tag_to_string(root_tag) << std::endl;
 
     return 0;
