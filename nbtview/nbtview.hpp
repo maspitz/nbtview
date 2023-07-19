@@ -18,6 +18,9 @@
 
 #include "Tag.hpp"
 
+class List;
+class Compound;
+
 namespace nbtview {
 
 // Attempts to find a named tag in a range of NBT data by searching

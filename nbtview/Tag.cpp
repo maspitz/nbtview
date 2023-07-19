@@ -5,8 +5,8 @@
 #include <variant>
 #include <vector>
 
+#include "Stringifier.hpp"
 #include "Tag.hpp"
-#include "tag_utilities.hpp"
 
 namespace nbtview {
 

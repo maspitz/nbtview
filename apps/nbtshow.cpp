@@ -5,9 +5,9 @@
 #include <iostream>
 #include <vector>
 
+#include "Stringifier.hpp"
 #include "Tag.hpp"
 #include "nbtview.hpp"
-#include "tag_utilities.hpp"
 
 namespace nbt = nbtview;
 

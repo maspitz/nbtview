@@ -1,11 +1,11 @@
-// tag_utilities.cpp
+// stringifier.cpp
 
 #include <string>
 #include <variant>
 #include <vector>
 
+#include "Stringifier.hpp"
 #include "Tag.hpp"
-#include "tag_utilities.hpp"
 #include "utils.hpp"
 
 namespace nbtview {
