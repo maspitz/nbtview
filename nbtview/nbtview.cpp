@@ -7,6 +7,7 @@
 #include "zlib_utils.hpp"
 
 #include "BinaryDeserializer.hpp"
+#include "Serializer.hpp"
 #include "Tag.hpp"
 #include "nbtview.hpp"
 
@@ -55,6 +56,24 @@ std::pair<std::string, Tag> read_binary(std::vector<unsigned char> bytes) {
     auto root_data = reader.deserialize();
     auto &root_name = root_data.first;
     return {root_name, std::move(root_data.second)};
+}
+
+void write_binary(const Tag &tag, std::string_view name, std::ostream &output) {
+    BinaryWriter::write(std::visit(TagID(), tag), output);
+    BinaryWriter::write_string(name, output);
+    std::visit(detail::PayloadSerializer{output}, tag);
+}
+void write_binary(const Compound &tag, std::string_view name,
+                  std::ostream &output) {
+    BinaryWriter::write(TagID()(tag), output);
+    BinaryWriter::write_string(name, output);
+    detail::PayloadSerializer{output}(tag);
+}
+void write_binary(const List &tag, std::string_view name,
+                  std::ostream &output) {
+    BinaryWriter::write(TagID()(tag), output);
+    BinaryWriter::write_string(name, output);
+    detail::PayloadSerializer{output}(tag);
 }
 
 } // namespace nbtview

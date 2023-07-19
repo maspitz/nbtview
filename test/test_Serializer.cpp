@@ -6,7 +6,6 @@
 #include <string_view>
 #include <vector>
 
-#include "Serializer.hpp"
 #include "Tag.hpp"
 #include "nbtview.hpp"
 
@@ -36,20 +35,20 @@ std::vector<char> stream_chars(std::ostringstream &stream) {
     return std::vector<char>(outview.begin(), outview.end());
 }
 
-TEST_CASE("nbtview::Serializer functions") {
+TEST_CASE("nbtview::write_binary functions") {
     std::ostringstream output(std::ios::binary);
 
     SUBCASE("Serialize simple value tags") {
 
         SUBCASE("Byte tag (unnamed)") {
-            nbt::Serializer::serialize(nbt::Byte(0x17), "", output);
+            nbt::write_binary(nbt::Byte(0x17), "", output);
             CHECK(stream_chars(output) ==
                   std::vector<char>{static_cast<char>(nbt::TypeCode::Byte),
                                     0x00, 0x00, 0x17});
         }
 
         SUBCASE("Byte tag (named)") {
-            nbt::Serializer::serialize(nbt::Byte(0x17), "MyByte", output);
+            nbt::write_binary(nbt::Byte(0x17), "MyByte", output);
             CHECK(stream_chars(output) ==
                   std::vector<char>{static_cast<char>(nbt::TypeCode::Byte),
                                     0x00, 0x06, 'M', 'y', 'B', 'y', 't', 'e',
@@ -59,7 +58,7 @@ TEST_CASE("nbtview::Serializer functions") {
 
     SUBCASE("Serialize string tags") {
         nbt::Tag empty_compound(nbt::String{"Hello"});
-        nbt::Serializer::serialize(empty_compound, "Tag", output);
+        nbt::write_binary(empty_compound, "Tag", output);
         auto v_root_string_tag =
             std::vector<char>{0x08, 0x00, 0x03, 'T', 'a', 'g', 0x00,
                               0x05, 'H',  'e',  'l', 'l', 'o'};
@@ -73,7 +72,7 @@ TEST_CASE("nbtview::Serializer functions") {
             nbt::List &myList = std::get<nbt::List>(list_tag);
             myList.push_back(nbt::Long(10));
             myList.push_back(nbt::Long(15));
-            nbt::Serializer::serialize(list_tag, "A", output);
+            nbt::write_binary(list_tag, "A", output);
             auto v_empty_compound_tag = std::vector<char>{
                 0x09,                   // TypeCode::List
                 0x00, 0x01,             // Name length
@@ -91,7 +90,7 @@ TEST_CASE("nbtview::Serializer functions") {
     SUBCASE("Serialize compound tags") {
         SUBCASE("Empty compound tag (unnamed)") {
             nbt::Compound empty_compound;
-            nbt::Serializer::serialize(empty_compound, "", output);
+            nbt::write_binary(empty_compound, "", output);
             auto v_empty_compound_tag =
                 std::vector<char>{0x0a, 0x00, 0x00, 0x00};
             CHECK(stream_chars(output) == v_empty_compound_tag);
@@ -117,11 +116,11 @@ TEST_CASE("nbtview::Serializer functions") {
             0x00                                             // End
         };
         SUBCASE("Compound tag with float #1") {
-            nbt::Serializer::serialize(ham, "ham", output);
+            nbt::write_binary(ham, "ham", output);
             CHECK(stream_chars(output) == v_ham);
         }
         SUBCASE("Compound tag with float #2") {
-            nbt::Serializer::serialize(egg, "egg", output);
+            nbt::write_binary(egg, "egg", output);
             CHECK(stream_chars(output) == v_egg);
         }
         SUBCASE("Nested Compound tag") {
@@ -139,7 +138,7 @@ TEST_CASE("nbtview::Serializer functions") {
             v_nested.insert(v_nested.end(), v_ham.begin(), v_ham.end());
             v_nested.push_back(0x00); // End
 
-            nbt::Serializer::serialize(nested, "nested", output);
+            nbt::write_binary(nested, "nested", output);
             CHECK(stream_chars(output) == v_nested);
         }
     }

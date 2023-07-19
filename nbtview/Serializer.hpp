@@ -65,27 +65,5 @@ namespace detail {
 
 } // namespace detail
 
-class Serializer {
-  public:
-    static void serialize(const Tag &t, std::string_view name,
-                          std::ostream &output) {
-        BinaryWriter::write(std::visit(TagID(), t), output);
-        BinaryWriter::write_string(name, output);
-        std::visit(detail::PayloadSerializer{output}, t);
-    }
-    static void serialize(const Compound &t, std::string_view name,
-                          std::ostream &output) {
-        BinaryWriter::write(TagID()(t), output);
-        BinaryWriter::write_string(name, output);
-        detail::PayloadSerializer{output}(t);
-    }
-    static void serialize(const List &t, std::string_view name,
-                          std::ostream &output) {
-        BinaryWriter::write(TagID()(t), output);
-        BinaryWriter::write_string(name, output);
-        detail::PayloadSerializer{output}(t);
-    }
-};
-
 } // namespace nbtview
 #endif // SERIALIZER_H_

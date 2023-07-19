@@ -62,6 +62,24 @@ std::pair<std::string, Tag> read_binary(std::vector<unsigned char> bytes);
  * @}
  * */
 
+/** @name Output interface
+ * @{
+ * @brief Serialize to binary encoded output
+ * */
+/**
+ * @brief Serializes to a stream.
+ * @param t The tag to be serialized.
+ * @param name The name specified for the tag.
+ * @param output An ostream opened with ios::binary.
+ * */
+void write_binary(const Tag &tag, std::string_view name, std::ostream &output);
+void write_binary(const Compound &tag, std::string_view name,
+                  std::ostream &output);
+void write_binary(const List &tag, std::string_view name, std::ostream &output);
+/**
+ * @}
+ * */
+
 } // namespace nbtview
 
 #endif // NBTVIEW_H_
