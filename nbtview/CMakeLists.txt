@@ -7,4 +7,4 @@ target_link_libraries(nbtview ZLIB::ZLIB)
 
 install(TARGETS nbtview DESTINATION lib)
 
-install(FILES nbtview.hpp Tag.hpp Serializer.hpp Stringifier.hpp DESTINATION include)
+install(FILES nbtview.hpp Tag.hpp DESTINATION include)
