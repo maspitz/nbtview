@@ -1,9 +1,9 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#include <variant>
 #include <vector>
 
 #include "doctest.h"
 
-#include "NbtReader.hpp"
 #include "Tag.hpp"
 #include "nbtview.hpp"
 
@@ -13,20 +13,22 @@ TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
     SUBCASE("empty compound tag") {
         auto v_empty_compound_tag =
             std::vector<uint8_t>{0x0a, 0x00, 0x00, 0x00};
-        auto rot_tag = nbt::NbtReader::read_from_bytes(v_empty_compound_tag);
-        auto &root_tag = std::get<nbt::Compound>(rot_tag);
-        CHECK(root_tag.size() == 0);
+        auto [root_name, root_tag] = nbt::read_binary(v_empty_compound_tag);
+        auto &root_compound = std::get<nbt::Compound>(root_tag);
+        CHECK(root_compound.size() == 0);
+        CHECK(root_name == "");
     }
     SUBCASE("string tag 'foo' contains 'bar'") {
         auto v_foo_bar =
             std::vector<uint8_t>{0x0a, 0x00, 0x00, 0x08, 0x00, 0x03, 'f', 'o',
                                  'o',  0x00, 0x03, 'b',  'a',  'r',  0x00};
-        auto rot_tag = nbt::NbtReader::read_from_bytes(v_foo_bar);
-        auto &root_tag = std::get<nbt::Compound>(rot_tag);
-        CHECK(root_tag.size() == 1);
+        auto [root_name, root_tag] = nbt::read_binary(v_foo_bar);
+        auto &root_compound = std::get<nbt::Compound>(root_tag);
+        CHECK(root_compound.size() == 1);
+        CHECK(root_name == "");
 
-        REQUIRE(root_tag.contains<nbt::String>("foo"));
-        CHECK(root_tag.get<nbt::String>("foo") == "bar");
+        REQUIRE(root_compound.contains<nbt::String>("foo"));
+        CHECK(root_compound.get<nbt::String>("foo") == "bar");
     }
 
     SUBCASE("read integer types from named compound tag") {
@@ -43,21 +45,22 @@ TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
             0x06, 0x07, 0x08, 0x9a,
 
             0x00};
-        auto rot_tag = nbt::NbtReader::read_from_bytes(v_foo_bar);
-        auto &root_tag = std::get<nbt::Compound>(rot_tag);
-        CHECK(root_tag.size() == 4);
+        auto [root_name, root_tag] = nbt::read_binary(v_foo_bar);
+        auto &root_compound = std::get<nbt::Compound>(root_tag);
+        CHECK(root_compound.size() == 4);
+        CHECK(root_name == "test_tag");
 
-        REQUIRE(root_tag.contains<nbt::Byte>("byte"));
-        CHECK(root_tag.get<nbt::Byte>("byte") == 0x12);
+        REQUIRE(root_compound.contains<nbt::Byte>("byte"));
+        CHECK(root_compound.get<nbt::Byte>("byte") == 0x12);
 
-        REQUIRE(root_tag.contains<nbt::Short>("short"));
-        CHECK(root_tag.get<nbt::Short>("short") == 0x1234);
+        REQUIRE(root_compound.contains<nbt::Short>("short"));
+        CHECK(root_compound.get<nbt::Short>("short") == 0x1234);
 
-        REQUIRE(root_tag.contains<nbt::Int>("int"));
-        CHECK(root_tag.get<nbt::Int>("int") == 0x12345678);
+        REQUIRE(root_compound.contains<nbt::Int>("int"));
+        CHECK(root_compound.get<nbt::Int>("int") == 0x12345678);
 
-        REQUIRE(root_tag.contains<nbt::Long>("long"));
-        CHECK(root_tag.get<nbt::Long>("long") == 0x120304050607089aL);
+        REQUIRE(root_compound.contains<nbt::Long>("long"));
+        CHECK(root_compound.get<nbt::Long>("long") == 0x120304050607089aL);
     }
 
     SUBCASE("read floating point types from nested compound tag") {
@@ -76,13 +79,14 @@ TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
 
             0x00};
 
-        auto rot_tag = nbt::NbtReader::read_from_bytes(v_foo_bar);
-        auto &root_tag = std::get<nbt::Compound>(rot_tag);
-        CHECK(root_tag.size() == 1);
+        auto [root_name, root_tag] = nbt::read_binary(v_foo_bar);
+        auto &root_compound = std::get<nbt::Compound>(root_tag);
+        CHECK(root_compound.size() == 1);
+        CHECK(root_name == "outertag");
 
-        REQUIRE(root_tag.contains<nbt::Compound>("innertag"));
+        REQUIRE(root_compound.contains<nbt::Compound>("innertag"));
 
-        auto &inner_tag = root_tag.get<nbt::Compound>("innertag");
+        auto &inner_tag = root_compound.get<nbt::Compound>("innertag");
         CHECK(inner_tag.size() == 2);
 
         REQUIRE(inner_tag.contains<nbt::Double>("Double"));
