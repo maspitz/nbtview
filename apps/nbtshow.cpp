@@ -5,7 +5,6 @@
 #include <iostream>
 #include <vector>
 
-#include "Stringifier.hpp"
 #include "Tag.hpp"
 #include "nbtview.hpp"
 
@@ -62,7 +61,7 @@ int main(int argc, const char *argv[]) {
 
     auto [root_name, root_tag] = nbt::read_binary(infile);
     std::cout << "root_name: " << root_name << std::endl;
-    std::cout << "root_tag: " << nbt::tag_to_string(root_tag) << std::endl;
+    std::cout << "root_tag: " << root_tag << std::endl;
 
     return 0;
 }
