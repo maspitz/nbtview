@@ -1,6 +1,6 @@
 /**
  * @file nbtview.hpp
- * @brief Find a named tag without decoding NBT structure
+ * @brief Interface to operations on NBT structured data
  * @author Michael Spitznagel
  * @copyright Copyright 2023 Michael Spitznagel. Released under the Boost
  * Software License 1.0
@@ -11,7 +11,9 @@
 #ifndef NBTVIEW_H_
 #define NBTVIEW_H_
 
+#include <iosfwd>
 #include <string>
+#include <utility>
 #include <vector>
 
 #include "Tag.hpp"
@@ -35,6 +37,16 @@ std::vector<unsigned char>::const_iterator
 fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
                     std::vector<unsigned char>::const_iterator nbt_stop,
                     TypeCode tag_type, const std::string &tag_name);
+
+/** @name deserialization
+ * @{
+ * @brief deserialize from binary encoded input
+ * */
+std::pair<std::string, Tag> read_binary(std::istream &input);
+std::pair<std::string, Tag> read_binary(std::vector<unsigned char> bytes);
+/**
+ * @}
+ * */
 
 } // namespace nbtview
 

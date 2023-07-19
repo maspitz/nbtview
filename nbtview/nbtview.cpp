@@ -1,7 +1,13 @@
 #include <algorithm>
+#include <istream>
 #include <string>
+#include <utility>
 #include <vector>
 
+#include "zlib_utils.hpp"
+
+#include "BinaryDeserializer.hpp"
+#include "Tag.hpp"
 #include "nbtview.hpp"
 
 namespace nbtview {
@@ -27,6 +33,28 @@ fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
         }
         loc++;
     }
+}
+
+std::pair<std::string, Tag> read_binary(std::istream &input) {
+    // Get stream size
+    input.seekg(0, input.end);
+    std::streampos n_bytes = input.tellg();
+    input.seekg(0, input.beg);
+
+    // Read stream into vector of bytes
+    std::vector<unsigned char> bytes(n_bytes);
+    input.read(reinterpret_cast<char *>(bytes.data()), n_bytes);
+    return read_binary(std::move(bytes));
+}
+
+std::pair<std::string, Tag> read_binary(std::vector<unsigned char> bytes) {
+    if (has_gzip_header(bytes)) {
+        bytes = decompress_gzip(bytes);
+    }
+    BinaryDeserializer reader(std::move(bytes));
+    auto root_data = reader.deserialize();
+    auto &root_name = root_data.first;
+    return {root_name, std::move(root_data.second)};
 }
 
 } // namespace nbtview
