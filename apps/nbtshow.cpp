@@ -59,28 +59,9 @@ int main(int argc, const char *argv[]) {
         return -1;
     }
     std::string filename(argv[1]);
-
-    /*
-    auto bytes = nbt::NbtReader::read_from_file(filename);
-
-    std::vector<std::string> int_tags{"SpawnX", "SpawnY", "SpawnZ",
-                                      "playerGameType", "DataVersion"};
-    for (auto tag_name : int_tags) {
-        print_int_tag(bytes, tag_name);
-    }
-
-    std::vector<std::string> long_tags{"RandomSeed", "LastPlayed", "Time"};
-    for (auto tag_name : long_tags) {
-        print_long_tag(bytes, tag_name);
-    }
-
-    auto bscr = nbtview::BinaryReader(bytes);
-
-    */
-
     std::ifstream infile(filename);
+
     auto [root_name, root_tag] = nbt::read_binary(infile);
-    //    auto root_tag = nbt::NbtReader::read_from_file(filename);
     std::cout << "root_name: " << root_name << std::endl;
     std::cout << "root_tag: " << nbt::tag_to_string(root_tag) << std::endl;
 
