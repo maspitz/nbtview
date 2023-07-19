@@ -38,11 +38,25 @@ fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
                     std::vector<unsigned char>::const_iterator nbt_stop,
                     TypeCode tag_type, const std::string &tag_name);
 
-/** @name deserialization
+/** @name Input interface
  * @{
- * @brief deserialize from binary encoded input
+ * @brief Deserialize from binary encoded input
+ * */
+/**
+ * @brief Deserializes from a stream.
+ * @param input An istream opened with ios::binary.
+ * @return A pair consisting of the decoded root tag's name and payload.
+ *
+ * @throw std::runtime_error if the input could not be decoded successfully.
  * */
 std::pair<std::string, Tag> read_binary(std::istream &input);
+/**
+ * @brief Deserializes from a vector of bytes.
+ * @param bytes A vector of unsigned char.
+ * @return A pair consisting of the decoded root tag's name and payload.
+ *
+ * @throw std::runtime_error if the input could not be decoded successfully.
+ * */
 std::pair<std::string, Tag> read_binary(std::vector<unsigned char> bytes);
 /**
  * @}
