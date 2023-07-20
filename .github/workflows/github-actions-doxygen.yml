@@ -1,4 +1,4 @@
-name: Doxygen GitHub Action
+name: Generate and deploy documentation
 run-name: ${{ github.actor }} is generating and deploying documentation
 
 on:
@@ -17,20 +17,15 @@ jobs:
       - name: Configure the project
         uses: threeal/cmake-action@v1.2.0
 
-      - name: Build the project
-        run: cmake --build build
+      - name: Install Doxygen
+        run: sudo apt-get install doxygen graphviz -y
+        shell: bash
 
-      - name: Test the project
-        run: ctest --test-dir build
+      - name: Generate project documentation
+        run: cmake --build build --target docs -- -j$(nproc)
 
-#      - name: Install Doxygen
-#        run: sudo apt-get install doxygen graphviz -y
-#        shell: bash
-#
-#      - name: Generate project documentation
-#        run: ctest --build build --target docs
-#      - name: Deploy
-#        uses: peaceiris/actions-gh-pages@v3
-#        with:
-#          github_token: ${{ secrets.GITHUB_TOKEN }}
-#          publish_dir: ./build/doxygen
+      - name: Deploy documentation to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/doxygen

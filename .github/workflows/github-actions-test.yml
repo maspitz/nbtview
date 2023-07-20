@@ -1,0 +1,24 @@
+name: Build and test nbtview
+run-name: ${{ github.actor }} is testing the project
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-project:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Triggered by ${{ github.event_name }} event."
+
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+
+      - name: Configure the project
+        uses: threeal/cmake-action@v1.2.0
+
+      - name: Build the project
+        run: cmake --build build -- -j$(nproc)
+
+      - name: Test the project
+        run: ctest --test-dir build
