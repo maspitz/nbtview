@@ -1,0 +1,16 @@
+<map id="nbtview/Serializer.hpp" name="nbtview/Serializer.hpp">
+<area shape="rect" id="node1" title="Methods for binary serialization of NBT data." alt="" coords="401,5,568,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,155,81,181"/>
+<area shape="rect" id="node3" title=" " alt="" coords="105,155,203,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="712,80,772,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="632,155,700,181"/>
+<area shape="rect" id="node6" title=" " alt="" coords="453,155,516,181"/>
+<area shape="rect" id="node7" href="$BinaryWriter_8hpp.html" title="Write big&#45;endian numeric values, arrays, and strings." alt="" coords="317,80,447,107"/>
+<area shape="rect" id="node11" href="$Tag_8hpp.html" title="Interfaces for read/write access to NBT tag data." alt="" coords="615,80,687,107"/>
+<area shape="rect" id="node8" title=" " alt="" coords="227,155,313,181"/>
+<area shape="rect" id="node9" title=" " alt="" coords="541,155,607,181"/>
+<area shape="rect" id="node10" title=" " alt="" coords="337,155,429,181"/>
+<area shape="rect" id="node12" title=" " alt="" coords="725,155,775,181"/>
+<area shape="rect" id="node13" title=" " alt="" coords="799,155,877,181"/>
+<area shape="rect" id="node14" title=" " alt="" coords="901,155,959,181"/>
+</map>

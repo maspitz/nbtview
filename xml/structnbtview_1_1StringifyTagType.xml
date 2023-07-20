@@ -1,0 +1,249 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structnbtview_1_1StringifyTagType" kind="struct" language="C++" prot="public">
+    <compoundname>nbtview::StringifyTagType</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structnbtview_1_1StringifyTagType_1ad6aaabee0a34f3f6cf7025d2ed191884" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string nbtview::StringifyTagType::operator()</definition>
+        <argsstring>(const End &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="namespacenbtview_1abac20ead73188ab8094137b5b4bbd5f2" kindref="member">End</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Stringifier.cpp" line="87" column="17" bodyfile="nbtview/Stringifier.cpp" bodystart="87" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1StringifyTagType_1a0e37d6b827632480d0bfde7ac6671fa8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string nbtview::StringifyTagType::operator()</definition>
+        <argsstring>(const Compound &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="classnbtview_1_1Compound" kindref="compound">Compound</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Stringifier.cpp" line="88" column="17" bodyfile="nbtview/Stringifier.cpp" bodystart="88" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1StringifyTagType_1afeac3b2e720965701c10f7f8a654a54e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string nbtview::StringifyTagType::operator()</definition>
+        <argsstring>(const Byte &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="namespacenbtview_1af68b4d9024e97e56e47b022e65b25f15" kindref="member">Byte</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Stringifier.cpp" line="89" column="17" bodyfile="nbtview/Stringifier.cpp" bodystart="89" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1StringifyTagType_1ab3bb4df00c89793cf9ca8c7fd4cdfbbb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string nbtview::StringifyTagType::operator()</definition>
+        <argsstring>(const Short &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="namespacenbtview_1a135ffec411a1c14822713fd40959fdf6" kindref="member">Short</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Stringifier.cpp" line="90" column="17" bodyfile="nbtview/Stringifier.cpp" bodystart="90" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1StringifyTagType_1a65d1d90c27bd1febccc11bcabd9f77a1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string nbtview::StringifyTagType::operator()</definition>
+        <argsstring>(const Int &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="namespacenbtview_1a6fedb4bc19422081c525566dfec4b89b" kindref="member">Int</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Stringifier.cpp" line="91" column="17" bodyfile="nbtview/Stringifier.cpp" bodystart="91" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1StringifyTagType_1a99a53d9423f340d384e4e1cc0a2a0029" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string nbtview::StringifyTagType::operator()</definition>
+        <argsstring>(const Long &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="namespacenbtview_1ac0fddc63117df18c01dd94b78621bce0" kindref="member">Long</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Stringifier.cpp" line="92" column="17" bodyfile="nbtview/Stringifier.cpp" bodystart="92" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1StringifyTagType_1a6c6e9269226bc812d1b92a9218d44e99" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string nbtview::StringifyTagType::operator()</definition>
+        <argsstring>(const Float &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="namespacenbtview_1a40ef7b380a31d7abd2744a2f9d2725c3" kindref="member">Float</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Stringifier.cpp" line="93" column="17" bodyfile="nbtview/Stringifier.cpp" bodystart="93" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1StringifyTagType_1a1e5943d914764470865890c7af8bd8e2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string nbtview::StringifyTagType::operator()</definition>
+        <argsstring>(const Double &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="namespacenbtview_1a06f91b24dbf822dbf7d54103059e1da0" kindref="member">Double</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Stringifier.cpp" line="94" column="17" bodyfile="nbtview/Stringifier.cpp" bodystart="94" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1StringifyTagType_1a63e1993693e000a56aa81a6ff81c76c3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string nbtview::StringifyTagType::operator()</definition>
+        <argsstring>(const Byte_Array &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="namespacenbtview_1ac568dd2508ef25a79f4527b5b30c2175" kindref="member">Byte_Array</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Stringifier.cpp" line="95" column="17" bodyfile="nbtview/Stringifier.cpp" bodystart="95" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1StringifyTagType_1a77edb47e5de63b8fc9a661e89557eb81" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string nbtview::StringifyTagType::operator()</definition>
+        <argsstring>(const String &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="namespacenbtview_1a8763725f06fd8f86ba0393bf56d78761" kindref="member">String</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Stringifier.cpp" line="96" column="17" bodyfile="nbtview/Stringifier.cpp" bodystart="96" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1StringifyTagType_1a1976861f6c9c5e384e745f336c30b08b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string nbtview::StringifyTagType::operator()</definition>
+        <argsstring>(const List &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="classnbtview_1_1List" kindref="compound">List</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Stringifier.cpp" line="97" column="17" bodyfile="nbtview/Stringifier.cpp" bodystart="97" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1StringifyTagType_1a7be4c38d6197af630373f73fbe8216a3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string nbtview::StringifyTagType::operator()</definition>
+        <argsstring>(const Int_Array &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="namespacenbtview_1aedc8581c15b590af57635d606a2c73a0" kindref="member">Int_Array</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Stringifier.cpp" line="100" column="17" bodyfile="nbtview/Stringifier.cpp" bodystart="100" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1StringifyTagType_1ab8419370aace464c42071fc01dbee297" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string nbtview::StringifyTagType::operator()</definition>
+        <argsstring>(const Long_Array &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="namespacenbtview_1af706de40c93703c773c7475bf3075a81" kindref="member">Long_Array</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Stringifier.cpp" line="101" column="17" bodyfile="nbtview/Stringifier.cpp" bodystart="101" bodyend="101"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nbtview/Stringifier.cpp" line="86" column="1" bodyfile="nbtview/Stringifier.cpp" bodystart="86" bodyend="102"/>
+    <listofallmembers>
+      <member refid="structnbtview_1_1StringifyTagType_1ad6aaabee0a34f3f6cf7025d2ed191884" prot="public" virt="non-virtual"><scope>nbtview::StringifyTagType</scope><name>operator()</name></member>
+      <member refid="structnbtview_1_1StringifyTagType_1a0e37d6b827632480d0bfde7ac6671fa8" prot="public" virt="non-virtual"><scope>nbtview::StringifyTagType</scope><name>operator()</name></member>
+      <member refid="structnbtview_1_1StringifyTagType_1afeac3b2e720965701c10f7f8a654a54e" prot="public" virt="non-virtual"><scope>nbtview::StringifyTagType</scope><name>operator()</name></member>
+      <member refid="structnbtview_1_1StringifyTagType_1ab3bb4df00c89793cf9ca8c7fd4cdfbbb" prot="public" virt="non-virtual"><scope>nbtview::StringifyTagType</scope><name>operator()</name></member>
+      <member refid="structnbtview_1_1StringifyTagType_1a65d1d90c27bd1febccc11bcabd9f77a1" prot="public" virt="non-virtual"><scope>nbtview::StringifyTagType</scope><name>operator()</name></member>
+      <member refid="structnbtview_1_1StringifyTagType_1a99a53d9423f340d384e4e1cc0a2a0029" prot="public" virt="non-virtual"><scope>nbtview::StringifyTagType</scope><name>operator()</name></member>
+      <member refid="structnbtview_1_1StringifyTagType_1a6c6e9269226bc812d1b92a9218d44e99" prot="public" virt="non-virtual"><scope>nbtview::StringifyTagType</scope><name>operator()</name></member>
+      <member refid="structnbtview_1_1StringifyTagType_1a1e5943d914764470865890c7af8bd8e2" prot="public" virt="non-virtual"><scope>nbtview::StringifyTagType</scope><name>operator()</name></member>
+      <member refid="structnbtview_1_1StringifyTagType_1a63e1993693e000a56aa81a6ff81c76c3" prot="public" virt="non-virtual"><scope>nbtview::StringifyTagType</scope><name>operator()</name></member>
+      <member refid="structnbtview_1_1StringifyTagType_1a77edb47e5de63b8fc9a661e89557eb81" prot="public" virt="non-virtual"><scope>nbtview::StringifyTagType</scope><name>operator()</name></member>
+      <member refid="structnbtview_1_1StringifyTagType_1a1976861f6c9c5e384e745f336c30b08b" prot="public" virt="non-virtual"><scope>nbtview::StringifyTagType</scope><name>operator()</name></member>
+      <member refid="structnbtview_1_1StringifyTagType_1a7be4c38d6197af630373f73fbe8216a3" prot="public" virt="non-virtual"><scope>nbtview::StringifyTagType</scope><name>operator()</name></member>
+      <member refid="structnbtview_1_1StringifyTagType_1ab8419370aace464c42071fc01dbee297" prot="public" virt="non-virtual"><scope>nbtview::StringifyTagType</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

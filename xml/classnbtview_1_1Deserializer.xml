@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classnbtview_1_1Deserializer" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>nbtview::Deserializer</compoundname>
+    <derivedcompoundref refid="classnbtview_1_1BinaryDeserializer" prot="public" virt="non-virtual">nbtview::BinaryDeserializer</derivedcompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnbtview_1_1Deserializer_1a091616f8a82c35fe5c7d838c38c15a4b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual nbtview::Deserializer::~Deserializer</definition>
+        <argsstring>()=default</argsstring>
+        <name>~Deserializer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Deserializer.hpp" line="26" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classnbtview_1_1Deserializer_1ab7f51da91148d6c1934ae6fcc4de18b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::pair&lt; std::string, <ref refid="namespacenbtview_1a9fcb48c3df7749255fcc9f3f9e84f3fa" kindref="member">Tag</ref> &gt;</type>
+        <definition>virtual std::pair&lt;std::string, Tag&gt; nbtview::Deserializer::deserialize</definition>
+        <argsstring>()=0</argsstring>
+        <name>deserialize</name>
+        <reimplementedby refid="classnbtview_1_1BinaryDeserializer_1aeb8d769ca662cfc539701169f36c4440">deserialize</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Deserializer.hpp" line="27" column="23"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>nbtview::BinaryDeserializer</label>
+        <link refid="classnbtview_1_1BinaryDeserializer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>nbtview::Deserializer</label>
+        <link refid="classnbtview_1_1Deserializer"/>
+      </node>
+    </inheritancegraph>
+    <location file="nbtview/Deserializer.hpp" line="24" column="1" bodyfile="nbtview/Deserializer.hpp" bodystart="24" bodyend="28"/>
+    <listofallmembers>
+      <member refid="classnbtview_1_1Deserializer_1ab7f51da91148d6c1934ae6fcc4de18b9" prot="public" virt="pure-virtual"><scope>nbtview::Deserializer</scope><name>deserialize</name></member>
+      <member refid="classnbtview_1_1Deserializer_1a091616f8a82c35fe5c7d838c38c15a4b" prot="public" virt="virtual"><scope>nbtview::Deserializer</scope><name>~Deserializer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

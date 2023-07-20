@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structnbtview_1_1array__format" kind="struct" language="C++" prot="public">
+    <compoundname>nbtview::array_format</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structnbtview_1_1array__format_1a92c81029a2027c25dd8705f5c4ab301d" prot="public" static="no" mutable="no">
+        <type>const std::string</type>
+        <definition>const std::string nbtview::array_format::array_prefix</definition>
+        <argsstring></argsstring>
+        <name>array_prefix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/utils.hpp" line="31" column="23" bodyfile="nbtview/utils.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnbtview_1_1array__format_1a7d2b8648bf125fcc8da246c018b1f132" prot="public" static="no" mutable="no">
+        <type>const std::string</type>
+        <definition>const std::string nbtview::array_format::array_suffix</definition>
+        <argsstring></argsstring>
+        <name>array_suffix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/utils.hpp" line="32" column="23" bodyfile="nbtview/utils.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnbtview_1_1array__format_1a373b8a8cedc3221515be293b8d52f277" prot="public" static="no" mutable="no">
+        <type>const std::string</type>
+        <definition>const std::string nbtview::array_format::elt_suffix</definition>
+        <argsstring></argsstring>
+        <name>elt_suffix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/utils.hpp" line="33" column="23" bodyfile="nbtview/utils.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>nbtview::array_format</label>
+        <link refid="structnbtview_1_1array__format"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>array_prefix</edgelabel>
+          <edgelabel>array_suffix</edgelabel>
+          <edgelabel>elt_suffix</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="2">
+        <label>std::string</label>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="nbtview/utils.hpp" line="30" column="1" bodyfile="nbtview/utils.hpp" bodystart="30" bodyend="34"/>
+    <listofallmembers>
+      <member refid="structnbtview_1_1array__format_1a92c81029a2027c25dd8705f5c4ab301d" prot="public" virt="non-virtual"><scope>nbtview::array_format</scope><name>array_prefix</name></member>
+      <member refid="structnbtview_1_1array__format_1a7d2b8648bf125fcc8da246c018b1f132" prot="public" virt="non-virtual"><scope>nbtview::array_format</scope><name>array_suffix</name></member>
+      <member refid="structnbtview_1_1array__format_1a373b8a8cedc3221515be293b8d52f277" prot="public" virt="non-virtual"><scope>nbtview::array_format</scope><name>elt_suffix</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

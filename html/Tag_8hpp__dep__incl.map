@@ -1,0 +1,8 @@
+<map id="nbtview/Tag.hpp" name="nbtview/Tag.hpp">
+<area shape="rect" id="node1" title="Interfaces for read/write access to NBT tag data." alt="" coords="314,5,442,32"/>
+<area shape="rect" id="node2" href="$BinaryDeserializer_8hpp.html" title="Read binary encoded NBT data." alt="" coords="5,155,231,181"/>
+<area shape="rect" id="node3" href="$Deserializer_8hpp.html" title="Abstract Interface for the deserialization of NBT data." alt="" coords="92,80,275,107"/>
+<area shape="rect" id="node4" href="$nbtview_8hpp.html" title="Interface to operations on NBT structured data." alt="" coords="299,80,457,107"/>
+<area shape="rect" id="node5" href="$Serializer_8hpp.html" title="Methods for binary serialization of NBT data." alt="" coords="481,80,648,107"/>
+<area shape="rect" id="node6" href="$Stringifier_8hpp_source.html" title=" " alt="" coords="673,80,841,107"/>
+</map>

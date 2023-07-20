@@ -1,0 +1,12 @@
+<map id="nbtview/BinaryDeserializer.hpp" name="nbtview/BinaryDeserializer.hpp">
+<area shape="rect" id="node1" title="Read binary encoded NBT data." alt="" coords="77,5,302,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,229,83,256"/>
+<area shape="rect" id="node3" title=" " alt="" coords="358,155,418,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="107,229,170,256"/>
+<area shape="rect" id="node5" href="$Deserializer_8hpp.html" title="Abstract Interface for the deserialization of NBT data." alt="" coords="227,80,354,107"/>
+<area shape="rect" id="node7" href="$Tag_8hpp.html" title="Interfaces for read/write access to NBT tag data." alt="" coords="195,155,267,181"/>
+<area shape="rect" id="node6" title=" " alt="" coords="453,229,512,256"/>
+<area shape="rect" id="node8" title=" " alt="" coords="195,229,261,256"/>
+<area shape="rect" id="node9" title=" " alt="" coords="285,229,336,256"/>
+<area shape="rect" id="node10" title=" " alt="" coords="361,229,429,256"/>
+</map>

@@ -1,0 +1,251 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structnbtview_1_1TagID" kind="struct" language="C++" prot="public">
+    <compoundname>nbtview::TagID</compoundname>
+    <includes refid="Tag_8hpp" local="no">Tag.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structnbtview_1_1TagID_1a0a191980fbbe0af3efc6b8ba122f5a7c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nbtview::TagID::operator()</definition>
+        <argsstring>(const End &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="namespacenbtview_1abac20ead73188ab8094137b5b4bbd5f2" kindref="member">End</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="83" column="10" bodyfile="nbtview/Tag.hpp" bodystart="83" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1TagID_1a8623d34b3f7b5802aead5d0dfb5976de" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nbtview::TagID::operator()</definition>
+        <argsstring>(const Byte &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="namespacenbtview_1af68b4d9024e97e56e47b022e65b25f15" kindref="member">Byte</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="84" column="10" bodyfile="nbtview/Tag.hpp" bodystart="84" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1TagID_1ac9156b720eda713e1ba6ec857358cd24" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nbtview::TagID::operator()</definition>
+        <argsstring>(const Short &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="namespacenbtview_1a135ffec411a1c14822713fd40959fdf6" kindref="member">Short</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="85" column="10" bodyfile="nbtview/Tag.hpp" bodystart="85" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1TagID_1a2c68a9a52196ff37f7d6d4c2596f28ec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nbtview::TagID::operator()</definition>
+        <argsstring>(const Int &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="namespacenbtview_1a6fedb4bc19422081c525566dfec4b89b" kindref="member">Int</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="86" column="10" bodyfile="nbtview/Tag.hpp" bodystart="86" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1TagID_1a025705d2e390e70c5632aac3a5940a4e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nbtview::TagID::operator()</definition>
+        <argsstring>(const Long &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="namespacenbtview_1ac0fddc63117df18c01dd94b78621bce0" kindref="member">Long</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="87" column="10" bodyfile="nbtview/Tag.hpp" bodystart="87" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1TagID_1ac36e5839cd29f6d61080fc08f8dfb850" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nbtview::TagID::operator()</definition>
+        <argsstring>(const Float &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="namespacenbtview_1a40ef7b380a31d7abd2744a2f9d2725c3" kindref="member">Float</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="88" column="10" bodyfile="nbtview/Tag.hpp" bodystart="88" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1TagID_1a3d35a96d9c1a4430c0c700104a8bf5ae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nbtview::TagID::operator()</definition>
+        <argsstring>(const Double &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="namespacenbtview_1a06f91b24dbf822dbf7d54103059e1da0" kindref="member">Double</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="89" column="10" bodyfile="nbtview/Tag.hpp" bodystart="89" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1TagID_1ad911c38da7fb69a8571dc694f5cdae3f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nbtview::TagID::operator()</definition>
+        <argsstring>(const Byte_Array &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="namespacenbtview_1ac568dd2508ef25a79f4527b5b30c2175" kindref="member">Byte_Array</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="90" column="10" bodyfile="nbtview/Tag.hpp" bodystart="90" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1TagID_1a44428d64c6f910e7b7690416fbe809ba" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nbtview::TagID::operator()</definition>
+        <argsstring>(const String &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="namespacenbtview_1a8763725f06fd8f86ba0393bf56d78761" kindref="member">String</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="91" column="10" bodyfile="nbtview/Tag.hpp" bodystart="91" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1TagID_1a543a97c5207b140c87fc62f0eab724cb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nbtview::TagID::operator()</definition>
+        <argsstring>(const List &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="classnbtview_1_1List" kindref="compound">List</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="92" column="10" bodyfile="nbtview/Tag.hpp" bodystart="92" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1TagID_1a98f69bbf33fc0085b723df4f10cc6291" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nbtview::TagID::operator()</definition>
+        <argsstring>(const Compound &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="classnbtview_1_1Compound" kindref="compound">Compound</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="93" column="10" bodyfile="nbtview/Tag.hpp" bodystart="93" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1TagID_1a32de59ee871f90272034d066513e7ece" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nbtview::TagID::operator()</definition>
+        <argsstring>(const Int_Array &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="namespacenbtview_1aedc8581c15b590af57635d606a2c73a0" kindref="member">Int_Array</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="94" column="10" bodyfile="nbtview/Tag.hpp" bodystart="94" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1TagID_1a386e1f47dc41da7996bff46544ddfc87" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nbtview::TagID::operator()</definition>
+        <argsstring>(const Long_Array &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="namespacenbtview_1af706de40c93703c773c7475bf3075a81" kindref="member">Long_Array</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="95" column="10" bodyfile="nbtview/Tag.hpp" bodystart="95" bodyend="95"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="structnbtview_1_1TagID" kindref="compound">TagID</ref> is used with std::visit to get the TypeCode of a given Tag. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nbtview/Tag.hpp" line="82" column="1" bodyfile="nbtview/Tag.hpp" bodystart="82" bodyend="96"/>
+    <listofallmembers>
+      <member refid="structnbtview_1_1TagID_1a0a191980fbbe0af3efc6b8ba122f5a7c" prot="public" virt="non-virtual"><scope>nbtview::TagID</scope><name>operator()</name></member>
+      <member refid="structnbtview_1_1TagID_1a8623d34b3f7b5802aead5d0dfb5976de" prot="public" virt="non-virtual"><scope>nbtview::TagID</scope><name>operator()</name></member>
+      <member refid="structnbtview_1_1TagID_1ac9156b720eda713e1ba6ec857358cd24" prot="public" virt="non-virtual"><scope>nbtview::TagID</scope><name>operator()</name></member>
+      <member refid="structnbtview_1_1TagID_1a2c68a9a52196ff37f7d6d4c2596f28ec" prot="public" virt="non-virtual"><scope>nbtview::TagID</scope><name>operator()</name></member>
+      <member refid="structnbtview_1_1TagID_1a025705d2e390e70c5632aac3a5940a4e" prot="public" virt="non-virtual"><scope>nbtview::TagID</scope><name>operator()</name></member>
+      <member refid="structnbtview_1_1TagID_1ac36e5839cd29f6d61080fc08f8dfb850" prot="public" virt="non-virtual"><scope>nbtview::TagID</scope><name>operator()</name></member>
+      <member refid="structnbtview_1_1TagID_1a3d35a96d9c1a4430c0c700104a8bf5ae" prot="public" virt="non-virtual"><scope>nbtview::TagID</scope><name>operator()</name></member>
+      <member refid="structnbtview_1_1TagID_1ad911c38da7fb69a8571dc694f5cdae3f" prot="public" virt="non-virtual"><scope>nbtview::TagID</scope><name>operator()</name></member>
+      <member refid="structnbtview_1_1TagID_1a44428d64c6f910e7b7690416fbe809ba" prot="public" virt="non-virtual"><scope>nbtview::TagID</scope><name>operator()</name></member>
+      <member refid="structnbtview_1_1TagID_1a543a97c5207b140c87fc62f0eab724cb" prot="public" virt="non-virtual"><scope>nbtview::TagID</scope><name>operator()</name></member>
+      <member refid="structnbtview_1_1TagID_1a98f69bbf33fc0085b723df4f10cc6291" prot="public" virt="non-virtual"><scope>nbtview::TagID</scope><name>operator()</name></member>
+      <member refid="structnbtview_1_1TagID_1a32de59ee871f90272034d066513e7ece" prot="public" virt="non-virtual"><scope>nbtview::TagID</scope><name>operator()</name></member>
+      <member refid="structnbtview_1_1TagID_1a386e1f47dc41da7996bff46544ddfc87" prot="public" virt="non-virtual"><scope>nbtview::TagID</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

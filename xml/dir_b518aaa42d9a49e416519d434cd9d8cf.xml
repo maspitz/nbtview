@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_b518aaa42d9a49e416519d434cd9d8cf" kind="dir">
+    <compoundname>nbtview</compoundname>
+    <innerfile refid="BinaryDeserializer_8cpp">BinaryDeserializer.cpp</innerfile>
+    <innerfile refid="BinaryDeserializer_8hpp">BinaryDeserializer.hpp</innerfile>
+    <innerfile refid="BinaryReader_8hpp">BinaryReader.hpp</innerfile>
+    <innerfile refid="BinaryWriter_8hpp">BinaryWriter.hpp</innerfile>
+    <innerfile refid="Deserializer_8hpp">Deserializer.hpp</innerfile>
+    <innerfile refid="nbtview_8cpp">nbtview.cpp</innerfile>
+    <innerfile refid="nbtview_8hpp">nbtview.hpp</innerfile>
+    <innerfile refid="Serializer_8hpp">Serializer.hpp</innerfile>
+    <innerfile refid="Stringifier_8cpp">Stringifier.cpp</innerfile>
+    <innerfile refid="Stringifier_8hpp">Stringifier.hpp</innerfile>
+    <innerfile refid="Tag_8cpp">Tag.cpp</innerfile>
+    <innerfile refid="Tag_8hpp">Tag.hpp</innerfile>
+    <innerfile refid="utils_8hpp">utils.hpp</innerfile>
+    <innerfile refid="zlib__utils_8cpp">zlib_utils.cpp</innerfile>
+    <innerfile refid="zlib__utils_8hpp">zlib_utils.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nbtview/"/>
+  </compounddef>
+</doxygen>

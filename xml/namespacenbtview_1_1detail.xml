@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespacenbtview_1_1detail" kind="namespace" language="C++">
+    <compoundname>nbtview::detail</compoundname>
+    <innerclass refid="structnbtview_1_1detail_1_1PayloadSerializer" prot="public">nbtview::detail::PayloadSerializer</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="BinaryReader_8hpp_1a352e0a5be2cec215675107bd062ecefb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nbtview::detail::swap_endian</definition>
+        <argsstring>(T &amp;val, typename std::enable_if&lt; std::is_arithmetic&lt; T &gt;::value, std::nullptr_t &gt;::type=nullptr)</argsstring>
+        <name>swap_endian</name>
+        <param>
+          <type>T &amp;</type>
+          <declname>val</declname>
+        </param>
+        <param>
+          <type>typename std::enable_if&lt; std::is_arithmetic&lt; T &gt;::value, std::nullptr_t &gt;::type</type>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/BinaryReader.hpp" line="67" column="10" bodyfile="nbtview/BinaryReader.hpp" bodystart="67" bodyend="80"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nbtview/BinaryReader.hpp" line="65" column="1"/>
+  </compounddef>
+</doxygen>

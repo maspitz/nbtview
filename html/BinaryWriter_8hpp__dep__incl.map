@@ -1,0 +1,4 @@
+<map id="nbtview/BinaryWriter.hpp" name="nbtview/BinaryWriter.hpp">
+<area shape="rect" id="node1" title="Write big&#45;endian numeric values, arrays, and strings." alt="" coords="5,5,192,32"/>
+<area shape="rect" id="node2" href="$Serializer_8hpp.html" title="Methods for binary serialization of NBT data." alt="" coords="15,80,182,107"/>
+</map>

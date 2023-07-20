@@ -1,0 +1,353 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classnbtview_1_1List" kind="class" language="C++" prot="public">
+    <compoundname>nbtview::List</compoundname>
+    <includes refid="Tag_8hpp" local="no">Tag.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnbtview_1_1List_1aca237d306c11460b4ed92c55baea917d" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; std::vector&lt; <ref refid="namespacenbtview_1a9fcb48c3df7749255fcc9f3f9e84f3fa" kindref="member">Tag</ref> &gt; &gt;</type>
+        <definition>std::unique_ptr&lt;std::vector&lt;Tag&gt; &gt; nbtview::List::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="224" column="21" bodyfile="nbtview/Tag.hpp" bodystart="224" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnbtview_1_1List_1aba7a07849819d1a2f3a19fec38195ff4" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1" kindref="member">TypeCode</ref></type>
+        <definition>TypeCode nbtview::List::list_type_</definition>
+        <argsstring></argsstring>
+        <name>list_type_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="225" column="14" bodyfile="nbtview/Tag.hpp" bodystart="225" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnbtview_1_1List_1a30f0c1c4de05db880409280cefa26ef6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nbtview::List::List</definition>
+        <argsstring>(TypeCode type)</argsstring>
+        <name>List</name>
+        <param>
+          <type><ref refid="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1" kindref="member">TypeCode</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="187" column="5" bodyfile="nbtview/Tag.hpp" bodystart="187" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="classnbtview_1_1List_1a906094b701bde3e845ebea87850ce355" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>T &amp;</type>
+        <definition>T &amp; nbtview::List::get</definition>
+        <argsstring>(size_t pos)</argsstring>
+        <name>get</name>
+        <param>
+          <type>size_t</type>
+          <declname>pos</declname>
+        </param>
+        <briefdescription>
+<para>Provides access to the data contained in the List. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value type of the element to be accessed. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the element to be accessed. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Read/write reference to a Tag&apos;s value data. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::out_of_range</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If <emphasis>pos</emphasis> is an invalid index. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>std::bad_variant_access</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If <emphasis>T</emphasis> is the wrong type. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="198" column="19" bodyfile="nbtview/Tag.hpp" bodystart="247" bodyend="249"/>
+      </memberdef>
+      <memberdef kind="function" id="classnbtview_1_1List_1aba5a1ff6e3afb9f3bb01234114bf6caa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1" kindref="member">TypeCode</ref></type>
+        <definition>TypeCode nbtview::List::list_type</definition>
+        <argsstring>() const</argsstring>
+        <name>list_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="200" column="14" bodyfile="nbtview/Tag.hpp" bodystart="200" bodyend="200"/>
+      </memberdef>
+      <memberdef kind="function" id="classnbtview_1_1List_1a59304d3809bfe13f5e872fe9e522a621" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nbtview::List::begin</definition>
+        <argsstring>()</argsstring>
+        <name>begin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="202" column="10" bodyfile="nbtview/Tag.hpp" bodystart="202" bodyend="202"/>
+      </memberdef>
+      <memberdef kind="function" id="classnbtview_1_1List_1a042bc20a91e52ff551085f9ab715dfc2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nbtview::List::end</definition>
+        <argsstring>()</argsstring>
+        <name>end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="203" column="10" bodyfile="nbtview/Tag.hpp" bodystart="203" bodyend="203"/>
+      </memberdef>
+      <memberdef kind="function" id="classnbtview_1_1List_1aa6221a9fd099bed9b896a217f662047d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nbtview::List::begin</definition>
+        <argsstring>() const</argsstring>
+        <name>begin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="204" column="10" bodyfile="nbtview/Tag.hpp" bodystart="204" bodyend="204"/>
+      </memberdef>
+      <memberdef kind="function" id="classnbtview_1_1List_1a4552fb951add7825791b5475bd51b06b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nbtview::List::end</definition>
+        <argsstring>() const</argsstring>
+        <name>end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="205" column="10" bodyfile="nbtview/Tag.hpp" bodystart="205" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="classnbtview_1_1List_1ac699564397c44c1e8a731f60c63a0ded" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nbtview::List::cbegin</definition>
+        <argsstring>() const</argsstring>
+        <name>cbegin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="206" column="10" bodyfile="nbtview/Tag.hpp" bodystart="206" bodyend="206"/>
+      </memberdef>
+      <memberdef kind="function" id="classnbtview_1_1List_1a82851a99ba1fe24b87cfeb211fdcc5fd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nbtview::List::cend</definition>
+        <argsstring>() const</argsstring>
+        <name>cend</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="207" column="10" bodyfile="nbtview/Tag.hpp" bodystart="207" bodyend="207"/>
+      </memberdef>
+      <memberdef kind="function" id="classnbtview_1_1List_1aa85ea7daab2cbe01b46566f171718277" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t nbtview::List::size</definition>
+        <argsstring>() const</argsstring>
+        <name>size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="209" column="12" bodyfile="nbtview/Tag.hpp" bodystart="209" bodyend="209"/>
+      </memberdef>
+      <memberdef kind="function" id="classnbtview_1_1List_1a6401d3f247d37c2feb876fef54ee1575" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool nbtview::List::empty</definition>
+        <argsstring>() const</argsstring>
+        <name>empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="210" column="10" bodyfile="nbtview/Tag.hpp" bodystart="210" bodyend="210"/>
+      </memberdef>
+      <memberdef kind="function" id="classnbtview_1_1List_1ab6926bc455d00c605017f57af005cc64" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nbtview::List::reserve</definition>
+        <argsstring>(size_t new_cap)</argsstring>
+        <name>reserve</name>
+        <param>
+          <type>size_t</type>
+          <declname>new_cap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="211" column="10" bodyfile="nbtview/Tag.hpp" bodystart="211" bodyend="211"/>
+      </memberdef>
+      <memberdef kind="function" id="classnbtview_1_1List_1aac85851562cacf70e731b6faf195c9da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacenbtview_1a9fcb48c3df7749255fcc9f3f9e84f3fa" kindref="member">Tag</ref> &amp;</type>
+        <definition>Tag&amp; nbtview::List::at</definition>
+        <argsstring>(size_t position)</argsstring>
+        <name>at</name>
+        <param>
+          <type>size_t</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="213" column="9" bodyfile="nbtview/Tag.hpp" bodystart="213" bodyend="213"/>
+      </memberdef>
+      <memberdef kind="function" id="classnbtview_1_1List_1aba8fcea83db9066122d9633c745526ef" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="namespacenbtview_1a9fcb48c3df7749255fcc9f3f9e84f3fa" kindref="member">Tag</ref> &amp;</type>
+        <definition>const Tag&amp; nbtview::List::at</definition>
+        <argsstring>(size_t position) const</argsstring>
+        <name>at</name>
+        <param>
+          <type>size_t</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="214" column="15" bodyfile="nbtview/Tag.hpp" bodystart="214" bodyend="214"/>
+      </memberdef>
+      <memberdef kind="function" id="classnbtview_1_1List_1ae10f85c05a1c8d8f04a058b20846b496" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nbtview::List::emplace_back</definition>
+        <argsstring>(Args &amp;&amp;...args)</argsstring>
+        <name>emplace_back</name>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="217" column="22" bodyfile="nbtview/Tag.hpp" bodystart="217" bodyend="219"/>
+      </memberdef>
+      <memberdef kind="function" id="classnbtview_1_1List_1a498d642e18067cc1e364fbfe9da92106" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nbtview::List::push_back</definition>
+        <argsstring>(Tag &amp;&amp;t)</argsstring>
+        <name>push_back</name>
+        <param>
+          <type><ref refid="namespacenbtview_1a9fcb48c3df7749255fcc9f3f9e84f3fa" kindref="member">Tag</ref> &amp;&amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="221" column="10" bodyfile="nbtview/Tag.cpp" bodystart="13" bodyend="22"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="classnbtview_1_1List" kindref="compound">List</ref> is a sequence container that holds Tags of a particular type. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The type of values being contained is determined at constuction and is available from List::list_type()</para>
+<para><ref refid="classnbtview_1_1List" kindref="compound">List</ref> exposes access to its Tag contents via methods analogous to std::vector.</para>
+<para>In addition, if you already know the list&apos;s value type, you may want to access elements via List::get&lt;T&gt;(pos). </para>
+    </detaileddescription>
+    <location file="nbtview/Tag.hpp" line="185" column="1" bodyfile="nbtview/Tag.hpp" bodystart="185" bodyend="226"/>
+    <listofallmembers>
+      <member refid="classnbtview_1_1List_1aac85851562cacf70e731b6faf195c9da" prot="public" virt="non-virtual"><scope>nbtview::List</scope><name>at</name></member>
+      <member refid="classnbtview_1_1List_1aba8fcea83db9066122d9633c745526ef" prot="public" virt="non-virtual"><scope>nbtview::List</scope><name>at</name></member>
+      <member refid="classnbtview_1_1List_1a59304d3809bfe13f5e872fe9e522a621" prot="public" virt="non-virtual"><scope>nbtview::List</scope><name>begin</name></member>
+      <member refid="classnbtview_1_1List_1aa6221a9fd099bed9b896a217f662047d" prot="public" virt="non-virtual"><scope>nbtview::List</scope><name>begin</name></member>
+      <member refid="classnbtview_1_1List_1ac699564397c44c1e8a731f60c63a0ded" prot="public" virt="non-virtual"><scope>nbtview::List</scope><name>cbegin</name></member>
+      <member refid="classnbtview_1_1List_1a82851a99ba1fe24b87cfeb211fdcc5fd" prot="public" virt="non-virtual"><scope>nbtview::List</scope><name>cend</name></member>
+      <member refid="classnbtview_1_1List_1aca237d306c11460b4ed92c55baea917d" prot="private" virt="non-virtual"><scope>nbtview::List</scope><name>data</name></member>
+      <member refid="classnbtview_1_1List_1ae10f85c05a1c8d8f04a058b20846b496" prot="public" virt="non-virtual"><scope>nbtview::List</scope><name>emplace_back</name></member>
+      <member refid="classnbtview_1_1List_1a6401d3f247d37c2feb876fef54ee1575" prot="public" virt="non-virtual"><scope>nbtview::List</scope><name>empty</name></member>
+      <member refid="classnbtview_1_1List_1a042bc20a91e52ff551085f9ab715dfc2" prot="public" virt="non-virtual"><scope>nbtview::List</scope><name>end</name></member>
+      <member refid="classnbtview_1_1List_1a4552fb951add7825791b5475bd51b06b" prot="public" virt="non-virtual"><scope>nbtview::List</scope><name>end</name></member>
+      <member refid="classnbtview_1_1List_1a906094b701bde3e845ebea87850ce355" prot="public" virt="non-virtual"><scope>nbtview::List</scope><name>get</name></member>
+      <member refid="classnbtview_1_1List_1a30f0c1c4de05db880409280cefa26ef6" prot="public" virt="non-virtual"><scope>nbtview::List</scope><name>List</name></member>
+      <member refid="classnbtview_1_1List_1aba5a1ff6e3afb9f3bb01234114bf6caa" prot="public" virt="non-virtual"><scope>nbtview::List</scope><name>list_type</name></member>
+      <member refid="classnbtview_1_1List_1aba7a07849819d1a2f3a19fec38195ff4" prot="private" virt="non-virtual"><scope>nbtview::List</scope><name>list_type_</name></member>
+      <member refid="classnbtview_1_1List_1a498d642e18067cc1e364fbfe9da92106" prot="public" virt="non-virtual"><scope>nbtview::List</scope><name>push_back</name></member>
+      <member refid="classnbtview_1_1List_1ab6926bc455d00c605017f57af005cc64" prot="public" virt="non-virtual"><scope>nbtview::List</scope><name>reserve</name></member>
+      <member refid="classnbtview_1_1List_1aa85ea7daab2cbe01b46566f171718277" prot="public" virt="non-virtual"><scope>nbtview::List</scope><name>size</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

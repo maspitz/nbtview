@@ -1,0 +1,229 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.1" xml:lang="en-US">
+  <compound refid="structnbtview_1_1array__format" kind="struct"><name>nbtview::array_format</name>
+    <member refid="structnbtview_1_1array__format_1a92c81029a2027c25dd8705f5c4ab301d" kind="variable"><name>array_prefix</name></member>
+    <member refid="structnbtview_1_1array__format_1a7d2b8648bf125fcc8da246c018b1f132" kind="variable"><name>array_suffix</name></member>
+    <member refid="structnbtview_1_1array__format_1a373b8a8cedc3221515be293b8d52f277" kind="variable"><name>elt_suffix</name></member>
+  </compound>
+  <compound refid="classnbtview_1_1BinaryDeserializer" kind="class"><name>nbtview::BinaryDeserializer</name>
+    <member refid="classnbtview_1_1BinaryDeserializer_1a8d608f17a4f7e703480a2457f9b6188a" kind="variable"><name>scanner</name></member>
+    <member refid="classnbtview_1_1BinaryDeserializer_1acbcb2702dd72dcb206d275076829b63f" kind="function"><name>BinaryDeserializer</name></member>
+    <member refid="classnbtview_1_1BinaryDeserializer_1a85bc0b39c82326d6cfa56c4f387021dd" kind="function"><name>~BinaryDeserializer</name></member>
+    <member refid="classnbtview_1_1BinaryDeserializer_1aeb8d769ca662cfc539701169f36c4440" kind="function"><name>deserialize</name></member>
+    <member refid="classnbtview_1_1BinaryDeserializer_1ad6a07979a034e2bdfacdc02b9026d7ab" kind="function"><name>deserialize_list</name></member>
+    <member refid="classnbtview_1_1BinaryDeserializer_1a970d35120bbe68ffbcf53edf57693e15" kind="function"><name>deserialize_compound</name></member>
+    <member refid="classnbtview_1_1BinaryDeserializer_1a7afe8c7fc6e49c28933b495e9fa00fc7" kind="function"><name>deserialize_typed_value</name></member>
+  </compound>
+  <compound refid="classnbtview_1_1BinaryReader" kind="class"><name>nbtview::BinaryReader</name>
+    <member refid="classnbtview_1_1BinaryReader_1add72fc7a05a1236244c15ec53776b7dc" kind="variable"><name>read_data</name></member>
+    <member refid="classnbtview_1_1BinaryReader_1a2ac7291b6e0878f9db37122914aed733" kind="variable"><name>read_begin</name></member>
+    <member refid="classnbtview_1_1BinaryReader_1ae7459a1c2da790f448d32d43efbcf383" kind="variable"><name>read_end</name></member>
+    <member refid="classnbtview_1_1BinaryReader_1a5242178c642a3f5499705d05e3ab4015" kind="variable"><name>read_ptr</name></member>
+    <member refid="classnbtview_1_1BinaryReader_1aa9d8413a9a8bb3016e9f24f35444ddb0" kind="variable"><name>data_size</name></member>
+    <member refid="classnbtview_1_1BinaryReader_1ac26981ad1211036410c7f7a15e9364ea" kind="function"><name>BinaryReader</name></member>
+    <member refid="classnbtview_1_1BinaryReader_1a1e3fadb8ce0de927bcd35eb160be29a3" kind="function"><name>get_value</name></member>
+    <member refid="classnbtview_1_1BinaryReader_1a754127b621b919d41d77a7d0098ca4a7" kind="function"><name>read_pos</name></member>
+    <member refid="classnbtview_1_1BinaryReader_1ab5c3cb42b8f4b93cf48f7737571e3e40" kind="function"><name>get_string</name></member>
+    <member refid="classnbtview_1_1BinaryReader_1a854757177327afc67eacc4e3652e97ce" kind="function"><name>get_vector</name></member>
+    <member refid="classnbtview_1_1BinaryReader_1ad6516aa5cbb62604085bc3aa40e8da8b" kind="function"><name>get_vector2</name></member>
+  </compound>
+  <compound refid="classnbtview_1_1BinaryWriter" kind="class"><name>nbtview::BinaryWriter</name>
+    <member refid="classnbtview_1_1BinaryWriter_1a5552f778771c6c2fd7d7ca0d81474b2a" kind="function"><name>write</name></member>
+    <member refid="classnbtview_1_1BinaryWriter_1a06f54dcd358cbe9d21055c80c4f4d6bd" kind="function"><name>write_string</name></member>
+    <member refid="classnbtview_1_1BinaryWriter_1a382e296574cb4669887215967c50f443" kind="function"><name>write_vector</name></member>
+  </compound>
+  <compound refid="classnbtview_1_1Compound" kind="class"><name>nbtview::Compound</name>
+    <member refid="classnbtview_1_1Compound_1a21f82b837d461f56e7621482eca1e0ef" kind="typedef"><name>iterator</name></member>
+    <member refid="classnbtview_1_1Compound_1ae75c4271ea6ccfddcb21e7462a2ed6fc" kind="typedef"><name>const_iterator</name></member>
+    <member refid="classnbtview_1_1Compound_1afc4f90d4bfa6caf384dadd472086473e" kind="variable"><name>data</name></member>
+    <member refid="classnbtview_1_1Compound_1a30548f7e54178a2d7e05e3f39e5207ec" kind="function"><name>Compound</name></member>
+    <member refid="classnbtview_1_1Compound_1a38e6ffc13f37a84b05bad6ca9112fa7a" kind="function"><name>contains</name></member>
+    <member refid="classnbtview_1_1Compound_1aa3e34fe1fd2f862e82e135c8c3a8a1fe" kind="function"><name>get</name></member>
+    <member refid="classnbtview_1_1Compound_1a2065f9f197bb9776da9bd40ce7e9669a" kind="function"><name>put</name></member>
+    <member refid="classnbtview_1_1Compound_1a617e8f4f44d84995f4d25c9fb9633a62" kind="function"><name>begin</name></member>
+    <member refid="classnbtview_1_1Compound_1af048b79c92349cebff7c946fb89d6704" kind="function"><name>end</name></member>
+    <member refid="classnbtview_1_1Compound_1af40e2248e39eb5e2e2f11f7cae5e2455" kind="function"><name>begin</name></member>
+    <member refid="classnbtview_1_1Compound_1a5787d3aa5d92db50b4cd894d4a297eaa" kind="function"><name>end</name></member>
+    <member refid="classnbtview_1_1Compound_1a111037d1db2d6118bf1a14140cbd2b94" kind="function"><name>cbegin</name></member>
+    <member refid="classnbtview_1_1Compound_1a5b27dbf191331408891c57e579c04867" kind="function"><name>cend</name></member>
+    <member refid="classnbtview_1_1Compound_1aeaf04cfe043461d7f8ac9e8ced9ae973" kind="function"><name>size</name></member>
+    <member refid="classnbtview_1_1Compound_1a883a02c7626f2bf6755a75b0b793ed2a" kind="function"><name>empty</name></member>
+    <member refid="classnbtview_1_1Compound_1a512af697c0ff1ffa42f4304e34065620" kind="function"><name>at</name></member>
+    <member refid="classnbtview_1_1Compound_1a215daca7767bfe31cac443b1956a190f" kind="function"><name>at</name></member>
+    <member refid="classnbtview_1_1Compound_1a2cc456b2a124a954c95582ad06de4d10" kind="function"><name>emplace</name></member>
+  </compound>
+  <compound refid="classnbtview_1_1Deserializer" kind="class"><name>nbtview::Deserializer</name>
+    <member refid="classnbtview_1_1Deserializer_1a091616f8a82c35fe5c7d838c38c15a4b" kind="function"><name>~Deserializer</name></member>
+    <member refid="classnbtview_1_1Deserializer_1ab7f51da91148d6c1934ae6fcc4de18b9" kind="function"><name>deserialize</name></member>
+  </compound>
+  <compound refid="classnbtview_1_1List" kind="class"><name>nbtview::List</name>
+    <member refid="classnbtview_1_1List_1aca237d306c11460b4ed92c55baea917d" kind="variable"><name>data</name></member>
+    <member refid="classnbtview_1_1List_1aba7a07849819d1a2f3a19fec38195ff4" kind="variable"><name>list_type_</name></member>
+    <member refid="classnbtview_1_1List_1a30f0c1c4de05db880409280cefa26ef6" kind="function"><name>List</name></member>
+    <member refid="classnbtview_1_1List_1a906094b701bde3e845ebea87850ce355" kind="function"><name>get</name></member>
+    <member refid="classnbtview_1_1List_1aba5a1ff6e3afb9f3bb01234114bf6caa" kind="function"><name>list_type</name></member>
+    <member refid="classnbtview_1_1List_1a59304d3809bfe13f5e872fe9e522a621" kind="function"><name>begin</name></member>
+    <member refid="classnbtview_1_1List_1a042bc20a91e52ff551085f9ab715dfc2" kind="function"><name>end</name></member>
+    <member refid="classnbtview_1_1List_1aa6221a9fd099bed9b896a217f662047d" kind="function"><name>begin</name></member>
+    <member refid="classnbtview_1_1List_1a4552fb951add7825791b5475bd51b06b" kind="function"><name>end</name></member>
+    <member refid="classnbtview_1_1List_1ac699564397c44c1e8a731f60c63a0ded" kind="function"><name>cbegin</name></member>
+    <member refid="classnbtview_1_1List_1a82851a99ba1fe24b87cfeb211fdcc5fd" kind="function"><name>cend</name></member>
+    <member refid="classnbtview_1_1List_1aa85ea7daab2cbe01b46566f171718277" kind="function"><name>size</name></member>
+    <member refid="classnbtview_1_1List_1a6401d3f247d37c2feb876fef54ee1575" kind="function"><name>empty</name></member>
+    <member refid="classnbtview_1_1List_1ab6926bc455d00c605017f57af005cc64" kind="function"><name>reserve</name></member>
+    <member refid="classnbtview_1_1List_1aac85851562cacf70e731b6faf195c9da" kind="function"><name>at</name></member>
+    <member refid="classnbtview_1_1List_1aba8fcea83db9066122d9633c745526ef" kind="function"><name>at</name></member>
+    <member refid="classnbtview_1_1List_1ae10f85c05a1c8d8f04a058b20846b496" kind="function"><name>emplace_back</name></member>
+    <member refid="classnbtview_1_1List_1a498d642e18067cc1e364fbfe9da92106" kind="function"><name>push_back</name></member>
+  </compound>
+  <compound refid="structnbtview_1_1detail_1_1PayloadSerializer" kind="struct"><name>nbtview::detail::PayloadSerializer</name>
+    <member refid="structnbtview_1_1detail_1_1PayloadSerializer_1aa237f029ed4f5034ec957d6ff62ab187" kind="variable"><name>output</name></member>
+    <member refid="structnbtview_1_1detail_1_1PayloadSerializer_1a58c57b2301d0ea826e93d563de31c6ad" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1detail_1_1PayloadSerializer_1ad8daa4d868aea208f026a21945aeee58" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1detail_1_1PayloadSerializer_1a09ca912301985c896e9d37c09aca8a3c" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1detail_1_1PayloadSerializer_1a353363e8f4c8806da1de444748f85005" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1detail_1_1PayloadSerializer_1a930e0843fb94124fcfc981372df9064c" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1detail_1_1PayloadSerializer_1ad78c7a0120c5c5a2415d977f9bc6bdde" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1detail_1_1PayloadSerializer_1a211d530649ae585391241fa0ab1fbc77" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1detail_1_1PayloadSerializer_1ae1c664e89c50e8522a1dd029fa3795be" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1detail_1_1PayloadSerializer_1ab936cbca88c10e329781b4cb1183628e" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1detail_1_1PayloadSerializer_1a03fc9b323c584f40a2bb21b7ad75f923" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1detail_1_1PayloadSerializer_1acb0bf4d219fc0a7ab11cb6e61f26d4df" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1detail_1_1PayloadSerializer_1ad9769fa16afa37b246b3af7c0e790b9a" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1detail_1_1PayloadSerializer_1a070496509be2a5dee6a6ced2b3724ae3" kind="function"><name>operator()</name></member>
+  </compound>
+  <compound refid="structnbtview_1_1StringifyTag" kind="struct"><name>nbtview::StringifyTag</name>
+    <member refid="structnbtview_1_1StringifyTag_1aeb1220bacb9821cb08f0ad708ced6fd7" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1StringifyTag_1adae3a3ed4f80b70e2971e3c9539e76c0" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1StringifyTag_1a6b9af0e0cd6ac20e22de49a93510a96c" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1StringifyTag_1a9f1e61ecf64b0126229574c7789b0171" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1StringifyTag_1a5e14241ff27a6f6d1d33e190e2da6215" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1StringifyTag_1aed1204c64e4578481fd486c38256f7e1" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1StringifyTag_1a4698594e7c59f3281799beb371d06497" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1StringifyTag_1a9d36dd0c98639e8a11b0b6c8fd49e9e3" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1StringifyTag_1aeafc7ac89e2fdfc533ff0cf573dd03ae" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1StringifyTag_1a8b8335fb1832d5c5d6c5c17a26d59eb4" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1StringifyTag_1a62dcd1bfb4f7c7ab0bf862f000754c65" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1StringifyTag_1aef81103b52f38af897534c80013e2438" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1StringifyTag_1a62aaa97b756061b8a6cad28394dee854" kind="function"><name>operator()</name></member>
+  </compound>
+  <compound refid="structnbtview_1_1StringifyTagType" kind="struct"><name>nbtview::StringifyTagType</name>
+    <member refid="structnbtview_1_1StringifyTagType_1ad6aaabee0a34f3f6cf7025d2ed191884" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1StringifyTagType_1a0e37d6b827632480d0bfde7ac6671fa8" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1StringifyTagType_1afeac3b2e720965701c10f7f8a654a54e" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1StringifyTagType_1ab3bb4df00c89793cf9ca8c7fd4cdfbbb" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1StringifyTagType_1a65d1d90c27bd1febccc11bcabd9f77a1" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1StringifyTagType_1a99a53d9423f340d384e4e1cc0a2a0029" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1StringifyTagType_1a6c6e9269226bc812d1b92a9218d44e99" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1StringifyTagType_1a1e5943d914764470865890c7af8bd8e2" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1StringifyTagType_1a63e1993693e000a56aa81a6ff81c76c3" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1StringifyTagType_1a77edb47e5de63b8fc9a661e89557eb81" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1StringifyTagType_1a1976861f6c9c5e384e745f336c30b08b" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1StringifyTagType_1a7be4c38d6197af630373f73fbe8216a3" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1StringifyTagType_1ab8419370aace464c42071fc01dbee297" kind="function"><name>operator()</name></member>
+  </compound>
+  <compound refid="structnbtview_1_1TagID" kind="struct"><name>nbtview::TagID</name>
+    <member refid="structnbtview_1_1TagID_1a0a191980fbbe0af3efc6b8ba122f5a7c" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1TagID_1a8623d34b3f7b5802aead5d0dfb5976de" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1TagID_1ac9156b720eda713e1ba6ec857358cd24" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1TagID_1a2c68a9a52196ff37f7d6d4c2596f28ec" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1TagID_1a025705d2e390e70c5632aac3a5940a4e" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1TagID_1ac36e5839cd29f6d61080fc08f8dfb850" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1TagID_1a3d35a96d9c1a4430c0c700104a8bf5ae" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1TagID_1ad911c38da7fb69a8571dc694f5cdae3f" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1TagID_1a44428d64c6f910e7b7690416fbe809ba" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1TagID_1a543a97c5207b140c87fc62f0eab724cb" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1TagID_1a98f69bbf33fc0085b723df4f10cc6291" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1TagID_1a32de59ee871f90272034d066513e7ece" kind="function"><name>operator()</name></member>
+    <member refid="structnbtview_1_1TagID_1a386e1f47dc41da7996bff46544ddfc87" kind="function"><name>operator()</name></member>
+  </compound>
+  <compound refid="classnbtview_1_1UnexpectedEndOfInputException" kind="class"><name>nbtview::UnexpectedEndOfInputException</name>
+    <member refid="classnbtview_1_1UnexpectedEndOfInputException_1aaa2d8d1af0e9cd00ef84a0090823a2d7" kind="function"><name>UnexpectedEndOfInputException</name></member>
+  </compound>
+  <compound refid="namespacenbtview" kind="namespace"><name>nbtview</name>
+    <member refid="namespacenbtview_1aa4c7f0bb2225d506fd0ad00d381f537f" kind="function"><name>read_binary</name></member>
+    <member refid="namespacenbtview_1a938ea9d0e3e51f465d050f8069887e20" kind="function"><name>read_binary</name></member>
+    <member refid="namespacenbtview_1a552afcf07de4c0e568601c95b4bb2486" kind="function"><name>write_binary</name></member>
+    <member refid="namespacenbtview_1afbb5f08ddadfd438a8d82539ea8ec7e4" kind="function"><name>write_binary</name></member>
+    <member refid="namespacenbtview_1aadf85cee84299935966d79e35574dd55" kind="function"><name>write_binary</name></member>
+    <member refid="namespacenbtview_1a390fb78fe858b5c66d2f401f418bb769" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="namespacenbtview_1a66cfd2044b9c70f09690fac3901c0ce2" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="namespacenbtview_1a3e30272ad6ec26c1630345d36477c40f" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1" kind="enum"><name>TypeCode</name></member>
+    <member refid="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1a87557f11575c0ad78e4e28abedc13b6e" kind="enumvalue"><name>End</name></member>
+    <member refid="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1aa245c3230debe5c956484ecc6fa93877" kind="enumvalue"><name>Byte</name></member>
+    <member refid="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1a30bb747c98bccdd11b3f89e644c4d0ad" kind="enumvalue"><name>Short</name></member>
+    <member refid="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1a1686a6c336b71b36d77354cea19a8b52" kind="enumvalue"><name>Int</name></member>
+    <member refid="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1a8394f0347c184cf156ac5924dccb773b" kind="enumvalue"><name>Long</name></member>
+    <member refid="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1a22ae0e2b89e5e3d477f988cc36d3272b" kind="enumvalue"><name>Float</name></member>
+    <member refid="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1ad909d38d705ce75386dd86e611a82f5b" kind="enumvalue"><name>Double</name></member>
+    <member refid="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1a250e13bca3f244aa4a45b3322c1de3d8" kind="enumvalue"><name>Byte_Array</name></member>
+    <member refid="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1a27118326006d3829667a400ad23d5d98" kind="enumvalue"><name>String</name></member>
+    <member refid="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1a4ee29ca12c7d126654bd0e5275de6135" kind="enumvalue"><name>List</name></member>
+    <member refid="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1a26154ea007c65f860de5333a555a56cf" kind="enumvalue"><name>Compound</name></member>
+    <member refid="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1ab91d062a81ee9431cc0253ac157bd98b" kind="enumvalue"><name>Int_Array</name></member>
+    <member refid="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1a9048cc28d3a136fb157529b21ac3055e" kind="enumvalue"><name>Long_Array</name></member>
+    <member refid="namespacenbtview_1abac20ead73188ab8094137b5b4bbd5f2" kind="typedef"><name>End</name></member>
+    <member refid="namespacenbtview_1af68b4d9024e97e56e47b022e65b25f15" kind="typedef"><name>Byte</name></member>
+    <member refid="namespacenbtview_1a135ffec411a1c14822713fd40959fdf6" kind="typedef"><name>Short</name></member>
+    <member refid="namespacenbtview_1a6fedb4bc19422081c525566dfec4b89b" kind="typedef"><name>Int</name></member>
+    <member refid="namespacenbtview_1ac0fddc63117df18c01dd94b78621bce0" kind="typedef"><name>Long</name></member>
+    <member refid="namespacenbtview_1a40ef7b380a31d7abd2744a2f9d2725c3" kind="typedef"><name>Float</name></member>
+    <member refid="namespacenbtview_1a06f91b24dbf822dbf7d54103059e1da0" kind="typedef"><name>Double</name></member>
+    <member refid="namespacenbtview_1ac568dd2508ef25a79f4527b5b30c2175" kind="typedef"><name>Byte_Array</name></member>
+    <member refid="namespacenbtview_1a8763725f06fd8f86ba0393bf56d78761" kind="typedef"><name>String</name></member>
+    <member refid="namespacenbtview_1aedc8581c15b590af57635d606a2c73a0" kind="typedef"><name>Int_Array</name></member>
+    <member refid="namespacenbtview_1af706de40c93703c773c7475bf3075a81" kind="typedef"><name>Long_Array</name></member>
+    <member refid="namespacenbtview_1a9fcb48c3df7749255fcc9f3f9e84f3fa" kind="typedef"><name>Tag</name></member>
+    <member refid="namespacenbtview_1a62378fce3f65363cf1ac2855647f43cf" kind="function"><name>fast_find_named_tag</name></member>
+    <member refid="namespacenbtview_1a792cf692f58bf3da1818184ad5f2dfd6" kind="function"><name>tag_to_string</name></member>
+    <member refid="namespacenbtview_1a5856db957caf969d2b2ff9b1b50d8f67" kind="function"><name>tag_to_string</name></member>
+    <member refid="namespacenbtview_1a581ba1225cbd921ed202039c9a8faddd" kind="function"><name>tag_to_string</name></member>
+    <member refid="namespacenbtview_1a407053dbe431b26db62ae49c816d70c8" kind="function"><name>tag_type_to_string</name></member>
+    <member refid="namespacenbtview_1a0bd7f6345e97652211a472943d4ffd9a" kind="function"><name>tag_type_to_string</name></member>
+    <member refid="namespacenbtview_1a02eba78aa9223937ff2ec6237d422c6f" kind="function"><name>tag_type_to_string</name></member>
+    <member refid="namespacenbtview_1a10e959b60f48cfa9e2bdee220abaf4fb" kind="function"><name>tag_code_to_string</name></member>
+    <member refid="namespacenbtview_1a2e368e409169b9c433f16763be3f0b37" kind="function"><name>snbt_requires_quoting</name></member>
+    <member refid="namespacenbtview_1a99f417945a3700f4c8a19d670f19c3a7" kind="function"><name>quoted_string</name></member>
+    <member refid="namespacenbtview_1a0ee9f2ba9bf67f7636003442cfd4d967" kind="function"><name>comma_delimited_array</name></member>
+    <member refid="namespacenbtview_1a7890daf6a9e0a0587de13bf746ff3bfa" kind="function"><name>has_gzip_header</name></member>
+    <member refid="namespacenbtview_1a225cbe1870ea9bd48e83428fb7df11e2" kind="function"><name>decompress_gzip</name></member>
+  </compound>
+  <compound refid="namespacenbtview_1_1detail" kind="namespace"><name>nbtview::detail</name>
+    <member refid="BinaryReader_8hpp_1a352e0a5be2cec215675107bd062ecefb" kind="function"><name>swap_endian</name></member>
+  </compound>
+  <compound refid="namespacestd" kind="namespace"><name>std</name>
+  </compound>
+  <compound refid="BinaryDeserializer_8cpp" kind="file"><name>BinaryDeserializer.cpp</name>
+  </compound>
+  <compound refid="BinaryDeserializer_8hpp" kind="file"><name>BinaryDeserializer.hpp</name>
+  </compound>
+  <compound refid="BinaryReader_8hpp" kind="file"><name>BinaryReader.hpp</name>
+  </compound>
+  <compound refid="BinaryWriter_8hpp" kind="file"><name>BinaryWriter.hpp</name>
+  </compound>
+  <compound refid="Deserializer_8hpp" kind="file"><name>Deserializer.hpp</name>
+  </compound>
+  <compound refid="nbtview_8cpp" kind="file"><name>nbtview.cpp</name>
+  </compound>
+  <compound refid="nbtview_8hpp" kind="file"><name>nbtview.hpp</name>
+  </compound>
+  <compound refid="Serializer_8hpp" kind="file"><name>Serializer.hpp</name>
+  </compound>
+  <compound refid="Stringifier_8cpp" kind="file"><name>Stringifier.cpp</name>
+  </compound>
+  <compound refid="Stringifier_8hpp" kind="file"><name>Stringifier.hpp</name>
+  </compound>
+  <compound refid="Tag_8cpp" kind="file"><name>Tag.cpp</name>
+  </compound>
+  <compound refid="Tag_8hpp" kind="file"><name>Tag.hpp</name>
+  </compound>
+  <compound refid="utils_8hpp" kind="file"><name>utils.hpp</name>
+  </compound>
+  <compound refid="zlib__utils_8cpp" kind="file"><name>zlib_utils.cpp</name>
+  </compound>
+  <compound refid="zlib__utils_8hpp" kind="file"><name>zlib_utils.hpp</name>
+  </compound>
+  <compound refid="dir_b518aaa42d9a49e416519d434cd9d8cf" kind="dir"><name>nbtview</name>
+  </compound>
+</doxygenindex>
