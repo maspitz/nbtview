@@ -24,7 +24,7 @@ jobs:
         run: ctest --test-dir build
 
 #      - name: Install Doxygen
-#        run: sudo apt-get install doxygen -y
+#        run: sudo apt-get install doxygen graphviz -y
 #        shell: bash
 #
 #      - name: Generate project documentation
