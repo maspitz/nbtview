@@ -8,6 +8,8 @@ on:
 jobs:
   generate-documentation:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - run: echo "Triggered by ${{ github.event_name }} event."
 
