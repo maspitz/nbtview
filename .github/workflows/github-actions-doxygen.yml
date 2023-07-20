@@ -1,0 +1,36 @@
+name: Doxygen GitHub Action
+run-name: ${{ github.actor }} is generating and deploying documentation
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-project:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Triggered by ${{ github.event_name }} event."
+
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+
+      - name: Configure the project
+        uses: threeal/cmake-action@v1.2.0
+
+      - name: Build the project
+        run: cmake --build build
+
+      - name: Test the project
+        run: ctest --test-dir build
+
+#      - name: Install Doxygen
+#        run: sudo apt-get install doxygen -y
+#        shell: bash
+#
+#      - name: Generate project documentation
+#        run: ctest --build build --target docs
+#      - name: Deploy
+#        uses: peaceiris/actions-gh-pages@v3
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          publish_dir: ./build/doxygen
