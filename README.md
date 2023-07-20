@@ -32,13 +32,16 @@ cmake --build build -- -j$(nproc)
 
 **Documentation**
 
-Assumes `doxygen` is installed:
+You can find the interface documentation online at: 
+[https://maspitz.github.io/nbtview/html/namespacenbtview.html](https://maspitz.github.io/nbtview/html/namespacenbtview.html)
+
+To build documentation locally using doxygen, run:
 
 ``` bash
 cmake --build build --target docs
 ```
 
-Documentation is emitted into `build/doxygen`.
+Documentation is emitted into `build/doxygen/html`.
 
 **Testing**
 
