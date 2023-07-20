@@ -2,10 +2,10 @@
 
 #include <vector>
 
-#include "BinaryDeserializer.hpp"
-#include "BinaryReader.hpp"
-#include "Tag.hpp"
 #include "doctest.h"
+
+#include "BinaryDeserializer.hpp"
+#include "Tag.hpp"
 #include "nbtview.hpp"
 
 namespace nbt = nbtview;
