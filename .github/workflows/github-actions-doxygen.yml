@@ -6,7 +6,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build-project:
+  generate-documentation:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Triggered by ${{ github.event_name }} event."
@@ -14,12 +14,12 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v3
 
-      - name: Configure the project
-        uses: threeal/cmake-action@v1.2.0
-
       - name: Install Doxygen
         run: sudo apt-get install doxygen graphviz -y
         shell: bash
+
+      - name: Configure the project
+        uses: threeal/cmake-action@v1.2.0
 
       - name: Generate project documentation
         run: cmake --build build --target docs -- -j$(nproc)
