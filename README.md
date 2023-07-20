@@ -3,7 +3,7 @@ A C++ library to read and write data in the NBT format used by Minecraft.
 
 ## Usage
 
-**Output an NBT file in a string form.**
+**Example: Output an NBT file in a string form.**
 
 ```cpp
     std::ifstream infile("my_file.nbt");
