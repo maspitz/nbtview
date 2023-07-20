@@ -27,7 +27,7 @@ zlib is required.  In Fedora (for example) this can be satisfied via `dnf instal
 git clone https://github.com/maspitz/nbtview
 cd nbtview
 cmake -S . -B build
-cmake --build build
+cmake --build build -- -j$(nproc)
 ```
 
 **Documentation**
