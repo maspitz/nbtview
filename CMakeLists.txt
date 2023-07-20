@@ -8,9 +8,6 @@ project(
   LANGUAGES CXX
 )
 
-#set(CMAKE_VERBOSE_MAKEFILE ON)
-set(CMAKE_BUILD_TYPE Debug)
-
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 
@@ -26,10 +23,8 @@ include(CTest)
 
 enable_testing() 
 add_subdirectory(nbtview)
-#add_subdirectory(doc)
 add_subdirectory(apps)
 
-# look for Doxygen package
 find_package(Doxygen)
 
 if(DOXYGEN_FOUND)
