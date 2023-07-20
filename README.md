@@ -24,21 +24,27 @@ zlib is required.  In Fedora (for example) this can be satisfied via `dnf instal
 **Compiling**
 
 ``` bash
-mkdir build
-cd build
-cmake ..
-make
-make install
+git clone https://github.com/maspitz/nbtview
+cd nbtview
+cmake -S . -B build
+cmake --build build
 ```
 
-## Documentation
+**Documentation**
 
-A `docs` target is provided, which requires doxygen.
+Assumes `doxygen` is installed:
 
-In the `build` directory, run `make docs`.
+``` bash
+cmake --build build --target docs
+```
 
 Documentation is emitted into `build/doxygen`.
 
-## Testing
+**Testing**
 
-Test executables are part of the default build target.  They can be run individually or via `ctest`.
+``` bash
+cmake --build build --target test
+```
+
+Or run the test executables individually, e.g.:
+`build/test_bigtest`
