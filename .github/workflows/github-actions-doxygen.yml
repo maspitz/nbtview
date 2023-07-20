@@ -1,4 +1,4 @@
-name: Generate and deploy documentation
+name: Documentation
 run-name: ${{ github.actor }} is generating and deploying documentation
 
 on:

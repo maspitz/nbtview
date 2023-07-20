@@ -1,4 +1,4 @@
-name: Build and test nbtview
+name: CI Tests
 run-name: ${{ github.actor }} is testing the project
 
 on:
