@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="Region_8hpp" kind="file" language="C++">
+    <compoundname>Region.hpp</compoundname>
+    <includes local="no">array</includes>
+    <includes local="no">cstdint</includes>
+    <includes local="no">iosfwd</includes>
+    <includes local="no">vector</includes>
+    <includedby refid="Region_8cpp" local="yes">nbtview/Region.cpp</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>cstdint</label>
+      </node>
+      <node id="5">
+        <label>vector</label>
+      </node>
+      <node id="2">
+        <label>array</label>
+      </node>
+      <node id="4">
+        <label>iosfwd</label>
+      </node>
+      <node id="1">
+        <label>nbtview/Region.hpp</label>
+        <link refid="Region_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classnbtview_1_1Region" prot="public">nbtview::Region</innerclass>
+    <innerclass refid="structnbtview_1_1Region_1_1ChunkData" prot="public">nbtview::Region::ChunkData</innerclass>
+    <innernamespace refid="namespacenbtview">nbtview</innernamespace>
+    <briefdescription>
+<para>Supports the Region format as a container of NBT data. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Michael Spitznagel </para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright 2023 Michael Spitznagel. Released under the Boost Software License 1.0</para>
+</simplesect>
+<ulink url="https://github.com/maspitz/nbtview">https://github.com/maspitz/nbtview</ulink> </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>NBT_REGION_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NBT_REGION_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;array&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstdint&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iosfwd&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenbtview" kindref="compound">nbtview</ref><sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="classnbtview_1_1Region" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnbtview_1_1Region" kindref="compound">Region</ref><sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="33" refid="classnbtview_1_1Region_1acebf9530fcf8b819677a84b6e259e0c0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classnbtview_1_1Region_1acebf9530fcf8b819677a84b6e259e0c0" kindref="member">CHUNK_WIDTH</ref><sp/>=<sp/>16;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="classnbtview_1_1Region_1a086bd04f40443d802727183e3bcce5a8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classnbtview_1_1Region_1a086bd04f40443d802727183e3bcce5a8" kindref="member">REGION_WIDTH</ref><sp/>=<sp/>32;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="classnbtview_1_1Region_1a91f7c5533e23882a3d0d55520ae12017" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classnbtview_1_1Region_1a91f7c5533e23882a3d0d55520ae12017" kindref="member">N_CHUNKS</ref><sp/>=<sp/><ref refid="classnbtview_1_1Region_1a086bd04f40443d802727183e3bcce5a8" kindref="member">REGION_WIDTH</ref><sp/>*<sp/><ref refid="classnbtview_1_1Region_1a086bd04f40443d802727183e3bcce5a8" kindref="member">REGION_WIDTH</ref>;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="classnbtview_1_1Region_1a438234847870d7f6817b262fd8cf2f58" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classnbtview_1_1Region_1a438234847870d7f6817b262fd8cf2f58" kindref="member">SECTOR_LENGTH</ref><sp/>=<sp/>4096;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="structnbtview_1_1Region_1_1ChunkData" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnbtview_1_1Region_1_1ChunkData" kindref="compound">ChunkData</ref><sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t<sp/>timestamp;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t<sp/>offset;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/>length;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;ChunkData,<sp/>N_CHUNKS&gt;<sp/>chunk;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;bool&gt;<sp/>sector_free;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="58" refid="classnbtview_1_1Region_1abd4f20a115bf8a42ee249ea91d6e1985" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnbtview_1_1Region_1abd4f20a115bf8a42ee249ea91d6e1985" kindref="member">Region</ref>()<sp/>{}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>std::istream<sp/>&amp;<ref refid="classnbtview_1_1Region_1a4160b3c7b0735297156a48e7616bcc83" kindref="member">ReadTimestamps</ref>(std::istream<sp/>&amp;input);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>std::istream<sp/>&amp;<ref refid="classnbtview_1_1Region_1a4b0a10df3d3de76804d995570944e23f" kindref="member">ReadOffsets</ref>(std::istream<sp/>&amp;input);</highlight></codeline>
+<codeline lineno="70" refid="classnbtview_1_1Region_1abce2d5bbedf25e15e52eea9f08f03a33" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="classnbtview_1_1Region_1abce2d5bbedf25e15e52eea9f08f03a33" kindref="member">get_timestamp</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>chunk[idx].timestamp;<sp/>}</highlight></codeline>
+<codeline lineno="72" refid="classnbtview_1_1Region_1abee66b2e244577fe42767d5aff25e640" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="classnbtview_1_1Region_1abee66b2e244577fe42767d5aff25e640" kindref="member">get_offset</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>chunk[idx].offset;<sp/>}</highlight></codeline>
+<codeline lineno="74" refid="classnbtview_1_1Region_1a8035ff01e728793559fab17d47bba936" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="classnbtview_1_1Region_1a8035ff01e728793559fab17d47bba936" kindref="member">get_length</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>chunk[idx].length;<sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nbtview</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>NBT_REGION_H_</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="nbtview/Region.hpp"/>
+  </compounddef>
+</doxygen>

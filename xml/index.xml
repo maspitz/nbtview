@@ -32,6 +32,11 @@
     <member refid="classnbtview_1_1BinaryWriter_1a06f54dcd358cbe9d21055c80c4f4d6bd" kind="function"><name>write_string</name></member>
     <member refid="classnbtview_1_1BinaryWriter_1a382e296574cb4669887215967c50f443" kind="function"><name>write_vector</name></member>
   </compound>
+  <compound refid="structnbtview_1_1Region_1_1ChunkData" kind="struct"><name>nbtview::Region::ChunkData</name>
+    <member refid="structnbtview_1_1Region_1_1ChunkData_1ac60f73fcf8162f839428fb445883de47" kind="variable"><name>timestamp</name></member>
+    <member refid="structnbtview_1_1Region_1_1ChunkData_1aecf5a82deb77e148ba6deaaa4640f1f6" kind="variable"><name>offset</name></member>
+    <member refid="structnbtview_1_1Region_1_1ChunkData_1abf9c0b6bfe5cd7884fa17b1a3575cc11" kind="variable"><name>length</name></member>
+  </compound>
   <compound refid="classnbtview_1_1Compound" kind="class"><name>nbtview::Compound</name>
     <member refid="classnbtview_1_1Compound_1a21f82b837d461f56e7621482eca1e0ef" kind="typedef"><name>iterator</name></member>
     <member refid="classnbtview_1_1Compound_1ae75c4271ea6ccfddcb21e7462a2ed6fc" kind="typedef"><name>const_iterator</name></member>
@@ -91,6 +96,20 @@
     <member refid="structnbtview_1_1detail_1_1PayloadSerializer_1acb0bf4d219fc0a7ab11cb6e61f26d4df" kind="function"><name>operator()</name></member>
     <member refid="structnbtview_1_1detail_1_1PayloadSerializer_1ad9769fa16afa37b246b3af7c0e790b9a" kind="function"><name>operator()</name></member>
     <member refid="structnbtview_1_1detail_1_1PayloadSerializer_1a070496509be2a5dee6a6ced2b3724ae3" kind="function"><name>operator()</name></member>
+  </compound>
+  <compound refid="classnbtview_1_1Region" kind="class"><name>nbtview::Region</name>
+    <member refid="classnbtview_1_1Region_1acebf9530fcf8b819677a84b6e259e0c0" kind="variable"><name>CHUNK_WIDTH</name></member>
+    <member refid="classnbtview_1_1Region_1a086bd04f40443d802727183e3bcce5a8" kind="variable"><name>REGION_WIDTH</name></member>
+    <member refid="classnbtview_1_1Region_1a91f7c5533e23882a3d0d55520ae12017" kind="variable"><name>N_CHUNKS</name></member>
+    <member refid="classnbtview_1_1Region_1a438234847870d7f6817b262fd8cf2f58" kind="variable"><name>SECTOR_LENGTH</name></member>
+    <member refid="classnbtview_1_1Region_1a22c8f9e4e093cabb8abb7e80fa52869a" kind="variable"><name>chunk</name></member>
+    <member refid="classnbtview_1_1Region_1ae1786f017fe4dbe9a26a3ec3f0b776c2" kind="variable"><name>sector_free</name></member>
+    <member refid="classnbtview_1_1Region_1abd4f20a115bf8a42ee249ea91d6e1985" kind="function"><name>Region</name></member>
+    <member refid="classnbtview_1_1Region_1a4160b3c7b0735297156a48e7616bcc83" kind="function"><name>ReadTimestamps</name></member>
+    <member refid="classnbtview_1_1Region_1a4b0a10df3d3de76804d995570944e23f" kind="function"><name>ReadOffsets</name></member>
+    <member refid="classnbtview_1_1Region_1abce2d5bbedf25e15e52eea9f08f03a33" kind="function"><name>get_timestamp</name></member>
+    <member refid="classnbtview_1_1Region_1abee66b2e244577fe42767d5aff25e640" kind="function"><name>get_offset</name></member>
+    <member refid="classnbtview_1_1Region_1a8035ff01e728793559fab17d47bba936" kind="function"><name>get_length</name></member>
   </compound>
   <compound refid="structnbtview_1_1StringifyTag" kind="struct"><name>nbtview::StringifyTag</name>
     <member refid="structnbtview_1_1StringifyTag_1aeb1220bacb9821cb08f0ad708ced6fd7" kind="function"><name>operator()</name></member>
@@ -207,6 +226,10 @@
   <compound refid="nbtview_8cpp" kind="file"><name>nbtview.cpp</name>
   </compound>
   <compound refid="nbtview_8hpp" kind="file"><name>nbtview.hpp</name>
+  </compound>
+  <compound refid="Region_8cpp" kind="file"><name>Region.cpp</name>
+  </compound>
+  <compound refid="Region_8hpp" kind="file"><name>Region.hpp</name>
   </compound>
   <compound refid="Serializer_8hpp" kind="file"><name>Serializer.hpp</name>
   </compound>

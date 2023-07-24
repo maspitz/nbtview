@@ -7,6 +7,7 @@
     <innerclass refid="classnbtview_1_1BinaryReader" prot="public">nbtview::BinaryReader</innerclass>
     <innerclass refid="classnbtview_1_1BinaryWriter" prot="public">nbtview::BinaryWriter</innerclass>
     <innerclass refid="classnbtview_1_1Deserializer" prot="public">nbtview::Deserializer</innerclass>
+    <innerclass refid="classnbtview_1_1Region" prot="public">nbtview::Region</innerclass>
     <innerclass refid="structnbtview_1_1StringifyTag" prot="public">nbtview::StringifyTag</innerclass>
     <innerclass refid="structnbtview_1_1StringifyTagType" prot="public">nbtview::StringifyTagType</innerclass>
     <innerclass refid="structnbtview_1_1TagID" prot="public">nbtview::TagID</innerclass>

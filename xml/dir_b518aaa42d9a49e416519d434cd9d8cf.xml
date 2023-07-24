@@ -9,6 +9,8 @@
     <innerfile refid="Deserializer_8hpp">Deserializer.hpp</innerfile>
     <innerfile refid="nbtview_8cpp">nbtview.cpp</innerfile>
     <innerfile refid="nbtview_8hpp">nbtview.hpp</innerfile>
+    <innerfile refid="Region_8cpp">Region.cpp</innerfile>
+    <innerfile refid="Region_8hpp">Region.hpp</innerfile>
     <innerfile refid="Serializer_8hpp">Serializer.hpp</innerfile>
     <innerfile refid="Stringifier_8cpp">Stringifier.cpp</innerfile>
     <innerfile refid="Stringifier_8hpp">Stringifier.hpp</innerfile>

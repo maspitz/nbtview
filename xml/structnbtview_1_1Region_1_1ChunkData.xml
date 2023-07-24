@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structnbtview_1_1Region_1_1ChunkData" kind="struct" language="C++" prot="public">
+    <compoundname>nbtview::Region::ChunkData</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structnbtview_1_1Region_1_1ChunkData_1ac60f73fcf8162f839428fb445883de47" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t nbtview::Region::ChunkData::timestamp</definition>
+        <argsstring></argsstring>
+        <name>timestamp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Region.hpp" line="45" column="18" bodyfile="nbtview/Region.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnbtview_1_1Region_1_1ChunkData_1aecf5a82deb77e148ba6deaaa4640f1f6" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t nbtview::Region::ChunkData::offset</definition>
+        <argsstring></argsstring>
+        <name>offset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Region.hpp" line="46" column="18" bodyfile="nbtview/Region.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnbtview_1_1Region_1_1ChunkData_1abf9c0b6bfe5cd7884fa17b1a3575cc11" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t nbtview::Region::ChunkData::length</definition>
+        <argsstring></argsstring>
+        <name>length</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Region.hpp" line="47" column="17" bodyfile="nbtview/Region.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nbtview/Region.hpp" line="44" column="5" bodyfile="nbtview/Region.hpp" bodystart="44" bodyend="48"/>
+    <listofallmembers>
+      <member refid="structnbtview_1_1Region_1_1ChunkData_1abf9c0b6bfe5cd7884fa17b1a3575cc11" prot="public" virt="non-virtual"><scope>nbtview::Region::ChunkData</scope><name>length</name></member>
+      <member refid="structnbtview_1_1Region_1_1ChunkData_1aecf5a82deb77e148ba6deaaa4640f1f6" prot="public" virt="non-virtual"><scope>nbtview::Region::ChunkData</scope><name>offset</name></member>
+      <member refid="structnbtview_1_1Region_1_1ChunkData_1ac60f73fcf8162f839428fb445883de47" prot="public" virt="non-virtual"><scope>nbtview::Region::ChunkData</scope><name>timestamp</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
