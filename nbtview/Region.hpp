@@ -19,21 +19,27 @@
 namespace nbtview {
 
 /**
- * The Region class represents a container for chunk data, which is stored in
- * compressed NBT format.
+ * @brief Region represents the Region files that contain NBT chunk data
  *
+ * This class has no ownership over chunk data, nor of the underlying data
+ * store.
  *
- *
+ * Its concern is with the sector layout of chunk data, and to some extent,
+ * metadata such as modification timestamps.
  * */
 class Region {
   public:
-    static const int CHUNK_WIDTH = 16;  // chunk width in blocks
-    static const int REGION_WIDTH = 32; // region width in chunks
-    static const int N_CHUNKS =
-        REGION_WIDTH * REGION_WIDTH; // total number of chunks per region
+    //! chunk width in blocks
+    static const int CHUNK_WIDTH = 16;
 
-    static const int SECTOR_LENGTH =
-        4096; // length of a region data sector in bytes
+    //! region width in chunks
+    static const int REGION_WIDTH = 32;
+
+    //! total number of chunks per region
+    static const int N_CHUNKS = REGION_WIDTH * REGION_WIDTH;
+
+    //! length of a region data sector in bytes
+    static const int SECTOR_LENGTH = 4096;
 
     struct ChunkData {
         uint32_t timestamp;
@@ -46,11 +52,25 @@ class Region {
     std::vector<bool> sector_free;
 
   public:
+    /**
+     * @brief Initializes a Region with zeroed-out metadata.
+     */
     Region() {}
+    /**
+     * @brief Loads the timestamp data by reading 4 KiB from the given input
+     * stream.
+     * */
     std::istream &ReadTimestamps(std::istream &input);
+    /**
+     * @brief Loads the chunk data sector offset and length data by reading 4
+     * KiB from the given input stream.
+     * */
     std::istream &ReadOffsets(std::istream &input);
+    //! Returns the timestamp of the given chunk
     uint32_t get_timestamp(int idx) { return chunk[idx].timestamp; }
+    //! Returns the sector offset for the given chunk
     uint32_t get_offset(int idx) { return chunk[idx].offset; }
+    //! Returns the sector length for the given chunk
     uint32_t get_length(int idx) { return chunk[idx].length; }
 };
 
