@@ -49,6 +49,9 @@ class Region {
     Region() {}
     std::istream &ReadTimestamps(std::istream &input);
     std::istream &ReadOffsets(std::istream &input);
+    uint32_t get_timestamp(int idx) { return chunk[idx].timestamp; }
+    uint32_t get_offset(int idx) { return chunk[idx].offset; }
+    uint32_t get_length(int idx) { return chunk[idx].length; }
 };
 
 } // namespace nbtview
