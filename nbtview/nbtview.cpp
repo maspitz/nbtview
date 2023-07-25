@@ -50,7 +50,7 @@ std::pair<std::string, Tag> read_binary(std::istream &input) {
 }
 
 std::pair<std::string, Tag> read_binary(std::vector<unsigned char> bytes) {
-    if (has_gzip_header(bytes)) {
+    if (has_compression_header(bytes)) {
         bytes = decompress_gzip(bytes);
     }
     BinaryDeserializer reader(std::move(bytes));
