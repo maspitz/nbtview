@@ -242,7 +242,7 @@
 <codeline lineno="50"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"></highlight></codeline>
 <codeline lineno="52"><highlight class="normal">std::pair&lt;std::string,<sp/>Tag&gt;<sp/><ref refid="namespacenbtview_1aa4c7f0bb2225d506fd0ad00d381f537f" kindref="member">read_binary</ref>(std::vector&lt;unsigned<sp/>char&gt;<sp/>bytes)<sp/>{</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(has_gzip_header(bytes))<sp/>{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(has_compression_header(bytes))<sp/>{</highlight></codeline>
 <codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bytes<sp/>=<sp/>decompress_gzip(bytes);</highlight></codeline>
 <codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>BinaryDeserializer<sp/>reader(std::move(bytes));</highlight></codeline>

@@ -113,6 +113,9 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnbtview_1_1Region.html#a8035ff01e728793559fab17d47bba936">get_length</a> (int idx)</td></tr>
 <tr class="memdesc:a8035ff01e728793559fab17d47bba936"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the sector length for the given chunk. <br /></td></tr>
 <tr class="separator:a8035ff01e728793559fab17d47bba936"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea281f422660b5242b53095442398aa5"><td class="memItemLeft" align="right" valign="top">std::vector&lt; unsigned char &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnbtview_1_1Region.html#aea281f422660b5242b53095442398aa5">get_chunk_bytes</a> (int idx, std::istream &amp;input)</td></tr>
+<tr class="memdesc:aea281f422660b5242b53095442398aa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the sector data for the given chunk.  <a href="classnbtview_1_1Region.html#aea281f422660b5242b53095442398aa5">More...</a><br /></td></tr>
+<tr class="separator:aea281f422660b5242b53095442398aa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -137,7 +140,51 @@ static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 <div class="textblock"><p><a class="el" href="classnbtview_1_1Region.html" title="Region represents the Region files that contain NBT chunk data.">Region</a> represents the <a class="el" href="classnbtview_1_1Region.html" title="Region represents the Region files that contain NBT chunk data.">Region</a> files that contain NBT chunk data. </p>
 <p>This class has no ownership over chunk data, nor of the underlying data store.</p>
 <p>Its concern is with the sector layout of chunk data, and to some extent, metadata such as modification timestamps. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aea281f422660b5242b53095442398aa5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea281f422660b5242b53095442398aa5">&#9670;&nbsp;</a></span>get_chunk_bytes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; unsigned char &gt; nbtview::Region::get_chunk_bytes </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>input</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the sector data for the given chunk. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">idx</td><td>Index of the chunk. </td></tr>
+    <tr><td class="paramname">input</td><td>Data stream which should be positioned at the beginning of the region file.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::runtime_error</td><td>If the chunk data could not be read. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>nbtview/<a class="el" href="Region_8hpp_source.html">Region.hpp</a></li>
 <li>nbtview/Region.cpp</li>
 </ul>

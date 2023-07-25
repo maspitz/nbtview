@@ -800,11 +800,11 @@
         </inbodydescription>
         <location file="nbtview/utils.hpp" line="37" column="13" bodyfile="nbtview/utils.hpp" bodystart="37" bodyend="50"/>
       </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a7890daf6a9e0a0587de13bf746ff3bfa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacenbtview_1a3749b252f3355d1c079eb14447e8a5c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
-        <definition>bool nbtview::has_gzip_header</definition>
+        <definition>bool nbtview::has_compression_header</definition>
         <argsstring>(const std::vector&lt; unsigned char &gt; &amp;data)</argsstring>
-        <name>has_gzip_header</name>
+        <name>has_compression_header</name>
         <param>
           <type>const std::vector&lt; unsigned char &gt; &amp;</type>
           <declname>data</declname>
@@ -815,7 +815,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.cpp" line="12" column="6" bodyfile="nbtview/zlib_utils.cpp" bodystart="12" bodyend="17" declfile="nbtview/zlib_utils.hpp" declline="18" declcolumn="6"/>
+        <location file="nbtview/zlib_utils.cpp" line="12" column="6" bodyfile="nbtview/zlib_utils.cpp" bodystart="12" bodyend="25" declfile="nbtview/zlib_utils.hpp" declline="18" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacenbtview_1a225cbe1870ea9bd48e83428fb7df11e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; unsigned char &gt;</type>
@@ -832,7 +832,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.cpp" line="20" column="1" bodyfile="nbtview/zlib_utils.cpp" bodystart="20" bodyend="62" declfile="nbtview/zlib_utils.hpp" declline="21" declcolumn="1"/>
+        <location file="nbtview/zlib_utils.cpp" line="28" column="1" bodyfile="nbtview/zlib_utils.cpp" bodystart="28" bodyend="70" declfile="nbtview/zlib_utils.hpp" declline="21" declcolumn="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

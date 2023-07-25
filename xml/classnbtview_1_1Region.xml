@@ -125,7 +125,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Region.hpp" line="63" column="18" bodyfile="nbtview/Region.cpp" bodystart="10" bodyend="18"/>
+        <location file="nbtview/Region.hpp" line="63" column="18" bodyfile="nbtview/Region.cpp" bodystart="11" bodyend="19"/>
       </memberdef>
       <memberdef kind="function" id="classnbtview_1_1Region_1a4b0a10df3d3de76804d995570944e23f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::istream &amp;</type>
@@ -143,7 +143,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Region.hpp" line="68" column="18" bodyfile="nbtview/Region.cpp" bodystart="20" bodyend="30"/>
+        <location file="nbtview/Region.hpp" line="68" column="18" bodyfile="nbtview/Region.cpp" bodystart="21" bodyend="31"/>
       </memberdef>
       <memberdef kind="function" id="classnbtview_1_1Region_1abce2d5bbedf25e15e52eea9f08f03a33" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint32_t</type>
@@ -161,7 +161,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Region.hpp" line="70" column="14" bodyfile="nbtview/Region.hpp" bodystart="70" bodyend="70"/>
+        <location file="nbtview/Region.hpp" line="71" column="14" bodyfile="nbtview/Region.hpp" bodystart="71" bodyend="71"/>
       </memberdef>
       <memberdef kind="function" id="classnbtview_1_1Region_1abee66b2e244577fe42767d5aff25e640" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint32_t</type>
@@ -179,7 +179,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Region.hpp" line="72" column="14" bodyfile="nbtview/Region.hpp" bodystart="72" bodyend="72"/>
+        <location file="nbtview/Region.hpp" line="73" column="14" bodyfile="nbtview/Region.hpp" bodystart="73" bodyend="73"/>
       </memberdef>
       <memberdef kind="function" id="classnbtview_1_1Region_1a8035ff01e728793559fab17d47bba936" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint32_t</type>
@@ -197,7 +197,56 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Region.hpp" line="74" column="14" bodyfile="nbtview/Region.hpp" bodystart="74" bodyend="74"/>
+        <location file="nbtview/Region.hpp" line="75" column="14" bodyfile="nbtview/Region.hpp" bodystart="75" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="classnbtview_1_1Region_1aea281f422660b5242b53095442398aa5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; unsigned char &gt;</type>
+        <definition>std::vector&lt; unsigned char &gt; nbtview::Region::get_chunk_bytes</definition>
+        <argsstring>(int idx, std::istream &amp;input)</argsstring>
+        <name>get_chunk_bytes</name>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <param>
+          <type>std::istream &amp;</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+<para>Returns the sector data for the given chunk. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the chunk. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Data stream which should be positioned at the beginning of the region file.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the chunk data could not be read. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Region.hpp" line="85" column="17" bodyfile="nbtview/Region.cpp" bodystart="33" bodyend="50"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -207,10 +256,11 @@
 <para>This class has no ownership over chunk data, nor of the underlying data store.</para>
 <para>Its concern is with the sector layout of chunk data, and to some extent, metadata such as modification timestamps. </para>
     </detaileddescription>
-    <location file="nbtview/Region.hpp" line="30" column="1" bodyfile="nbtview/Region.hpp" bodystart="30" bodyend="75"/>
+    <location file="nbtview/Region.hpp" line="30" column="1" bodyfile="nbtview/Region.hpp" bodystart="30" bodyend="86"/>
     <listofallmembers>
       <member refid="classnbtview_1_1Region_1a22c8f9e4e093cabb8abb7e80fa52869a" prot="private" virt="non-virtual"><scope>nbtview::Region</scope><name>chunk</name></member>
       <member refid="classnbtview_1_1Region_1acebf9530fcf8b819677a84b6e259e0c0" prot="public" virt="non-virtual"><scope>nbtview::Region</scope><name>CHUNK_WIDTH</name></member>
+      <member refid="classnbtview_1_1Region_1aea281f422660b5242b53095442398aa5" prot="public" virt="non-virtual"><scope>nbtview::Region</scope><name>get_chunk_bytes</name></member>
       <member refid="classnbtview_1_1Region_1a8035ff01e728793559fab17d47bba936" prot="public" virt="non-virtual"><scope>nbtview::Region</scope><name>get_length</name></member>
       <member refid="classnbtview_1_1Region_1abee66b2e244577fe42767d5aff25e640" prot="public" virt="non-virtual"><scope>nbtview::Region</scope><name>get_offset</name></member>
       <member refid="classnbtview_1_1Region_1abce2d5bbedf25e15e52eea9f08f03a33" prot="public" virt="non-virtual"><scope>nbtview::Region</scope><name>get_timestamp</name></member>

@@ -2,11 +2,12 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="Region_8cpp" kind="file" language="C++">
     <compoundname>Region.cpp</compoundname>
+    <includes local="no">ios</includes>
     <includes local="no">istream</includes>
     <includes refid="BinaryReader_8hpp" local="yes">BinaryReader.hpp</includes>
     <includes refid="Region_8hpp" local="yes">Region.hpp</includes>
     <incdepgraph>
-      <node id="6">
+      <node id="7">
         <label>cstdint</label>
       </node>
       <node id="1">
@@ -16,53 +17,56 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>stdexcept</label>
-      </node>
-      <node id="8">
-        <label>string</label>
-      </node>
-      <node id="11">
-        <label>vector</label>
-      </node>
-      <node id="10">
-        <label>utility</label>
-      </node>
-      <node id="5">
-        <label>array</label>
-      </node>
-      <node id="13">
-        <label>iosfwd</label>
-      </node>
-      <node id="9">
-        <label>type_traits</label>
-      </node>
-      <node id="4">
-        <label>algorithm</label>
-      </node>
-      <node id="12">
-        <label>Region.hpp</label>
-        <link refid="Region_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
+      </node>
+      <node id="8">
+        <label>stdexcept</label>
+      </node>
+      <node id="9">
+        <label>string</label>
       </node>
       <node id="2">
-        <label>istream</label>
+        <label>ios</label>
+      </node>
+      <node id="12">
+        <label>vector</label>
+      </node>
+      <node id="11">
+        <label>utility</label>
+      </node>
+      <node id="6">
+        <label>array</label>
+      </node>
+      <node id="14">
+        <label>iosfwd</label>
+      </node>
+      <node id="10">
+        <label>type_traits</label>
+      </node>
+      <node id="5">
+        <label>algorithm</label>
+      </node>
+      <node id="13">
+        <label>Region.hpp</label>
+        <link refid="Region_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
       </node>
       <node id="3">
+        <label>istream</label>
+      </node>
+      <node id="4">
         <label>BinaryReader.hpp</label>
         <link refid="BinaryReader_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
         <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
@@ -77,6 +81,8 @@
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
       </node>
     </incdepgraph>
     <innernamespace refid="namespacenbtview">nbtview</innernamespace>
@@ -87,36 +93,56 @@
     <programlisting>
 <codeline lineno="1"><highlight class="comment">//<sp/>Region.cpp</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="2"><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;istream&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="BinaryReader_8hpp" kindref="compound">BinaryReader.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="Region_8hpp" kindref="compound">Region.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenbtview" kindref="compound">nbtview</ref><sp/>{</highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal">std::istream<sp/>&amp;<ref refid="classnbtview_1_1Region_1a4160b3c7b0735297156a48e7616bcc83" kindref="member">Region::ReadTimestamps</ref>(std::istream<sp/>&amp;input)<sp/>{</highlight></codeline>
-<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;unsigned<sp/>char&gt;<sp/>bytes(<ref refid="classnbtview_1_1Region_1a438234847870d7f6817b262fd8cf2f58" kindref="member">SECTOR_LENGTH</ref>);</highlight></codeline>
-<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>input.read(</highlight><highlight class="keyword">reinterpret_cast&lt;</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(bytes.data()),<sp/><ref refid="classnbtview_1_1Region_1a438234847870d7f6817b262fd8cf2f58" kindref="member">SECTOR_LENGTH</ref>);</highlight></codeline>
-<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>BinaryReader<sp/>reader(std::move(bytes));</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="classnbtview_1_1Region_1a91f7c5533e23882a3d0d55520ae12017" kindref="member">N_CHUNKS</ref>;<sp/>++i)<sp/>{</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>chunk[i].timestamp<sp/>=<sp/>reader.get_value&lt;uint32_t&gt;();</highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>input;</highlight></codeline>
-<codeline lineno="18"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal">std::istream<sp/>&amp;<ref refid="classnbtview_1_1Region_1a4b0a10df3d3de76804d995570944e23f" kindref="member">Region::ReadOffsets</ref>(std::istream<sp/>&amp;input)<sp/>{</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;unsigned<sp/>char&gt;<sp/>bytes(<ref refid="classnbtview_1_1Region_1a438234847870d7f6817b262fd8cf2f58" kindref="member">SECTOR_LENGTH</ref>);</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>input.read(</highlight><highlight class="keyword">reinterpret_cast&lt;</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(bytes.data()),<sp/><ref refid="classnbtview_1_1Region_1a438234847870d7f6817b262fd8cf2f58" kindref="member">SECTOR_LENGTH</ref>);</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>BinaryReader<sp/>reader(std::move(bytes));</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="classnbtview_1_1Region_1a91f7c5533e23882a3d0d55520ae12017" kindref="member">N_CHUNKS</ref>;<sp/>++i)<sp/>{</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t<sp/>data<sp/>=<sp/>reader.get_value&lt;uint32_t&gt;();</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>chunk[i].length<sp/>=<sp/>data<sp/>&amp;<sp/>0xff;</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>chunk[i].offset<sp/>=<sp/>data<sp/>&gt;&gt;<sp/>8;</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>input;</highlight></codeline>
-<codeline lineno="30"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nbtview</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ios&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;istream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="BinaryReader_8hpp" kindref="compound">BinaryReader.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="Region_8hpp" kindref="compound">Region.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenbtview" kindref="compound">nbtview</ref><sp/>{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">std::istream<sp/>&amp;<ref refid="classnbtview_1_1Region_1a4160b3c7b0735297156a48e7616bcc83" kindref="member">Region::ReadTimestamps</ref>(std::istream<sp/>&amp;input)<sp/>{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;unsigned<sp/>char&gt;<sp/>bytes(<ref refid="classnbtview_1_1Region_1a438234847870d7f6817b262fd8cf2f58" kindref="member">SECTOR_LENGTH</ref>);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>input.read(</highlight><highlight class="keyword">reinterpret_cast&lt;</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(bytes.data()),<sp/><ref refid="classnbtview_1_1Region_1a438234847870d7f6817b262fd8cf2f58" kindref="member">SECTOR_LENGTH</ref>);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>BinaryReader<sp/>reader(std::move(bytes));</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="classnbtview_1_1Region_1a91f7c5533e23882a3d0d55520ae12017" kindref="member">N_CHUNKS</ref>;<sp/>++i)<sp/>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>chunk[i].timestamp<sp/>=<sp/>reader.get_value&lt;uint32_t&gt;();</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>input;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">std::istream<sp/>&amp;<ref refid="classnbtview_1_1Region_1a4b0a10df3d3de76804d995570944e23f" kindref="member">Region::ReadOffsets</ref>(std::istream<sp/>&amp;input)<sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;unsigned<sp/>char&gt;<sp/>bytes(<ref refid="classnbtview_1_1Region_1a438234847870d7f6817b262fd8cf2f58" kindref="member">SECTOR_LENGTH</ref>);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>input.read(</highlight><highlight class="keyword">reinterpret_cast&lt;</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(bytes.data()),<sp/><ref refid="classnbtview_1_1Region_1a438234847870d7f6817b262fd8cf2f58" kindref="member">SECTOR_LENGTH</ref>);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>BinaryReader<sp/>reader(std::move(bytes));</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="classnbtview_1_1Region_1a91f7c5533e23882a3d0d55520ae12017" kindref="member">N_CHUNKS</ref>;<sp/>++i)<sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t<sp/>data<sp/>=<sp/>reader.get_value&lt;uint32_t&gt;();</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>chunk[i].length<sp/>=<sp/>data<sp/>&amp;<sp/>0xff;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>chunk[i].offset<sp/>=<sp/>data<sp/>&gt;&gt;<sp/>8;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>input;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">std::vector&lt;unsigned<sp/>char&gt;<sp/><ref refid="classnbtview_1_1Region_1aea281f422660b5242b53095442398aa5" kindref="member">Region::get_chunk_bytes</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx,</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::istream<sp/>&amp;input)<sp/>{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>byte_offset<sp/>=<sp/><ref refid="classnbtview_1_1Region_1abee66b2e244577fe42767d5aff25e640" kindref="member">get_offset</ref>(idx)<sp/>*<sp/><ref refid="classnbtview_1_1Region_1a438234847870d7f6817b262fd8cf2f58" kindref="member">SECTOR_LENGTH</ref>;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>byte_length<sp/>=<sp/><ref refid="classnbtview_1_1Region_1a8035ff01e728793559fab17d47bba936" kindref="member">get_length</ref>(idx)<sp/>*<sp/><ref refid="classnbtview_1_1Region_1a438234847870d7f6817b262fd8cf2f58" kindref="member">SECTOR_LENGTH</ref>;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>sector_header[5];</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>input.seekg(byte_offset,<sp/>std::ios_base::cur);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>input.read(</highlight><highlight class="keyword">reinterpret_cast&lt;</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(sector_header),<sp/>5);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>chunk_byte_length<sp/>=<sp/>sector_header[3]<sp/>+<sp/>(sector_header[2]<sp/>&lt;&lt;<sp/>8)<sp/>+</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(sector_header[1]<sp/>&lt;&lt;<sp/>16)<sp/>+</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(sector_header[0]<sp/>&lt;&lt;<sp/>24);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>compression_type<sp/>=<sp/>sector_header[4];</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;unsigned<sp/>char&gt;<sp/>chunk_bytes(chunk_byte_length);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>input.read(</highlight><highlight class="keyword">reinterpret_cast&lt;</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(chunk_bytes.data()),<sp/>chunk_byte_length);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!input)<sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal">(std::runtime_error(</highlight><highlight class="stringliteral">&quot;Failed<sp/>to<sp/>read<sp/>chunk<sp/>data&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>chunk_bytes;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nbtview</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="nbtview/Region.cpp"/>
   </compounddef>
