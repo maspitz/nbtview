@@ -9,11 +9,19 @@
 
 namespace nbtview {
 
-bool has_gzip_header(const std::vector<unsigned char> &data) {
+bool has_compression_header(const std::vector<unsigned char> &data) {
     if (data.size() < 4) {
         return false;
     }
-    return (data[0] == 0x1f) && (data[1] == 0x8b) && (data[2] == 0x08);
+    // gzip header
+    if (data[0] == 0x1f && data[1] == 0x8b && data[2] == 0x08) {
+        return true;
+    }
+    // zlib header
+    if ((data[0] == 0x78) && (data[1] == 0x9c) && (data[2] == 0xed)) {
+        return true;
+    }
+    return false;
 }
 
 std::vector<unsigned char>
