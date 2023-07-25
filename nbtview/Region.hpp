@@ -66,12 +66,23 @@ class Region {
      * KiB from the given input stream.
      * */
     std::istream &ReadOffsets(std::istream &input);
+    // TODO: consider using bounds-checking access
     //! Returns the timestamp of the given chunk
     uint32_t get_timestamp(int idx) { return chunk[idx].timestamp; }
     //! Returns the sector offset for the given chunk
     uint32_t get_offset(int idx) { return chunk[idx].offset; }
     //! Returns the sector length for the given chunk
     uint32_t get_length(int idx) { return chunk[idx].length; }
+    /**
+     * @brief Returns the sector data for the given chunk.
+     *
+     * @param idx Index of the chunk.
+     * @param input Data stream which should be positioned at the beginning of
+     * the region file.
+     *
+     * @throw std::runtime_error If the chunk data could not be read.
+     * */
+    std::vector<unsigned char> get_chunk_bytes(int idx, std::istream &input);
 };
 
 } // namespace nbtview
