@@ -39,7 +39,7 @@
 <codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>has_compression_header(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;unsigned<sp/>char&gt;<sp/>&amp;data);</highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal">std::vector&lt;unsigned<sp/>char&gt;</highlight></codeline>
-<codeline lineno="21"><highlight class="normal">decompress_gzip(std::vector&lt;unsigned<sp/>char&gt;<sp/>&amp;compressed_data);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">decompress_data(std::vector&lt;unsigned<sp/>char&gt;<sp/>&amp;compressed_data);</highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nbtview</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>

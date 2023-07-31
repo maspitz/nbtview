@@ -110,7 +110,7 @@
     <member refid="classnbtview_1_1Region_1abce2d5bbedf25e15e52eea9f08f03a33" kind="function"><name>get_timestamp</name></member>
     <member refid="classnbtview_1_1Region_1abee66b2e244577fe42767d5aff25e640" kind="function"><name>get_offset</name></member>
     <member refid="classnbtview_1_1Region_1a8035ff01e728793559fab17d47bba936" kind="function"><name>get_length</name></member>
-    <member refid="classnbtview_1_1Region_1aea281f422660b5242b53095442398aa5" kind="function"><name>get_chunk_bytes</name></member>
+    <member refid="classnbtview_1_1Region_1a90f2a446cbbd4b59f018f0b315ec16cf" kind="function"><name>get_chunk_data</name></member>
   </compound>
   <compound refid="structnbtview_1_1StringifyTag" kind="struct"><name>nbtview::StringifyTag</name>
     <member refid="structnbtview_1_1StringifyTag_1aeb1220bacb9821cb08f0ad708ced6fd7" kind="function"><name>operator()</name></member>
@@ -207,7 +207,7 @@
     <member refid="namespacenbtview_1a99f417945a3700f4c8a19d670f19c3a7" kind="function"><name>quoted_string</name></member>
     <member refid="namespacenbtview_1a0ee9f2ba9bf67f7636003442cfd4d967" kind="function"><name>comma_delimited_array</name></member>
     <member refid="namespacenbtview_1a3749b252f3355d1c079eb14447e8a5c8" kind="function"><name>has_compression_header</name></member>
-    <member refid="namespacenbtview_1a225cbe1870ea9bd48e83428fb7df11e2" kind="function"><name>decompress_gzip</name></member>
+    <member refid="namespacenbtview_1a97dbd58ea309c68d49dbc0a80b7de5bf" kind="function"><name>decompress_data</name></member>
   </compound>
   <compound refid="namespacenbtview_1_1detail" kind="namespace"><name>nbtview::detail</name>
     <member refid="BinaryReader_8hpp_1a352e0a5be2cec215675107bd062ecefb" kind="function"><name>swap_endian</name></member>
