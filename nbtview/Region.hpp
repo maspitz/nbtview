@@ -72,6 +72,10 @@ class Region {
     uint32_t get_offset(int idx) { return chunk[idx].offset; }
     //! Returns the sector length for the given chunk
     uint32_t get_length(int idx) { return chunk[idx].length; }
+
+    //! Returns undecoded chunk data as a vector of bytes.  input must be set to
+    //! beginning of region file.
+    std::vector<unsigned char> get_chunk_data(std::istream &input, int idx);
 };
 
 } // namespace nbtview

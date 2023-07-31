@@ -81,5 +81,10 @@ target_link_libraries(test_Region nbtview)
 target_include_directories(test_Region PRIVATE "${PROJECT_SOURCE_DIR}/doctest")
 add_test(Test_Region test_Region)
 
+add_executable(test_Chunks test/test_Chunks.cpp)
+target_link_libraries(test_Chunks nbtview)
+target_include_directories(test_Chunks PRIVATE "${PROJECT_SOURCE_DIR}/doctest")
+add_test(Test_Chunks test_Chunks)
+
 # provision test data
 file(COPY test/test_data DESTINATION ${CMAKE_BINARY_DIR}/)
