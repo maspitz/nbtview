@@ -73,16 +73,10 @@ class Region {
     uint32_t get_offset(int idx) { return chunk[idx].offset; }
     //! Returns the sector length for the given chunk
     uint32_t get_length(int idx) { return chunk[idx].length; }
-    /**
-     * @brief Returns the sector data for the given chunk.
-     *
-     * @param idx Index of the chunk.
-     * @param input Data stream which should be positioned at the beginning of
-     * the region file.
-     *
-     * @throw std::runtime_error If the chunk data could not be read.
-     * */
-    std::vector<unsigned char> get_chunk_bytes(int idx, std::istream &input);
+
+    //! Returns undecoded chunk data as a vector of bytes.  input must be set to
+    //! beginning of region file.
+    std::vector<unsigned char> get_chunk_data(std::istream &input, int idx);
 };
 
 } // namespace nbtview

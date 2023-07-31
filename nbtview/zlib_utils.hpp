@@ -18,7 +18,7 @@ namespace nbtview {
 bool has_compression_header(const std::vector<unsigned char> &data);
 
 std::vector<unsigned char>
-decompress_gzip(std::vector<unsigned char> &compressed_data);
+decompress_data(std::vector<unsigned char> &compressed_data);
 
 } // namespace nbtview
 

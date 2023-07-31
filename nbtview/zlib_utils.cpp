@@ -13,19 +13,16 @@ bool has_compression_header(const std::vector<unsigned char> &data) {
     if (data.size() < 4) {
         return false;
     }
-    // gzip header
-    if (data[0] == 0x1f && data[1] == 0x8b && data[2] == 0x08) {
-        return true;
-    }
-    // zlib header
-    if ((data[0] == 0x78) && (data[1] == 0x9c) && (data[2] == 0xed)) {
-        return true;
-    }
-    return false;
+
+    return ((data[0] == 0x78) && (data[1] == 0x9c) &&
+            (data[2] == 0xed)) // zlib (RFC1950)
+
+           || ((data[0] == 0x1f) && (data[1] == 0x8b) &&
+               (data[2] == 0x08)); // gzip (RFC1952)
 }
 
 std::vector<unsigned char>
-decompress_gzip(std::vector<unsigned char> &compressed_data) {
+decompress_data(std::vector<unsigned char> &compressed_data) {
     constexpr int buffer_size = 128;
     char buffer[buffer_size];
 
