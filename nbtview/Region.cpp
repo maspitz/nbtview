@@ -10,7 +10,7 @@ namespace nbtview {
 std::istream &Region::ReadTimestamps(std::istream &input) {
     std::vector<unsigned char> bytes(SECTOR_LENGTH);
     auto init_pos = input.tellg();
-    input.seekg(init_pos + SECTOR_LENGTH, std::ios::beg);
+    input.seekg(SECTOR_LENGTH, std::ios::cur);
     input.read(reinterpret_cast<char *>(bytes.data()), SECTOR_LENGTH);
     BinaryReader reader(std::move(bytes));
     for (int i = 0; i < N_CHUNKS; ++i) {
