@@ -17,6 +17,9 @@ std::istream &Region::ReadTimestamps(std::istream &input) {
         chunk[i].timestamp = reader.get_value<uint32_t>();
     }
     input.seekg(init_pos, std::ios::beg);
+    if (!input) {
+        throw std::runtime_error("Input error when reading region timestamps");
+    }
     return input;
 }
 
@@ -31,6 +34,9 @@ std::istream &Region::ReadOffsets(std::istream &input) {
         chunk[i].offset = data >> 8;
     }
     input.seekg(init_pos, std::ios::beg);
+    if (!input) {
+        throw std::runtime_error("Input error when reading region offsets");
+    }
     return input;
 }
 
