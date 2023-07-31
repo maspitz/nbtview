@@ -66,6 +66,7 @@ class Region {
      * KiB from the given input stream.
      * */
     std::istream &ReadOffsets(std::istream &input);
+    // TODO: consider using bounds-checking access
     //! Returns the timestamp of the given chunk
     uint32_t get_timestamp(int idx) { return chunk[idx].timestamp; }
     //! Returns the sector offset for the given chunk

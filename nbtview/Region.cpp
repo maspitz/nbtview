@@ -1,5 +1,6 @@
 // Region.cpp
 
+#include <ios>
 #include <istream>
 
 #include "BinaryReader.hpp"
