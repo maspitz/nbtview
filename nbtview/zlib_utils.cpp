@@ -14,11 +14,19 @@ bool has_compression_header(const std::vector<unsigned char> &data) {
         return false;
     }
 
-    return ((data[0] == 0x78) && (data[1] == 0x9c) &&
-            (data[2] == 0xed)) // zlib (RFC1950)
+    // all possible ZLIB headers, given DEFLATE method and a 32KB window
+    // [RFC1950]
+    if (data[0] == 0x78 && (data[1] == 0x01 || data[1] == 0x5e ||
+                            data[1] == 0x9c || data[1] == 0xda)) {
+        return true;
+    }
 
-           || ((data[0] == 0x1f) && (data[1] == 0x8b) &&
-               (data[2] == 0x08)); // gzip (RFC1952)
+    // GZIP header bytes, given DEFLATE method [RFC1952]
+    if (data[0] == 0x1f && data[1] == 0x8b && data[2] == 0x08) {
+        return true;
+    }
+
+    return false;
 }
 
 std::vector<unsigned char>
