@@ -87,4 +87,4 @@ target_include_directories(test_Chunks PRIVATE "${PROJECT_SOURCE_DIR}/doctest")
 add_test(Test_Chunks test_Chunks)
 
 # provision test data
-file(COPY test/test_data DESTINATION ${CMAKE_BINARY_DIR}/)
+file(COPY test/test_data DESTINATION ${PROJECT_BINARY_DIR}/)
