@@ -8,6 +8,8 @@ project(
   LANGUAGES CXX
 )
 
+option(BUILD_TESTS "Build the tests" $(BUILD_TESTS))
+
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 
@@ -19,9 +21,7 @@ else()
   add_definitions(-DTARGET_LITTLE_ENDIAN)
 endif()
 
-include(CTest)
 
-enable_testing() 
 add_subdirectory(nbtview)
 add_subdirectory(apps)
 
@@ -45,6 +45,10 @@ if(DOXYGEN_FOUND)
     COMMENT "Generate documentation for nbtview."
   )
 endif(DOXYGEN_FOUND)
+
+if (BUILD_TESTS)
+include(CTest)
+enable_testing()
 
 add_executable(test_BinaryReader test/test_BinaryReader.cpp)
 target_link_libraries(test_BinaryReader nbtview)
@@ -88,3 +92,4 @@ add_test(Test_Chunks test_Chunks)
 
 # provision test data
 file(COPY test/test_data DESTINATION ${PROJECT_BINARY_DIR}/)
+endif (BUILD_TESTS)
