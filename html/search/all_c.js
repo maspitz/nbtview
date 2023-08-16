@@ -5,5 +5,5 @@ var searchData=
   ['readtimestamps_36',['ReadTimestamps',['../classnbtview_1_1Region.html#a4160b3c7b0735297156a48e7616bcc83',1,'nbtview::Region']]],
   ['region_37',['Region',['../classnbtview_1_1Region.html',1,'nbtview::Region'],['../classnbtview_1_1Region.html#abd4f20a115bf8a42ee249ea91d6e1985',1,'nbtview::Region::Region()']]],
   ['region_2ehpp_38',['Region.hpp',['../Region_8hpp.html',1,'']]],
-  ['region_5fwidth_39',['REGION_WIDTH',['../classnbtview_1_1Region.html#a086bd04f40443d802727183e3bcce5a8',1,'nbtview::Region']]]
+  ['region_5fwidth_39',['region_width',['../classnbtview_1_1Region.html#a33cf3c36babca696a122393d5a29f4d7',1,'nbtview::Region']]]
 ];

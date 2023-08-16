@@ -98,11 +98,11 @@
     <member refid="structnbtview_1_1detail_1_1PayloadSerializer_1a070496509be2a5dee6a6ced2b3724ae3" kind="function"><name>operator()</name></member>
   </compound>
   <compound refid="classnbtview_1_1Region" kind="class"><name>nbtview::Region</name>
-    <member refid="classnbtview_1_1Region_1acebf9530fcf8b819677a84b6e259e0c0" kind="variable"><name>CHUNK_WIDTH</name></member>
-    <member refid="classnbtview_1_1Region_1a086bd04f40443d802727183e3bcce5a8" kind="variable"><name>REGION_WIDTH</name></member>
-    <member refid="classnbtview_1_1Region_1a91f7c5533e23882a3d0d55520ae12017" kind="variable"><name>N_CHUNKS</name></member>
+    <member refid="classnbtview_1_1Region_1abd13b9c7d65944f015efed95afedaad9" kind="variable"><name>chunk_width</name></member>
+    <member refid="classnbtview_1_1Region_1a33cf3c36babca696a122393d5a29f4d7" kind="variable"><name>region_width</name></member>
+    <member refid="classnbtview_1_1Region_1a8814e8ca94380ddec537aa27e4086fd8" kind="variable"><name>chunk_count</name></member>
     <member refid="classnbtview_1_1Region_1ab7be249b44ee81041e76dc17e9f557b9" kind="variable"><name>sector_length</name></member>
-    <member refid="classnbtview_1_1Region_1a22c8f9e4e093cabb8abb7e80fa52869a" kind="variable"><name>chunk</name></member>
+    <member refid="classnbtview_1_1Region_1a4a289e82d5fdddf1fc891f957d17449d" kind="variable"><name>chunk</name></member>
     <member refid="classnbtview_1_1Region_1ae1786f017fe4dbe9a26a3ec3f0b776c2" kind="variable"><name>sector_free</name></member>
     <member refid="classnbtview_1_1Region_1abd4f20a115bf8a42ee249ea91d6e1985" kind="function"><name>Region</name></member>
     <member refid="classnbtview_1_1Region_1a4160b3c7b0735297156a48e7616bcc83" kind="function"><name>ReadTimestamps</name></member>
