@@ -30,13 +30,13 @@ namespace nbtview {
 class Region {
   public:
     //! chunk width in blocks
-    static const int CHUNK_WIDTH = 16;
+    static const int chunk_width = 16;
 
     //! region width in chunks
-    static const int REGION_WIDTH = 32;
+    static const int region_width = 32;
 
     //! total number of chunks per region
-    static const int N_CHUNKS = REGION_WIDTH * REGION_WIDTH;
+    static const int chunk_count = region_width * region_width;
 
     //! length of a region data sector in bytes
     static const int sector_length = 4096;
@@ -48,7 +48,7 @@ class Region {
     };
 
   private:
-    std::array<ChunkData, N_CHUNKS> chunk;
+    std::array<ChunkData, chunk_count> chunk;
     std::vector<bool> sector_free;
 
   public:

@@ -14,7 +14,7 @@ std::istream &Region::ReadTimestamps(std::istream &input) {
     input.seekg(sector_length, std::ios::cur);
     input.read(reinterpret_cast<char *>(bytes.data()), sector_length);
     BinaryReader reader(std::move(bytes));
-    for (int i = 0; i < N_CHUNKS; ++i) {
+    for (int i = 0; i < chunk_count; ++i) {
         chunk[i].timestamp = reader.get_value<uint32_t>();
     }
     input.seekg(init_pos, std::ios::beg);
@@ -29,7 +29,7 @@ std::istream &Region::ReadOffsets(std::istream &input) {
     auto init_pos = input.tellg();
     input.read(reinterpret_cast<char *>(bytes.data()), sector_length);
     BinaryReader reader(std::move(bytes));
-    for (int i = 0; i < N_CHUNKS; ++i) {
+    for (int i = 0; i < chunk_count; ++i) {
         uint32_t data = reader.get_value<uint32_t>();
         chunk[i].length = data & 0xff;
         chunk[i].offset = data >> 8;
@@ -46,9 +46,9 @@ std::vector<unsigned char> Region::get_chunk_data(std::istream &input,
     auto init_pos = input.tellg();
     input.seekg(sector_length * get_offset(idx), std::ios::cur);
 
-    const int HEADER_LENGTH = 5;
-    std::vector<unsigned char> chunk_header(HEADER_LENGTH);
-    input.read(reinterpret_cast<char *>(chunk_header.data()), HEADER_LENGTH);
+    const int header_length = 5;
+    std::vector<unsigned char> chunk_header(header_length);
+    input.read(reinterpret_cast<char *>(chunk_header.data()), header_length);
 
     uint32_t chunk_data_length = (chunk_header[0] << 24) +
                                  (chunk_header[1] << 16) +

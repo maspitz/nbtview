@@ -18,7 +18,7 @@ TEST_CASE("nbtview: Test reading of chunk data from region file") {
     reg.ReadOffsets(region_file);
     reg.ReadTimestamps(region_file);
     SUBCASE("coordinate consistency") {
-        for (int i = 0; i < nbt::Region::N_CHUNKS; ++i) {
+        for (int i = 0; i < nbt::Region::chunk_count; ++i) {
             auto chunk_offset = reg.get_offset(i);
             auto chunk_length = reg.get_length(i);
             if (chunk_length == 0) {
