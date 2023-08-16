@@ -13,22 +13,16 @@
 
 #include <array>
 #include <cstdint>
-#include <iosfwd>
+#include <fstream>
 #include <vector>
 
 namespace nbtview {
 
 /**
- * @brief Region represents the Region files that contain NBT chunk data
- *
- * This class has no ownership over chunk data, nor of the underlying data
- * store.
- *
- * Its concern is with the sector layout of chunk data, and to some extent,
- * metadata such as modification timestamps.
+ * @brief Region contains the metadata concerning the layout of encoded chunk
+ * data.
  * */
-class Region {
-  public:
+struct Region {
     //! chunk width in blocks
     static const int chunk_width = 16;
 
@@ -38,45 +32,56 @@ class Region {
     //! total number of chunks per region
     static const int chunk_count = region_width * region_width;
 
-    //! length of a region data sector in bytes
+    //! length of a region file data sector in bytes
     static const int sector_length = 4096;
 
-    struct ChunkData {
-        uint32_t timestamp;
+    using Sector_Data = std::array<unsigned char, sector_length>;
+
+    struct Chunk_Data {
         uint32_t offset;
         uint8_t length;
+        uint32_t timestamp;
     };
 
-  private:
-    std::array<ChunkData, chunk_count> chunk;
-    std::vector<bool> sector_free;
+    std::array<Chunk_Data, chunk_count> chunk;
 
+    void load_from_sectors(const Sector_Data &offsets,
+                           const Sector_Data &timestamps);
+    void save_to_sectors(Sector_Data &offsets, Sector_Data &timestamps) const;
+};
+
+/**
+ * @brief Region_File provides access to a Region file that contains NBT chunk
+ * data
+ * */
+class Region_File {
   public:
-    /**
-     * @brief Initializes a Region with zeroed-out metadata.
-     */
-    Region() {}
-    /**
-     * @brief Loads the timestamp data by reading 4 KiB from the given input
-     * stream.
-     * */
-    std::istream &ReadTimestamps(std::istream &input);
-    /**
-     * @brief Loads the chunk data sector offset and length data by reading 4
-     * KiB from the given input stream.
-     * */
-    std::istream &ReadOffsets(std::istream &input);
-    // TODO: consider using bounds-checking access
-    //! Returns the timestamp of the given chunk
-    uint32_t get_timestamp(int idx) { return chunk[idx].timestamp; }
-    //! Returns the sector offset for the given chunk
-    uint32_t get_offset(int idx) { return chunk[idx].offset; }
-    //! Returns the sector length for the given chunk
-    uint32_t get_length(int idx) { return chunk[idx].length; }
+    Region_File(const std::string &filename);
 
-    //! Returns undecoded chunk data as a vector of bytes.  input must be set to
-    //! beginning of region file.
-    std::vector<unsigned char> get_chunk_data(std::istream &input, int idx);
+    //! Returns the sector offset for the given chunk
+    uint32_t chunk_offset(int chunk_index) const {
+        return metadata.chunk.at(chunk_index).offset;
+    }
+
+    //! Returns the sector length for the given chunk
+    uint8_t chunk_length(int chunk_index) const {
+        return metadata.chunk.at(chunk_index).length;
+    }
+
+    //! Returns the modification timestamp for the given chunk
+    uint32_t chunk_timestamp(int chunk_index) const {
+        return metadata.chunk.at(chunk_index).timestamp;
+    }
+
+    //! Returns the encoded data for the given chunk
+    std::vector<unsigned char> get_chunk_data(int chunk_index);
+
+  private:
+    std::string name;
+    std::ifstream file;
+    Region metadata;
+
+    Region::Sector_Data read_sector(int sector_index);
 };
 
 } // namespace nbtview

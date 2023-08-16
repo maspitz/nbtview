@@ -13,18 +13,15 @@ TEST_CASE("nbtview: Test reading of chunk data from region file") {
     const auto filename = "test_data/r.0.0.mca";
     int region_x = 0;
     int region_z = 0;
-    std::ifstream region_file(filename);
-    nbt::Region reg;
-    reg.ReadOffsets(region_file);
-    reg.ReadTimestamps(region_file);
+    nbt::Region_File reg(filename);
     SUBCASE("coordinate consistency") {
         for (int i = 0; i < nbt::Region::chunk_count; ++i) {
-            auto chunk_offset = reg.get_offset(i);
-            auto chunk_length = reg.get_length(i);
+            auto chunk_offset = reg.chunk_offset(i);
+            auto chunk_length = reg.chunk_length(i);
             if (chunk_length == 0) {
                 continue;
             }
-            auto chunk_data = reg.get_chunk_data(region_file, i);
+            auto chunk_data = reg.get_chunk_data(i);
             auto [root_name, root_tag] = nbt::read_binary(chunk_data);
             CHECK(std::holds_alternative<nbt::Compound>(root_tag));
             nbt::Compound &root = std::get<nbt::Compound>(root_tag);
