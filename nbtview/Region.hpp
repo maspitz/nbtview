@@ -39,7 +39,7 @@ class Region {
     static const int N_CHUNKS = REGION_WIDTH * REGION_WIDTH;
 
     //! length of a region data sector in bytes
-    static const int SECTOR_LENGTH = 4096;
+    static const int sector_length = 4096;
 
     struct ChunkData {
         uint32_t timestamp;

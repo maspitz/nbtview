@@ -9,10 +9,10 @@
 namespace nbtview {
 
 std::istream &Region::ReadTimestamps(std::istream &input) {
-    std::vector<unsigned char> bytes(SECTOR_LENGTH);
+    std::vector<unsigned char> bytes(sector_length);
     auto init_pos = input.tellg();
-    input.seekg(SECTOR_LENGTH, std::ios::cur);
-    input.read(reinterpret_cast<char *>(bytes.data()), SECTOR_LENGTH);
+    input.seekg(sector_length, std::ios::cur);
+    input.read(reinterpret_cast<char *>(bytes.data()), sector_length);
     BinaryReader reader(std::move(bytes));
     for (int i = 0; i < N_CHUNKS; ++i) {
         chunk[i].timestamp = reader.get_value<uint32_t>();
@@ -25,9 +25,9 @@ std::istream &Region::ReadTimestamps(std::istream &input) {
 }
 
 std::istream &Region::ReadOffsets(std::istream &input) {
-    std::vector<unsigned char> bytes(SECTOR_LENGTH);
+    std::vector<unsigned char> bytes(sector_length);
     auto init_pos = input.tellg();
-    input.read(reinterpret_cast<char *>(bytes.data()), SECTOR_LENGTH);
+    input.read(reinterpret_cast<char *>(bytes.data()), sector_length);
     BinaryReader reader(std::move(bytes));
     for (int i = 0; i < N_CHUNKS; ++i) {
         uint32_t data = reader.get_value<uint32_t>();
@@ -44,7 +44,7 @@ std::istream &Region::ReadOffsets(std::istream &input) {
 std::vector<unsigned char> Region::get_chunk_data(std::istream &input,
                                                   int idx) {
     auto init_pos = input.tellg();
-    input.seekg(SECTOR_LENGTH * get_offset(idx), std::ios::cur);
+    input.seekg(sector_length * get_offset(idx), std::ios::cur);
 
     const int HEADER_LENGTH = 5;
     std::vector<unsigned char> chunk_header(HEADER_LENGTH);
@@ -60,7 +60,7 @@ std::vector<unsigned char> Region::get_chunk_data(std::istream &input,
     }
 
     if (chunk_data_length < 0 ||
-        chunk_data_length / SECTOR_LENGTH > get_length(idx)) {
+        chunk_data_length / sector_length > get_length(idx)) {
         throw std::runtime_error(
             "Reported chunk length exceeds allocated space for chunk");
     }
