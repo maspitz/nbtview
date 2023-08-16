@@ -1,0 +1,5 @@
+<map id="nbtview::Region" name="nbtview::Region">
+<area shape="rect" id="node1" title="Region contains the metadata concerning the layout of encoded chunk data." alt="" coords="49,213,175,240"/>
+<area shape="rect" id="node2" title=" " alt="" coords="29,95,195,151"/>
+<area shape="rect" id="node3" href="$structnbtview_1_1Region_1_1Chunk__Data.html" title=" " alt="" coords="5,5,219,32"/>
+</map>

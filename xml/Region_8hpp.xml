@@ -4,21 +4,21 @@
     <compoundname>Region.hpp</compoundname>
     <includes local="no">array</includes>
     <includes local="no">cstdint</includes>
-    <includes local="no">iosfwd</includes>
+    <includes local="no">fstream</includes>
     <includes local="no">vector</includes>
     <includedby refid="Region_8cpp" local="yes">nbtview/Region.cpp</includedby>
     <incdepgraph>
       <node id="3">
         <label>cstdint</label>
       </node>
+      <node id="4">
+        <label>fstream</label>
+      </node>
       <node id="5">
         <label>vector</label>
       </node>
       <node id="2">
         <label>array</label>
-      </node>
-      <node id="4">
-        <label>iosfwd</label>
       </node>
       <node id="1">
         <label>nbtview/Region.hpp</label>
@@ -33,8 +33,9 @@
         </childnode>
       </node>
     </incdepgraph>
-    <innerclass refid="classnbtview_1_1Region" prot="public">nbtview::Region</innerclass>
-    <innerclass refid="structnbtview_1_1Region_1_1ChunkData" prot="public">nbtview::Region::ChunkData</innerclass>
+    <innerclass refid="structnbtview_1_1Region" prot="public">nbtview::Region</innerclass>
+    <innerclass refid="structnbtview_1_1Region_1_1Chunk__Data" prot="public">nbtview::Region::Chunk_Data</innerclass>
+    <innerclass refid="classnbtview_1_1Region__File" prot="public">nbtview::Region_File</innerclass>
     <innernamespace refid="namespacenbtview">nbtview</innernamespace>
     <briefdescription>
 <para>Supports the Region format as a container of NBT data. </para>
@@ -53,46 +54,64 @@
 <codeline lineno="13"><highlight class="normal"></highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;array&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstdint&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iosfwd&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fstream&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenbtview" kindref="compound">nbtview</ref><sp/>{</highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
-<codeline lineno="30" refid="classnbtview_1_1Region" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnbtview_1_1Region" kindref="compound">Region</ref><sp/>{</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="33" refid="classnbtview_1_1Region_1abd13b9c7d65944f015efed95afedaad9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classnbtview_1_1Region_1abd13b9c7d65944f015efed95afedaad9" kindref="member">chunk_width</ref><sp/>=<sp/>16;</highlight></codeline>
+<codeline lineno="25" refid="structnbtview_1_1Region" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnbtview_1_1Region" kindref="compound">Region</ref><sp/>{</highlight></codeline>
+<codeline lineno="27" refid="structnbtview_1_1Region_1abd13b9c7d65944f015efed95afedaad9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structnbtview_1_1Region_1abd13b9c7d65944f015efed95afedaad9" kindref="member">chunk_width</ref><sp/>=<sp/>16;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="structnbtview_1_1Region_1a33cf3c36babca696a122393d5a29f4d7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structnbtview_1_1Region_1a33cf3c36babca696a122393d5a29f4d7" kindref="member">region_width</ref><sp/>=<sp/>32;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="structnbtview_1_1Region_1a8814e8ca94380ddec537aa27e4086fd8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structnbtview_1_1Region_1a8814e8ca94380ddec537aa27e4086fd8" kindref="member">chunk_count</ref><sp/>=<sp/><ref refid="structnbtview_1_1Region_1a33cf3c36babca696a122393d5a29f4d7" kindref="member">region_width</ref><sp/>*<sp/><ref refid="structnbtview_1_1Region_1a33cf3c36babca696a122393d5a29f4d7" kindref="member">region_width</ref>;</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36" refid="classnbtview_1_1Region_1a33cf3c36babca696a122393d5a29f4d7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classnbtview_1_1Region_1a33cf3c36babca696a122393d5a29f4d7" kindref="member">region_width</ref><sp/>=<sp/>32;</highlight></codeline>
+<codeline lineno="36" refid="structnbtview_1_1Region_1ab7be249b44ee81041e76dc17e9f557b9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structnbtview_1_1Region_1ab7be249b44ee81041e76dc17e9f557b9" kindref="member">sector_length</ref><sp/>=<sp/>4096;</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight></codeline>
-<codeline lineno="39" refid="classnbtview_1_1Region_1a8814e8ca94380ddec537aa27e4086fd8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classnbtview_1_1Region_1a8814e8ca94380ddec537aa27e4086fd8" kindref="member">chunk_count</ref><sp/>=<sp/><ref refid="classnbtview_1_1Region_1a33cf3c36babca696a122393d5a29f4d7" kindref="member">region_width</ref><sp/>*<sp/><ref refid="classnbtview_1_1Region_1a33cf3c36babca696a122393d5a29f4d7" kindref="member">region_width</ref>;</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"></highlight></codeline>
-<codeline lineno="42" refid="classnbtview_1_1Region_1ab7be249b44ee81041e76dc17e9f557b9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classnbtview_1_1Region_1ab7be249b44ee81041e76dc17e9f557b9" kindref="member">sector_length</ref><sp/>=<sp/>4096;</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight></codeline>
-<codeline lineno="44" refid="structnbtview_1_1Region_1_1ChunkData" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnbtview_1_1Region_1_1ChunkData" kindref="compound">ChunkData</ref><sp/>{</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t<sp/>timestamp;</highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t<sp/>offset;</highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/>length;</highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;ChunkData,<sp/>chunk_count&gt;<sp/>chunk;</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;bool&gt;<sp/>sector_free;</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"></highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="58" refid="classnbtview_1_1Region_1abd4f20a115bf8a42ee249ea91d6e1985" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnbtview_1_1Region_1abd4f20a115bf8a42ee249ea91d6e1985" kindref="member">Region</ref>()<sp/>{}</highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>std::istream<sp/>&amp;<ref refid="classnbtview_1_1Region_1a4160b3c7b0735297156a48e7616bcc83" kindref="member">ReadTimestamps</ref>(std::istream<sp/>&amp;input);</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>std::istream<sp/>&amp;<ref refid="classnbtview_1_1Region_1a4b0a10df3d3de76804d995570944e23f" kindref="member">ReadOffsets</ref>(std::istream<sp/>&amp;input);</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>consider<sp/>using<sp/>bounds-checking<sp/>access</highlight></codeline>
-<codeline lineno="71" refid="classnbtview_1_1Region_1abce2d5bbedf25e15e52eea9f08f03a33" refkind="member"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="classnbtview_1_1Region_1abce2d5bbedf25e15e52eea9f08f03a33" kindref="member">get_timestamp</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>chunk[idx].timestamp;<sp/>}</highlight></codeline>
-<codeline lineno="73" refid="classnbtview_1_1Region_1abee66b2e244577fe42767d5aff25e640" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="classnbtview_1_1Region_1abee66b2e244577fe42767d5aff25e640" kindref="member">get_offset</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>chunk[idx].offset;<sp/>}</highlight></codeline>
-<codeline lineno="75" refid="classnbtview_1_1Region_1a8035ff01e728793559fab17d47bba936" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="classnbtview_1_1Region_1a8035ff01e728793559fab17d47bba936" kindref="member">get_length</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>chunk[idx].length;<sp/>}</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"></highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;unsigned<sp/>char&gt;<sp/><ref refid="classnbtview_1_1Region_1a90f2a446cbbd4b59f018f0b315ec16cf" kindref="member">get_chunk_data</ref>(std::istream<sp/>&amp;input,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
-<codeline lineno="80"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"></highlight></codeline>
-<codeline lineno="82"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nbtview</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>Sector_Data<sp/>=<sp/>std::array&lt;unsigned<sp/>char,<sp/>sector_length&gt;;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="structnbtview_1_1Region_1_1Chunk__Data" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnbtview_1_1Region_1_1Chunk__Data" kindref="compound">Chunk_Data</ref><sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t<sp/>offset;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/>length;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t<sp/>timestamp;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;Chunk_Data,<sp/>chunk_count&gt;<sp/>chunk;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>load_from_sectors(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sector_Data<sp/>&amp;offsets,</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sector_Data<sp/>&amp;timestamps);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>save_to_sectors(Sector_Data<sp/>&amp;offsets,<sp/>Sector_Data<sp/>&amp;timestamps)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="classnbtview_1_1Region__File" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnbtview_1_1Region__File" kindref="compound">Region_File</ref><sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnbtview_1_1Region__File" kindref="compound">Region_File</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;filename);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62" refid="classnbtview_1_1Region__File_1aa165ef8bdc83e48721b3c1fa2957f42f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="classnbtview_1_1Region__File_1aa165ef8bdc83e48721b3c1fa2957f42f" kindref="member">chunk_offset</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>chunk_index)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>metadata.chunk.at(chunk_index).offset;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="classnbtview_1_1Region__File_1aebbd8c7d2b05e0a931067aec80e7550d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="classnbtview_1_1Region__File_1aebbd8c7d2b05e0a931067aec80e7550d" kindref="member">chunk_length</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>chunk_index)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>metadata.chunk.at(chunk_index).length;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="classnbtview_1_1Region__File_1a344bcc4f112414eac3d0a9b7da4ad88a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="classnbtview_1_1Region__File_1a344bcc4f112414eac3d0a9b7da4ad88a" kindref="member">chunk_timestamp</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>chunk_index)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>metadata.chunk.at(chunk_index).timestamp;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;unsigned<sp/>char&gt;<sp/><ref refid="classnbtview_1_1Region__File_1a585da4628d09f6b0f3483bcf777b3977" kindref="member">get_chunk_data</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>chunk_index);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>name;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>std::ifstream<sp/>file;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structnbtview_1_1Region" kindref="compound">Region</ref><sp/>metadata;</highlight></codeline>
 <codeline lineno="83"><highlight class="normal"></highlight></codeline>
-<codeline lineno="84"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>NBT_REGION_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>Region::Sector_Data<sp/>read_sector(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sector_index);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nbtview</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>NBT_REGION_H_</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="nbtview/Region.hpp"/>
   </compounddef>

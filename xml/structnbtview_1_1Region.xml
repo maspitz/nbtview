@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structnbtview_1_1Region" kind="struct" language="C++" prot="public">
+    <compoundname>nbtview::Region</compoundname>
+    <includes refid="Region_8hpp" local="no">Region.hpp</includes>
+    <innerclass refid="structnbtview_1_1Region_1_1Chunk__Data" prot="public">nbtview::Region::Chunk_Data</innerclass>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="structnbtview_1_1Region_1af789f0c310c76daf92855f0055395d71" prot="public" static="no">
+        <type>std::array&lt; unsigned char, <ref refid="structnbtview_1_1Region_1ab7be249b44ee81041e76dc17e9f557b9" kindref="member">sector_length</ref> &gt;</type>
+        <definition>using nbtview::Region::Sector_Data =  std::array&lt;unsigned char, sector_length&gt;</definition>
+        <argsstring></argsstring>
+        <name>Sector_Data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Region.hpp" line="38" column="5" bodyfile="nbtview/Region.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structnbtview_1_1Region_1abd13b9c7d65944f015efed95afedaad9" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int nbtview::Region::chunk_width</definition>
+        <argsstring></argsstring>
+        <name>chunk_width</name>
+        <initializer>= 16</initializer>
+        <briefdescription>
+<para>chunk width in blocks </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Region.hpp" line="27" column="22" bodyfile="nbtview/Region.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnbtview_1_1Region_1a33cf3c36babca696a122393d5a29f4d7" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int nbtview::Region::region_width</definition>
+        <argsstring></argsstring>
+        <name>region_width</name>
+        <initializer>= 32</initializer>
+        <briefdescription>
+<para>region width in chunks </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Region.hpp" line="30" column="22" bodyfile="nbtview/Region.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnbtview_1_1Region_1a8814e8ca94380ddec537aa27e4086fd8" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int nbtview::Region::chunk_count</definition>
+        <argsstring></argsstring>
+        <name>chunk_count</name>
+        <initializer>= <ref refid="structnbtview_1_1Region_1a33cf3c36babca696a122393d5a29f4d7" kindref="member">region_width</ref> * <ref refid="structnbtview_1_1Region_1a33cf3c36babca696a122393d5a29f4d7" kindref="member">region_width</ref></initializer>
+        <briefdescription>
+<para>total number of chunks per region </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Region.hpp" line="33" column="22" bodyfile="nbtview/Region.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnbtview_1_1Region_1ab7be249b44ee81041e76dc17e9f557b9" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int nbtview::Region::sector_length</definition>
+        <argsstring></argsstring>
+        <name>sector_length</name>
+        <initializer>= 4096</initializer>
+        <briefdescription>
+<para>length of a region file data sector in bytes </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Region.hpp" line="36" column="22" bodyfile="nbtview/Region.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structnbtview_1_1Region_1a478898498ec2da9a494254e08f9be322" prot="public" static="no" mutable="no">
+        <type>std::array&lt; <ref refid="structnbtview_1_1Region_1_1Chunk__Data" kindref="compound">Chunk_Data</ref>, <ref refid="structnbtview_1_1Region_1a8814e8ca94380ddec537aa27e4086fd8" kindref="member">chunk_count</ref> &gt;</type>
+        <definition>std::array&lt;Chunk_Data, chunk_count&gt; nbtview::Region::chunk</definition>
+        <argsstring></argsstring>
+        <name>chunk</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Region.hpp" line="46" column="16" bodyfile="nbtview/Region.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structnbtview_1_1Region_1ab8226905ed9d57657d6c1602828dc0a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nbtview::Region::load_from_sectors</definition>
+        <argsstring>(const Sector_Data &amp;offsets, const Sector_Data &amp;timestamps)</argsstring>
+        <name>load_from_sectors</name>
+        <param>
+          <type>const Sector_Data &amp;</type>
+          <declname>offsets</declname>
+        </param>
+        <param>
+          <type>const Sector_Data &amp;</type>
+          <declname>timestamps</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Region.hpp" line="48" column="10" bodyfile="nbtview/Region.cpp" bodystart="13" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1Region_1a092cac9d992ff5bcc159fa2d4d87328e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nbtview::Region::save_to_sectors</definition>
+        <argsstring>(Sector_Data &amp;offsets, Sector_Data &amp;timestamps) const</argsstring>
+        <name>save_to_sectors</name>
+        <param>
+          <type>Sector_Data &amp;</type>
+          <declname>offsets</declname>
+        </param>
+        <param>
+          <type>Sector_Data &amp;</type>
+          <declname>timestamps</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Region.hpp" line="50" column="10" bodyfile="nbtview/Region.cpp" bodystart="25" bodyend="38"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="structnbtview_1_1Region" kindref="compound">Region</ref> contains the metadata concerning the layout of encoded chunk data. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>std::array&lt; nbtview::Region::Chunk_Data, chunk_count &gt;</label>
+        <childnode refid="3" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>nbtview::Region::Chunk_Data</label>
+        <link refid="structnbtview_1_1Region_1_1Chunk__Data"/>
+      </node>
+      <node id="1">
+        <label>nbtview::Region</label>
+        <link refid="structnbtview_1_1Region"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>chunk</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="nbtview/Region.hpp" line="25" column="1" bodyfile="nbtview/Region.hpp" bodystart="25" bodyend="51"/>
+    <listofallmembers>
+      <member refid="structnbtview_1_1Region_1a478898498ec2da9a494254e08f9be322" prot="public" virt="non-virtual"><scope>nbtview::Region</scope><name>chunk</name></member>
+      <member refid="structnbtview_1_1Region_1a8814e8ca94380ddec537aa27e4086fd8" prot="public" virt="non-virtual"><scope>nbtview::Region</scope><name>chunk_count</name></member>
+      <member refid="structnbtview_1_1Region_1abd13b9c7d65944f015efed95afedaad9" prot="public" virt="non-virtual"><scope>nbtview::Region</scope><name>chunk_width</name></member>
+      <member refid="structnbtview_1_1Region_1ab8226905ed9d57657d6c1602828dc0a8" prot="public" virt="non-virtual"><scope>nbtview::Region</scope><name>load_from_sectors</name></member>
+      <member refid="structnbtview_1_1Region_1a33cf3c36babca696a122393d5a29f4d7" prot="public" virt="non-virtual"><scope>nbtview::Region</scope><name>region_width</name></member>
+      <member refid="structnbtview_1_1Region_1a092cac9d992ff5bcc159fa2d4d87328e" prot="public" virt="non-virtual"><scope>nbtview::Region</scope><name>save_to_sectors</name></member>
+      <member refid="structnbtview_1_1Region_1af789f0c310c76daf92855f0055395d71" prot="public" virt="non-virtual"><scope>nbtview::Region</scope><name>Sector_Data</name></member>
+      <member refid="structnbtview_1_1Region_1ab7be249b44ee81041e76dc17e9f557b9" prot="public" virt="non-virtual"><scope>nbtview::Region</scope><name>sector_length</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

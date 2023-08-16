@@ -7,7 +7,8 @@
     <innerclass refid="classnbtview_1_1BinaryReader" prot="public">nbtview::BinaryReader</innerclass>
     <innerclass refid="classnbtview_1_1BinaryWriter" prot="public">nbtview::BinaryWriter</innerclass>
     <innerclass refid="classnbtview_1_1Deserializer" prot="public">nbtview::Deserializer</innerclass>
-    <innerclass refid="classnbtview_1_1Region" prot="public">nbtview::Region</innerclass>
+    <innerclass refid="structnbtview_1_1Region" prot="public">nbtview::Region</innerclass>
+    <innerclass refid="classnbtview_1_1Region__File" prot="public">nbtview::Region_File</innerclass>
     <innerclass refid="structnbtview_1_1StringifyTag" prot="public">nbtview::StringifyTag</innerclass>
     <innerclass refid="structnbtview_1_1StringifyTagType" prot="public">nbtview::StringifyTagType</innerclass>
     <innerclass refid="structnbtview_1_1TagID" prot="public">nbtview::TagID</innerclass>
@@ -620,6 +621,23 @@
         <inbodydescription>
         </inbodydescription>
         <location file="nbtview/nbtview.cpp" line="18" column="1" bodyfile="nbtview/nbtview.cpp" bodystart="18" bodyend="38" declfile="nbtview/nbtview.hpp" declline="40" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenbtview_1a43354d58572bb75ca20767f91194f8c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t nbtview::chunk_data_length</definition>
+        <argsstring>(std::span&lt; unsigned char &gt; chunk_header)</argsstring>
+        <name>chunk_data_length</name>
+        <param>
+          <type>std::span&lt; unsigned char &gt;</type>
+          <declname>chunk_header</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Region.cpp" line="57" column="10" bodyfile="nbtview/Region.cpp" bodystart="57" bodyend="68"/>
       </memberdef>
       <memberdef kind="function" id="namespacenbtview_1a792cf692f58bf3da1818184ad5f2dfd6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::string</type>

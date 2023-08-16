@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classnbtview_1_1Region__File" kind="class" language="C++" prot="public">
+    <compoundname>nbtview::Region_File</compoundname>
+    <includes refid="Region_8hpp" local="no">Region.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnbtview_1_1Region__File_1a5ff0bac68ce7a17e831a704d596e1659" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string nbtview::Region_File::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Region.hpp" line="80" column="17" bodyfile="nbtview/Region.hpp" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnbtview_1_1Region__File_1a1b389c2d8adfd13dbc7c0a8eb7e00bda" prot="private" static="no" mutable="no">
+        <type>std::ifstream</type>
+        <definition>std::ifstream nbtview::Region_File::file</definition>
+        <argsstring></argsstring>
+        <name>file</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Region.hpp" line="81" column="19" bodyfile="nbtview/Region.hpp" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnbtview_1_1Region__File_1ad0a9398bb04818cb636d816c1358654d" prot="private" static="no" mutable="no">
+        <type><ref refid="structnbtview_1_1Region" kindref="compound">Region</ref></type>
+        <definition>Region nbtview::Region_File::metadata</definition>
+        <argsstring></argsstring>
+        <name>metadata</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Region.hpp" line="82" column="12" bodyfile="nbtview/Region.hpp" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnbtview_1_1Region__File_1ad750c0920f8737e4f1feeea9831198af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nbtview::Region_File::Region_File</definition>
+        <argsstring>(const std::string &amp;filename)</argsstring>
+        <name>Region_File</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Region.hpp" line="59" column="5" bodyfile="nbtview/Region.cpp" bodystart="40" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classnbtview_1_1Region__File_1aa165ef8bdc83e48721b3c1fa2957f42f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t nbtview::Region_File::chunk_offset</definition>
+        <argsstring>(int chunk_index) const</argsstring>
+        <name>chunk_offset</name>
+        <param>
+          <type>int</type>
+          <declname>chunk_index</declname>
+        </param>
+        <briefdescription>
+<para>Returns the sector offset for the given chunk. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Region.hpp" line="62" column="14" bodyfile="nbtview/Region.hpp" bodystart="62" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classnbtview_1_1Region__File_1aebbd8c7d2b05e0a931067aec80e7550d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t nbtview::Region_File::chunk_length</definition>
+        <argsstring>(int chunk_index) const</argsstring>
+        <name>chunk_length</name>
+        <param>
+          <type>int</type>
+          <declname>chunk_index</declname>
+        </param>
+        <briefdescription>
+<para>Returns the sector length for the given chunk. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Region.hpp" line="67" column="13" bodyfile="nbtview/Region.hpp" bodystart="67" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classnbtview_1_1Region__File_1a344bcc4f112414eac3d0a9b7da4ad88a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t nbtview::Region_File::chunk_timestamp</definition>
+        <argsstring>(int chunk_index) const</argsstring>
+        <name>chunk_timestamp</name>
+        <param>
+          <type>int</type>
+          <declname>chunk_index</declname>
+        </param>
+        <briefdescription>
+<para>Returns the modification timestamp for the given chunk. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Region.hpp" line="72" column="14" bodyfile="nbtview/Region.hpp" bodystart="72" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="classnbtview_1_1Region__File_1a585da4628d09f6b0f3483bcf777b3977" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; unsigned char &gt;</type>
+        <definition>std::vector&lt; unsigned char &gt; nbtview::Region_File::get_chunk_data</definition>
+        <argsstring>(int chunk_index)</argsstring>
+        <name>get_chunk_data</name>
+        <param>
+          <type>int</type>
+          <declname>chunk_index</declname>
+        </param>
+        <briefdescription>
+<para>Returns the encoded data for the given chunk. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Region.hpp" line="77" column="17" bodyfile="nbtview/Region.cpp" bodystart="70" bodyend="95"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classnbtview_1_1Region__File_1a9b49df3a85acfc39cf029ee5124ec653" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Region::Sector_Data</type>
+        <definition>Region::Sector_Data nbtview::Region_File::read_sector</definition>
+        <argsstring>(int sector_index)</argsstring>
+        <name>read_sector</name>
+        <param>
+          <type>int</type>
+          <declname>sector_index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Region.hpp" line="84" column="25" bodyfile="nbtview/Region.cpp" bodystart="45" bodyend="55"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="classnbtview_1_1Region__File" kindref="compound">Region_File</ref> provides access to a <ref refid="structnbtview_1_1Region" kindref="compound">Region</ref> file that contains NBT chunk data. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nbtview/Region.hpp" line="57" column="1" bodyfile="nbtview/Region.hpp" bodystart="57" bodyend="85"/>
+    <listofallmembers>
+      <member refid="classnbtview_1_1Region__File_1aebbd8c7d2b05e0a931067aec80e7550d" prot="public" virt="non-virtual"><scope>nbtview::Region_File</scope><name>chunk_length</name></member>
+      <member refid="classnbtview_1_1Region__File_1aa165ef8bdc83e48721b3c1fa2957f42f" prot="public" virt="non-virtual"><scope>nbtview::Region_File</scope><name>chunk_offset</name></member>
+      <member refid="classnbtview_1_1Region__File_1a344bcc4f112414eac3d0a9b7da4ad88a" prot="public" virt="non-virtual"><scope>nbtview::Region_File</scope><name>chunk_timestamp</name></member>
+      <member refid="classnbtview_1_1Region__File_1a1b389c2d8adfd13dbc7c0a8eb7e00bda" prot="private" virt="non-virtual"><scope>nbtview::Region_File</scope><name>file</name></member>
+      <member refid="classnbtview_1_1Region__File_1a585da4628d09f6b0f3483bcf777b3977" prot="public" virt="non-virtual"><scope>nbtview::Region_File</scope><name>get_chunk_data</name></member>
+      <member refid="classnbtview_1_1Region__File_1ad0a9398bb04818cb636d816c1358654d" prot="private" virt="non-virtual"><scope>nbtview::Region_File</scope><name>metadata</name></member>
+      <member refid="classnbtview_1_1Region__File_1a5ff0bac68ce7a17e831a704d596e1659" prot="private" virt="non-virtual"><scope>nbtview::Region_File</scope><name>name</name></member>
+      <member refid="classnbtview_1_1Region__File_1a9b49df3a85acfc39cf029ee5124ec653" prot="private" virt="non-virtual"><scope>nbtview::Region_File</scope><name>read_sector</name></member>
+      <member refid="classnbtview_1_1Region__File_1ad750c0920f8737e4f1feeea9831198af" prot="public" virt="non-virtual"><scope>nbtview::Region_File</scope><name>Region_File</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

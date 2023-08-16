@@ -88,8 +88,11 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnbtview_1_1Deserializer.html">Deserializer</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnbtview_1_1Region.html">Region</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classnbtview_1_1Region.html" title="Region represents the Region files that contain NBT chunk data.">Region</a> represents the <a class="el" href="classnbtview_1_1Region.html" title="Region represents the Region files that contain NBT chunk data.">Region</a> files that contain NBT chunk data.  <a href="classnbtview_1_1Region.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnbtview_1_1Region.html">Region</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structnbtview_1_1Region.html" title="Region contains the metadata concerning the layout of encoded chunk data.">Region</a> contains the metadata concerning the layout of encoded chunk data.  <a href="structnbtview_1_1Region.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnbtview_1_1Region__File.html">Region_File</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classnbtview_1_1Region__File.html" title="Region_File provides access to a Region file that contains NBT chunk data.">Region_File</a> provides access to a <a class="el" href="structnbtview_1_1Region.html" title="Region contains the metadata concerning the layout of encoded chunk data.">Region</a> file that contains NBT chunk data.  <a href="classnbtview_1_1Region__File.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnbtview_1_1StringifyTag.html">StringifyTag</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -186,6 +189,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a62378fce3f65363cf1ac2855647f43cf"><td class="memItemLeft" align="right" valign="top"><a id="a62378fce3f65363cf1ac2855647f43cf"></a>
 std::vector&lt; unsigned char &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>fast_find_named_tag</b> (std::vector&lt; unsigned char &gt;::const_iterator nbt_start, std::vector&lt; unsigned char &gt;::const_iterator nbt_stop, <a class="el" href="namespacenbtview.html#afc3b190dfb9b456a2b36e19029d229b1">TypeCode</a> tag_type, const std::string &amp;tag_name)</td></tr>
 <tr class="separator:a62378fce3f65363cf1ac2855647f43cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43354d58572bb75ca20767f91194f8c7"><td class="memItemLeft" align="right" valign="top"><a id="a43354d58572bb75ca20767f91194f8c7"></a>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>chunk_data_length</b> (std::span&lt; unsigned char &gt; chunk_header)</td></tr>
+<tr class="separator:a43354d58572bb75ca20767f91194f8c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a792cf692f58bf3da1818184ad5f2dfd6"><td class="memItemLeft" align="right" valign="top"><a id="a792cf692f58bf3da1818184ad5f2dfd6"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>tag_to_string</b> (const <a class="el" href="namespacenbtview.html#a9fcb48c3df7749255fcc9f3f9e84f3fa">Tag</a> &amp;tag)</td></tr>
 <tr class="separator:a792cf692f58bf3da1818184ad5f2dfd6"><td class="memSeparator" colspan="2">&#160;</td></tr>

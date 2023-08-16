@@ -1,7 +1,7 @@
 <map id="nbtview/Region.hpp" name="nbtview/Region.hpp">
-<area shape="rect" id="node1" title="Supports the Region format as a container of NBT data." alt="" coords="87,5,238,32"/>
+<area shape="rect" id="node1" title="Supports the Region format as a container of NBT data." alt="" coords="90,5,241,32"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,80,61,107"/>
 <area shape="rect" id="node3" title=" " alt="" coords="85,80,152,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="176,80,240,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="265,80,327,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="177,80,250,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="274,80,337,107"/>
 </map>
