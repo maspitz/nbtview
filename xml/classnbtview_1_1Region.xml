@@ -50,11 +50,11 @@
         </inbodydescription>
         <location file="nbtview/Region.hpp" line="39" column="22" bodyfile="nbtview/Region.hpp" bodystart="39" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classnbtview_1_1Region_1a438234847870d7f6817b262fd8cf2f58" prot="public" static="yes" mutable="no">
+      <memberdef kind="variable" id="classnbtview_1_1Region_1ab7be249b44ee81041e76dc17e9f557b9" prot="public" static="yes" mutable="no">
         <type>const int</type>
-        <definition>const int nbtview::Region::SECTOR_LENGTH</definition>
+        <definition>const int nbtview::Region::sector_length</definition>
         <argsstring></argsstring>
-        <name>SECTOR_LENGTH</name>
+        <name>sector_length</name>
         <initializer>= 4096</initializer>
         <briefdescription>
 <para>length of a region data sector in bytes </para>
@@ -243,7 +243,7 @@
       <member refid="classnbtview_1_1Region_1abd4f20a115bf8a42ee249ea91d6e1985" prot="public" virt="non-virtual"><scope>nbtview::Region</scope><name>Region</name></member>
       <member refid="classnbtview_1_1Region_1a086bd04f40443d802727183e3bcce5a8" prot="public" virt="non-virtual"><scope>nbtview::Region</scope><name>REGION_WIDTH</name></member>
       <member refid="classnbtview_1_1Region_1ae1786f017fe4dbe9a26a3ec3f0b776c2" prot="private" virt="non-virtual"><scope>nbtview::Region</scope><name>sector_free</name></member>
-      <member refid="classnbtview_1_1Region_1a438234847870d7f6817b262fd8cf2f58" prot="public" virt="non-virtual"><scope>nbtview::Region</scope><name>SECTOR_LENGTH</name></member>
+      <member refid="classnbtview_1_1Region_1ab7be249b44ee81041e76dc17e9f557b9" prot="public" virt="non-virtual"><scope>nbtview::Region</scope><name>sector_length</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>
