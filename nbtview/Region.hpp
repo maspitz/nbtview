@@ -23,30 +23,35 @@ namespace nbtview {
  * data.
  * */
 struct Region {
-    //! chunk width in blocks
+    //! Chunk width in blocks
     static const int chunk_width = 16;
 
-    //! region width in chunks
+    //! Region width in chunks
     static const int region_width = 32;
 
-    //! total number of chunks per region
+    //! Total number of chunks per region
     static const int chunk_count = region_width * region_width;
 
-    //! length of a region file data sector in bytes
+    //! Length of a region file data sector in bytes
     static const int sector_length = 4096;
 
+    //! Contains the bytes for a single sector
     using Sector_Data = std::array<unsigned char, sector_length>;
 
     struct Chunk_Data {
-        uint32_t offset;
-        uint8_t length;
-        uint32_t timestamp;
+        uint32_t offset; // Index of the first sector holding this chunk's data
+        uint8_t length;  // Number of sectors holding this chunk's data
+        uint32_t timestamp; // Time when the chunk was last written out
     };
 
+    //! Metadata for this region's chunks
     std::array<Chunk_Data, chunk_count> chunk;
 
+    //! Loads chunk metadata from the two sectors of a region file header
     void load_from_sectors(const Sector_Data &offsets,
                            const Sector_Data &timestamps);
+
+    //! Saves chunk metadata to two sectors suitable for a region file header
     void save_to_sectors(Sector_Data &offsets, Sector_Data &timestamps) const;
 };
 
@@ -56,6 +61,7 @@ struct Region {
  * */
 class Region_File {
   public:
+    //! Opens a file and reads in the header data
     Region_File(const std::string &filename);
 
     //! Returns the sector offset for the given chunk
