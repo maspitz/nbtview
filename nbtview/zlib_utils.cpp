@@ -1,6 +1,7 @@
 // zlib_utils.cpp
 
 #include <iostream>
+#include <span>
 #include <vector>
 
 #include <zlib.h>
@@ -9,7 +10,7 @@
 
 namespace nbtview {
 
-bool has_compression_header(const std::vector<unsigned char> &data) {
+bool has_compression_header(const std::span<unsigned char> data) {
     if (data.size() < 4) {
         return false;
     }
@@ -29,49 +30,123 @@ bool has_compression_header(const std::vector<unsigned char> &data) {
     return false;
 }
 
-std::vector<unsigned char>
-decompress_data(std::vector<unsigned char> &compressed_data) {
-    constexpr int buffer_size = 128;
-    char buffer[buffer_size];
+namespace zlib {
 
-    z_stream stream;
-    stream.zalloc = Z_NULL;
-    stream.zfree = Z_NULL;
-    stream.opaque = Z_NULL;
-    stream.avail_in = static_cast<uInt>(compressed_data.size());
-    stream.next_in = reinterpret_cast<Bytef *>(compressed_data.data());
+    //! Inflater wraps z_stream to ensure RAII semantics.
+    class Inflater {
+      public:
+        Inflater(std::span<unsigned char> input,
+                 std::vector<unsigned char> &output)
+            : output_(output) {
+            stream_.zalloc = Z_NULL;
+            stream_.zfree = Z_NULL;
+            stream_.opaque = Z_NULL;
+            stream_.avail_in = static_cast<uInt>(input.size());
+            stream_.next_in = static_cast<Bytef *>(input.data());
+            stream_.avail_out = buffer_size_;
+            stream_.next_out = reinterpret_cast<Bytef *>(buffer_);
 
-    constexpr int AUTO_HEADER_DETECTION = 32;
+            const int AUTO_HEADER_DETECTION = 32;
+            status_ = inflateInit2(&stream_, AUTO_HEADER_DETECTION | MAX_WBITS);
 
-    if (inflateInit2(&stream, AUTO_HEADER_DETECTION | MAX_WBITS) != Z_OK) {
-        std::cerr << "Failed to initialize zlib inflate" << std::endl;
-        return {};
-    }
+            output_.clear();
 
-    std::vector<unsigned char> decompressed_data;
-    int ret;
+            if (status_ != Z_OK) {
+                inflateEnd(&stream_);
+                throw std::runtime_error(
+                    "Failed to initialize nbtview::zlib::Inflater with error "
+                    "code " +
+                    std::to_string(status_));
+            }
+        }
+        ~Inflater() { inflateEnd(&stream_); }
 
-    do {
-        stream.avail_out = buffer_size;
-        stream.next_out = reinterpret_cast<Bytef *>(buffer);
-
-        ret = inflate(&stream, Z_NO_FLUSH);
-
-        if (ret < 0) {
-            std::cerr << "Error while decompressing: " << stream.msg
-                      << std::endl;
-            inflateEnd(&stream);
-            return {};
+        void reset_input(std::span<unsigned char> input) {
+            if (stream_.avail_in > 0) {
+                std::cerr << "Warning: new input overrides existing input in "
+                             "Inflater."
+                          << std::endl;
+            }
+            stream_.avail_in = static_cast<uInt>(input.size());
+            stream_.next_in = static_cast<Bytef *>(input.data());
         }
 
-        int bytesRead = buffer_size - stream.avail_out;
-        decompressed_data.insert(decompressed_data.end(), buffer,
-                                 buffer + bytesRead);
-    } while (ret != Z_STREAM_END);
+        int do_inflate() {
 
-    inflateEnd(&stream);
+            do {
+                stream_.avail_out = buffer_size_;
+                stream_.next_out = reinterpret_cast<Bytef *>(buffer_);
+
+                status_ = inflate(&stream_, Z_NO_FLUSH);
+
+                if (status_ < 0) {
+                    std::cerr << "Error while decompressing: " << stream_.msg
+                              << std::endl;
+                    return status_;
+                }
+
+                int bytesRead = buffer_size_ - stream_.avail_out;
+                output_.insert(output_.end(), buffer_, buffer_ + bytesRead);
+            } while (status_ != Z_STREAM_END && stream_.avail_in > 0);
+            return status_;
+        }
+
+        int get_status() { return status_; }
+        const char *err_msg() { return stream_.msg; }
+
+      private:
+        int status_;
+        z_stream stream_;
+        static const int buffer_size_ = 128;
+        char buffer_[buffer_size_];
+        std::vector<unsigned char> &output_;
+    };
+
+} // namespace zlib
+
+std::vector<unsigned char>
+decompress_data(std::vector<unsigned char> &compressed_data) {
+    std::vector<unsigned char> decompressed_data;
+
+    if (compressed_data.empty() == true) {
+        return decompressed_data;
+    }
+
+    zlib::Inflater stream(compressed_data, decompressed_data);
+
+    stream.do_inflate();
 
     return decompressed_data;
+}
+
+//! A return value less than zero indicates an error.
+int inflate_sectors(
+    const std::vector<std::span<unsigned char>> &compressed_sectors,
+    std::vector<unsigned char> &decompressed_data) {
+
+    if (compressed_sectors.empty() == true) {
+        return 0;
+    }
+
+    int sector_idx = 0;
+    zlib::Inflater stream(compressed_sectors[sector_idx], decompressed_data);
+
+    // TODO:
+    // return useful state information in the case of invalid input data.
+    //  (sector_idx, bytes_read, error_code)
+
+    int ret;
+    ret = stream.do_inflate();
+    while (ret != Z_STREAM_END) {
+        sector_idx++;
+        if (sector_idx >= compressed_sectors.size()) {
+            throw std::runtime_error(
+                "Unexpected end of input while inflating sectors.");
+        }
+        stream.reset_input(compressed_sectors[sector_idx]);
+    }
+
+    return ret;
 }
 
 } // namespace nbtview
