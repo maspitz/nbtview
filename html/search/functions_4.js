@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['put_91',['put',['../classnbtview_1_1Compound.html#a2065f9f197bb9776da9bd40ce7e9669a',1,'nbtview::Compound']]]
+  ['load_5ffrom_5fsectors_95',['load_from_sectors',['../structnbtview_1_1Region.html#ab8226905ed9d57657d6c1602828dc0a8',1,'nbtview::Region']]]
 ];

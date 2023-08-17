@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['read_5fbinary_92',['read_binary',['../namespacenbtview.html#aa4c7f0bb2225d506fd0ad00d381f537f',1,'nbtview::read_binary(std::istream &amp;input)'],['../namespacenbtview.html#a938ea9d0e3e51f465d050f8069887e20',1,'nbtview::read_binary(std::vector&lt; unsigned char &gt; bytes)']]],
-  ['region_5ffile_93',['Region_File',['../classnbtview_1_1Region__File.html#ad750c0920f8737e4f1feeea9831198af',1,'nbtview::Region_File']]]
+  ['operator_3c_3c_96',['operator&lt;&lt;',['../namespacenbtview.html#a390fb78fe858b5c66d2f401f418bb769',1,'nbtview']]]
 ];

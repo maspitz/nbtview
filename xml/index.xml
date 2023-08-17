@@ -61,6 +61,19 @@
     <member refid="classnbtview_1_1Deserializer_1a091616f8a82c35fe5c7d838c38c15a4b" kind="function"><name>~Deserializer</name></member>
     <member refid="classnbtview_1_1Deserializer_1ab7f51da91148d6c1934ae6fcc4de18b9" kind="function"><name>deserialize</name></member>
   </compound>
+  <compound refid="classnbtview_1_1zlib_1_1Inflater" kind="class"><name>nbtview::zlib::Inflater</name>
+    <member refid="classnbtview_1_1zlib_1_1Inflater_1a61e547acb102bbe75231cd77ce90115f" kind="variable"><name>status_</name></member>
+    <member refid="classnbtview_1_1zlib_1_1Inflater_1a154382ffb6698484e41664e08adb6c5e" kind="variable"><name>stream_</name></member>
+    <member refid="classnbtview_1_1zlib_1_1Inflater_1a69a5a952525d84f37dd4830faf1733ef" kind="variable"><name>buffer_</name></member>
+    <member refid="classnbtview_1_1zlib_1_1Inflater_1aac41482168f6028e803640d37e16ef53" kind="variable"><name>output_</name></member>
+    <member refid="classnbtview_1_1zlib_1_1Inflater_1a9542702508b30d6d281664a0d976d367" kind="variable"><name>buffer_size_</name></member>
+    <member refid="classnbtview_1_1zlib_1_1Inflater_1a460faa7a1c3b36fca612fe1bfa1b9541" kind="function"><name>Inflater</name></member>
+    <member refid="classnbtview_1_1zlib_1_1Inflater_1a35494e9197f56778904154fc4faf9083" kind="function"><name>~Inflater</name></member>
+    <member refid="classnbtview_1_1zlib_1_1Inflater_1ad39a47bab233dbde67fd86d89474fea4" kind="function"><name>reset_input</name></member>
+    <member refid="classnbtview_1_1zlib_1_1Inflater_1a8d40a5c3db9dec05540d31130901c776" kind="function"><name>do_inflate</name></member>
+    <member refid="classnbtview_1_1zlib_1_1Inflater_1a31884669e3536146f2c773bcbe4ef124" kind="function"><name>get_status</name></member>
+    <member refid="classnbtview_1_1zlib_1_1Inflater_1a4e3b50348776a28a0aed19cde4e5edf2" kind="function"><name>err_msg</name></member>
+  </compound>
   <compound refid="classnbtview_1_1List" kind="class"><name>nbtview::List</name>
     <member refid="classnbtview_1_1List_1aca237d306c11460b4ed92c55baea917d" kind="variable"><name>data</name></member>
     <member refid="classnbtview_1_1List_1aba7a07849819d1a2f3a19fec38195ff4" kind="variable"><name>list_type_</name></member>
@@ -213,11 +226,14 @@
     <member refid="namespacenbtview_1a2e368e409169b9c433f16763be3f0b37" kind="function"><name>snbt_requires_quoting</name></member>
     <member refid="namespacenbtview_1a99f417945a3700f4c8a19d670f19c3a7" kind="function"><name>quoted_string</name></member>
     <member refid="namespacenbtview_1a0ee9f2ba9bf67f7636003442cfd4d967" kind="function"><name>comma_delimited_array</name></member>
-    <member refid="namespacenbtview_1a3749b252f3355d1c079eb14447e8a5c8" kind="function"><name>has_compression_header</name></member>
+    <member refid="namespacenbtview_1a11276aad7ba3a66123c0e28acb20fc40" kind="function"><name>has_compression_header</name></member>
     <member refid="namespacenbtview_1a97dbd58ea309c68d49dbc0a80b7de5bf" kind="function"><name>decompress_data</name></member>
+    <member refid="namespacenbtview_1a5f590b4b0e4a446f4604ad46e147a2cf" kind="function"><name>inflate_sectors</name></member>
   </compound>
   <compound refid="namespacenbtview_1_1detail" kind="namespace"><name>nbtview::detail</name>
     <member refid="BinaryReader_8hpp_1a352e0a5be2cec215675107bd062ecefb" kind="function"><name>swap_endian</name></member>
+  </compound>
+  <compound refid="namespacenbtview_1_1zlib" kind="namespace"><name>nbtview::zlib</name>
   </compound>
   <compound refid="namespacestd" kind="namespace"><name>std</name>
   </compound>

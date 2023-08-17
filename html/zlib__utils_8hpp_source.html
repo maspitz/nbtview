@@ -75,19 +75,26 @@ $(function() {
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#ifndef ZLIB_UTILS_H_</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#define ZLIB_UTILS_H_</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenbtview.html">nbtview</a> {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">bool</span> has_compression_header(<span class="keyword">const</span> std::vector&lt;unsigned char&gt; &amp;data);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;std::vector&lt;unsigned char&gt;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;decompress_data(std::vector&lt;unsigned char&gt; &amp;compressed_data);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;} <span class="comment">// namespace nbtview</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;span&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenbtview.html">nbtview</a> {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">bool</span> has_compression_header(<span class="keyword">const</span> std::span&lt;unsigned char&gt; data);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;std::vector&lt;unsigned char&gt;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<a class="code" href="namespacenbtview.html#a97dbd58ea309c68d49dbc0a80b7de5bf">decompress_data</a>(std::vector&lt;unsigned char&gt; &amp;compressed_data);</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// ZLIB_UTILS_H_</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">int</span> <a class="code" href="namespacenbtview.html#a5f590b4b0e4a446f4604ad46e147a2cf">inflate_sectors</a>(</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">const</span> std::vector&lt;std::span&lt;unsigned char&gt;&gt; &amp;compressed_sectors,</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    std::vector&lt;unsigned char&gt; &amp;decompressed_data);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;} <span class="comment">// namespace nbtview</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// ZLIB_UTILS_H_</span></div>
 <div class="ttc" id="anamespacenbtview_html"><div class="ttname"><a href="namespacenbtview.html">nbtview</a></div><div class="ttdoc">Utilities to read, write, and manipulate NBT data.</div><div class="ttdef"><b>Definition:</b> BinaryDeserializer.cpp:13</div></div>
+<div class="ttc" id="anamespacenbtview_html_a5f590b4b0e4a446f4604ad46e147a2cf"><div class="ttname"><a href="namespacenbtview.html#a5f590b4b0e4a446f4604ad46e147a2cf">nbtview::inflate_sectors</a></div><div class="ttdeci">int inflate_sectors(const std::vector&lt; std::span&lt; unsigned char &gt;&gt; &amp;compressed_sectors, std::vector&lt; unsigned char &gt; &amp;decompressed_data)</div><div class="ttdoc">A return value less than zero indicates an error.</div><div class="ttdef"><b>Definition:</b> zlib_utils.cpp:123</div></div>
+<div class="ttc" id="anamespacenbtview_html_a97dbd58ea309c68d49dbc0a80b7de5bf"><div class="ttname"><a href="namespacenbtview.html#a97dbd58ea309c68d49dbc0a80b7de5bf">nbtview::decompress_data</a></div><div class="ttdeci">std::vector&lt; unsigned char &gt; decompress_data(std::vector&lt; unsigned char &gt; &amp;compressed_data)</div><div class="ttdoc">Decompress data into a vector of bytes.</div><div class="ttdef"><b>Definition:</b> zlib_utils.cpp:108</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

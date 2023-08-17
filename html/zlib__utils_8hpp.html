@@ -77,14 +77,16 @@ $(function() {
 
 <p>Functions to interface with zlib compression.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;vector&gt;</code><br />
+<div class="textblock"><code>#include &lt;span&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for zlib_utils.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="zlib__utils_8hpp__incl.png" border="0" usemap="#anbtview_2zlib__utils_8hpp" alt=""/></div>
 <map name="anbtview_2zlib__utils_8hpp" id="anbtview_2zlib__utils_8hpp">
 <area shape="rect" title="Functions to interface with zlib compression." alt="" coords="5,5,169,32"/>
-<area shape="rect" title=" " alt="" coords="56,80,119,107"/>
+<area shape="rect" title=" " alt="" coords="19,80,73,107"/>
+<area shape="rect" title=" " alt="" coords="97,80,160,107"/>
 </map>
 </div>
 </div>
@@ -98,12 +100,16 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a3749b252f3355d1c079eb14447e8a5c8"><td class="memItemLeft" align="right" valign="top"><a id="a3749b252f3355d1c079eb14447e8a5c8"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>nbtview::has_compression_header</b> (const std::vector&lt; unsigned char &gt; &amp;data)</td></tr>
-<tr class="separator:a3749b252f3355d1c079eb14447e8a5c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11276aad7ba3a66123c0e28acb20fc40"><td class="memItemLeft" align="right" valign="top"><a id="a11276aad7ba3a66123c0e28acb20fc40"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>nbtview::has_compression_header</b> (const std::span&lt; unsigned char &gt; data)</td></tr>
+<tr class="separator:a11276aad7ba3a66123c0e28acb20fc40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97dbd58ea309c68d49dbc0a80b7de5bf"><td class="memItemLeft" align="right" valign="top"><a id="a97dbd58ea309c68d49dbc0a80b7de5bf"></a>
-std::vector&lt; unsigned char &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>nbtview::decompress_data</b> (std::vector&lt; unsigned char &gt; &amp;compressed_data)</td></tr>
+std::vector&lt; unsigned char &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a97dbd58ea309c68d49dbc0a80b7de5bf">nbtview::decompress_data</a> (std::vector&lt; unsigned char &gt; &amp;compressed_data)</td></tr>
+<tr class="memdesc:a97dbd58ea309c68d49dbc0a80b7de5bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decompress data into a vector of bytes. <br /></td></tr>
 <tr class="separator:a97dbd58ea309c68d49dbc0a80b7de5bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f590b4b0e4a446f4604ad46e147a2cf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a5f590b4b0e4a446f4604ad46e147a2cf">nbtview::inflate_sectors</a> (const std::vector&lt; std::span&lt; unsigned char &gt;&gt; &amp;compressed_sectors, std::vector&lt; unsigned char &gt; &amp;decompressed_data)</td></tr>
+<tr class="memdesc:a5f590b4b0e4a446f4604ad46e147a2cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">A return value less than zero indicates an error.  <a href="namespacenbtview.html#a5f590b4b0e4a446f4604ad46e147a2cf">More...</a><br /></td></tr>
+<tr class="separator:a5f590b4b0e4a446f4604ad46e147a2cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Functions to interface with zlib compression. </p>

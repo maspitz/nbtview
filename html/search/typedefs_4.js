@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['int_106',['Int',['../namespacenbtview.html#a6fedb4bc19422081c525566dfec4b89b',1,'nbtview']]],
-  ['int_5farray_107',['Int_Array',['../namespacenbtview.html#aedc8581c15b590af57635d606a2c73a0',1,'nbtview']]]
+  ['int_112',['Int',['../namespacenbtview.html#a6fedb4bc19422081c525566dfec4b89b',1,'nbtview']]],
+  ['int_5farray_113',['Int_Array',['../namespacenbtview.html#aedc8581c15b590af57635d606a2c73a0',1,'nbtview']]]
 ];

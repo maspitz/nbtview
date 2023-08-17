@@ -223,12 +223,16 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>quoted_string<
 template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a0ee9f2ba9bf67f7636003442cfd4d967"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><b>comma_delimited_array</b> (const std::vector&lt; T &gt; &amp;vec, const <a class="el" href="structnbtview_1_1array__format.html">array_format</a> &amp;fmt)</td></tr>
 <tr class="separator:a0ee9f2ba9bf67f7636003442cfd4d967"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3749b252f3355d1c079eb14447e8a5c8"><td class="memItemLeft" align="right" valign="top"><a id="a3749b252f3355d1c079eb14447e8a5c8"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>has_compression_header</b> (const std::vector&lt; unsigned char &gt; &amp;data)</td></tr>
-<tr class="separator:a3749b252f3355d1c079eb14447e8a5c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11276aad7ba3a66123c0e28acb20fc40"><td class="memItemLeft" align="right" valign="top"><a id="a11276aad7ba3a66123c0e28acb20fc40"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>has_compression_header</b> (const std::span&lt; unsigned char &gt; data)</td></tr>
+<tr class="separator:a11276aad7ba3a66123c0e28acb20fc40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97dbd58ea309c68d49dbc0a80b7de5bf"><td class="memItemLeft" align="right" valign="top"><a id="a97dbd58ea309c68d49dbc0a80b7de5bf"></a>
-std::vector&lt; unsigned char &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>decompress_data</b> (std::vector&lt; unsigned char &gt; &amp;compressed_data)</td></tr>
+std::vector&lt; unsigned char &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a97dbd58ea309c68d49dbc0a80b7de5bf">decompress_data</a> (std::vector&lt; unsigned char &gt; &amp;compressed_data)</td></tr>
+<tr class="memdesc:a97dbd58ea309c68d49dbc0a80b7de5bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decompress data into a vector of bytes. <br /></td></tr>
 <tr class="separator:a97dbd58ea309c68d49dbc0a80b7de5bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f590b4b0e4a446f4604ad46e147a2cf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a5f590b4b0e4a446f4604ad46e147a2cf">inflate_sectors</a> (const std::vector&lt; std::span&lt; unsigned char &gt;&gt; &amp;compressed_sectors, std::vector&lt; unsigned char &gt; &amp;decompressed_data)</td></tr>
+<tr class="memdesc:a5f590b4b0e4a446f4604ad46e147a2cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">A return value less than zero indicates an error.  <a href="namespacenbtview.html#a5f590b4b0e4a446f4604ad46e147a2cf">More...</a><br /></td></tr>
+<tr class="separator:a5f590b4b0e4a446f4604ad46e147a2cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Input interface</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Deserialize from binary encoded input </p>
 </div></td></tr>
@@ -280,6 +284,37 @@ std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operato
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a5f590b4b0e4a446f4604ad46e147a2cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f590b4b0e4a446f4604ad46e147a2cf">&#9670;&nbsp;</a></span>inflate_sectors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int nbtview::inflate_sectors </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::span&lt; unsigned char &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>compressed_sectors</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; unsigned char &gt; &amp;&#160;</td>
+          <td class="paramname"><em>decompressed_data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A return value less than zero indicates an error. </p>
+<p>Decompress a vector of sectors into a vector of bytes. </p>
+
+</div>
+</div>
 <a id="a390fb78fe858b5c66d2f401f418bb769"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a390fb78fe858b5c66d2f401f418bb769">&#9670;&nbsp;</a></span>operator&lt;&lt;()</h2>
 

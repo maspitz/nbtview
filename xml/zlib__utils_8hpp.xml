@@ -2,11 +2,12 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="zlib__utils_8hpp" kind="file" language="C++">
     <compoundname>zlib_utils.hpp</compoundname>
+    <includes local="no">span</includes>
     <includes local="no">vector</includes>
     <includedby refid="nbtview_8cpp" local="yes">nbtview/nbtview.cpp</includedby>
     <includedby refid="zlib__utils_8cpp" local="yes">nbtview/zlib_utils.cpp</includedby>
     <incdepgraph>
-      <node id="2">
+      <node id="3">
         <label>vector</label>
       </node>
       <node id="1">
@@ -14,6 +15,11 @@
         <link refid="zlib__utils_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>span</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespacenbtview">nbtview</innernamespace>
@@ -32,18 +38,23 @@
 <codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>ZLIB_UTILS_H_</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ZLIB_UTILS_H_</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight></codeline>
-<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenbtview" kindref="compound">nbtview</ref><sp/>{</highlight></codeline>
-<codeline lineno="17"><highlight class="normal"></highlight></codeline>
-<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>has_compression_header(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;unsigned<sp/>char&gt;<sp/>&amp;data);</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal">std::vector&lt;unsigned<sp/>char&gt;</highlight></codeline>
-<codeline lineno="21"><highlight class="normal">decompress_data(std::vector&lt;unsigned<sp/>char&gt;<sp/>&amp;compressed_data);</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nbtview</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;span&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenbtview" kindref="compound">nbtview</ref><sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>has_compression_header(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::span&lt;unsigned<sp/>char&gt;<sp/>data);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">std::vector&lt;unsigned<sp/>char&gt;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><ref refid="namespacenbtview_1a97dbd58ea309c68d49dbc0a80b7de5bf" kindref="member">decompress_data</ref>(std::vector&lt;unsigned<sp/>char&gt;<sp/>&amp;compressed_data);</highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>ZLIB_UTILS_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="namespacenbtview_1a5f590b4b0e4a446f4604ad46e147a2cf" kindref="member">inflate_sectors</ref>(</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::span&lt;unsigned<sp/>char&gt;&gt;<sp/>&amp;compressed_sectors,</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;unsigned<sp/>char&gt;<sp/>&amp;decompressed_data);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nbtview</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>ZLIB_UTILS_H_</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="nbtview/zlib_utils.hpp"/>
   </compounddef>

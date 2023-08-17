@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['tagid_70',['TagID',['../structnbtview_1_1TagID.html',1,'nbtview']]]
+  ['stringifytag_72',['StringifyTag',['../structnbtview_1_1StringifyTag.html',1,'nbtview']]],
+  ['stringifytagtype_73',['StringifyTagType',['../structnbtview_1_1StringifyTagType.html',1,'nbtview']]]
 ];
