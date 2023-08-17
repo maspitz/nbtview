@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['operator_3c_3c_85',['operator&lt;&lt;',['../namespacenbtview.html#a390fb78fe858b5c66d2f401f418bb769',1,'nbtview']]]
+  ['load_5ffrom_5fsectors_89',['load_from_sectors',['../structnbtview_1_1Region.html#ab8226905ed9d57657d6c1602828dc0a8',1,'nbtview::Region']]]
 ];

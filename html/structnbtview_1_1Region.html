@@ -102,41 +102,45 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:af789f0c310c76daf92855f0055395d71"><td class="memItemLeft" align="right" valign="top"><a id="af789f0c310c76daf92855f0055395d71"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>Sector_Data</b> = std::array&lt; unsigned char, <a class="el" href="structnbtview_1_1Region.html#ab7be249b44ee81041e76dc17e9f557b9">sector_length</a> &gt;</td></tr>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnbtview_1_1Region.html#af789f0c310c76daf92855f0055395d71">Sector_Data</a> = std::array&lt; unsigned char, <a class="el" href="structnbtview_1_1Region.html#ab7be249b44ee81041e76dc17e9f557b9">sector_length</a> &gt;</td></tr>
+<tr class="memdesc:af789f0c310c76daf92855f0055395d71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains the bytes for a single sector. <br /></td></tr>
 <tr class="separator:af789f0c310c76daf92855f0055395d71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab8226905ed9d57657d6c1602828dc0a8"><td class="memItemLeft" align="right" valign="top"><a id="ab8226905ed9d57657d6c1602828dc0a8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>load_from_sectors</b> (const Sector_Data &amp;offsets, const Sector_Data &amp;timestamps)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnbtview_1_1Region.html#ab8226905ed9d57657d6c1602828dc0a8">load_from_sectors</a> (const <a class="el" href="structnbtview_1_1Region.html#af789f0c310c76daf92855f0055395d71">Sector_Data</a> &amp;offsets, const <a class="el" href="structnbtview_1_1Region.html#af789f0c310c76daf92855f0055395d71">Sector_Data</a> &amp;timestamps)</td></tr>
+<tr class="memdesc:ab8226905ed9d57657d6c1602828dc0a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads chunk metadata from the two sectors of a region file header. <br /></td></tr>
 <tr class="separator:ab8226905ed9d57657d6c1602828dc0a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a092cac9d992ff5bcc159fa2d4d87328e"><td class="memItemLeft" align="right" valign="top"><a id="a092cac9d992ff5bcc159fa2d4d87328e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>save_to_sectors</b> (Sector_Data &amp;offsets, Sector_Data &amp;timestamps) const</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnbtview_1_1Region.html#a092cac9d992ff5bcc159fa2d4d87328e">save_to_sectors</a> (<a class="el" href="structnbtview_1_1Region.html#af789f0c310c76daf92855f0055395d71">Sector_Data</a> &amp;offsets, <a class="el" href="structnbtview_1_1Region.html#af789f0c310c76daf92855f0055395d71">Sector_Data</a> &amp;timestamps) const</td></tr>
+<tr class="memdesc:a092cac9d992ff5bcc159fa2d4d87328e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves chunk metadata to two sectors suitable for a region file header. <br /></td></tr>
 <tr class="separator:a092cac9d992ff5bcc159fa2d4d87328e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a478898498ec2da9a494254e08f9be322"><td class="memItemLeft" align="right" valign="top"><a id="a478898498ec2da9a494254e08f9be322"></a>
-std::array&lt; <a class="el" href="structnbtview_1_1Region_1_1Chunk__Data.html">Chunk_Data</a>, <a class="el" href="structnbtview_1_1Region.html#a8814e8ca94380ddec537aa27e4086fd8">chunk_count</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>chunk</b></td></tr>
+std::array&lt; <a class="el" href="structnbtview_1_1Region_1_1Chunk__Data.html">Chunk_Data</a>, <a class="el" href="structnbtview_1_1Region.html#a8814e8ca94380ddec537aa27e4086fd8">chunk_count</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnbtview_1_1Region.html#a478898498ec2da9a494254e08f9be322">chunk</a></td></tr>
+<tr class="memdesc:a478898498ec2da9a494254e08f9be322"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metadata for this region's chunks. <br /></td></tr>
 <tr class="separator:a478898498ec2da9a494254e08f9be322"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:abd13b9c7d65944f015efed95afedaad9"><td class="memItemLeft" align="right" valign="top"><a id="abd13b9c7d65944f015efed95afedaad9"></a>
 static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnbtview_1_1Region.html#abd13b9c7d65944f015efed95afedaad9">chunk_width</a> = 16</td></tr>
-<tr class="memdesc:abd13b9c7d65944f015efed95afedaad9"><td class="mdescLeft">&#160;</td><td class="mdescRight">chunk width in blocks <br /></td></tr>
+<tr class="memdesc:abd13b9c7d65944f015efed95afedaad9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chunk width in blocks. <br /></td></tr>
 <tr class="separator:abd13b9c7d65944f015efed95afedaad9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33cf3c36babca696a122393d5a29f4d7"><td class="memItemLeft" align="right" valign="top"><a id="a33cf3c36babca696a122393d5a29f4d7"></a>
 static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnbtview_1_1Region.html#a33cf3c36babca696a122393d5a29f4d7">region_width</a> = 32</td></tr>
-<tr class="memdesc:a33cf3c36babca696a122393d5a29f4d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">region width in chunks <br /></td></tr>
+<tr class="memdesc:a33cf3c36babca696a122393d5a29f4d7"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structnbtview_1_1Region.html" title="Region contains the metadata concerning the layout of encoded chunk data.">Region</a> width in chunks. <br /></td></tr>
 <tr class="separator:a33cf3c36babca696a122393d5a29f4d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8814e8ca94380ddec537aa27e4086fd8"><td class="memItemLeft" align="right" valign="top"><a id="a8814e8ca94380ddec537aa27e4086fd8"></a>
 static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnbtview_1_1Region.html#a8814e8ca94380ddec537aa27e4086fd8">chunk_count</a> = <a class="el" href="structnbtview_1_1Region.html#a33cf3c36babca696a122393d5a29f4d7">region_width</a> * <a class="el" href="structnbtview_1_1Region.html#a33cf3c36babca696a122393d5a29f4d7">region_width</a></td></tr>
-<tr class="memdesc:a8814e8ca94380ddec537aa27e4086fd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">total number of chunks per region <br /></td></tr>
+<tr class="memdesc:a8814e8ca94380ddec537aa27e4086fd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of chunks per region. <br /></td></tr>
 <tr class="separator:a8814e8ca94380ddec537aa27e4086fd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7be249b44ee81041e76dc17e9f557b9"><td class="memItemLeft" align="right" valign="top"><a id="ab7be249b44ee81041e76dc17e9f557b9"></a>
 static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnbtview_1_1Region.html#ab7be249b44ee81041e76dc17e9f557b9">sector_length</a> = 4096</td></tr>
-<tr class="memdesc:ab7be249b44ee81041e76dc17e9f557b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">length of a region file data sector in bytes <br /></td></tr>
+<tr class="memdesc:ab7be249b44ee81041e76dc17e9f557b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Length of a region file data sector in bytes. <br /></td></tr>
 <tr class="separator:ab7be249b44ee81041e76dc17e9f557b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
