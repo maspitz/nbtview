@@ -85,16 +85,23 @@ $(function() {
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;std::vector&lt;unsigned char&gt;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<a class="code" href="namespacenbtview.html#a97dbd58ea309c68d49dbc0a80b7de5bf">decompress_data</a>(std::vector&lt;unsigned char&gt; &amp;compressed_data);</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">int</span> <a class="code" href="namespacenbtview.html#a5f590b4b0e4a446f4604ad46e147a2cf">inflate_sectors</a>(</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">const</span> std::vector&lt;std::span&lt;unsigned char&gt;&gt; &amp;compressed_sectors,</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    std::vector&lt;unsigned char&gt; &amp;decompressed_data);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;} <span class="comment">// namespace nbtview</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// ZLIB_UTILS_H_</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structnbtview_1_1Inflation__Status.html">   25</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structnbtview_1_1Inflation__Status.html">Inflation_Status</a> {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">bool</span> ok;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">bool</span> complete;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">int</span> corrupt_sector;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;};</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<a class="code" href="structnbtview_1_1Inflation__Status.html">Inflation_Status</a></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<a class="code" href="namespacenbtview.html#a9cc36d57ea76545bdcb19bf7fcd4f09d">inflate_sectors</a>(<span class="keyword">const</span> std::vector&lt;std::span&lt;unsigned char&gt;&gt; &amp;compressed_sectors,</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                std::vector&lt;unsigned char&gt; &amp;decompressed_data);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;} <span class="comment">// namespace nbtview</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// ZLIB_UTILS_H_</span></div>
 <div class="ttc" id="anamespacenbtview_html"><div class="ttname"><a href="namespacenbtview.html">nbtview</a></div><div class="ttdoc">Utilities to read, write, and manipulate NBT data.</div><div class="ttdef"><b>Definition:</b> BinaryDeserializer.cpp:13</div></div>
-<div class="ttc" id="anamespacenbtview_html_a5f590b4b0e4a446f4604ad46e147a2cf"><div class="ttname"><a href="namespacenbtview.html#a5f590b4b0e4a446f4604ad46e147a2cf">nbtview::inflate_sectors</a></div><div class="ttdeci">int inflate_sectors(const std::vector&lt; std::span&lt; unsigned char &gt;&gt; &amp;compressed_sectors, std::vector&lt; unsigned char &gt; &amp;decompressed_data)</div><div class="ttdoc">A return value less than zero indicates an error.</div><div class="ttdef"><b>Definition:</b> zlib_utils.cpp:123</div></div>
 <div class="ttc" id="anamespacenbtview_html_a97dbd58ea309c68d49dbc0a80b7de5bf"><div class="ttname"><a href="namespacenbtview.html#a97dbd58ea309c68d49dbc0a80b7de5bf">nbtview::decompress_data</a></div><div class="ttdeci">std::vector&lt; unsigned char &gt; decompress_data(std::vector&lt; unsigned char &gt; &amp;input_data)</div><div class="ttdoc">Decompress data into a vector of bytes.</div><div class="ttdef"><b>Definition:</b> zlib_utils.cpp:115</div></div>
+<div class="ttc" id="anamespacenbtview_html_a9cc36d57ea76545bdcb19bf7fcd4f09d"><div class="ttname"><a href="namespacenbtview.html#a9cc36d57ea76545bdcb19bf7fcd4f09d">nbtview::inflate_sectors</a></div><div class="ttdeci">Inflation_Status inflate_sectors(const std::vector&lt; std::span&lt; unsigned char &gt;&gt; &amp;sectors, std::vector&lt; unsigned char &gt; &amp;output)</div><div class="ttdoc">A return value less than zero indicates an error.</div><div class="ttdef"><b>Definition:</b> zlib_utils.cpp:128</div></div>
+<div class="ttc" id="astructnbtview_1_1Inflation__Status_html"><div class="ttname"><a href="structnbtview_1_1Inflation__Status.html">nbtview::Inflation_Status</a></div><div class="ttdef"><b>Definition:</b> zlib_utils.hpp:25</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

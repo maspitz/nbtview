@@ -22,6 +22,7 @@
         <label>span</label>
       </node>
     </incdepgraph>
+    <innerclass refid="structnbtview_1_1Inflation__Status" prot="public">nbtview::Inflation_Status</innerclass>
     <innernamespace refid="namespacenbtview">nbtview</innernamespace>
     <briefdescription>
 <para>Functions to interface with zlib compression. </para>
@@ -48,13 +49,19 @@
 <codeline lineno="22"><highlight class="normal">std::vector&lt;unsigned<sp/>char&gt;</highlight></codeline>
 <codeline lineno="23"><highlight class="normal"><ref refid="namespacenbtview_1a97dbd58ea309c68d49dbc0a80b7de5bf" kindref="member">decompress_data</ref>(std::vector&lt;unsigned<sp/>char&gt;<sp/>&amp;compressed_data);</highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="namespacenbtview_1a5f590b4b0e4a446f4604ad46e147a2cf" kindref="member">inflate_sectors</ref>(</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::span&lt;unsigned<sp/>char&gt;&gt;<sp/>&amp;compressed_sectors,</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;unsigned<sp/>char&gt;<sp/>&amp;decompressed_data);</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nbtview</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>ZLIB_UTILS_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="structnbtview_1_1Inflation__Status" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnbtview_1_1Inflation__Status" kindref="compound">Inflation_Status</ref><sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ok;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>complete;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>corrupt_sector;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><ref refid="structnbtview_1_1Inflation__Status" kindref="compound">Inflation_Status</ref></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><ref refid="namespacenbtview_1a9cc36d57ea76545bdcb19bf7fcd4f09d" kindref="member">inflate_sectors</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::span&lt;unsigned<sp/>char&gt;&gt;<sp/>&amp;compressed_sectors,</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;unsigned<sp/>char&gt;<sp/>&amp;decompressed_data);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nbtview</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>ZLIB_UTILS_H_</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="nbtview/zlib_utils.hpp"/>
   </compounddef>

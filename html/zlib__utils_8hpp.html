@@ -68,6 +68,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
@@ -92,6 +93,11 @@ Include dependency graph for zlib_utils.hpp:</div>
 </div>
 <p><a href="zlib__utils_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnbtview_1_1Inflation__Status.html">nbtview::Inflation_Status</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacenbtview"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html">nbtview</a></td></tr>
@@ -107,9 +113,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>nbtview::has_compress
 std::vector&lt; unsigned char &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a97dbd58ea309c68d49dbc0a80b7de5bf">nbtview::decompress_data</a> (std::vector&lt; unsigned char &gt; &amp;compressed_data)</td></tr>
 <tr class="memdesc:a97dbd58ea309c68d49dbc0a80b7de5bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decompress data into a vector of bytes. <br /></td></tr>
 <tr class="separator:a97dbd58ea309c68d49dbc0a80b7de5bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f590b4b0e4a446f4604ad46e147a2cf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a5f590b4b0e4a446f4604ad46e147a2cf">nbtview::inflate_sectors</a> (const std::vector&lt; std::span&lt; unsigned char &gt;&gt; &amp;compressed_sectors, std::vector&lt; unsigned char &gt; &amp;decompressed_data)</td></tr>
-<tr class="memdesc:a5f590b4b0e4a446f4604ad46e147a2cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">A return value less than zero indicates an error.  <a href="namespacenbtview.html#a5f590b4b0e4a446f4604ad46e147a2cf">More...</a><br /></td></tr>
-<tr class="separator:a5f590b4b0e4a446f4604ad46e147a2cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cc36d57ea76545bdcb19bf7fcd4f09d"><td class="memItemLeft" align="right" valign="top">Inflation_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a9cc36d57ea76545bdcb19bf7fcd4f09d">nbtview::inflate_sectors</a> (const std::vector&lt; std::span&lt; unsigned char &gt;&gt; &amp;sectors, std::vector&lt; unsigned char &gt; &amp;output)</td></tr>
+<tr class="memdesc:a9cc36d57ea76545bdcb19bf7fcd4f09d"><td class="mdescLeft">&#160;</td><td class="mdescRight">A return value less than zero indicates an error.  <a href="namespacenbtview.html#a9cc36d57ea76545bdcb19bf7fcd4f09d">More...</a><br /></td></tr>
+<tr class="separator:a9cc36d57ea76545bdcb19bf7fcd4f09d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Functions to interface with zlib compression. </p>

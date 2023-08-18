@@ -15,6 +15,7 @@
     <innerclass refid="classnbtview_1_1Compound" prot="public">nbtview::Compound</innerclass>
     <innerclass refid="classnbtview_1_1List" prot="public">nbtview::List</innerclass>
     <innerclass refid="structnbtview_1_1array__format" prot="public">nbtview::array_format</innerclass>
+    <innerclass refid="structnbtview_1_1Inflation__Status" prot="public">nbtview::Inflation_Status</innerclass>
     <innernamespace refid="namespacenbtview_1_1detail">nbtview::detail</innernamespace>
     <innernamespace refid="namespacenbtview_1_1zlib">nbtview::zlib</innernamespace>
       <sectiondef kind="user-defined">
@@ -852,20 +853,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.cpp" line="115" column="1" bodyfile="nbtview/zlib_utils.cpp" bodystart="115" bodyend="120" declfile="nbtview/zlib_utils.hpp" declline="23" declcolumn="1"/>
+        <location file="nbtview/zlib_utils.cpp" line="115" column="1" bodyfile="nbtview/zlib_utils.cpp" bodystart="115" bodyend="124" declfile="nbtview/zlib_utils.hpp" declline="23" declcolumn="1"/>
       </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a5f590b4b0e4a446f4604ad46e147a2cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>int</type>
-        <definition>int nbtview::inflate_sectors</definition>
-        <argsstring>(const std::vector&lt; std::span&lt; unsigned char &gt;&gt; &amp;compressed_sectors, std::vector&lt; unsigned char &gt; &amp;decompressed_data)</argsstring>
+      <memberdef kind="function" id="namespacenbtview_1a9cc36d57ea76545bdcb19bf7fcd4f09d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structnbtview_1_1Inflation__Status" kindref="compound">Inflation_Status</ref></type>
+        <definition>Inflation_Status nbtview::inflate_sectors</definition>
+        <argsstring>(const std::vector&lt; std::span&lt; unsigned char &gt;&gt; &amp;sectors, std::vector&lt; unsigned char &gt; &amp;output)</argsstring>
         <name>inflate_sectors</name>
         <param>
           <type>const std::vector&lt; std::span&lt; unsigned char &gt;&gt; &amp;</type>
-          <declname>compressed_sectors</declname>
+          <declname>sectors</declname>
         </param>
         <param>
           <type>std::vector&lt; unsigned char &gt; &amp;</type>
-          <declname>decompressed_data</declname>
+          <declname>output</declname>
         </param>
         <briefdescription>
 <para>A return value less than zero indicates an error. </para>
@@ -875,7 +876,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.cpp" line="123" column="5" bodyfile="nbtview/zlib_utils.cpp" bodystart="123" bodyend="144" declfile="nbtview/zlib_utils.hpp" declline="26" declcolumn="5"/>
+        <location file="nbtview/zlib_utils.cpp" line="128" column="1" bodyfile="nbtview/zlib_utils.cpp" bodystart="128" bodyend="146" declfile="nbtview/zlib_utils.hpp" declline="33" declcolumn="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
