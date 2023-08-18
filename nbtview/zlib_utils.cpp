@@ -144,6 +144,7 @@ int inflate_sectors(
                 "Unexpected end of input while inflating sectors.");
         }
         stream.reset_input(compressed_sectors[sector_idx]);
+        ret = stream.do_inflate();
     }
 
     return ret;
