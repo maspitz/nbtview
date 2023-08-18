@@ -115,32 +115,34 @@ std::vector<unsigned char>
 decompress_data(std::vector<unsigned char> &input_data) {
     zlib::Inflater stream;
     std::vector<unsigned char> output_data;
-    stream.do_inflate(input_data, output_data);
+    int status = stream.do_inflate(input_data, output_data);
+    if (status != Z_STREAM_END) {
+        throw std::runtime_error(
+            "Could not decompress data (likely corrupt or incomplete)");
+    }
     return output_data;
 }
 
 //! A return value less than zero indicates an error.
-int inflate_sectors(
-    const std::vector<std::span<unsigned char>> &compressed_sectors,
-    std::vector<unsigned char> &decompressed_data) {
-
-    int status = Z_OK;
-    int sector_idx = 0;
+Inflation_Status
+inflate_sectors(const std::vector<std::span<unsigned char>> &sectors,
+                std::vector<unsigned char> &output) {
     zlib::Inflater stream;
-
-    for (auto s : compressed_sectors) {
-        int status = stream.do_inflate(s, decompressed_data);
+    Inflation_Status ret{.ok = true, .complete = false, .corrupt_sector = -1};
+    int idx = 0;
+    for (auto s : sectors) {
+        int status = stream.do_inflate(sectors[idx], output);
         if (status == Z_STREAM_END) {
-            return status;
+            ret.complete = true;
+            break;
+        } else if (status != Z_OK) {
+            ret.ok = false;
+            ret.corrupt_sector = idx;
+            break;
         }
-        if (status != Z_OK) {
-            std::cerr << "Inflation error in sector " << sector_idx << "  byte "
-                      << stream.input_bytes_read() << std::endl;
-        }
-        sector_idx++;
+        idx++;
     }
-
-    return status;
+    return ret;
 }
 
 } // namespace nbtview
