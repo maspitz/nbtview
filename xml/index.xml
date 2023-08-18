@@ -62,16 +62,14 @@
     <member refid="classnbtview_1_1Deserializer_1ab7f51da91148d6c1934ae6fcc4de18b9" kind="function"><name>deserialize</name></member>
   </compound>
   <compound refid="classnbtview_1_1zlib_1_1Inflater" kind="class"><name>nbtview::zlib::Inflater</name>
-    <member refid="classnbtview_1_1zlib_1_1Inflater_1a61e547acb102bbe75231cd77ce90115f" kind="variable"><name>status_</name></member>
+    <member refid="classnbtview_1_1zlib_1_1Inflater_1a9b9954e3bb22039b98881f0549edf9b6" kind="variable"><name>input_bytes_read_</name></member>
     <member refid="classnbtview_1_1zlib_1_1Inflater_1a154382ffb6698484e41664e08adb6c5e" kind="variable"><name>stream_</name></member>
     <member refid="classnbtview_1_1zlib_1_1Inflater_1a69a5a952525d84f37dd4830faf1733ef" kind="variable"><name>buffer_</name></member>
-    <member refid="classnbtview_1_1zlib_1_1Inflater_1aac41482168f6028e803640d37e16ef53" kind="variable"><name>output_</name></member>
     <member refid="classnbtview_1_1zlib_1_1Inflater_1a9542702508b30d6d281664a0d976d367" kind="variable"><name>buffer_size_</name></member>
-    <member refid="classnbtview_1_1zlib_1_1Inflater_1a460faa7a1c3b36fca612fe1bfa1b9541" kind="function"><name>Inflater</name></member>
+    <member refid="classnbtview_1_1zlib_1_1Inflater_1ae171d7f9fd5d08b53b5eae570b5f526e" kind="function"><name>Inflater</name></member>
     <member refid="classnbtview_1_1zlib_1_1Inflater_1a35494e9197f56778904154fc4faf9083" kind="function"><name>~Inflater</name></member>
-    <member refid="classnbtview_1_1zlib_1_1Inflater_1ad39a47bab233dbde67fd86d89474fea4" kind="function"><name>reset_input</name></member>
-    <member refid="classnbtview_1_1zlib_1_1Inflater_1a8d40a5c3db9dec05540d31130901c776" kind="function"><name>do_inflate</name></member>
-    <member refid="classnbtview_1_1zlib_1_1Inflater_1a31884669e3536146f2c773bcbe4ef124" kind="function"><name>get_status</name></member>
+    <member refid="classnbtview_1_1zlib_1_1Inflater_1abc308b10f0cb52477553611dfb597583" kind="function"><name>do_inflate</name></member>
+    <member refid="classnbtview_1_1zlib_1_1Inflater_1a06564496caf2138655a3f8c96d2b9660" kind="function"><name>input_bytes_read</name></member>
     <member refid="classnbtview_1_1zlib_1_1Inflater_1a4e3b50348776a28a0aed19cde4e5edf2" kind="function"><name>err_msg</name></member>
   </compound>
   <compound refid="classnbtview_1_1List" kind="class"><name>nbtview::List</name>

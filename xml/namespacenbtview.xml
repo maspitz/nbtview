@@ -843,7 +843,7 @@
         <name>decompress_data</name>
         <param>
           <type>std::vector&lt; unsigned char &gt; &amp;</type>
-          <declname>compressed_data</declname>
+          <declname>input_data</declname>
         </param>
         <briefdescription>
 <para>Decompress data into a vector of bytes. </para>
@@ -852,7 +852,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.cpp" line="108" column="1" bodyfile="nbtview/zlib_utils.cpp" bodystart="108" bodyend="120" declfile="nbtview/zlib_utils.hpp" declline="23" declcolumn="1"/>
+        <location file="nbtview/zlib_utils.cpp" line="115" column="1" bodyfile="nbtview/zlib_utils.cpp" bodystart="115" bodyend="120" declfile="nbtview/zlib_utils.hpp" declline="23" declcolumn="1"/>
       </memberdef>
       <memberdef kind="function" id="namespacenbtview_1a5f590b4b0e4a446f4604ad46e147a2cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -875,7 +875,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.cpp" line="123" column="5" bodyfile="nbtview/zlib_utils.cpp" bodystart="123" bodyend="151" declfile="nbtview/zlib_utils.hpp" declline="26" declcolumn="5"/>
+        <location file="nbtview/zlib_utils.cpp" line="123" column="5" bodyfile="nbtview/zlib_utils.cpp" bodystart="123" bodyend="144" declfile="nbtview/zlib_utils.hpp" declline="26" declcolumn="5"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

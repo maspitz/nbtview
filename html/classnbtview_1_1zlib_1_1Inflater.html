@@ -80,25 +80,60 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a460faa7a1c3b36fca612fe1bfa1b9541"><td class="memItemLeft" align="right" valign="top"><a id="a460faa7a1c3b36fca612fe1bfa1b9541"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Inflater</b> (std::span&lt; unsigned char &gt; input, std::vector&lt; unsigned char &gt; &amp;output)</td></tr>
-<tr class="separator:a460faa7a1c3b36fca612fe1bfa1b9541"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad39a47bab233dbde67fd86d89474fea4"><td class="memItemLeft" align="right" valign="top"><a id="ad39a47bab233dbde67fd86d89474fea4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>reset_input</b> (std::span&lt; unsigned char &gt; input)</td></tr>
-<tr class="separator:ad39a47bab233dbde67fd86d89474fea4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d40a5c3db9dec05540d31130901c776"><td class="memItemLeft" align="right" valign="top"><a id="a8d40a5c3db9dec05540d31130901c776"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>do_inflate</b> ()</td></tr>
-<tr class="separator:a8d40a5c3db9dec05540d31130901c776"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31884669e3536146f2c773bcbe4ef124"><td class="memItemLeft" align="right" valign="top"><a id="a31884669e3536146f2c773bcbe4ef124"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>get_status</b> ()</td></tr>
-<tr class="separator:a31884669e3536146f2c773bcbe4ef124"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc308b10f0cb52477553611dfb597583"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnbtview_1_1zlib_1_1Inflater.html#abc308b10f0cb52477553611dfb597583">do_inflate</a> (std::span&lt; unsigned char &gt; input, std::vector&lt; unsigned char &gt; &amp;output)</td></tr>
+<tr class="separator:abc308b10f0cb52477553611dfb597583"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06564496caf2138655a3f8c96d2b9660"><td class="memItemLeft" align="right" valign="top"><a id="a06564496caf2138655a3f8c96d2b9660"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>input_bytes_read</b> ()</td></tr>
+<tr class="separator:a06564496caf2138655a3f8c96d2b9660"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e3b50348776a28a0aed19cde4e5edf2"><td class="memItemLeft" align="right" valign="top"><a id="a4e3b50348776a28a0aed19cde4e5edf2"></a>
 const char *&#160;</td><td class="memItemRight" valign="bottom"><b>err_msg</b> ()</td></tr>
 <tr class="separator:a4e3b50348776a28a0aed19cde4e5edf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classnbtview_1_1zlib_1_1Inflater.html" title="Inflater wraps z_stream to ensure RAII semantics.">Inflater</a> wraps z_stream to ensure RAII semantics. </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="abc308b10f0cb52477553611dfb597583"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc308b10f0cb52477553611dfb597583">&#9670;&nbsp;</a></span>do_inflate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int nbtview::zlib::Inflater::do_inflate </td>
+          <td>(</td>
+          <td class="paramtype">std::span&lt; unsigned char &gt;&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; unsigned char &gt; &amp;&#160;</td>
+          <td class="paramname"><em>output</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="classnbtview_1_1zlib_1_1Inflater.html#abc308b10f0cb52477553611dfb597583">do_inflate()</a> inflates the compressed data input and copies uncompressed data to the output.</p>
+<p>Returns Z_DATA_ERROR: if the input data is corrupt.</p>
+<p>Returns Z_OK: if it has inflated all of the data input without reaching the end of the compressed data stream.</p>
+<p>Returns Z_STREAM_END: if it has reached the end of the compressed data stream.</p>
+<p>Returns Z_NEED_DICT, Z_STREAM_ERROR, Z_MEM_ERROR, Z_BUF_ERROR: for various other conditions under which inflation cannot continue. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>nbtview/zlib_utils.cpp</li>
 </ul>
 </div><!-- contents -->
