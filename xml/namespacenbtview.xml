@@ -875,7 +875,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.cpp" line="123" column="5" bodyfile="nbtview/zlib_utils.cpp" bodystart="123" bodyend="150" declfile="nbtview/zlib_utils.hpp" declline="26" declcolumn="5"/>
+        <location file="nbtview/zlib_utils.cpp" line="123" column="5" bodyfile="nbtview/zlib_utils.cpp" bodystart="123" bodyend="151" declfile="nbtview/zlib_utils.hpp" declline="26" declcolumn="5"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
