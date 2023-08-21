@@ -232,9 +232,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>has_compression_heade
 std::vector&lt; unsigned char &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a97dbd58ea309c68d49dbc0a80b7de5bf">decompress_data</a> (std::vector&lt; unsigned char &gt; &amp;compressed_data)</td></tr>
 <tr class="memdesc:a97dbd58ea309c68d49dbc0a80b7de5bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decompress data into a vector of bytes. <br /></td></tr>
 <tr class="separator:a97dbd58ea309c68d49dbc0a80b7de5bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9cc36d57ea76545bdcb19bf7fcd4f09d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structnbtview_1_1Inflation__Status.html">Inflation_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a9cc36d57ea76545bdcb19bf7fcd4f09d">inflate_sectors</a> (const std::vector&lt; std::span&lt; unsigned char &gt;&gt; &amp;sectors, std::vector&lt; unsigned char &gt; &amp;output)</td></tr>
-<tr class="memdesc:a9cc36d57ea76545bdcb19bf7fcd4f09d"><td class="mdescLeft">&#160;</td><td class="mdescRight">A return value less than zero indicates an error.  <a href="namespacenbtview.html#a9cc36d57ea76545bdcb19bf7fcd4f09d">More...</a><br /></td></tr>
-<tr class="separator:a9cc36d57ea76545bdcb19bf7fcd4f09d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72bd87fd920dc8d8a60d7ade126de3ab"><td class="memItemLeft" align="right" valign="top">std::pair&lt; std::vector&lt; unsigned char &gt;, <a class="el" href="structnbtview_1_1Inflation__Status.html">Inflation_Status</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a72bd87fd920dc8d8a60d7ade126de3ab">inflate_sectors</a> (const std::vector&lt; std::span&lt; unsigned char &gt;&gt; &amp;sectors)</td></tr>
+<tr class="memdesc:a72bd87fd920dc8d8a60d7ade126de3ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">A return value less than zero indicates an error.  <a href="namespacenbtview.html#a72bd87fd920dc8d8a60d7ade126de3ab">More...</a><br /></td></tr>
+<tr class="separator:a72bd87fd920dc8d8a60d7ade126de3ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Input interface</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Deserialize from binary encoded input </p>
 </div></td></tr>
@@ -286,28 +286,18 @@ std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operato
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a9cc36d57ea76545bdcb19bf7fcd4f09d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9cc36d57ea76545bdcb19bf7fcd4f09d">&#9670;&nbsp;</a></span>inflate_sectors()</h2>
+<a id="a72bd87fd920dc8d8a60d7ade126de3ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72bd87fd920dc8d8a60d7ade126de3ab">&#9670;&nbsp;</a></span>inflate_sectors()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structnbtview_1_1Inflation__Status.html">Inflation_Status</a> nbtview::inflate_sectors </td>
+          <td class="memname">std::pair&lt; std::vector&lt; unsigned char &gt;, <a class="el" href="structnbtview_1_1Inflation__Status.html">Inflation_Status</a> &gt; nbtview::inflate_sectors </td>
           <td>(</td>
           <td class="paramtype">const std::vector&lt; std::span&lt; unsigned char &gt;&gt; &amp;&#160;</td>
-          <td class="paramname"><em>sectors</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>sectors</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">std::vector&lt; unsigned char &gt; &amp;&#160;</td>
-          <td class="paramname"><em>output</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">

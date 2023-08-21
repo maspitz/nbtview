@@ -4,6 +4,7 @@
     <compoundname>zlib_utils.cpp</compoundname>
     <includes local="no">iostream</includes>
     <includes local="no">span</includes>
+    <includes local="no">utility</includes>
     <includes local="no">vector</includes>
     <includes local="no">zlib.h</includes>
     <includes refid="zlib__utils_8hpp" local="yes">zlib_utils.hpp</includes>
@@ -21,22 +22,29 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>vector</label>
       </node>
       <node id="4">
-        <label>vector</label>
+        <label>utility</label>
       </node>
       <node id="2">
         <label>iostream</label>
       </node>
-      <node id="6">
+      <node id="7">
         <label>zlib_utils.hpp</label>
         <link refid="zlib__utils_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
       </node>
-      <node id="5">
+      <node id="6">
         <label>zlib.h</label>
       </node>
       <node id="3">
@@ -55,133 +63,136 @@
 <codeline lineno="2"><highlight class="normal"></highlight></codeline>
 <codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;span&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;zlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="zlib__utils_8hpp" kindref="compound">zlib_utils.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenbtview" kindref="compound">nbtview</ref><sp/>{</highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight></codeline>
-<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>has_compression_header(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::span&lt;unsigned<sp/>char&gt;<sp/>data)<sp/>{</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(data.size()<sp/>&lt;<sp/>4)<sp/>{</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="17"><highlight class="normal"></highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>all<sp/>possible<sp/>ZLIB<sp/>headers,<sp/>given<sp/>DEFLATE<sp/>method<sp/>and<sp/>a<sp/>32KB<sp/>window</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>[RFC1950]</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(data[0]<sp/>==<sp/>0x78<sp/>&amp;&amp;<sp/>(data[1]<sp/>==<sp/>0x01<sp/>||<sp/>data[1]<sp/>==<sp/>0x5e<sp/>||</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data[1]<sp/>==<sp/>0x9c<sp/>||<sp/>data[1]<sp/>==<sp/>0xda))<sp/>{</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>GZIP<sp/>header<sp/>bytes,<sp/>given<sp/>DEFLATE<sp/>method<sp/>[RFC1952]</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(data[0]<sp/>==<sp/>0x1f<sp/>&amp;&amp;<sp/>data[1]<sp/>==<sp/>0x8b<sp/>&amp;&amp;<sp/>data[2]<sp/>==<sp/>0x08)<sp/>{</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="31"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">zlib<sp/>{</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36" refid="classnbtview_1_1zlib_1_1Inflater" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnbtview_1_1zlib_1_1Inflater" kindref="compound">Inflater</ref><sp/>{</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnbtview_1_1zlib_1_1Inflater" kindref="compound">Inflater</ref>()<sp/>{</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>input_bytes_read_<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stream_.zalloc<sp/>=<sp/>Z_NULL;</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stream_.zfree<sp/>=<sp/>Z_NULL;</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stream_.opaque<sp/>=<sp/>Z_NULL;</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stream_.avail_in<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stream_.next_in<sp/>=<sp/>Z_NULL;</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>AUTO_HEADER_DETECTION<sp/>=<sp/>32;</highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>status<sp/>=</highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>inflateInit2(&amp;stream_,<sp/>AUTO_HEADER_DETECTION<sp/>|<sp/>MAX_WBITS);</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(status<sp/>!=<sp/>Z_OK)<sp/>{</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>inflateEnd(&amp;stream_);</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Failed<sp/>to<sp/>initialize<sp/>nbtview::zlib::Inflater<sp/>with<sp/>error<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;code<sp/>&quot;</highlight><highlight class="normal"><sp/>+</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::to_string(status));</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"></highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>~<ref refid="classnbtview_1_1zlib_1_1Inflater" kindref="compound">Inflater</ref>()<sp/>{<sp/>inflateEnd(&amp;stream_);<sp/>}</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"></highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classnbtview_1_1zlib_1_1Inflater_1abc308b10f0cb52477553611dfb597583" kindref="member">do_inflate</ref>(std::span&lt;unsigned<sp/>char&gt;<sp/>input,</highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;unsigned<sp/>char&gt;<sp/>&amp;output)<sp/>{</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(stream_.avail_in<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Warning:<sp/>new<sp/>input<sp/>overrides<sp/>existing<sp/>unconsumed<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;input<sp/>in<sp/>Inflater.&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stream_.avail_in<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">uInt</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(input.size());</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stream_.next_in<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">Bytef<sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(input.data());</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"></highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>status<sp/>=<sp/>Z_OK;</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>((stream_.avail_in<sp/>&gt;<sp/>0)<sp/>&amp;&amp;<sp/>(status<sp/>==<sp/>Z_OK))<sp/>{</highlight></codeline>
-<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stream_.avail_out<sp/>=<sp/>buffer_size_;</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stream_.next_out<sp/>=<sp/></highlight><highlight class="keyword">reinterpret_cast&lt;</highlight><highlight class="normal">Bytef<sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(buffer_);</highlight></codeline>
-<codeline lineno="90"><highlight class="normal"></highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>status<sp/>=<sp/>inflate(&amp;stream_,<sp/>Z_NO_FLUSH);</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"></highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>output_byte_count<sp/>=<sp/>buffer_size_<sp/>-<sp/>stream_.avail_out;</highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output.insert(output.end(),<sp/>buffer_,</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>buffer_<sp/>+<sp/>output_byte_count);</highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"></highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>input_bytes_read_<sp/>=<sp/>input.size()<sp/>-<sp/>stream_.avail_in;</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>status;</highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="101"><highlight class="normal"></highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>input_bytes_read()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>input_bytes_read_;<sp/>}</highlight></codeline>
-<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*err_msg()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>stream_.msg;<sp/>}</highlight></codeline>
-<codeline lineno="104"><highlight class="normal"></highlight></codeline>
-<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>input_bytes_read_;</highlight></codeline>
-<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>z_stream<sp/>stream_;</highlight></codeline>
-<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>buffer_size_<sp/>=<sp/>128;</highlight></codeline>
-<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>buffer_[buffer_size_];</highlight></codeline>
-<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="111"><highlight class="normal"></highlight></codeline>
-<codeline lineno="112"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>zlib</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="113"><highlight class="normal"></highlight></codeline>
-<codeline lineno="114"><highlight class="normal">std::vector&lt;unsigned<sp/>char&gt;</highlight></codeline>
-<codeline lineno="115"><highlight class="normal"><ref refid="namespacenbtview_1a97dbd58ea309c68d49dbc0a80b7de5bf" kindref="member">decompress_data</ref>(std::vector&lt;unsigned<sp/>char&gt;<sp/>&amp;input_data)<sp/>{</highlight></codeline>
-<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnbtview_1_1zlib_1_1Inflater" kindref="compound">zlib::Inflater</ref><sp/>stream;</highlight></codeline>
-<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;unsigned<sp/>char&gt;<sp/>output_data;</highlight></codeline>
-<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>status<sp/>=<sp/>stream.<ref refid="classnbtview_1_1zlib_1_1Inflater_1abc308b10f0cb52477553611dfb597583" kindref="member">do_inflate</ref>(input_data,<sp/>output_data);</highlight></codeline>
-<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(status<sp/>!=<sp/>Z_STREAM_END)<sp/>{</highlight></codeline>
-<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight></codeline>
-<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Could<sp/>not<sp/>decompress<sp/>data<sp/>(likely<sp/>corrupt<sp/>or<sp/>incomplete)&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>output_data;</highlight></codeline>
-<codeline lineno="124"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="125"><highlight class="normal"></highlight></codeline>
-<codeline lineno="127"><highlight class="normal">Inflation_Status</highlight></codeline>
-<codeline lineno="128"><highlight class="normal"><ref refid="namespacenbtview_1a9cc36d57ea76545bdcb19bf7fcd4f09d" kindref="member">inflate_sectors</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::span&lt;unsigned<sp/>char&gt;&gt;<sp/>&amp;sectors,</highlight></codeline>
-<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;unsigned<sp/>char&gt;<sp/>&amp;output)<sp/>{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utility&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;zlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="zlib__utils_8hpp" kindref="compound">zlib_utils.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenbtview" kindref="compound">nbtview</ref><sp/>{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>has_compression_header(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::span&lt;unsigned<sp/>char&gt;<sp/>data)<sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(data.size()<sp/>&lt;<sp/>4)<sp/>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>all<sp/>possible<sp/>ZLIB<sp/>headers,<sp/>given<sp/>DEFLATE<sp/>method<sp/>and<sp/>a<sp/>32KB<sp/>window</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>[RFC1950]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(data[0]<sp/>==<sp/>0x78<sp/>&amp;&amp;<sp/>(data[1]<sp/>==<sp/>0x01<sp/>||<sp/>data[1]<sp/>==<sp/>0x5e<sp/>||</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data[1]<sp/>==<sp/>0x9c<sp/>||<sp/>data[1]<sp/>==<sp/>0xda))<sp/>{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>GZIP<sp/>header<sp/>bytes,<sp/>given<sp/>DEFLATE<sp/>method<sp/>[RFC1952]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(data[0]<sp/>==<sp/>0x1f<sp/>&amp;&amp;<sp/>data[1]<sp/>==<sp/>0x8b<sp/>&amp;&amp;<sp/>data[2]<sp/>==<sp/>0x08)<sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">zlib<sp/>{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="classnbtview_1_1zlib_1_1Inflater" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnbtview_1_1zlib_1_1Inflater" kindref="compound">Inflater</ref><sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnbtview_1_1zlib_1_1Inflater" kindref="compound">Inflater</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>input_bytes_read_<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stream_.zalloc<sp/>=<sp/>Z_NULL;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stream_.zfree<sp/>=<sp/>Z_NULL;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stream_.opaque<sp/>=<sp/>Z_NULL;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stream_.avail_in<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stream_.next_in<sp/>=<sp/>Z_NULL;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>AUTO_HEADER_DETECTION<sp/>=<sp/>32;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>status<sp/>=</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>inflateInit2(&amp;stream_,<sp/>AUTO_HEADER_DETECTION<sp/>|<sp/>MAX_WBITS);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(status<sp/>!=<sp/>Z_OK)<sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>inflateEnd(&amp;stream_);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Failed<sp/>to<sp/>initialize<sp/>nbtview::zlib::Inflater<sp/>with<sp/>error<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;code<sp/>&quot;</highlight><highlight class="normal"><sp/>+</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::to_string(status));</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>~<ref refid="classnbtview_1_1zlib_1_1Inflater" kindref="compound">Inflater</ref>()<sp/>{<sp/>inflateEnd(&amp;stream_);<sp/>}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classnbtview_1_1zlib_1_1Inflater_1abc308b10f0cb52477553611dfb597583" kindref="member">do_inflate</ref>(std::span&lt;unsigned<sp/>char&gt;<sp/>input,</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;unsigned<sp/>char&gt;<sp/>&amp;output)<sp/>{</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(stream_.avail_in<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Warning:<sp/>new<sp/>input<sp/>overrides<sp/>existing<sp/>unconsumed<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;input<sp/>in<sp/>Inflater.&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stream_.avail_in<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">uInt</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(input.size());</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stream_.next_in<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">Bytef<sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(input.data());</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>status<sp/>=<sp/>Z_OK;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>((stream_.avail_in<sp/>&gt;<sp/>0)<sp/>&amp;&amp;<sp/>(status<sp/>==<sp/>Z_OK))<sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stream_.avail_out<sp/>=<sp/>buffer_size_;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stream_.next_out<sp/>=<sp/></highlight><highlight class="keyword">reinterpret_cast&lt;</highlight><highlight class="normal">Bytef<sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(buffer_);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>status<sp/>=<sp/>inflate(&amp;stream_,<sp/>Z_NO_FLUSH);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>output_byte_count<sp/>=<sp/>buffer_size_<sp/>-<sp/>stream_.avail_out;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output.insert(output.end(),<sp/>buffer_,</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>buffer_<sp/>+<sp/>output_byte_count);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>input_bytes_read_<sp/>=<sp/>input.size()<sp/>-<sp/>stream_.avail_in;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>status;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>input_bytes_read()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>input_bytes_read_;<sp/>}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*err_msg()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>stream_.msg;<sp/>}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>input_bytes_read_;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>z_stream<sp/>stream_;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>buffer_size_<sp/>=<sp/>128;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>buffer_[buffer_size_];</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>zlib</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal">std::vector&lt;unsigned<sp/>char&gt;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><ref refid="namespacenbtview_1a97dbd58ea309c68d49dbc0a80b7de5bf" kindref="member">decompress_data</ref>(std::vector&lt;unsigned<sp/>char&gt;<sp/>&amp;input_data)<sp/>{</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnbtview_1_1zlib_1_1Inflater" kindref="compound">zlib::Inflater</ref><sp/>stream;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;unsigned<sp/>char&gt;<sp/>output_data;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>status<sp/>=<sp/>stream.<ref refid="classnbtview_1_1zlib_1_1Inflater_1abc308b10f0cb52477553611dfb597583" kindref="member">do_inflate</ref>(input_data,<sp/>output_data);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(status<sp/>!=<sp/>Z_STREAM_END)<sp/>{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Could<sp/>not<sp/>decompress<sp/>data<sp/>(likely<sp/>corrupt<sp/>or<sp/>incomplete)&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>output_data;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal">std::pair&lt;std::vector&lt;unsigned<sp/>char&gt;,<sp/>Inflation_Status&gt;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><ref refid="namespacenbtview_1a72bd87fd920dc8d8a60d7ade126de3ab" kindref="member">inflate_sectors</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::span&lt;unsigned<sp/>char&gt;&gt;<sp/>&amp;sectors)<sp/>{</highlight></codeline>
 <codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>zlib::Inflater<sp/>stream;</highlight></codeline>
-<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>Inflation_Status<sp/>ret{.ok<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">,<sp/>.complete<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/>.corrupt_sector<sp/>=<sp/>-1};</highlight></codeline>
-<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>s<sp/>:<sp/>sectors)<sp/>{</highlight></codeline>
-<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>status<sp/>=<sp/>stream.<ref refid="classnbtview_1_1zlib_1_1Inflater_1abc308b10f0cb52477553611dfb597583" kindref="member">do_inflate</ref>(sectors[idx],<sp/>output);</highlight></codeline>
-<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(status<sp/>==<sp/>Z_STREAM_END)<sp/>{</highlight></codeline>
-<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret.complete<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(status<sp/>!=<sp/>Z_OK)<sp/>{</highlight></codeline>
-<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret.ok<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret.corrupt_sector<sp/>=<sp/>idx;</highlight></codeline>
-<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>idx++;</highlight></codeline>
-<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
-<codeline lineno="146"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="147"><highlight class="normal"></highlight></codeline>
-<codeline lineno="148"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nbtview</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;unsigned<sp/>char&gt;<sp/>output;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>Inflation_Status<sp/>stat{</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.complete<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/>.corrupt<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/>.corrupt_sector<sp/>=<sp/>-1};</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>s<sp/>:<sp/>sectors)<sp/>{</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>status<sp/>=<sp/>stream.<ref refid="classnbtview_1_1zlib_1_1Inflater_1abc308b10f0cb52477553611dfb597583" kindref="member">do_inflate</ref>(sectors[idx],<sp/>output);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(status<sp/>==<sp/>Z_STREAM_END)<sp/>{</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stat.complete<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(status<sp/>!=<sp/>Z_OK)<sp/>{</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stat.corrupt<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stat.corrupt_sector<sp/>=<sp/>idx;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>idx++;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{output,<sp/>stat};</highlight></codeline>
+<codeline lineno="149"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nbtview</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="nbtview/zlib_utils.cpp"/>
   </compounddef>

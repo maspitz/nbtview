@@ -835,7 +835,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.cpp" line="13" column="6" bodyfile="nbtview/zlib_utils.cpp" bodystart="13" bodyend="31" declfile="nbtview/zlib_utils.hpp" declline="19" declcolumn="6"/>
+        <location file="nbtview/zlib_utils.cpp" line="14" column="6" bodyfile="nbtview/zlib_utils.cpp" bodystart="14" bodyend="32" declfile="nbtview/zlib_utils.hpp" declline="20" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacenbtview_1a97dbd58ea309c68d49dbc0a80b7de5bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; unsigned char &gt;</type>
@@ -853,20 +853,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.cpp" line="115" column="1" bodyfile="nbtview/zlib_utils.cpp" bodystart="115" bodyend="124" declfile="nbtview/zlib_utils.hpp" declline="23" declcolumn="1"/>
+        <location file="nbtview/zlib_utils.cpp" line="116" column="1" bodyfile="nbtview/zlib_utils.cpp" bodystart="116" bodyend="125" declfile="nbtview/zlib_utils.hpp" declline="24" declcolumn="1"/>
       </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a9cc36d57ea76545bdcb19bf7fcd4f09d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="structnbtview_1_1Inflation__Status" kindref="compound">Inflation_Status</ref></type>
-        <definition>Inflation_Status nbtview::inflate_sectors</definition>
-        <argsstring>(const std::vector&lt; std::span&lt; unsigned char &gt;&gt; &amp;sectors, std::vector&lt; unsigned char &gt; &amp;output)</argsstring>
+      <memberdef kind="function" id="namespacenbtview_1a72bd87fd920dc8d8a60d7ade126de3ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; std::vector&lt; unsigned char &gt;, <ref refid="structnbtview_1_1Inflation__Status" kindref="compound">Inflation_Status</ref> &gt;</type>
+        <definition>std::pair&lt; std::vector&lt; unsigned char &gt;, Inflation_Status &gt; nbtview::inflate_sectors</definition>
+        <argsstring>(const std::vector&lt; std::span&lt; unsigned char &gt;&gt; &amp;sectors)</argsstring>
         <name>inflate_sectors</name>
         <param>
           <type>const std::vector&lt; std::span&lt; unsigned char &gt;&gt; &amp;</type>
           <declname>sectors</declname>
-        </param>
-        <param>
-          <type>std::vector&lt; unsigned char &gt; &amp;</type>
-          <declname>output</declname>
         </param>
         <briefdescription>
 <para>A return value less than zero indicates an error. </para>
@@ -876,7 +872,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.cpp" line="128" column="1" bodyfile="nbtview/zlib_utils.cpp" bodystart="128" bodyend="146" declfile="nbtview/zlib_utils.hpp" declline="33" declcolumn="1"/>
+        <location file="nbtview/zlib_utils.cpp" line="129" column="1" bodyfile="nbtview/zlib_utils.cpp" bodystart="129" bodyend="149" declfile="nbtview/zlib_utils.hpp" declline="33" declcolumn="11"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

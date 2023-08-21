@@ -14,7 +14,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.cpp" line="106" column="13" bodyfile="nbtview/zlib_utils.cpp" bodystart="106" bodyend="-1"/>
+        <location file="nbtview/zlib_utils.cpp" line="107" column="13" bodyfile="nbtview/zlib_utils.cpp" bodystart="107" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classnbtview_1_1zlib_1_1Inflater_1a154382ffb6698484e41664e08adb6c5e" prot="private" static="no" mutable="no">
         <type>z_stream</type>
@@ -27,7 +27,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.cpp" line="107" column="18" bodyfile="nbtview/zlib_utils.cpp" bodystart="107" bodyend="-1"/>
+        <location file="nbtview/zlib_utils.cpp" line="108" column="18" bodyfile="nbtview/zlib_utils.cpp" bodystart="108" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classnbtview_1_1zlib_1_1Inflater_1a69a5a952525d84f37dd4830faf1733ef" prot="private" static="no" mutable="no">
         <type>char</type>
@@ -40,7 +40,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.cpp" line="109" column="14" bodyfile="nbtview/zlib_utils.cpp" bodystart="109" bodyend="-1"/>
+        <location file="nbtview/zlib_utils.cpp" line="110" column="14" bodyfile="nbtview/zlib_utils.cpp" bodystart="110" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-static-attrib">
@@ -56,7 +56,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.cpp" line="108" column="26" bodyfile="nbtview/zlib_utils.cpp" bodystart="108" bodyend="-1"/>
+        <location file="nbtview/zlib_utils.cpp" line="109" column="26" bodyfile="nbtview/zlib_utils.cpp" bodystart="109" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -71,7 +71,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.cpp" line="38" column="9" bodyfile="nbtview/zlib_utils.cpp" bodystart="38" bodyend="57"/>
+        <location file="nbtview/zlib_utils.cpp" line="39" column="9" bodyfile="nbtview/zlib_utils.cpp" bodystart="39" bodyend="58"/>
       </memberdef>
       <memberdef kind="function" id="classnbtview_1_1zlib_1_1Inflater_1a35494e9197f56778904154fc4faf9083" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -84,7 +84,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.cpp" line="59" column="9" bodyfile="nbtview/zlib_utils.cpp" bodystart="59" bodyend="59"/>
+        <location file="nbtview/zlib_utils.cpp" line="60" column="9" bodyfile="nbtview/zlib_utils.cpp" bodystart="60" bodyend="60"/>
       </memberdef>
       <memberdef kind="function" id="classnbtview_1_1zlib_1_1Inflater_1abc308b10f0cb52477553611dfb597583" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -110,7 +110,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.cpp" line="76" column="13" bodyfile="nbtview/zlib_utils.cpp" bodystart="76" bodyend="100"/>
+        <location file="nbtview/zlib_utils.cpp" line="77" column="13" bodyfile="nbtview/zlib_utils.cpp" bodystart="77" bodyend="101"/>
       </memberdef>
       <memberdef kind="function" id="classnbtview_1_1zlib_1_1Inflater_1a06564496caf2138655a3f8c96d2b9660" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -123,7 +123,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.cpp" line="102" column="13" bodyfile="nbtview/zlib_utils.cpp" bodystart="102" bodyend="102"/>
+        <location file="nbtview/zlib_utils.cpp" line="103" column="13" bodyfile="nbtview/zlib_utils.cpp" bodystart="103" bodyend="103"/>
       </memberdef>
       <memberdef kind="function" id="classnbtview_1_1zlib_1_1Inflater_1a4e3b50348776a28a0aed19cde4e5edf2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>const char *</type>
@@ -136,7 +136,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.cpp" line="103" column="20" bodyfile="nbtview/zlib_utils.cpp" bodystart="103" bodyend="103"/>
+        <location file="nbtview/zlib_utils.cpp" line="104" column="20" bodyfile="nbtview/zlib_utils.cpp" bodystart="104" bodyend="104"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -144,7 +144,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="nbtview/zlib_utils.cpp" line="36" column="5" bodyfile="nbtview/zlib_utils.cpp" bodystart="36" bodyend="110"/>
+    <location file="nbtview/zlib_utils.cpp" line="37" column="5" bodyfile="nbtview/zlib_utils.cpp" bodystart="37" bodyend="111"/>
     <listofallmembers>
       <member refid="classnbtview_1_1zlib_1_1Inflater_1a69a5a952525d84f37dd4830faf1733ef" prot="private" virt="non-virtual"><scope>nbtview::zlib::Inflater</scope><name>buffer_</name></member>
       <member refid="classnbtview_1_1zlib_1_1Inflater_1a9542702508b30d6d281664a0d976d367" prot="private" virt="non-virtual"><scope>nbtview::zlib::Inflater</scope><name>buffer_size_</name></member>
