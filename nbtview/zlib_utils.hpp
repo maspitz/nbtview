@@ -12,6 +12,7 @@
 #define ZLIB_UTILS_H_
 
 #include <span>
+#include <utility>
 #include <vector>
 
 namespace nbtview {
@@ -23,15 +24,14 @@ std::vector<unsigned char>
 decompress_data(std::vector<unsigned char> &compressed_data);
 
 struct Inflation_Status {
-    bool ok;
     bool complete;
+    bool corrupt;
     int corrupt_sector;
 };
 
 //! Decompress a vector of sectors into a vector of bytes.
-Inflation_Status
-inflate_sectors(const std::vector<std::span<unsigned char>> &compressed_sectors,
-                std::vector<unsigned char> &decompressed_data);
+std::pair<std::vector<unsigned char>, Inflation_Status> inflate_sectors(
+    const std::vector<std::span<unsigned char>> &compressed_sectors);
 
 } // namespace nbtview
 

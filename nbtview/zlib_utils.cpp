@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <span>
+#include <utility>
 #include <vector>
 
 #include <zlib.h>
@@ -124,25 +125,27 @@ decompress_data(std::vector<unsigned char> &input_data) {
 }
 
 //! A return value less than zero indicates an error.
-Inflation_Status
-inflate_sectors(const std::vector<std::span<unsigned char>> &sectors,
-                std::vector<unsigned char> &output) {
+std::pair<std::vector<unsigned char>, Inflation_Status>
+inflate_sectors(const std::vector<std::span<unsigned char>> &sectors) {
     zlib::Inflater stream;
-    Inflation_Status ret{.ok = true, .complete = false, .corrupt_sector = -1};
+    std::vector<unsigned char> output;
+    Inflation_Status stat{
+        .complete = false, .corrupt = false, .corrupt_sector = -1};
+
     int idx = 0;
     for (auto s : sectors) {
         int status = stream.do_inflate(sectors[idx], output);
         if (status == Z_STREAM_END) {
-            ret.complete = true;
+            stat.complete = true;
             break;
         } else if (status != Z_OK) {
-            ret.ok = false;
-            ret.corrupt_sector = idx;
+            stat.corrupt = true;
+            stat.corrupt_sector = idx;
             break;
         }
         idx++;
     }
-    return ret;
+    return {output, stat};
 }
 
 } // namespace nbtview
