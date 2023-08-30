@@ -72,7 +72,6 @@ std::vector<unsigned char> Region_File::get_chunk_data(int chunk_index) {
     uint8_t sector_count = chunk_length(chunk_index);
     if (sector_count == 0) {
         return std::vector<unsigned char>{};
-        ;
     }
 
     Region::Sector_Data first_sector = read_sector(sector_offset);
