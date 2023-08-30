@@ -133,7 +133,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Region.hpp" line="83" column="17" bodyfile="nbtview/Region.cpp" bodystart="70" bodyend="95"/>
+        <location file="nbtview/Region.hpp" line="83" column="17" bodyfile="nbtview/Region.cpp" bodystart="70" bodyend="94"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
