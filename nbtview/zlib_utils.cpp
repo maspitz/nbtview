@@ -124,26 +124,18 @@ decompress_data(std::vector<unsigned char> &input_data) {
     return output_data;
 }
 
-//! A return value less than zero indicates an error.
 std::pair<std::vector<unsigned char>, Inflation_Status>
-inflate_sectors(const std::vector<std::span<unsigned char>> &sectors) {
+inflate_sectors(const std::span<unsigned char> input_data) {
     zlib::Inflater stream;
     std::vector<unsigned char> output;
     Inflation_Status stat{
         .complete = false, .corrupt = false, .corrupt_sector = -1};
 
-    int idx = 0;
-    for (auto s : sectors) {
-        int status = stream.do_inflate(sectors[idx], output);
-        if (status == Z_STREAM_END) {
-            stat.complete = true;
-            break;
-        } else if (status != Z_OK) {
-            stat.corrupt = true;
-            stat.corrupt_sector = idx;
-            break;
-        }
-        idx++;
+    int status = stream.do_inflate(input_data, output);
+    if (status == Z_STREAM_END) {
+        stat.complete = true;
+    } else if (status != Z_OK) {
+        stat.corrupt = true;
     }
     return {output, stat};
 }

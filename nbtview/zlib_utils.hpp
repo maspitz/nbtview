@@ -29,9 +29,9 @@ struct Inflation_Status {
     int corrupt_sector;
 };
 
-//! Decompress a vector of sectors into a vector of bytes.
-std::pair<std::vector<unsigned char>, Inflation_Status> inflate_sectors(
-    const std::vector<std::span<unsigned char>> &compressed_sectors);
+//! Decompress compressed data into a vector of bytes.
+std::pair<std::vector<unsigned char>, Inflation_Status>
+inflate_sectors(const std::span<unsigned char> input_data);
 
 } // namespace nbtview
 
