@@ -101,19 +101,19 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:af789f0c310c76daf92855f0055395d71"><td class="memItemLeft" align="right" valign="top"><a id="af789f0c310c76daf92855f0055395d71"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnbtview_1_1Region.html#af789f0c310c76daf92855f0055395d71">Sector_Data</a> = std::array&lt; unsigned char, <a class="el" href="structnbtview_1_1Region.html#ab7be249b44ee81041e76dc17e9f557b9">sector_length</a> &gt;</td></tr>
-<tr class="memdesc:af789f0c310c76daf92855f0055395d71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains the bytes for a single sector. <br /></td></tr>
-<tr class="separator:af789f0c310c76daf92855f0055395d71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ee581cd987bed3225b3204592786c45"><td class="memItemLeft" align="right" valign="top"><a id="a5ee581cd987bed3225b3204592786c45"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnbtview_1_1Region.html#a5ee581cd987bed3225b3204592786c45">Sector_Data</a> = std::vector&lt; unsigned char &gt;</td></tr>
+<tr class="memdesc:a5ee581cd987bed3225b3204592786c45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains the bytes for a single sector. <br /></td></tr>
+<tr class="separator:a5ee581cd987bed3225b3204592786c45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab8226905ed9d57657d6c1602828dc0a8"><td class="memItemLeft" align="right" valign="top"><a id="ab8226905ed9d57657d6c1602828dc0a8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnbtview_1_1Region.html#ab8226905ed9d57657d6c1602828dc0a8">load_from_sectors</a> (const <a class="el" href="structnbtview_1_1Region.html#af789f0c310c76daf92855f0055395d71">Sector_Data</a> &amp;offsets, const <a class="el" href="structnbtview_1_1Region.html#af789f0c310c76daf92855f0055395d71">Sector_Data</a> &amp;timestamps)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnbtview_1_1Region.html#ab8226905ed9d57657d6c1602828dc0a8">load_from_sectors</a> (const <a class="el" href="structnbtview_1_1Region.html#a5ee581cd987bed3225b3204592786c45">Sector_Data</a> &amp;offsets, const <a class="el" href="structnbtview_1_1Region.html#a5ee581cd987bed3225b3204592786c45">Sector_Data</a> &amp;timestamps)</td></tr>
 <tr class="memdesc:ab8226905ed9d57657d6c1602828dc0a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads chunk metadata from the two sectors of a region file header. <br /></td></tr>
 <tr class="separator:ab8226905ed9d57657d6c1602828dc0a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a092cac9d992ff5bcc159fa2d4d87328e"><td class="memItemLeft" align="right" valign="top"><a id="a092cac9d992ff5bcc159fa2d4d87328e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnbtview_1_1Region.html#a092cac9d992ff5bcc159fa2d4d87328e">save_to_sectors</a> (<a class="el" href="structnbtview_1_1Region.html#af789f0c310c76daf92855f0055395d71">Sector_Data</a> &amp;offsets, <a class="el" href="structnbtview_1_1Region.html#af789f0c310c76daf92855f0055395d71">Sector_Data</a> &amp;timestamps) const</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnbtview_1_1Region.html#a092cac9d992ff5bcc159fa2d4d87328e">save_to_sectors</a> (<a class="el" href="structnbtview_1_1Region.html#a5ee581cd987bed3225b3204592786c45">Sector_Data</a> &amp;offsets, <a class="el" href="structnbtview_1_1Region.html#a5ee581cd987bed3225b3204592786c45">Sector_Data</a> &amp;timestamps) const</td></tr>
 <tr class="memdesc:a092cac9d992ff5bcc159fa2d4d87328e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves chunk metadata to two sectors suitable for a region file header. <br /></td></tr>
 <tr class="separator:a092cac9d992ff5bcc159fa2d4d87328e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">

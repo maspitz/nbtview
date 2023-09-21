@@ -639,7 +639,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Region.cpp" line="57" column="10" bodyfile="nbtview/Region.cpp" bodystart="57" bodyend="68"/>
+        <location file="nbtview/Region.cpp" line="63" column="10" bodyfile="nbtview/Region.cpp" bodystart="63" bodyend="74"/>
       </memberdef>
       <memberdef kind="function" id="namespacenbtview_1a792cf692f58bf3da1818184ad5f2dfd6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::string</type>

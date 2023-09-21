@@ -114,7 +114,7 @@
     <member refid="structnbtview_1_1detail_1_1PayloadSerializer_1a070496509be2a5dee6a6ced2b3724ae3" kind="function"><name>operator()</name></member>
   </compound>
   <compound refid="structnbtview_1_1Region" kind="struct"><name>nbtview::Region</name>
-    <member refid="structnbtview_1_1Region_1af789f0c310c76daf92855f0055395d71" kind="typedef"><name>Sector_Data</name></member>
+    <member refid="structnbtview_1_1Region_1a5ee581cd987bed3225b3204592786c45" kind="typedef"><name>Sector_Data</name></member>
     <member refid="structnbtview_1_1Region_1abd13b9c7d65944f015efed95afedaad9" kind="variable"><name>chunk_width</name></member>
     <member refid="structnbtview_1_1Region_1a33cf3c36babca696a122393d5a29f4d7" kind="variable"><name>region_width</name></member>
     <member refid="structnbtview_1_1Region_1a8814e8ca94380ddec537aa27e4086fd8" kind="variable"><name>chunk_count</name></member>

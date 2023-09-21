@@ -61,7 +61,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Region.hpp" line="65" column="5" bodyfile="nbtview/Region.cpp" bodystart="40" bodyend="43"/>
+        <location file="nbtview/Region.hpp" line="65" column="5" bodyfile="nbtview/Region.cpp" bodystart="46" bodyend="49"/>
       </memberdef>
       <memberdef kind="function" id="classnbtview_1_1Region__File_1aa165ef8bdc83e48721b3c1fa2957f42f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>uint32_t</type>
@@ -133,12 +133,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Region.hpp" line="83" column="17" bodyfile="nbtview/Region.cpp" bodystart="70" bodyend="94"/>
+        <location file="nbtview/Region.hpp" line="83" column="17" bodyfile="nbtview/Region.cpp" bodystart="76" bodyend="100"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
       <memberdef kind="function" id="classnbtview_1_1Region__File_1a9b49df3a85acfc39cf029ee5124ec653" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="structnbtview_1_1Region_1af789f0c310c76daf92855f0055395d71" kindref="member">Region::Sector_Data</ref></type>
+        <type><ref refid="structnbtview_1_1Region_1a5ee581cd987bed3225b3204592786c45" kindref="member">Region::Sector_Data</ref></type>
         <definition>Region::Sector_Data nbtview::Region_File::read_sector</definition>
         <argsstring>(int sector_index)</argsstring>
         <name>read_sector</name>
@@ -152,7 +152,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Region.hpp" line="90" column="25" bodyfile="nbtview/Region.cpp" bodystart="45" bodyend="55"/>
+        <location file="nbtview/Region.hpp" line="90" column="25" bodyfile="nbtview/Region.cpp" bodystart="51" bodyend="61"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

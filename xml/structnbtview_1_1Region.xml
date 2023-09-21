@@ -5,9 +5,9 @@
     <includes refid="Region_8hpp" local="no">Region.hpp</includes>
     <innerclass refid="structnbtview_1_1Region_1_1Chunk__Data" prot="public">nbtview::Region::Chunk_Data</innerclass>
       <sectiondef kind="public-type">
-      <memberdef kind="typedef" id="structnbtview_1_1Region_1af789f0c310c76daf92855f0055395d71" prot="public" static="no">
-        <type>std::array&lt; unsigned char, <ref refid="structnbtview_1_1Region_1ab7be249b44ee81041e76dc17e9f557b9" kindref="member">sector_length</ref> &gt;</type>
-        <definition>using nbtview::Region::Sector_Data =  std::array&lt;unsigned char, sector_length&gt;</definition>
+      <memberdef kind="typedef" id="structnbtview_1_1Region_1a5ee581cd987bed3225b3204592786c45" prot="public" static="no">
+        <type>std::vector&lt; unsigned char &gt;</type>
+        <definition>using nbtview::Region::Sector_Data =  std::vector&lt;unsigned char&gt;</definition>
         <argsstring></argsstring>
         <name>Sector_Data</name>
         <briefdescription>
@@ -105,11 +105,11 @@
         <argsstring>(const Sector_Data &amp;offsets, const Sector_Data &amp;timestamps)</argsstring>
         <name>load_from_sectors</name>
         <param>
-          <type>const <ref refid="structnbtview_1_1Region_1af789f0c310c76daf92855f0055395d71" kindref="member">Sector_Data</ref> &amp;</type>
+          <type>const <ref refid="structnbtview_1_1Region_1a5ee581cd987bed3225b3204592786c45" kindref="member">Sector_Data</ref> &amp;</type>
           <declname>offsets</declname>
         </param>
         <param>
-          <type>const <ref refid="structnbtview_1_1Region_1af789f0c310c76daf92855f0055395d71" kindref="member">Sector_Data</ref> &amp;</type>
+          <type>const <ref refid="structnbtview_1_1Region_1a5ee581cd987bed3225b3204592786c45" kindref="member">Sector_Data</ref> &amp;</type>
           <declname>timestamps</declname>
         </param>
         <briefdescription>
@@ -119,7 +119,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Region.hpp" line="51" column="10" bodyfile="nbtview/Region.cpp" bodystart="13" bodyend="23"/>
+        <location file="nbtview/Region.hpp" line="51" column="10" bodyfile="nbtview/Region.cpp" bodystart="13" bodyend="26"/>
       </memberdef>
       <memberdef kind="function" id="structnbtview_1_1Region_1a092cac9d992ff5bcc159fa2d4d87328e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -127,11 +127,11 @@
         <argsstring>(Sector_Data &amp;offsets, Sector_Data &amp;timestamps) const</argsstring>
         <name>save_to_sectors</name>
         <param>
-          <type><ref refid="structnbtview_1_1Region_1af789f0c310c76daf92855f0055395d71" kindref="member">Sector_Data</ref> &amp;</type>
+          <type><ref refid="structnbtview_1_1Region_1a5ee581cd987bed3225b3204592786c45" kindref="member">Sector_Data</ref> &amp;</type>
           <declname>offsets</declname>
         </param>
         <param>
-          <type><ref refid="structnbtview_1_1Region_1af789f0c310c76daf92855f0055395d71" kindref="member">Sector_Data</ref> &amp;</type>
+          <type><ref refid="structnbtview_1_1Region_1a5ee581cd987bed3225b3204592786c45" kindref="member">Sector_Data</ref> &amp;</type>
           <declname>timestamps</declname>
         </param>
         <briefdescription>
@@ -141,7 +141,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Region.hpp" line="55" column="10" bodyfile="nbtview/Region.cpp" bodystart="25" bodyend="38"/>
+        <location file="nbtview/Region.hpp" line="55" column="10" bodyfile="nbtview/Region.cpp" bodystart="28" bodyend="44"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -176,7 +176,7 @@
       <member refid="structnbtview_1_1Region_1ab8226905ed9d57657d6c1602828dc0a8" prot="public" virt="non-virtual"><scope>nbtview::Region</scope><name>load_from_sectors</name></member>
       <member refid="structnbtview_1_1Region_1a33cf3c36babca696a122393d5a29f4d7" prot="public" virt="non-virtual"><scope>nbtview::Region</scope><name>region_width</name></member>
       <member refid="structnbtview_1_1Region_1a092cac9d992ff5bcc159fa2d4d87328e" prot="public" virt="non-virtual"><scope>nbtview::Region</scope><name>save_to_sectors</name></member>
-      <member refid="structnbtview_1_1Region_1af789f0c310c76daf92855f0055395d71" prot="public" virt="non-virtual"><scope>nbtview::Region</scope><name>Sector_Data</name></member>
+      <member refid="structnbtview_1_1Region_1a5ee581cd987bed3225b3204592786c45" prot="public" virt="non-virtual"><scope>nbtview::Region</scope><name>Sector_Data</name></member>
       <member refid="structnbtview_1_1Region_1ab7be249b44ee81041e76dc17e9f557b9" prot="public" virt="non-virtual"><scope>nbtview::Region</scope><name>sector_length</name></member>
     </listofallmembers>
   </compounddef>
