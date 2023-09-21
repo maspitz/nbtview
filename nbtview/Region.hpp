@@ -36,7 +36,7 @@ struct Region {
     static const int sector_length = 4096;
 
     //! Contains the bytes for a single sector
-    using Sector_Data = std::array<unsigned char, sector_length>;
+    using Sector_Data = std::vector<unsigned char>;
 
     struct Chunk_Data {
         uint32_t offset; // Index of the first sector holding this chunk's data

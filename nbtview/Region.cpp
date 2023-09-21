@@ -12,6 +12,9 @@ namespace nbtview {
 
 void Region::load_from_sectors(const Sector_Data &offsets,
                                const Sector_Data &timestamps) {
+    if (offsets.size() != sector_length || timestamps.size() != sector_length) {
+        throw std::runtime_error("Improper sector length");
+    }
     for (int i = 0; i < sector_length; i += 4) {
         chunk[i / 4].offset =
             (offsets[i] << 16) + (offsets[i + 1] << 8) + (offsets[i + 2]);
@@ -24,6 +27,9 @@ void Region::load_from_sectors(const Sector_Data &offsets,
 
 void Region::save_to_sectors(Sector_Data &offsets,
                              Sector_Data &timestamps) const {
+    if (offsets.size() != sector_length || timestamps.size() != sector_length) {
+        throw std::runtime_error("Improper sector length");
+    }
     for (int i = 0; i < sector_length; i += 4) {
         offsets[i] = (chunk[i / 4].offset >> 16) & 0xFF;
         offsets[i + 1] = (chunk[i / 4].offset >> 8) & 0xFF;
@@ -43,7 +49,7 @@ Region_File::Region_File(const std::string &filename)
 }
 
 Region::Sector_Data Region_File::read_sector(int sector_index) {
-    Region::Sector_Data sector;
+    Region::Sector_Data sector(Region::sector_length);
     file.seekg(Region::sector_length * sector_index, std::ios::beg);
     file.read(reinterpret_cast<char *>(sector.data()), sector.size());
     if (!file) {
