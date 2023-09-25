@@ -20,6 +20,8 @@
 #include <utility>
 #include <vector>
 
+#include "utils.hpp"
+
 namespace nbtview {
 
 class UnexpectedEndOfInputException : public std::runtime_error {
@@ -62,39 +64,11 @@ class BinaryReader {
     template <typename Element_Type> std::vector<Element_Type> get_vector2();
 };
 
-namespace detail {
-    template <typename T>
-    void swap_endian(T &val,
-                     typename std::enable_if<std::is_arithmetic<T>::value,
-                                             std::nullptr_t>::type = nullptr) {
-        auto ptr = reinterpret_cast<std::uint8_t *>(&val);
-        std::array<std::uint8_t, sizeof(T)> raw_src, raw_dst;
-
-        for (std::size_t i = 0; i < sizeof(T); ++i)
-            raw_src[i] = ptr[i];
-
-        std::reverse_copy(raw_src.begin(), raw_src.end(), raw_dst.begin());
-
-        for (std::size_t i = 0; i < sizeof(T); ++i)
-            ptr[i] = raw_dst[i];
-    }
-
-    template <typename T>
-    [[nodiscard]] T load_big_endian(
-        const unsigned char *const buf) noexcept requires std::is_trivial_v<T> {
-        T res;
-        std::reverse_copy(buf, buf + sizeof res,
-                          reinterpret_cast<unsigned char *>(&res));
-        return res;
-    }
-
-} // namespace detail
-
 template <typename T> T BinaryReader::get_value() {
     if (read_pos() + sizeof(T) > data_size) {
         throw UnexpectedEndOfInputException();
     }
-    T read_value = detail::load_big_endian<T>(read_ptr);
+    T read_value = load_big_endian<T>(read_ptr);
     read_ptr += sizeof(T);
     return read_value;
 }
@@ -116,7 +90,7 @@ std::vector<Element_Type> BinaryReader::get_vector() {
     auto span_stop = reinterpret_cast<const Element_Type *>(read_ptr);
     auto vec = std::vector<Element_Type>(span_start, span_stop);
     for (auto it = vec.begin(); it != vec.end(); ++it) {
-        detail::swap_endian(*it);
+        swap_endian(*it);
     }
     return vec;
 }
@@ -136,7 +110,7 @@ std::vector<Element_Type> BinaryReader::get_vector2() {
     auto vec = std::vector<Element_Type>();
     vec->reserve(array_length);
     for (; read_ptr < read_stop; read_ptr += sizeof(Element_Type)) {
-        vec->push_back(detail::load_big_endian<Element_Type>(read_ptr));
+        vec->push_back(load_big_endian<Element_Type>(read_ptr));
     }
     return vec;
 }

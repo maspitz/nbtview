@@ -63,6 +63,32 @@ std::string comma_delimited_array(const std::vector<T> &vec,
     return output_string;
 }
 
+template <typename T>
+void swap_endian(T &val,
+                 typename std::enable_if<std::is_arithmetic<T>::value,
+                                         std::nullptr_t>::type = nullptr) {
+    auto ptr = reinterpret_cast<std::uint8_t *>(&val);
+    std::array<std::uint8_t, sizeof(T)> raw_src, raw_dst;
+
+    for (std::size_t i = 0; i < sizeof(T); ++i)
+        raw_src[i] = ptr[i];
+
+    std::reverse_copy(raw_src.begin(), raw_src.end(), raw_dst.begin());
+
+    for (std::size_t i = 0; i < sizeof(T); ++i)
+        ptr[i] = raw_dst[i];
+}
+
+template <typename T>
+[[nodiscard]] T load_big_endian(const unsigned char *const buf) noexcept
+    requires std::is_trivial_v<T>
+{
+    T res;
+    std::reverse_copy(buf, buf + sizeof res,
+                      reinterpret_cast<unsigned char *>(&res));
+    return res;
+}
+
 } // namespace nbtview
 
 #endif // NBT_UTILS_H_
