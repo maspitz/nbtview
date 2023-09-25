@@ -1,6 +1,6 @@
 /**
  * @file utils.hpp
- * @brief Convert strings and vectors to quoted, human-readable form
+ * @brief Fundamental conversion routines for NBT data
  * @author Michael Spitznagel
  * @copyright Copyright 2023 Michael Spitznagel. Released under the Boost
  * Software License 1.0
