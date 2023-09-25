@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sector_5flength_110',['sector_length',['../structnbtview_1_1Region.html#ab7be249b44ee81041e76dc17e9f557b9',1,'nbtview::Region']]]
+  ['elt_5fsuffix_116',['elt_suffix',['../structnbtview_1_1array__format.html#a373b8a8cedc3221515be293b8d52f277',1,'nbtview::array_format']]]
 ];

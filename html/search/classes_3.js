@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['deserializer_68',['Deserializer',['../classnbtview_1_1Deserializer.html',1,'nbtview']]]
+  ['deserializer_72',['Deserializer',['../classnbtview_1_1Deserializer.html',1,'nbtview']]]
 ];

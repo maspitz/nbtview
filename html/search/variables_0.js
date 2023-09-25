@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['chunk_106',['chunk',['../structnbtview_1_1Region.html#a478898498ec2da9a494254e08f9be322',1,'nbtview::Region']]],
-  ['chunk_5fcount_107',['chunk_count',['../structnbtview_1_1Region.html#a8814e8ca94380ddec537aa27e4086fd8',1,'nbtview::Region']]],
-  ['chunk_5fwidth_108',['chunk_width',['../structnbtview_1_1Region.html#abd13b9c7d65944f015efed95afedaad9',1,'nbtview::Region']]]
+  ['array_5fprefix_111',['array_prefix',['../structnbtview_1_1array__format.html#a92c81029a2027c25dd8705f5c4ab301d',1,'nbtview::array_format']]],
+  ['array_5fsuffix_112',['array_suffix',['../structnbtview_1_1array__format.html#a7d2b8648bf125fcc8da246c018b1f132',1,'nbtview::array_format']]]
 ];

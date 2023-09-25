@@ -108,6 +108,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classnbtview_1_1List.html" title="List is a sequence container that holds Tags of a particular type.">List</a> is a sequence container that holds Tags of a particular type.  <a href="classnbtview_1_1List.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnbtview_1_1array__format.html">array_format</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parameter object which provides options for formatting arrays.  <a href="structnbtview_1_1array__format.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnbtview_1_1Inflation__Status.html">Inflation_Status</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -221,9 +222,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>snbt_requires_quoting
 <tr class="memitem:a99f417945a3700f4c8a19d670f19c3a7"><td class="memItemLeft" align="right" valign="top"><a id="a99f417945a3700f4c8a19d670f19c3a7"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>quoted_string</b> (const std::string &amp;str)</td></tr>
 <tr class="separator:a99f417945a3700f4c8a19d670f19c3a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ee9f2ba9bf67f7636003442cfd4d967"><td class="memTemplParams" colspan="2"><a id="a0ee9f2ba9bf67f7636003442cfd4d967"></a>
-template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a0ee9f2ba9bf67f7636003442cfd4d967"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><b>comma_delimited_array</b> (const std::vector&lt; T &gt; &amp;vec, const <a class="el" href="structnbtview_1_1array__format.html">array_format</a> &amp;fmt)</td></tr>
+<tr class="memitem:a0ee9f2ba9bf67f7636003442cfd4d967"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a0ee9f2ba9bf67f7636003442cfd4d967"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a0ee9f2ba9bf67f7636003442cfd4d967">comma_delimited_array</a> (const std::vector&lt; T &gt; &amp;vec, const <a class="el" href="structnbtview_1_1array__format.html">array_format</a> &amp;fmt)</td></tr>
+<tr class="memdesc:a0ee9f2ba9bf67f7636003442cfd4d967"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a comma-delimited string representation of an array.  <a href="namespacenbtview.html#a0ee9f2ba9bf67f7636003442cfd4d967">More...</a><br /></td></tr>
 <tr class="separator:a0ee9f2ba9bf67f7636003442cfd4d967"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11276aad7ba3a66123c0e28acb20fc40"><td class="memItemLeft" align="right" valign="top"><a id="a11276aad7ba3a66123c0e28acb20fc40"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>has_compression_header</b> (const std::span&lt; unsigned char &gt; data)</td></tr>
@@ -287,6 +288,52 @@ std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operato
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a0ee9f2ba9bf67f7636003442cfd4d967"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ee9f2ba9bf67f7636003442cfd4d967">&#9670;&nbsp;</a></span>comma_delimited_array()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string nbtview::comma_delimited_array </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnbtview_1_1array__format.html">array_format</a> &amp;&#160;</td>
+          <td class="paramname"><em>fmt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generates a comma-delimited string representation of an array. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Type</td><td>of elements in the vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec</td><td>The input array. </td></tr>
+    <tr><td class="paramname">fmt</td><td>The formatting configuration. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The output string representating the vector. </dd></dl>
+
+</div>
+</div>
 <a id="a390fb78fe858b5c66d2f401f418bb769"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a390fb78fe858b5c66d2f401f418bb769">&#9670;&nbsp;</a></span>operator&lt;&lt;()</h2>
 
