@@ -27,12 +27,26 @@ inline std::string quoted_string(const std::string &str) {
     return "\"" + std::regex_replace(str, pattern, "\\\"") + "\"";
 }
 
+/**
+ * @brief Parameter object which provides options for formatting arrays.
+ */
 struct array_format {
-    const std::string array_prefix;
-    const std::string array_suffix;
-    const std::string elt_suffix;
+    const std::string
+        array_prefix; /**< The prefix to be added before the array. */
+    const std::string
+        array_suffix; /**< The suffix to be added after the array. */
+    const std::string
+        elt_suffix; /**< The suffix to be added after each array element. */
 };
 
+/**
+ * @brief Generates a comma-delimited string representation of an array.
+ *
+ * @tparam Type of elements in the vector.
+ * @param vec The input array.
+ * @param fmt The formatting configuration.
+ * @return The output string representating the vector.
+ */
 template <typename T>
 std::string comma_delimited_array(const std::vector<T> &vec,
                                   const array_format &fmt) {
