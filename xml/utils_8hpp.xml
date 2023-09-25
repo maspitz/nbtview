@@ -24,7 +24,7 @@
     <innerclass refid="structnbtview_1_1array__format" prot="public">nbtview::array_format</innerclass>
     <innernamespace refid="namespacenbtview">nbtview</innernamespace>
     <briefdescription>
-<para>Convert strings and vectors to quoted, human-readable form. </para>
+<para>Fundamental conversion routines for NBT data. </para>
     </briefdescription>
     <detaileddescription>
 <para><simplesect kind="author"><para>Michael Spitznagel </para>
