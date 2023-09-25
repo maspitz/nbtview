@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="27" column="5" bodyfile="nbtview/BinaryReader.hpp" bodystart="27" bodyend="28"/>
+        <location file="nbtview/BinaryReader.hpp" line="29" column="5" bodyfile="nbtview/BinaryReader.hpp" bodystart="29" bodyend="30"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -54,7 +54,7 @@
         <label>std::exception</label>
       </node>
     </collaborationgraph>
-    <location file="nbtview/BinaryReader.hpp" line="25" column="1" bodyfile="nbtview/BinaryReader.hpp" bodystart="25" bodyend="29"/>
+    <location file="nbtview/BinaryReader.hpp" line="27" column="1" bodyfile="nbtview/BinaryReader.hpp" bodystart="27" bodyend="31"/>
     <listofallmembers>
       <member refid="classnbtview_1_1UnexpectedEndOfInputException_1aaa2d8d1af0e9cd00ef84a0090823a2d7" prot="public" virt="non-virtual"><scope>nbtview::UnexpectedEndOfInputException</scope><name>UnexpectedEndOfInputException</name></member>
     </listofallmembers>

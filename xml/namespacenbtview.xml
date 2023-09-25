@@ -850,6 +850,32 @@
         </inbodydescription>
         <location file="nbtview/utils.hpp" line="51" column="13" bodyfile="nbtview/utils.hpp" bodystart="51" bodyend="64"/>
       </memberdef>
+      <memberdef kind="function" id="namespacenbtview_1a1f222a281b01a750aa5048e46b41f635" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nbtview::swap_endian</definition>
+        <argsstring>(T &amp;val, typename std::enable_if&lt; std::is_arithmetic&lt; T &gt;::value, std::nullptr_t &gt;::type=nullptr)</argsstring>
+        <name>swap_endian</name>
+        <param>
+          <type>T &amp;</type>
+          <declname>val</declname>
+        </param>
+        <param>
+          <type>typename std::enable_if&lt; std::is_arithmetic&lt; T &gt;::value, std::nullptr_t &gt;::type</type>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/utils.hpp" line="67" column="6" bodyfile="nbtview/utils.hpp" bodystart="67" bodyend="80"/>
+      </memberdef>
       <memberdef kind="function" id="namespacenbtview_1a11276aad7ba3a66123c0e28acb20fc40" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>bool nbtview::has_compression_header</definition>

@@ -14,7 +14,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="34" column="23" bodyfile="nbtview/BinaryReader.hpp" bodystart="34" bodyend="-1"/>
+        <location file="nbtview/BinaryReader.hpp" line="36" column="23" bodyfile="nbtview/BinaryReader.hpp" bodystart="36" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classnbtview_1_1BinaryReader_1a2ac7291b6e0878f9db37122914aed733" prot="private" static="no" mutable="no">
         <type>const unsigned char *const</type>
@@ -27,7 +27,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="35" column="31" bodyfile="nbtview/BinaryReader.hpp" bodystart="35" bodyend="-1"/>
+        <location file="nbtview/BinaryReader.hpp" line="37" column="31" bodyfile="nbtview/BinaryReader.hpp" bodystart="37" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classnbtview_1_1BinaryReader_1ae7459a1c2da790f448d32d43efbcf383" prot="private" static="no" mutable="no">
         <type>const unsigned char *const</type>
@@ -40,7 +40,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="36" column="31" bodyfile="nbtview/BinaryReader.hpp" bodystart="36" bodyend="-1"/>
+        <location file="nbtview/BinaryReader.hpp" line="38" column="31" bodyfile="nbtview/BinaryReader.hpp" bodystart="38" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classnbtview_1_1BinaryReader_1a5242178c642a3f5499705d05e3ab4015" prot="private" static="no" mutable="no">
         <type>const unsigned char *</type>
@@ -53,7 +53,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="37" column="25" bodyfile="nbtview/BinaryReader.hpp" bodystart="37" bodyend="-1"/>
+        <location file="nbtview/BinaryReader.hpp" line="39" column="25" bodyfile="nbtview/BinaryReader.hpp" bodystart="39" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classnbtview_1_1BinaryReader_1aa9d8413a9a8bb3016e9f24f35444ddb0" prot="private" static="no" mutable="no">
         <type>const size_t</type>
@@ -66,7 +66,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="38" column="18" bodyfile="nbtview/BinaryReader.hpp" bodystart="38" bodyend="-1"/>
+        <location file="nbtview/BinaryReader.hpp" line="40" column="18" bodyfile="nbtview/BinaryReader.hpp" bodystart="40" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -85,7 +85,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="41" column="5" bodyfile="nbtview/BinaryReader.hpp" bodystart="41" bodyend="44"/>
+        <location file="nbtview/BinaryReader.hpp" line="43" column="5" bodyfile="nbtview/BinaryReader.hpp" bodystart="43" bodyend="46"/>
       </memberdef>
       <memberdef kind="function" id="classnbtview_1_1BinaryReader_1a1e3fadb8ce0de927bcd35eb160be29a3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -103,7 +103,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="46" column="19" bodyfile="nbtview/BinaryReader.hpp" bodystart="93" bodyend="100"/>
+        <location file="nbtview/BinaryReader.hpp" line="48" column="19" bodyfile="nbtview/BinaryReader.hpp" bodystart="67" bodyend="74"/>
       </memberdef>
       <memberdef kind="function" id="classnbtview_1_1BinaryReader_1a754127b621b919d41d77a7d0098ca4a7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
@@ -116,7 +116,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="48" column="12" bodyfile="nbtview/BinaryReader.hpp" bodystart="48" bodyend="48"/>
+        <location file="nbtview/BinaryReader.hpp" line="50" column="12" bodyfile="nbtview/BinaryReader.hpp" bodystart="50" bodyend="50"/>
       </memberdef>
       <memberdef kind="function" id="classnbtview_1_1BinaryReader_1ab5c3cb42b8f4b93cf48f7737571e3e40" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::string</type>
@@ -129,7 +129,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="50" column="17" bodyfile="nbtview/BinaryReader.hpp" bodystart="50" bodyend="58"/>
+        <location file="nbtview/BinaryReader.hpp" line="52" column="17" bodyfile="nbtview/BinaryReader.hpp" bodystart="52" bodyend="60"/>
       </memberdef>
       <memberdef kind="function" id="classnbtview_1_1BinaryReader_1a854757177327afc67eacc4e3652e97ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -147,7 +147,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="60" column="29" bodyfile="nbtview/BinaryReader.hpp" bodystart="104" bodyend="122"/>
+        <location file="nbtview/BinaryReader.hpp" line="62" column="29" bodyfile="nbtview/BinaryReader.hpp" bodystart="78" bodyend="96"/>
       </memberdef>
       <memberdef kind="function" id="classnbtview_1_1BinaryReader_1ad6516aa5cbb62604085bc3aa40e8da8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -165,14 +165,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="62" column="29" bodyfile="nbtview/BinaryReader.hpp" bodystart="126" bodyend="142"/>
+        <location file="nbtview/BinaryReader.hpp" line="64" column="29" bodyfile="nbtview/BinaryReader.hpp" bodystart="100" bodyend="116"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="nbtview/BinaryReader.hpp" line="32" column="1" bodyfile="nbtview/BinaryReader.hpp" bodystart="32" bodyend="63"/>
+    <location file="nbtview/BinaryReader.hpp" line="34" column="1" bodyfile="nbtview/BinaryReader.hpp" bodystart="34" bodyend="65"/>
     <listofallmembers>
       <member refid="classnbtview_1_1BinaryReader_1ac26981ad1211036410c7f7a15e9364ea" prot="public" virt="non-virtual"><scope>nbtview::BinaryReader</scope><name>BinaryReader</name></member>
       <member refid="classnbtview_1_1BinaryReader_1aa9d8413a9a8bb3016e9f24f35444ddb0" prot="private" virt="non-virtual"><scope>nbtview::BinaryReader</scope><name>data_size</name></member>

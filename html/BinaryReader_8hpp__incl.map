@@ -1,11 +1,13 @@
 <map id="nbtview/BinaryReader.hpp" name="nbtview/BinaryReader.hpp">
-<area shape="rect" id="node1" title="Read big&#45;endian numeric values, arrays, and strings." alt="" coords="281,5,474,32"/>
+<area shape="rect" id="node1" title="Read big&#45;endian numeric values, arrays, and strings." alt="" coords="314,5,507,32"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,80,91,107"/>
 <area shape="rect" id="node3" title=" " alt="" coords="115,80,171,107"/>
 <area shape="rect" id="node4" title=" " alt="" coords="195,80,261,107"/>
 <area shape="rect" id="node5" title=" " alt="" coords="286,80,373,107"/>
-<area shape="rect" id="node6" title=" " alt="" coords="397,80,456,107"/>
-<area shape="rect" id="node7" title=" " alt="" coords="481,80,573,107"/>
-<area shape="rect" id="node8" title=" " alt="" coords="597,80,657,107"/>
-<area shape="rect" id="node9" title=" " alt="" coords="681,80,743,107"/>
+<area shape="rect" id="node6" title=" " alt="" coords="523,155,581,181"/>
+<area shape="rect" id="node7" title=" " alt="" coords="449,80,541,107"/>
+<area shape="rect" id="node8" title=" " alt="" coords="565,80,625,107"/>
+<area shape="rect" id="node9" title=" " alt="" coords="649,80,711,107"/>
+<area shape="rect" id="node10" href="$utils_8hpp.html" title="Fundamental conversion routines for NBT data." alt="" coords="735,80,814,107"/>
+<area shape="rect" id="node11" title=" " alt="" coords="745,155,804,181"/>
 </map>
