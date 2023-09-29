@@ -147,7 +147,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="62" column="29" bodyfile="nbtview/BinaryReader.hpp" bodystart="78" bodyend="96"/>
+        <location file="nbtview/BinaryReader.hpp" line="62" column="29" bodyfile="nbtview/BinaryReader.hpp" bodystart="78" bodyend="98"/>
       </memberdef>
       <memberdef kind="function" id="classnbtview_1_1BinaryReader_1ad6516aa5cbb62604085bc3aa40e8da8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -165,7 +165,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="64" column="29" bodyfile="nbtview/BinaryReader.hpp" bodystart="100" bodyend="116"/>
+        <location file="nbtview/BinaryReader.hpp" line="64" column="29" bodyfile="nbtview/BinaryReader.hpp" bodystart="102" bodyend="118"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

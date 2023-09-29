@@ -149,39 +149,41 @@ $(function() {
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordflow">throw</span> UnexpectedEndOfInputException();</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">auto</span> span_start = <span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span>Element_Type *<span class="keyword">&gt;</span>(read_ptr);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    read_ptr += data_length;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keyword">auto</span> span_stop = <span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span>Element_Type *<span class="keyword">&gt;</span>(read_ptr);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keyword">auto</span> vec = std::vector&lt;Element_Type&gt;(span_start, span_stop);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span> it = vec.begin(); it != vec.end(); ++it) {</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        swap_endian(*it);</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    }</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordflow">return</span> vec;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;}</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">// load_big_endian method</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Element_Type&gt;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;std::vector&lt;Element_Type&gt; BinaryReader::get_vector2() {</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keyword">auto</span> array_length = get_value&lt;int32_t&gt;();</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordflow">if</span> (array_length &lt; 0) {</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Negative array length encountered&quot;</span>);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    }</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keyword">auto</span> read_stop = read_ptr + <span class="keyword">sizeof</span>(Element_Type) * array_length;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordflow">if</span> (read_stop &gt; read_end) {</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="keywordflow">throw</span> UnexpectedEndOfInputException();</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    }</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keyword">auto</span> vec = std::vector&lt;Element_Type&gt;();</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    vec-&gt;reserve(array_length);</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordflow">for</span> (; read_ptr &lt; read_stop; read_ptr += <span class="keyword">sizeof</span>(Element_Type)) {</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        vec-&gt;push_back(load_big_endian&lt;Element_Type&gt;(read_ptr));</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    }</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordflow">return</span> vec;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;}</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;} <span class="comment">// namespace nbtview</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="comment">// NOTE: this is not so good because read_ptr will often not be aligned for</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="comment">// Element_Type*.</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keyword">auto</span> span_start = <span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span>Element_Type *<span class="keyword">&gt;</span>(read_ptr);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    read_ptr += data_length;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keyword">auto</span> span_stop = <span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span>Element_Type *<span class="keyword">&gt;</span>(read_ptr);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keyword">auto</span> vec = std::vector&lt;Element_Type&gt;(span_start, span_stop);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span> it = vec.begin(); it != vec.end(); ++it) {</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        swap_endian(*it);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    }</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordflow">return</span> vec;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;}</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">// load_big_endian method</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Element_Type&gt;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;std::vector&lt;Element_Type&gt; BinaryReader::get_vector2() {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keyword">auto</span> array_length = get_value&lt;int32_t&gt;();</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordflow">if</span> (array_length &lt; 0) {</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Negative array length encountered&quot;</span>);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    }</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keyword">auto</span> read_stop = read_ptr + <span class="keyword">sizeof</span>(Element_Type) * array_length;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordflow">if</span> (read_stop &gt; read_end) {</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordflow">throw</span> UnexpectedEndOfInputException();</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    }</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keyword">auto</span> vec = std::vector&lt;Element_Type&gt;();</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    vec-&gt;reserve(array_length);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordflow">for</span> (; read_ptr &lt; read_stop; read_ptr += <span class="keyword">sizeof</span>(Element_Type)) {</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        vec-&gt;push_back(load_big_endian&lt;Element_Type&gt;(read_ptr));</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    }</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordflow">return</span> vec;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;}</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// BINARYREADER_H_</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;} <span class="comment">// namespace nbtview</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// BINARYREADER_H_</span></div>
 <div class="ttc" id="aclassnbtview_1_1BinaryReader_html"><div class="ttname"><a href="classnbtview_1_1BinaryReader.html">nbtview::BinaryReader</a></div><div class="ttdef"><b>Definition:</b> BinaryReader.hpp:34</div></div>
 <div class="ttc" id="aclassnbtview_1_1UnexpectedEndOfInputException_html"><div class="ttname"><a href="classnbtview_1_1UnexpectedEndOfInputException.html">nbtview::UnexpectedEndOfInputException</a></div><div class="ttdef"><b>Definition:</b> BinaryReader.hpp:27</div></div>
 <div class="ttc" id="anamespacenbtview_html"><div class="ttname"><a href="namespacenbtview.html">nbtview</a></div><div class="ttdoc">Utilities to read, write, and manipulate NBT data.</div><div class="ttdef"><b>Definition:</b> BinaryDeserializer.cpp:13</div></div>
