@@ -85,6 +85,8 @@ std::vector<Element_Type> BinaryReader::get_vector() {
         throw UnexpectedEndOfInputException();
     }
 
+    // NOTE: this is not so good because read_ptr will often not be aligned for
+    // Element_Type*.
     auto span_start = reinterpret_cast<const Element_Type *>(read_ptr);
     read_ptr += data_length;
     auto span_stop = reinterpret_cast<const Element_Type *>(read_ptr);
