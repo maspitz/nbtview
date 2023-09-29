@@ -11,6 +11,8 @@
 #ifndef NBT_UTILS_H_
 #define NBT_UTILS_H_
 
+#include <array>
+#include <cstdint>
 #include <regex>
 #include <string>
 
@@ -68,7 +70,8 @@ void swap_endian(T &val,
                  typename std::enable_if<std::is_arithmetic<T>::value,
                                          std::nullptr_t>::type = nullptr) {
     auto ptr = reinterpret_cast<std::uint8_t *>(&val);
-    std::array<std::uint8_t, sizeof(T)> raw_src, raw_dst;
+    std::array<std::uint8_t, sizeof(T)> raw_src;
+    std::array<std::uint8_t, sizeof(T)> raw_dst;
 
     for (std::size_t i = 0; i < sizeof(T); ++i)
         raw_src[i] = ptr[i];

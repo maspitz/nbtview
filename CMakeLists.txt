@@ -9,6 +9,7 @@ project(
 )
 
 option(BUILD_TESTS "Build the tests" $(BUILD_TESTS))
+option(BUILD_BENCHMARKS "Build the benchmark executables" OFF)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
@@ -24,6 +25,13 @@ endif()
 
 add_subdirectory(nbtview)
 add_subdirectory(apps)
+
+if(BUILD_BENCHMARKS)
+  find_package(benchmark REQUIRED)
+  add_executable(bench_utils benchmarks/bench_utils.cpp)
+  target_include_directories(bench_utils PUBLIC "${PROJECT_SOURCE_DIR}/nbtview")
+  target_link_libraries(bench_utils PRIVATE benchmark::benchmark)
+endif(BUILD_BENCHMARKS)
 
 find_package(Doxygen)
 
