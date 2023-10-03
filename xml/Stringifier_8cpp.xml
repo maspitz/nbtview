@@ -15,6 +15,12 @@
       <node id="3">
         <label>variant</label>
       </node>
+      <node id="15">
+        <label>stdexcept</label>
+      </node>
+      <node id="12">
+        <label>numeric</label>
+      </node>
       <node id="5">
         <label>Stringifier.hpp</label>
         <link refid="Stringifier_8hpp_source"/>
@@ -31,7 +37,7 @@
       <node id="8">
         <label>map</label>
       </node>
-      <node id="12">
+      <node id="13">
         <label>regex</label>
       </node>
       <node id="1">
@@ -81,8 +87,17 @@
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
         <childnode refid="2" relation="include">
         </childnode>
+      </node>
+      <node id="14">
+        <label>span</label>
       </node>
       <node id="9">
         <label>memory</label>

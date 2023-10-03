@@ -775,7 +775,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/utils.hpp" line="21" column="13" bodyfile="nbtview/utils.hpp" bodystart="21" bodyend="24"/>
+        <location file="nbtview/utils.hpp" line="24" column="13" bodyfile="nbtview/utils.hpp" bodystart="24" bodyend="27"/>
       </memberdef>
       <memberdef kind="function" id="namespacenbtview_1a99f417945a3700f4c8a19d670f19c3a7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::string</type>
@@ -792,7 +792,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/utils.hpp" line="26" column="20" bodyfile="nbtview/utils.hpp" bodystart="26" bodyend="30"/>
+        <location file="nbtview/utils.hpp" line="29" column="20" bodyfile="nbtview/utils.hpp" bodystart="29" bodyend="33"/>
       </memberdef>
       <memberdef kind="function" id="namespacenbtview_1a0ee9f2ba9bf67f7636003442cfd4d967" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -848,7 +848,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/utils.hpp" line="53" column="13" bodyfile="nbtview/utils.hpp" bodystart="53" bodyend="66"/>
+        <location file="nbtview/utils.hpp" line="56" column="13" bodyfile="nbtview/utils.hpp" bodystart="56" bodyend="69"/>
       </memberdef>
       <memberdef kind="function" id="namespacenbtview_1a1f222a281b01a750aa5048e46b41f635" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -874,7 +874,70 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/utils.hpp" line="69" column="6" bodyfile="nbtview/utils.hpp" bodystart="69" bodyend="83"/>
+        <location file="nbtview/utils.hpp" line="72" column="6" bodyfile="nbtview/utils.hpp" bodystart="72" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenbtview_1a93408863df6de166b844fae30a805fe1" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>T</type>
+        <definition>T nbtview::load_big_endian</definition>
+        <argsstring>(const unsigned char *const buf) noexcept requires std</argsstring>
+        <name>load_big_endian</name>
+        <param>
+          <type>const unsigned char *const</type>
+          <declname>buf</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/utils.hpp" line="89" column="4" bodyfile="nbtview/utils.hpp" bodystart="89" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenbtview_1af18a4fda08e2c66b8fa831b36b7fd288" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>T</type>
+        <definition>T nbtview::bytes_to_number</definition>
+        <argsstring>(std::span&lt; const unsigned char &gt; bytes) requires std</argsstring>
+        <name>bytes_to_number</name>
+        <param>
+          <type>std::span&lt; const unsigned char &gt;</type>
+          <declname>bytes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/utils.hpp" line="111" column="4" bodyfile="nbtview/utils.hpp" bodystart="111" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenbtview_1a0043147edc31569936eea0e7bbe5464c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double nbtview::bytes_to_number&lt; double &gt;</definition>
+        <argsstring>(std::span&lt; const unsigned char &gt; bytes)</argsstring>
+        <name>bytes_to_number&lt; double &gt;</name>
+        <param>
+          <type>std::span&lt; const unsigned char &gt;</type>
+          <declname>bytes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/utils.hpp" line="136" column="9" bodyfile="nbtview/utils.hpp" bodystart="137" bodyend="144"/>
       </memberdef>
       <memberdef kind="function" id="namespacenbtview_1a11276aad7ba3a66123c0e28acb20fc40" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>

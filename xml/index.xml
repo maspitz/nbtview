@@ -230,6 +230,9 @@
     <member refid="namespacenbtview_1a99f417945a3700f4c8a19d670f19c3a7" kind="function"><name>quoted_string</name></member>
     <member refid="namespacenbtview_1a0ee9f2ba9bf67f7636003442cfd4d967" kind="function"><name>comma_delimited_array</name></member>
     <member refid="namespacenbtview_1a1f222a281b01a750aa5048e46b41f635" kind="function"><name>swap_endian</name></member>
+    <member refid="namespacenbtview_1a93408863df6de166b844fae30a805fe1" kind="function"><name>load_big_endian</name></member>
+    <member refid="namespacenbtview_1af18a4fda08e2c66b8fa831b36b7fd288" kind="function"><name>bytes_to_number</name></member>
+    <member refid="namespacenbtview_1a0043147edc31569936eea0e7bbe5464c" kind="function"><name>bytes_to_number&lt; double &gt;</name></member>
     <member refid="namespacenbtview_1a11276aad7ba3a66123c0e28acb20fc40" kind="function"><name>has_compression_header</name></member>
     <member refid="namespacenbtview_1a97dbd58ea309c68d49dbc0a80b7de5bf" kind="function"><name>decompress_data</name></member>
     <member refid="namespacenbtview_1aacbd100a5f0f9dc51843c4fb90b0feb3" kind="function"><name>inflate_sectors</name></member>

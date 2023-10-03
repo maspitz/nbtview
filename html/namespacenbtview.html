@@ -230,6 +230,18 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>quoted_string<
 template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a1f222a281b01a750aa5048e46b41f635"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>swap_endian</b> (T &amp;val, typename std::enable_if&lt; std::is_arithmetic&lt; T &gt;::value, std::nullptr_t &gt;::type=nullptr)</td></tr>
 <tr class="separator:a1f222a281b01a750aa5048e46b41f635"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93408863df6de166b844fae30a805fe1"><td class="memTemplParams" colspan="2"><a id="a93408863df6de166b844fae30a805fe1"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a93408863df6de166b844fae30a805fe1"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><b>load_big_endian</b> (const unsigned char *const buf) noexcept requires std</td></tr>
+<tr class="separator:a93408863df6de166b844fae30a805fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af18a4fda08e2c66b8fa831b36b7fd288"><td class="memTemplParams" colspan="2"><a id="af18a4fda08e2c66b8fa831b36b7fd288"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:af18a4fda08e2c66b8fa831b36b7fd288"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><b>bytes_to_number</b> (std::span&lt; const unsigned char &gt; bytes) requires std</td></tr>
+<tr class="separator:af18a4fda08e2c66b8fa831b36b7fd288"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0043147edc31569936eea0e7bbe5464c"><td class="memItemLeft" align="right" valign="top"><a id="a0043147edc31569936eea0e7bbe5464c"></a>
+template&lt;&gt; </td></tr>
+<tr class="memitem:a0043147edc31569936eea0e7bbe5464c"><td class="memTemplItemLeft" align="right" valign="top">double&#160;</td><td class="memTemplItemRight" valign="bottom"><b>bytes_to_number&lt; double &gt;</b> (std::span&lt; const unsigned char &gt; bytes)</td></tr>
+<tr class="separator:a0043147edc31569936eea0e7bbe5464c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11276aad7ba3a66123c0e28acb20fc40"><td class="memItemLeft" align="right" valign="top"><a id="a11276aad7ba3a66123c0e28acb20fc40"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>has_compression_header</b> (const std::span&lt; unsigned char &gt; data)</td></tr>
 <tr class="separator:a11276aad7ba3a66123c0e28acb20fc40"><td class="memSeparator" colspan="2">&#160;</td></tr>
