@@ -13,7 +13,10 @@
 
 #include <array>
 #include <cstdint>
+#include <numeric>
 #include <regex>
+#include <span>
+#include <stdexcept>
 #include <string>
 
 namespace nbtview {
@@ -90,6 +93,54 @@ template <typename T>
     std::reverse_copy(buf, buf + sizeof res,
                       reinterpret_cast<unsigned char *>(&res));
     return res;
+}
+
+inline uint32_t bytes_to_uint32(std::span<const unsigned char> bytes) {
+    if (bytes.size() < 4) {
+        throw std::invalid_argument("Cannot convert " +
+                                    std::to_string(bytes.size()) +
+                                    " bytes to uint32_t");
+    }
+    return (static_cast<uint32_t>(bytes[0]) << 24) |
+           (static_cast<uint32_t>(bytes[1]) << 16) |
+           (static_cast<uint32_t>(bytes[2]) << 8) |
+           (static_cast<uint32_t>(bytes[3]));
+}
+
+template <typename T>
+[[nodiscard]] T bytes_to_number(std::span<const unsigned char> bytes)
+    requires std::is_integral_v<T> || std::is_floating_point_v<T>
+{
+    if (bytes.size() != sizeof(T)) {
+        throw std::invalid_argument("Incorrect number of bytes given");
+    }
+    T result = 0;
+    for (size_t i = 0; i < sizeof(T); ++i) {
+        result = static_cast<T>(bytes[i]) | (result << 8);
+    }
+    return result;
+}
+
+template <>
+[[nodiscard]] inline float
+bytes_to_number<float>(std::span<const unsigned char> bytes) {
+    if (bytes.size() != sizeof(float)) {
+        throw std::invalid_argument("Incorrect number of bytes given");
+    }
+    static_assert(sizeof(float) == 4, "float must have 32 bits");
+    uint32_t int_value = bytes_to_number<uint32_t>(bytes);
+    return std::bit_cast<float>(int_value);
+}
+
+template <>
+[[nodiscard]] inline double
+bytes_to_number<double>(std::span<const unsigned char> bytes) {
+    if (bytes.size() != sizeof(double)) {
+        throw std::invalid_argument("Incorrect number of bytes given");
+    }
+    static_assert(sizeof(double) == 8, "double must have 64 bits");
+    uint64_t int_value = bytes_to_number<uint64_t>(bytes);
+    return std::bit_cast<double>(int_value);
 }
 
 } // namespace nbtview
