@@ -1,10 +1,6 @@
 <map id="nbtview/utils.hpp" name="nbtview/utils.hpp">
-<area shape="rect" id="node1" title="Fundamental conversion routines for NBT data." alt="" coords="237,5,371,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,61,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="85,80,152,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="176,80,251,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="275,80,333,107"/>
-<area shape="rect" id="node6" title=" " alt="" coords="357,80,411,107"/>
-<area shape="rect" id="node7" title=" " alt="" coords="435,80,522,107"/>
-<area shape="rect" id="node8" title=" " alt="" coords="547,80,605,107"/>
+<area shape="rect" id="node1" title="Fundamental conversion routines for NBT data." alt="" coords="50,5,185,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,64,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="88,80,147,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="171,80,234,107"/>
 </map>

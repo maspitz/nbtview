@@ -54,7 +54,7 @@
 <codeline lineno="20"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>has_compression_header(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::span&lt;unsigned<sp/>char&gt;<sp/>data);</highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal">std::vector&lt;unsigned<sp/>char&gt;</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><ref refid="namespacenbtview_1a97dbd58ea309c68d49dbc0a80b7de5bf" kindref="member">decompress_data</ref>(std::vector&lt;unsigned<sp/>char&gt;<sp/>&amp;compressed_data);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><ref refid="namespacenbtview_1a9eabcb54d353e1ac08b4e246f0465277" kindref="member">decompress_data</ref>(std::span&lt;unsigned<sp/>char&gt;<sp/>&amp;compressed_data);</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
 <codeline lineno="26" refid="structnbtview_1_1Inflation__Status" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnbtview_1_1Inflation__Status" kindref="compound">Inflation_Status</ref><sp/>{</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>complete;</highlight></codeline>

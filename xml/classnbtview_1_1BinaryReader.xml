@@ -3,81 +3,46 @@
   <compounddef id="classnbtview_1_1BinaryReader" kind="class" language="C++" prot="public">
     <compoundname>nbtview::BinaryReader</compoundname>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="classnbtview_1_1BinaryReader_1add72fc7a05a1236244c15ec53776b7dc" prot="private" static="no" mutable="no">
-        <type>const std::vector&lt; unsigned char &gt;</type>
-        <definition>const std::vector&lt;unsigned char&gt; nbtview::BinaryReader::read_data</definition>
-        <argsstring></argsstring>
-        <name>read_data</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="36" column="23" bodyfile="nbtview/BinaryReader.hpp" bodystart="36" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classnbtview_1_1BinaryReader_1a2ac7291b6e0878f9db37122914aed733" prot="private" static="no" mutable="no">
-        <type>const unsigned char *const</type>
-        <definition>const unsigned char* const nbtview::BinaryReader::read_begin</definition>
-        <argsstring></argsstring>
-        <name>read_begin</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="37" column="31" bodyfile="nbtview/BinaryReader.hpp" bodystart="37" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classnbtview_1_1BinaryReader_1ae7459a1c2da790f448d32d43efbcf383" prot="private" static="no" mutable="no">
-        <type>const unsigned char *const</type>
-        <definition>const unsigned char* const nbtview::BinaryReader::read_end</definition>
-        <argsstring></argsstring>
-        <name>read_end</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="38" column="31" bodyfile="nbtview/BinaryReader.hpp" bodystart="38" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classnbtview_1_1BinaryReader_1a5242178c642a3f5499705d05e3ab4015" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="classnbtview_1_1BinaryReader_1a1f46a6a234ddf18febba14000437fadc" prot="private" static="no" mutable="no">
         <type>const unsigned char *</type>
-        <definition>const unsigned char* nbtview::BinaryReader::read_ptr</definition>
+        <definition>const unsigned char* nbtview::BinaryReader::buffer</definition>
         <argsstring></argsstring>
-        <name>read_ptr</name>
+        <name>buffer</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="39" column="25" bodyfile="nbtview/BinaryReader.hpp" bodystart="39" bodyend="-1"/>
+        <location file="nbtview/BinaryReader.hpp" line="32" column="25" bodyfile="nbtview/BinaryReader.hpp" bodystart="32" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classnbtview_1_1BinaryReader_1aa9d8413a9a8bb3016e9f24f35444ddb0" prot="private" static="no" mutable="no">
-        <type>const size_t</type>
-        <definition>const size_t nbtview::BinaryReader::data_size</definition>
+      <memberdef kind="variable" id="classnbtview_1_1BinaryReader_1ab66df9f5b4eb1672076a864478016cf0" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t nbtview::BinaryReader::buffer_length</definition>
         <argsstring></argsstring>
-        <name>data_size</name>
+        <name>buffer_length</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="40" column="18" bodyfile="nbtview/BinaryReader.hpp" bodystart="40" bodyend="-1"/>
+        <location file="nbtview/BinaryReader.hpp" line="33" column="12" bodyfile="nbtview/BinaryReader.hpp" bodystart="33" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="classnbtview_1_1BinaryReader_1ac26981ad1211036410c7f7a15e9364ea" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnbtview_1_1BinaryReader_1aae8c456db27289742c21411207087c92" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>nbtview::BinaryReader::BinaryReader</definition>
-        <argsstring>(std::vector&lt; unsigned char &gt; bytes)</argsstring>
+        <argsstring>(const unsigned char *buffer, size_t buffer_length)</argsstring>
         <name>BinaryReader</name>
         <param>
-          <type>std::vector&lt; unsigned char &gt;</type>
-          <declname>bytes</declname>
+          <type>const unsigned char *</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>buffer_length</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -85,106 +50,110 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="43" column="5" bodyfile="nbtview/BinaryReader.hpp" bodystart="43" bodyend="46"/>
+        <location file="nbtview/BinaryReader.hpp" line="36" column="5" bodyfile="nbtview/BinaryReader.hpp" bodystart="36" bodyend="37"/>
       </memberdef>
-      <memberdef kind="function" id="classnbtview_1_1BinaryReader_1a1e3fadb8ce0de927bcd35eb160be29a3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classnbtview_1_1BinaryReader_1a5ad25dfc744d6e5b4ba14e5af38c820e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename T</type>
           </param>
         </templateparamlist>
         <type>T</type>
-        <definition>T nbtview::BinaryReader::get_value</definition>
+        <definition>T nbtview::BinaryReader::read</definition>
         <argsstring>()</argsstring>
-        <name>get_value</name>
+        <name>read</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="48" column="19" bodyfile="nbtview/BinaryReader.hpp" bodystart="67" bodyend="74"/>
+        <location file="nbtview/BinaryReader.hpp" line="39" column="26" bodyfile="nbtview/BinaryReader.hpp" bodystart="46" bodyend="56"/>
       </memberdef>
-      <memberdef kind="function" id="classnbtview_1_1BinaryReader_1a754127b621b919d41d77a7d0098ca4a7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>size_t</type>
-        <definition>size_t nbtview::BinaryReader::read_pos</definition>
-        <argsstring>()</argsstring>
-        <name>read_pos</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="50" column="12" bodyfile="nbtview/BinaryReader.hpp" bodystart="50" bodyend="50"/>
-      </memberdef>
-      <memberdef kind="function" id="classnbtview_1_1BinaryReader_1ab5c3cb42b8f4b93cf48f7737571e3e40" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnbtview_1_1BinaryReader_1a4713f89fe84da515972fed740b173ba8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::string</type>
-        <definition>std::string nbtview::BinaryReader::get_string</definition>
-        <argsstring>()</argsstring>
-        <name>get_string</name>
+        <definition>std::string nbtview::BinaryReader::read_string</definition>
+        <argsstring>(size_t str_len)</argsstring>
+        <name>read_string</name>
+        <param>
+          <type>size_t</type>
+          <declname>str_len</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="52" column="17" bodyfile="nbtview/BinaryReader.hpp" bodystart="52" bodyend="60"/>
+        <location file="nbtview/BinaryReader.hpp" line="41" column="24" bodyfile="nbtview/BinaryReader.hpp" bodystart="69" bodyend="77"/>
       </memberdef>
-      <memberdef kind="function" id="classnbtview_1_1BinaryReader_1a854757177327afc67eacc4e3652e97ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classnbtview_1_1BinaryReader_1a3d2f23d415447a76dd5c5e282702ff86" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>typename Element_Type</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
-        <type>std::vector&lt; Element_Type &gt;</type>
-        <definition>std::vector&lt; Element_Type &gt; nbtview::BinaryReader::get_vector</definition>
-        <argsstring>()</argsstring>
-        <name>get_vector</name>
+        <type>std::vector&lt; T &gt;</type>
+        <definition>std::vector&lt; T &gt; nbtview::BinaryReader::read_array</definition>
+        <argsstring>(size_t vec_len)</argsstring>
+        <name>read_array</name>
+        <param>
+          <type>size_t</type>
+          <declname>vec_len</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="62" column="29" bodyfile="nbtview/BinaryReader.hpp" bodystart="78" bodyend="98"/>
+        <location file="nbtview/BinaryReader.hpp" line="43" column="36" bodyfile="nbtview/BinaryReader.hpp" bodystart="80" bodyend="89"/>
       </memberdef>
-      <memberdef kind="function" id="classnbtview_1_1BinaryReader_1ad6516aa5cbb62604085bc3aa40e8da8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classnbtview_1_1BinaryReader_1aedeaa0bdc594d549c8ada6d74c750bd8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
-          <param>
-            <type>typename Element_Type</type>
-          </param>
         </templateparamlist>
-        <type>std::vector&lt; Element_Type &gt;</type>
-        <definition>std::vector&lt; Element_Type &gt; nbtview::BinaryReader::get_vector2</definition>
+        <type>float</type>
+        <definition>float nbtview::BinaryReader::read</definition>
         <argsstring>()</argsstring>
-        <name>get_vector2</name>
+        <name>read</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryReader.hpp" line="64" column="29" bodyfile="nbtview/BinaryReader.hpp" bodystart="102" bodyend="118"/>
+        <location file="nbtview/BinaryReader.hpp" line="58" column="19" bodyfile="nbtview/BinaryReader.hpp" bodystart="58" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classnbtview_1_1BinaryReader_1a2ab5ebf42b08a6e523ec9f5f1f259a9f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double nbtview::BinaryReader::read</definition>
+        <argsstring>()</argsstring>
+        <name>read</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/BinaryReader.hpp" line="64" column="19" bodyfile="nbtview/BinaryReader.hpp" bodystart="64" bodyend="67"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="nbtview/BinaryReader.hpp" line="34" column="1" bodyfile="nbtview/BinaryReader.hpp" bodystart="34" bodyend="65"/>
+    <location file="nbtview/BinaryReader.hpp" line="30" column="1" bodyfile="nbtview/BinaryReader.hpp" bodystart="30" bodyend="44"/>
     <listofallmembers>
-      <member refid="classnbtview_1_1BinaryReader_1ac26981ad1211036410c7f7a15e9364ea" prot="public" virt="non-virtual"><scope>nbtview::BinaryReader</scope><name>BinaryReader</name></member>
-      <member refid="classnbtview_1_1BinaryReader_1aa9d8413a9a8bb3016e9f24f35444ddb0" prot="private" virt="non-virtual"><scope>nbtview::BinaryReader</scope><name>data_size</name></member>
-      <member refid="classnbtview_1_1BinaryReader_1ab5c3cb42b8f4b93cf48f7737571e3e40" prot="public" virt="non-virtual"><scope>nbtview::BinaryReader</scope><name>get_string</name></member>
-      <member refid="classnbtview_1_1BinaryReader_1a1e3fadb8ce0de927bcd35eb160be29a3" prot="public" virt="non-virtual"><scope>nbtview::BinaryReader</scope><name>get_value</name></member>
-      <member refid="classnbtview_1_1BinaryReader_1a854757177327afc67eacc4e3652e97ce" prot="public" virt="non-virtual"><scope>nbtview::BinaryReader</scope><name>get_vector</name></member>
-      <member refid="classnbtview_1_1BinaryReader_1ad6516aa5cbb62604085bc3aa40e8da8b" prot="public" virt="non-virtual"><scope>nbtview::BinaryReader</scope><name>get_vector2</name></member>
-      <member refid="classnbtview_1_1BinaryReader_1a2ac7291b6e0878f9db37122914aed733" prot="private" virt="non-virtual"><scope>nbtview::BinaryReader</scope><name>read_begin</name></member>
-      <member refid="classnbtview_1_1BinaryReader_1add72fc7a05a1236244c15ec53776b7dc" prot="private" virt="non-virtual"><scope>nbtview::BinaryReader</scope><name>read_data</name></member>
-      <member refid="classnbtview_1_1BinaryReader_1ae7459a1c2da790f448d32d43efbcf383" prot="private" virt="non-virtual"><scope>nbtview::BinaryReader</scope><name>read_end</name></member>
-      <member refid="classnbtview_1_1BinaryReader_1a754127b621b919d41d77a7d0098ca4a7" prot="public" virt="non-virtual"><scope>nbtview::BinaryReader</scope><name>read_pos</name></member>
-      <member refid="classnbtview_1_1BinaryReader_1a5242178c642a3f5499705d05e3ab4015" prot="private" virt="non-virtual"><scope>nbtview::BinaryReader</scope><name>read_ptr</name></member>
+      <member refid="classnbtview_1_1BinaryReader_1aae8c456db27289742c21411207087c92" prot="public" virt="non-virtual"><scope>nbtview::BinaryReader</scope><name>BinaryReader</name></member>
+      <member refid="classnbtview_1_1BinaryReader_1a1f46a6a234ddf18febba14000437fadc" prot="private" virt="non-virtual"><scope>nbtview::BinaryReader</scope><name>buffer</name></member>
+      <member refid="classnbtview_1_1BinaryReader_1ab66df9f5b4eb1672076a864478016cf0" prot="private" virt="non-virtual"><scope>nbtview::BinaryReader</scope><name>buffer_length</name></member>
+      <member refid="classnbtview_1_1BinaryReader_1a5ad25dfc744d6e5b4ba14e5af38c820e" prot="public" virt="non-virtual"><scope>nbtview::BinaryReader</scope><name>read</name></member>
+      <member refid="classnbtview_1_1BinaryReader_1aedeaa0bdc594d549c8ada6d74c750bd8" prot="public" virt="non-virtual"><scope>nbtview::BinaryReader</scope><name>read</name></member>
+      <member refid="classnbtview_1_1BinaryReader_1a2ab5ebf42b08a6e523ec9f5f1f259a9f" prot="public" virt="non-virtual"><scope>nbtview::BinaryReader</scope><name>read</name></member>
+      <member refid="classnbtview_1_1BinaryReader_1a3d2f23d415447a76dd5c5e282702ff86" prot="public" virt="non-virtual"><scope>nbtview::BinaryReader</scope><name>read_array</name></member>
+      <member refid="classnbtview_1_1BinaryReader_1a4713f89fe84da515972fed740b173ba8" prot="public" virt="non-virtual"><scope>nbtview::BinaryReader</scope><name>read_string</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

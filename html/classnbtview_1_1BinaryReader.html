@@ -77,27 +77,28 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac26981ad1211036410c7f7a15e9364ea"><td class="memItemLeft" align="right" valign="top"><a id="ac26981ad1211036410c7f7a15e9364ea"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>BinaryReader</b> (std::vector&lt; unsigned char &gt; bytes)</td></tr>
-<tr class="separator:ac26981ad1211036410c7f7a15e9364ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e3fadb8ce0de927bcd35eb160be29a3"><td class="memTemplParams" colspan="2"><a id="a1e3fadb8ce0de927bcd35eb160be29a3"></a>
+<tr class="memitem:aae8c456db27289742c21411207087c92"><td class="memItemLeft" align="right" valign="top"><a id="aae8c456db27289742c21411207087c92"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>BinaryReader</b> (const unsigned char *buffer, size_t buffer_length)</td></tr>
+<tr class="separator:aae8c456db27289742c21411207087c92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ad25dfc744d6e5b4ba14e5af38c820e"><td class="memTemplParams" colspan="2"><a id="a5ad25dfc744d6e5b4ba14e5af38c820e"></a>
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a1e3fadb8ce0de927bcd35eb160be29a3"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><b>get_value</b> ()</td></tr>
-<tr class="separator:a1e3fadb8ce0de927bcd35eb160be29a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a754127b621b919d41d77a7d0098ca4a7"><td class="memItemLeft" align="right" valign="top"><a id="a754127b621b919d41d77a7d0098ca4a7"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>read_pos</b> ()</td></tr>
-<tr class="separator:a754127b621b919d41d77a7d0098ca4a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5c3cb42b8f4b93cf48f7737571e3e40"><td class="memItemLeft" align="right" valign="top"><a id="ab5c3cb42b8f4b93cf48f7737571e3e40"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>get_string</b> ()</td></tr>
-<tr class="separator:ab5c3cb42b8f4b93cf48f7737571e3e40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a854757177327afc67eacc4e3652e97ce"><td class="memTemplParams" colspan="2"><a id="a854757177327afc67eacc4e3652e97ce"></a>
-template&lt;typename Element_Type &gt; </td></tr>
-<tr class="memitem:a854757177327afc67eacc4e3652e97ce"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; Element_Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>get_vector</b> ()</td></tr>
-<tr class="separator:a854757177327afc67eacc4e3652e97ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6516aa5cbb62604085bc3aa40e8da8b"><td class="memTemplParams" colspan="2"><a id="ad6516aa5cbb62604085bc3aa40e8da8b"></a>
-template&lt;typename Element_Type &gt; </td></tr>
-<tr class="memitem:ad6516aa5cbb62604085bc3aa40e8da8b"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; Element_Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>get_vector2</b> ()</td></tr>
-<tr class="separator:ad6516aa5cbb62604085bc3aa40e8da8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ad25dfc744d6e5b4ba14e5af38c820e"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><b>read</b> ()</td></tr>
+<tr class="separator:a5ad25dfc744d6e5b4ba14e5af38c820e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4713f89fe84da515972fed740b173ba8"><td class="memItemLeft" align="right" valign="top"><a id="a4713f89fe84da515972fed740b173ba8"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>read_string</b> (size_t str_len)</td></tr>
+<tr class="separator:a4713f89fe84da515972fed740b173ba8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d2f23d415447a76dd5c5e282702ff86"><td class="memTemplParams" colspan="2"><a id="a3d2f23d415447a76dd5c5e282702ff86"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a3d2f23d415447a76dd5c5e282702ff86"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>read_array</b> (size_t vec_len)</td></tr>
+<tr class="separator:a3d2f23d415447a76dd5c5e282702ff86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedeaa0bdc594d549c8ada6d74c750bd8"><td class="memItemLeft" align="right" valign="top"><a id="aedeaa0bdc594d549c8ada6d74c750bd8"></a>
+template&lt;&gt; </td></tr>
+<tr class="memitem:aedeaa0bdc594d549c8ada6d74c750bd8"><td class="memTemplItemLeft" align="right" valign="top">float&#160;</td><td class="memTemplItemRight" valign="bottom"><b>read</b> ()</td></tr>
+<tr class="separator:aedeaa0bdc594d549c8ada6d74c750bd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ab5ebf42b08a6e523ec9f5f1f259a9f"><td class="memItemLeft" align="right" valign="top"><a id="a2ab5ebf42b08a6e523ec9f5f1f259a9f"></a>
+template&lt;&gt; </td></tr>
+<tr class="memitem:a2ab5ebf42b08a6e523ec9f5f1f259a9f"><td class="memTemplItemLeft" align="right" valign="top">double&#160;</td><td class="memTemplItemRight" valign="bottom"><b>read</b> ()</td></tr>
+<tr class="separator:a2ab5ebf42b08a6e523ec9f5f1f259a9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>nbtview/<a class="el" href="BinaryReader_8hpp_source.html">BinaryReader.hpp</a></li>
