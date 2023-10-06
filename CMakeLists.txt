@@ -28,9 +28,14 @@ add_subdirectory(apps)
 
 if(BUILD_BENCHMARKS)
   find_package(benchmark REQUIRED)
+
   add_executable(bench_utils benchmarks/bench_utils.cpp)
   target_include_directories(bench_utils PUBLIC "${PROJECT_SOURCE_DIR}/nbtview")
   target_link_libraries(bench_utils PRIVATE benchmark::benchmark)
+
+  add_executable(bench_chunks benchmarks/bench_chunks.cpp)
+  target_include_directories(bench_chunks PUBLIC "${PROJECT_SOURCE_DIR}/nbtview")
+  target_link_libraries(bench_chunks PRIVATE benchmark::benchmark nbtview)
 endif(BUILD_BENCHMARKS)
 
 find_package(Doxygen)

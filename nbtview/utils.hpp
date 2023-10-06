@@ -11,13 +11,9 @@
 #ifndef NBT_UTILS_H_
 #define NBT_UTILS_H_
 
-#include <array>
-#include <cstdint>
-#include <numeric>
 #include <regex>
-#include <span>
-#include <stdexcept>
 #include <string>
+#include <vector>
 
 namespace nbtview {
 
@@ -66,81 +62,6 @@ std::string comma_delimited_array(const std::vector<T> &vec,
     }
     output_string += fmt.array_suffix;
     return output_string;
-}
-
-template <typename T>
-void swap_endian(T &val,
-                 typename std::enable_if<std::is_arithmetic<T>::value,
-                                         std::nullptr_t>::type = nullptr) {
-    auto ptr = reinterpret_cast<std::uint8_t *>(&val);
-    std::array<std::uint8_t, sizeof(T)> raw_src;
-    std::array<std::uint8_t, sizeof(T)> raw_dst;
-
-    for (std::size_t i = 0; i < sizeof(T); ++i)
-        raw_src[i] = ptr[i];
-
-    std::reverse_copy(raw_src.begin(), raw_src.end(), raw_dst.begin());
-
-    for (std::size_t i = 0; i < sizeof(T); ++i)
-        ptr[i] = raw_dst[i];
-}
-
-template <typename T>
-[[nodiscard]] T load_big_endian(const unsigned char *const buf) noexcept
-    requires std::is_trivial_v<T>
-{
-    T res;
-    std::reverse_copy(buf, buf + sizeof res,
-                      reinterpret_cast<unsigned char *>(&res));
-    return res;
-}
-
-inline uint32_t bytes_to_uint32(std::span<const unsigned char> bytes) {
-    if (bytes.size() < 4) {
-        throw std::invalid_argument("Cannot convert " +
-                                    std::to_string(bytes.size()) +
-                                    " bytes to uint32_t");
-    }
-    return (static_cast<uint32_t>(bytes[0]) << 24) |
-           (static_cast<uint32_t>(bytes[1]) << 16) |
-           (static_cast<uint32_t>(bytes[2]) << 8) |
-           (static_cast<uint32_t>(bytes[3]));
-}
-
-template <typename T>
-[[nodiscard]] T bytes_to_number(std::span<const unsigned char> bytes)
-    requires std::is_integral_v<T> || std::is_floating_point_v<T>
-{
-    if (bytes.size() != sizeof(T)) {
-        throw std::invalid_argument("Incorrect number of bytes given");
-    }
-    T result = 0;
-    for (size_t i = 0; i < sizeof(T); ++i) {
-        result = static_cast<T>(bytes[i]) | (result << 8);
-    }
-    return result;
-}
-
-template <>
-[[nodiscard]] inline float
-bytes_to_number<float>(std::span<const unsigned char> bytes) {
-    if (bytes.size() != sizeof(float)) {
-        throw std::invalid_argument("Incorrect number of bytes given");
-    }
-    static_assert(sizeof(float) == 4, "float must have 32 bits");
-    uint32_t int_value = bytes_to_number<uint32_t>(bytes);
-    return std::bit_cast<float>(int_value);
-}
-
-template <>
-[[nodiscard]] inline double
-bytes_to_number<double>(std::span<const unsigned char> bytes) {
-    if (bytes.size() != sizeof(double)) {
-        throw std::invalid_argument("Incorrect number of bytes given");
-    }
-    static_assert(sizeof(double) == 8, "double must have 64 bits");
-    uint64_t int_value = bytes_to_number<uint64_t>(bytes);
-    return std::bit_cast<double>(int_value);
 }
 
 } // namespace nbtview

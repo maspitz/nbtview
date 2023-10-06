@@ -12,16 +12,16 @@ namespace nbt = nbtview;
 TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
     SUBCASE("empty compound tag") {
         auto v_empty_compound_tag =
-            std::vector<uint8_t>{0x0a, 0x00, 0x00, 0x00};
+            std::vector<unsigned char>{0x0a, 0x00, 0x00, 0x00};
         auto [root_name, root_tag] = nbt::read_binary(v_empty_compound_tag);
         auto &root_compound = std::get<nbt::Compound>(root_tag);
         CHECK(root_compound.size() == 0);
         CHECK(root_name == "");
     }
     SUBCASE("string tag 'foo' contains 'bar'") {
-        auto v_foo_bar =
-            std::vector<uint8_t>{0x0a, 0x00, 0x00, 0x08, 0x00, 0x03, 'f', 'o',
-                                 'o',  0x00, 0x03, 'b',  'a',  'r',  0x00};
+        auto v_foo_bar = std::vector<unsigned char>{
+            0x0a, 0x00, 0x00, 0x08, 0x00, 0x03, 'f', 'o',
+            'o',  0x00, 0x03, 'b',  'a',  'r',  0x00};
         auto [root_name, root_tag] = nbt::read_binary(v_foo_bar);
         auto &root_compound = std::get<nbt::Compound>(root_tag);
         CHECK(root_compound.size() == 1);
@@ -32,7 +32,7 @@ TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
     }
 
     SUBCASE("read integer types from named compound tag") {
-        auto v_foo_bar = std::vector<uint8_t>{
+        auto v_foo_bar = std::vector<unsigned char>{
             0x0a, 0x00, 0x08, 't',  'e', 's', 't',  '_',  't',  'a',  'g',
 
             0x01, 0x00, 0x04, 'b',  'y', 't', 'e',  0x12,
@@ -64,7 +64,7 @@ TEST_CASE("nbtview::Compound_Tag explicit compound tags") {
     }
 
     SUBCASE("read floating point types from nested compound tag") {
-        auto v_foo_bar = std::vector<uint8_t>{
+        auto v_foo_bar = std::vector<unsigned char>{
             0x0a, 0x00, 0x08, 'o',  'u',  't',  'e', 'r', 't',  'a',  'g',
 
             0x0a, 0x00, 0x08, 'i',  'n',  'n',  'e', 'r', 't',  'a',  'g',

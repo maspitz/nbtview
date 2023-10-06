@@ -1,5 +1,6 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 
+#include <span>
 #include <vector>
 
 #include "doctest.h"
@@ -13,9 +14,10 @@ namespace nbt = nbtview;
 TEST_CASE("nbtview::BinaryDeserializer explicit compound tags") {
     SUBCASE("unnamed empty compound tag") {
         auto v_empty_compound_tag =
-            std::vector<uint8_t>{0x0a, 0x00, 0x00, 0x00};
+            std::vector<unsigned char>{0x0a, 0x00, 0x00, 0x00};
 
-        nbt::BinaryDeserializer reader(v_empty_compound_tag);
+        nbt::BinaryDeserializer reader(v_empty_compound_tag.data(),
+                                       v_empty_compound_tag.size());
         auto root_data = reader.deserialize();
         auto root_name = root_data.first;
         CHECK(root_name == "");
@@ -29,7 +31,8 @@ TEST_CASE("nbtview::BinaryDeserializer explicit compound tags") {
         auto v_root_string_tag =
             std::vector<uint8_t>{0x08, 0x00, 0x03, 'T', 'a', 'g', 0x00,
                                  0x05, 'H',  'e',  'l', 'l', 'o'};
-        nbt::BinaryDeserializer reader(v_root_string_tag);
+        nbt::BinaryDeserializer reader(v_root_string_tag.data(),
+                                       v_root_string_tag.size());
         auto root_data = reader.deserialize();
         auto root_name = root_data.first;
         CHECK(root_name == "Tag");

@@ -12,6 +12,7 @@
 #define NBTVIEW_H_
 
 #include <iosfwd>
+#include <span>
 #include <string>
 #include <utility>
 #include <vector>
@@ -61,6 +62,8 @@ std::pair<std::string, Tag> read_binary(std::istream &input);
  * @throw std::runtime_error if the input could not be decoded successfully.
  * */
 std::pair<std::string, Tag> read_binary(std::vector<unsigned char> bytes);
+
+std::pair<std::string, Tag> read_binary(std::span<unsigned char> bytes);
 /**
  * @}
  * */

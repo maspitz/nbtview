@@ -11,16 +11,12 @@
 #ifndef BINARYREADER_H_
 #define BINARYREADER_H_
 
-#include <algorithm>
-#include <array>
 #include <cstdint>
+#include <numeric>
 #include <stdexcept>
 #include <string>
 #include <type_traits>
-#include <utility>
 #include <vector>
-
-#include "utils.hpp"
 
 namespace nbtview {
 
@@ -33,88 +29,63 @@ class UnexpectedEndOfInputException : public std::runtime_error {
 // BinaryReader scans and reads big-endian binary data.
 class BinaryReader {
   private:
-    const std::vector<unsigned char> read_data;
-    const unsigned char *const read_begin;
-    const unsigned char *const read_end;
-    const unsigned char *read_ptr;
-    const size_t data_size;
+    const unsigned char *buffer;
+    size_t buffer_length;
 
   public:
-    BinaryReader(std::vector<unsigned char> bytes)
-        : read_data(std::move(bytes)), read_begin(read_data.data()),
-          read_end(read_begin + read_data.size()), read_ptr(read_begin),
-          data_size(read_end - read_begin) {}
+    BinaryReader(const unsigned char *buffer, size_t buffer_length)
+        : buffer(buffer), buffer_length(buffer_length) {}
 
-    template <typename T> T get_value();
+    template <typename T> inline T read();
 
-    size_t read_pos() { return read_ptr - read_begin; }
+    inline std::string read_string(size_t str_len);
 
-    std::string get_string() {
-        auto str_len = get_value<uint16_t>();
-        if (read_pos() + str_len > data_size) {
-            throw UnexpectedEndOfInputException();
-        }
-        std::string ret_str(reinterpret_cast<const char *>(read_ptr), str_len);
-        read_ptr += str_len;
-        return ret_str;
-    }
-
-    template <typename Element_Type> std::vector<Element_Type> get_vector();
-
-    template <typename Element_Type> std::vector<Element_Type> get_vector2();
+    template <typename T> inline std::vector<T> read_array(size_t vec_len);
 };
 
-template <typename T> T BinaryReader::get_value() {
-    if (read_pos() + sizeof(T) > data_size) {
+template <typename T> inline T BinaryReader::read() {
+    if (sizeof(T) > buffer_length) {
         throw UnexpectedEndOfInputException();
     }
-    T read_value = load_big_endian<T>(read_ptr);
-    read_ptr += sizeof(T);
-    return read_value;
+    T result = 0;
+    for (size_t i = 0; i < sizeof(T); ++i) {
+        result = static_cast<T>(*(buffer++)) | (result << 8);
+    }
+    buffer_length -= sizeof(T);
+    return result;
 }
 
-// swap_endian in-place method
-template <typename Element_Type>
-std::vector<Element_Type> BinaryReader::get_vector() {
-    auto array_length = get_value<int32_t>();
-    if (array_length < 0) {
-        throw std::runtime_error("Negative array length encountered");
-    }
-    auto data_length = array_length * sizeof(Element_Type);
-    if (read_pos() + data_length > data_size) {
-        throw UnexpectedEndOfInputException();
-    }
-
-    // NOTE: this is not so good because read_ptr will often not be aligned for
-    // Element_Type*.
-    auto span_start = reinterpret_cast<const Element_Type *>(read_ptr);
-    read_ptr += data_length;
-    auto span_stop = reinterpret_cast<const Element_Type *>(read_ptr);
-    auto vec = std::vector<Element_Type>(span_start, span_stop);
-    for (auto it = vec.begin(); it != vec.end(); ++it) {
-        swap_endian(*it);
-    }
-    return vec;
+template <> inline float BinaryReader::read<float>() {
+    static_assert(sizeof(float) == 4, "float must have 32 bits");
+    uint32_t fval = read<uint32_t>();
+    return std::bit_cast<float>(fval);
 }
 
-// load_big_endian method
-template <typename Element_Type>
-std::vector<Element_Type> BinaryReader::get_vector2() {
-    auto array_length = get_value<int32_t>();
-    if (array_length < 0) {
-        throw std::runtime_error("Negative array length encountered");
-    }
-    auto read_stop = read_ptr + sizeof(Element_Type) * array_length;
-    if (read_stop > read_end) {
+template <> inline double BinaryReader::read<double>() {
+    static_assert(sizeof(double) == 8, "double must have 64 bits");
+    return std::bit_cast<double>(read<uint64_t>());
+}
+
+inline std::string BinaryReader::read_string(size_t str_len) {
+    if (str_len > buffer_length) {
         throw UnexpectedEndOfInputException();
     }
+    std::string result(reinterpret_cast<const char *>(buffer), str_len);
+    buffer += str_len;
+    buffer_length -= str_len;
+    return result;
+}
 
-    auto vec = std::vector<Element_Type>();
-    vec->reserve(array_length);
-    for (; read_ptr < read_stop; read_ptr += sizeof(Element_Type)) {
-        vec->push_back(load_big_endian<Element_Type>(read_ptr));
+template <typename T>
+inline std::vector<T> BinaryReader::read_array(size_t vec_len) {
+    if (vec_len * sizeof(T) > buffer_length) {
+        throw UnexpectedEndOfInputException();
     }
-    return vec;
+    std::vector<T> result;
+    for (size_t i = 0; i < vec_len; ++i) {
+        result.push_back(read<T>());
+    }
+    return result;
 }
 
 } // namespace nbtview

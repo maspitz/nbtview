@@ -113,7 +113,7 @@ namespace zlib {
 } // namespace zlib
 
 std::vector<unsigned char>
-decompress_data(std::vector<unsigned char> &input_data) {
+decompress_data(std::span<unsigned char> &input_data) {
     zlib::Inflater stream;
     std::vector<unsigned char> output_data;
     int status = stream.do_inflate(input_data, output_data);

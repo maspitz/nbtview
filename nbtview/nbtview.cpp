@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <istream>
+#include <span>
 #include <string>
 #include <utility>
 #include <vector>
@@ -46,14 +47,20 @@ std::pair<std::string, Tag> read_binary(std::istream &input) {
     // Read stream into vector of bytes
     std::vector<unsigned char> bytes(n_bytes);
     input.read(reinterpret_cast<char *>(bytes.data()), n_bytes);
-    return read_binary(std::move(bytes));
+    return read_binary(bytes);
 }
 
 std::pair<std::string, Tag> read_binary(std::vector<unsigned char> bytes) {
+    return read_binary(std::span<unsigned char>(bytes));
+}
+
+std::pair<std::string, Tag> read_binary(std::span<unsigned char> bytes) {
+    std::vector<unsigned char> data_holder;
     if (has_compression_header(bytes)) {
-        bytes = decompress_data(bytes);
+        data_holder = decompress_data(bytes);
+        bytes = std::span(data_holder);
     }
-    BinaryDeserializer reader(std::move(bytes));
+    BinaryDeserializer reader(bytes.data(), bytes.size());
     auto root_data = reader.deserialize();
     auto &root_name = root_data.first;
     return {root_name, std::move(root_data.second)};

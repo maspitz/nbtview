@@ -11,24 +11,22 @@
 #ifndef BINARYDESERIALIZER_H_
 #define BINARYDESERIALIZER_H_
 
-#include <memory>
 #include <utility>
-#include <vector>
 
+#include "BinaryReader.hpp"
 #include "Deserializer.hpp"
 #include "Tag.hpp"
 
 namespace nbtview {
 
-class BinaryReader;
-
 class BinaryDeserializer : public Deserializer {
   private:
-    std::unique_ptr<BinaryReader> scanner;
+    BinaryReader scanner;
 
   public:
-    BinaryDeserializer(std::vector<unsigned char> bytes);
-    ~BinaryDeserializer();
+    BinaryDeserializer(const unsigned char *buffer, size_t buffer_length)
+        : scanner(buffer, buffer_length) {}
+    ~BinaryDeserializer() = default;
 
     std::pair<std::string, Tag> deserialize() override;
 
@@ -36,6 +34,9 @@ class BinaryDeserializer : public Deserializer {
     List deserialize_list();
 
     Compound deserialize_compound();
+
+    template <typename T> std::vector<T> deserialize_array();
+    std::string deserialize_string();
 
     Tag deserialize_typed_value(TypeCode type);
 };
