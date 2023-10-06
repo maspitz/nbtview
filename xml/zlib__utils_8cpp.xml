@@ -158,7 +158,7 @@
 <codeline lineno="113"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>zlib</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="114"><highlight class="normal"></highlight></codeline>
 <codeline lineno="115"><highlight class="normal">std::vector&lt;unsigned<sp/>char&gt;</highlight></codeline>
-<codeline lineno="116"><highlight class="normal"><ref refid="namespacenbtview_1a9eabcb54d353e1ac08b4e246f0465277" kindref="member">decompress_data</ref>(std::span&lt;unsigned<sp/>char&gt;<sp/>&amp;input_data)<sp/>{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><ref refid="namespacenbtview_1a08a8444ba996ff3532885913b8bd7986" kindref="member">decompress_data</ref>(std::span&lt;unsigned<sp/>char&gt;<sp/>input_data)<sp/>{</highlight></codeline>
 <codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnbtview_1_1zlib_1_1Inflater" kindref="compound">zlib::Inflater</ref><sp/>stream;</highlight></codeline>
 <codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;unsigned<sp/>char&gt;<sp/>output_data;</highlight></codeline>
 <codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>status<sp/>=<sp/>stream.<ref refid="classnbtview_1_1zlib_1_1Inflater_1abc308b10f0cb52477553611dfb597583" kindref="member">do_inflate</ref>(input_data,<sp/>output_data);</highlight></codeline>

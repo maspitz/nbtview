@@ -884,13 +884,13 @@
         </inbodydescription>
         <location file="nbtview/zlib_utils.cpp" line="14" column="6" bodyfile="nbtview/zlib_utils.cpp" bodystart="14" bodyend="32" declfile="nbtview/zlib_utils.hpp" declline="20" declcolumn="6"/>
       </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a9eabcb54d353e1ac08b4e246f0465277" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacenbtview_1a08a8444ba996ff3532885913b8bd7986" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; unsigned char &gt;</type>
         <definition>std::vector&lt; unsigned char &gt; nbtview::decompress_data</definition>
-        <argsstring>(std::span&lt; unsigned char &gt; &amp;compressed_data)</argsstring>
+        <argsstring>(std::span&lt; unsigned char &gt; compressed_data)</argsstring>
         <name>decompress_data</name>
         <param>
-          <type>std::span&lt; unsigned char &gt; &amp;</type>
+          <type>std::span&lt; unsigned char &gt;</type>
           <declname>input_data</declname>
         </param>
         <briefdescription>
@@ -926,6 +926,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="nbtview/BinaryDeserializer.cpp" line="14" column="1"/>
+    <location file="nbtview/BinaryDeserializer.cpp" line="11" column="1"/>
   </compounddef>
 </doxygen>

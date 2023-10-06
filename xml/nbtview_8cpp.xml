@@ -281,7 +281,7 @@
 <codeline lineno="57"><highlight class="normal">std::pair&lt;std::string,<sp/>Tag&gt;<sp/><ref refid="namespacenbtview_1aa4c7f0bb2225d506fd0ad00d381f537f" kindref="member">read_binary</ref>(std::span&lt;unsigned<sp/>char&gt;<sp/>bytes)<sp/>{</highlight></codeline>
 <codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;unsigned<sp/>char&gt;<sp/>data_holder;</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(has_compression_header(bytes))<sp/>{</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data_holder<sp/>=<sp/><ref refid="namespacenbtview_1a9eabcb54d353e1ac08b4e246f0465277" kindref="member">decompress_data</ref>(bytes);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data_holder<sp/>=<sp/><ref refid="namespacenbtview_1a08a8444ba996ff3532885913b8bd7986" kindref="member">decompress_data</ref>(bytes);</highlight></codeline>
 <codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bytes<sp/>=<sp/>std::span(data_holder);</highlight></codeline>
 <codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>BinaryDeserializer<sp/>reader(bytes.data(),<sp/>bytes.size());</highlight></codeline>
