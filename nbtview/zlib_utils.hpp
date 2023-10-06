@@ -21,7 +21,7 @@ bool has_compression_header(const std::span<unsigned char> data);
 
 //! Decompress data into a vector of bytes.
 std::vector<unsigned char>
-decompress_data(std::span<unsigned char> &compressed_data);
+decompress_data(std::span<unsigned char> compressed_data);
 
 struct Inflation_Status {
     bool complete;
