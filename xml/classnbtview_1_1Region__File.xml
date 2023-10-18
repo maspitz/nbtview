@@ -61,7 +61,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Region.hpp" line="65" column="5" bodyfile="nbtview/Region.cpp" bodystart="46" bodyend="49"/>
+        <location file="nbtview/Region.hpp" line="65" column="5" bodyfile="nbtview/Region.cpp" bodystart="45" bodyend="48"/>
       </memberdef>
       <memberdef kind="function" id="classnbtview_1_1Region__File_1aa165ef8bdc83e48721b3c1fa2957f42f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>uint32_t</type>
@@ -133,18 +133,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Region.hpp" line="83" column="17" bodyfile="nbtview/Region.cpp" bodystart="76" bodyend="100"/>
+        <location file="nbtview/Region.hpp" line="83" column="17" bodyfile="nbtview/Region.cpp" bodystart="82" bodyend="102"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
-      <memberdef kind="function" id="classnbtview_1_1Region__File_1a9b49df3a85acfc39cf029ee5124ec653" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classnbtview_1_1Region__File_1a87888b57d92e79954fc24aebc1246c0b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structnbtview_1_1Region_1a5ee581cd987bed3225b3204592786c45" kindref="member">Region::Sector_Data</ref></type>
-        <definition>Region::Sector_Data nbtview::Region_File::read_sector</definition>
-        <argsstring>(int sector_index)</argsstring>
-        <name>read_sector</name>
+        <definition>Region::Sector_Data nbtview::Region_File::read_sectors</definition>
+        <argsstring>(int sector_index, int sector_count)</argsstring>
+        <name>read_sectors</name>
         <param>
           <type>int</type>
           <declname>sector_index</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sector_count</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -152,7 +156,28 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Region.hpp" line="90" column="25" bodyfile="nbtview/Region.cpp" bodystart="51" bodyend="61"/>
+        <location file="nbtview/Region.hpp" line="90" column="25" bodyfile="nbtview/Region.cpp" bodystart="50" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classnbtview_1_1Region__File_1a8a449d28e8a176552d0bb03f5bf6ef18" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structnbtview_1_1Region_1a5ee581cd987bed3225b3204592786c45" kindref="member">Region::Sector_Data</ref></type>
+        <definition>Region::Sector_Data nbtview::Region_File::read_data</definition>
+        <argsstring>(uint64_t offset, size_t data_length)</argsstring>
+        <name>read_data</name>
+        <param>
+          <type>uint64_t</type>
+          <declname>offset</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>data_length</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Region.hpp" line="91" column="25" bodyfile="nbtview/Region.cpp" bodystart="56" bodyend="67"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -160,7 +185,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="nbtview/Region.hpp" line="62" column="1" bodyfile="nbtview/Region.hpp" bodystart="62" bodyend="91"/>
+    <location file="nbtview/Region.hpp" line="62" column="1" bodyfile="nbtview/Region.hpp" bodystart="62" bodyend="92"/>
     <listofallmembers>
       <member refid="classnbtview_1_1Region__File_1aebbd8c7d2b05e0a931067aec80e7550d" prot="public" virt="non-virtual"><scope>nbtview::Region_File</scope><name>chunk_length</name></member>
       <member refid="classnbtview_1_1Region__File_1aa165ef8bdc83e48721b3c1fa2957f42f" prot="public" virt="non-virtual"><scope>nbtview::Region_File</scope><name>chunk_offset</name></member>
@@ -169,7 +194,8 @@
       <member refid="classnbtview_1_1Region__File_1a585da4628d09f6b0f3483bcf777b3977" prot="public" virt="non-virtual"><scope>nbtview::Region_File</scope><name>get_chunk_data</name></member>
       <member refid="classnbtview_1_1Region__File_1ad0a9398bb04818cb636d816c1358654d" prot="private" virt="non-virtual"><scope>nbtview::Region_File</scope><name>metadata</name></member>
       <member refid="classnbtview_1_1Region__File_1a5ff0bac68ce7a17e831a704d596e1659" prot="private" virt="non-virtual"><scope>nbtview::Region_File</scope><name>name</name></member>
-      <member refid="classnbtview_1_1Region__File_1a9b49df3a85acfc39cf029ee5124ec653" prot="private" virt="non-virtual"><scope>nbtview::Region_File</scope><name>read_sector</name></member>
+      <member refid="classnbtview_1_1Region__File_1a8a449d28e8a176552d0bb03f5bf6ef18" prot="private" virt="non-virtual"><scope>nbtview::Region_File</scope><name>read_data</name></member>
+      <member refid="classnbtview_1_1Region__File_1a87888b57d92e79954fc24aebc1246c0b" prot="private" virt="non-virtual"><scope>nbtview::Region_File</scope><name>read_sectors</name></member>
       <member refid="classnbtview_1_1Region__File_1ad750c0920f8737e4f1feeea9831198af" prot="public" virt="non-virtual"><scope>nbtview::Region_File</scope><name>Region_File</name></member>
     </listofallmembers>
   </compounddef>

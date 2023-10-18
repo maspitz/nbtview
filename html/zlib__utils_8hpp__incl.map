@@ -1,6 +1,5 @@
 <map id="nbtview/zlib_utils.hpp" name="nbtview/zlib_utils.hpp">
-<area shape="rect" id="node1" title="Functions to interface with zlib compression." alt="" coords="31,5,195,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,59,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="83,80,143,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="167,80,230,107"/>
+<area shape="rect" id="node1" title="Functions to interface with zlib compression." alt="" coords="5,5,169,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="15,80,75,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="99,80,161,107"/>
 </map>

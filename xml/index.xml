@@ -67,7 +67,7 @@
     <member refid="classnbtview_1_1zlib_1_1Inflater_1a9542702508b30d6d281664a0d976d367" kind="variable"><name>buffer_size_</name></member>
     <member refid="classnbtview_1_1zlib_1_1Inflater_1ae171d7f9fd5d08b53b5eae570b5f526e" kind="function"><name>Inflater</name></member>
     <member refid="classnbtview_1_1zlib_1_1Inflater_1a35494e9197f56778904154fc4faf9083" kind="function"><name>~Inflater</name></member>
-    <member refid="classnbtview_1_1zlib_1_1Inflater_1abc308b10f0cb52477553611dfb597583" kind="function"><name>do_inflate</name></member>
+    <member refid="classnbtview_1_1zlib_1_1Inflater_1abd6e6c460bed2c6234ef3335e65784f8" kind="function"><name>do_inflate</name></member>
     <member refid="classnbtview_1_1zlib_1_1Inflater_1a06564496caf2138655a3f8c96d2b9660" kind="function"><name>input_bytes_read</name></member>
     <member refid="classnbtview_1_1zlib_1_1Inflater_1a4e3b50348776a28a0aed19cde4e5edf2" kind="function"><name>err_msg</name></member>
   </compound>
@@ -131,7 +131,8 @@
     <member refid="classnbtview_1_1Region__File_1aebbd8c7d2b05e0a931067aec80e7550d" kind="function"><name>chunk_length</name></member>
     <member refid="classnbtview_1_1Region__File_1a344bcc4f112414eac3d0a9b7da4ad88a" kind="function"><name>chunk_timestamp</name></member>
     <member refid="classnbtview_1_1Region__File_1a585da4628d09f6b0f3483bcf777b3977" kind="function"><name>get_chunk_data</name></member>
-    <member refid="classnbtview_1_1Region__File_1a9b49df3a85acfc39cf029ee5124ec653" kind="function"><name>read_sector</name></member>
+    <member refid="classnbtview_1_1Region__File_1a87888b57d92e79954fc24aebc1246c0b" kind="function"><name>read_sectors</name></member>
+    <member refid="classnbtview_1_1Region__File_1a8a449d28e8a176552d0bb03f5bf6ef18" kind="function"><name>read_data</name></member>
   </compound>
   <compound refid="structnbtview_1_1StringifyTag" kind="struct"><name>nbtview::StringifyTag</name>
     <member refid="structnbtview_1_1StringifyTag_1aeb1220bacb9821cb08f0ad708ced6fd7" kind="function"><name>operator()</name></member>
@@ -183,8 +184,8 @@
   </compound>
   <compound refid="namespacenbtview" kind="namespace"><name>nbtview</name>
     <member refid="namespacenbtview_1aa4c7f0bb2225d506fd0ad00d381f537f" kind="function"><name>read_binary</name></member>
+    <member refid="namespacenbtview_1a554d192d3d961c1972fdb7a1eb3e22ce" kind="function"><name>read_binary</name></member>
     <member refid="namespacenbtview_1a938ea9d0e3e51f465d050f8069887e20" kind="function"><name>read_binary</name></member>
-    <member refid="namespacenbtview_1a1bcd6d97d058e58820f483830ab91add" kind="function"><name>read_binary</name></member>
     <member refid="namespacenbtview_1a552afcf07de4c0e568601c95b4bb2486" kind="function"><name>write_binary</name></member>
     <member refid="namespacenbtview_1afbb5f08ddadfd438a8d82539ea8ec7e4" kind="function"><name>write_binary</name></member>
     <member refid="namespacenbtview_1aadf85cee84299935966d79e35574dd55" kind="function"><name>write_binary</name></member>
@@ -218,7 +219,7 @@
     <member refid="namespacenbtview_1af706de40c93703c773c7475bf3075a81" kind="typedef"><name>Long_Array</name></member>
     <member refid="namespacenbtview_1a9fcb48c3df7749255fcc9f3f9e84f3fa" kind="typedef"><name>Tag</name></member>
     <member refid="namespacenbtview_1a62378fce3f65363cf1ac2855647f43cf" kind="function"><name>fast_find_named_tag</name></member>
-    <member refid="namespacenbtview_1a43354d58572bb75ca20767f91194f8c7" kind="function"><name>chunk_data_length</name></member>
+    <member refid="namespacenbtview_1a1ce60d52b2a334e72db23f22822b8705" kind="function"><name>chunk_data_length</name></member>
     <member refid="namespacenbtview_1a792cf692f58bf3da1818184ad5f2dfd6" kind="function"><name>tag_to_string</name></member>
     <member refid="namespacenbtview_1a5856db957caf969d2b2ff9b1b50d8f67" kind="function"><name>tag_to_string</name></member>
     <member refid="namespacenbtview_1a581ba1225cbd921ed202039c9a8faddd" kind="function"><name>tag_to_string</name></member>
@@ -229,9 +230,9 @@
     <member refid="namespacenbtview_1a2e368e409169b9c433f16763be3f0b37" kind="function"><name>snbt_requires_quoting</name></member>
     <member refid="namespacenbtview_1a99f417945a3700f4c8a19d670f19c3a7" kind="function"><name>quoted_string</name></member>
     <member refid="namespacenbtview_1a0ee9f2ba9bf67f7636003442cfd4d967" kind="function"><name>comma_delimited_array</name></member>
-    <member refid="namespacenbtview_1a11276aad7ba3a66123c0e28acb20fc40" kind="function"><name>has_compression_header</name></member>
-    <member refid="namespacenbtview_1a08a8444ba996ff3532885913b8bd7986" kind="function"><name>decompress_data</name></member>
-    <member refid="namespacenbtview_1aacbd100a5f0f9dc51843c4fb90b0feb3" kind="function"><name>inflate_sectors</name></member>
+    <member refid="namespacenbtview_1af44731ec89ee78b8a15db9ac0ed12b64" kind="function"><name>has_compression_header</name></member>
+    <member refid="namespacenbtview_1a17340db79f2b87e145da9e4a2da3dc8f" kind="function"><name>decompress_data</name></member>
+    <member refid="namespacenbtview_1ae636739af4d439c8742a4b1fcefa07a6" kind="function"><name>inflate_sectors</name></member>
   </compound>
   <compound refid="namespacenbtview_1_1detail" kind="namespace"><name>nbtview::detail</name>
   </compound>
@@ -270,6 +271,7 @@
   <compound refid="utils_8hpp" kind="file"><name>utils.hpp</name>
   </compound>
   <compound refid="zlib__utils_8cpp" kind="file"><name>zlib_utils.cpp</name>
+    <member refid="zlib__utils_8cpp_1a154b2afe4e942b77e935d0dcd2742478" kind="define"><name>ZLIB_CONST</name></member>
   </compound>
   <compound refid="zlib__utils_8hpp" kind="file"><name>zlib_utils.hpp</name>
   </compound>

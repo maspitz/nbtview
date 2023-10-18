@@ -76,40 +76,40 @@ $(function() {
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#define NBTVIEW_H_</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;iosfwd&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;span&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;utility&gt;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Tag_8hpp.html">Tag.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">class </span>List;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">class </span>Compound;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenbtview.html">nbtview</a> {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">// Attempts to find a named tag in a range of NBT data by searching</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">// for its initial byte sequence.</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">// If the tag is found, an iterator to the beginning of its payload</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">// is returned. Otherwise, nbt_stop is returned.</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">// Caveats:</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">// (1) This method can be fooled if the tag&#39;s name appears in the</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">// payload of some other tag.  This is unlikely to happen by chance.</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">// (2) It is the calling code&#39;s responsibility to check that the</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">// remaining NBT data is large enough to contain the tag&#39;s expected</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">// payload.</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;std::vector&lt;unsigned char&gt;::const_iterator</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;fast_find_named_tag(std::vector&lt;unsigned char&gt;::const_iterator nbt_start,</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                    std::vector&lt;unsigned char&gt;::const_iterator nbt_stop,</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                    <a class="code" href="namespacenbtview.html#afc3b190dfb9b456a2b36e19029d229b1">TypeCode</a> tag_type, <span class="keyword">const</span> std::string &amp;tag_name);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;std::pair&lt;std::string, Tag&gt; <a class="code" href="namespacenbtview.html#aa4c7f0bb2225d506fd0ad00d381f537f">read_binary</a>(std::istream &amp;input);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;std::pair&lt;std::string, Tag&gt; <a class="code" href="namespacenbtview.html#aa4c7f0bb2225d506fd0ad00d381f537f">read_binary</a>(std::vector&lt;unsigned char&gt; bytes);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;std::pair&lt;std::string, Tag&gt; <a class="code" href="namespacenbtview.html#aa4c7f0bb2225d506fd0ad00d381f537f">read_binary</a>(std::span&lt;unsigned char&gt; bytes);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Tag_8hpp.html">Tag.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">class </span>List;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">class </span>Compound;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenbtview.html">nbtview</a> {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">// Attempts to find a named tag in a range of NBT data by searching</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">// for its initial byte sequence.</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">// If the tag is found, an iterator to the beginning of its payload</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">// is returned. Otherwise, nbt_stop is returned.</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">// Caveats:</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">// (1) This method can be fooled if the tag&#39;s name appears in the</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">// payload of some other tag.  This is unlikely to happen by chance.</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">// (2) It is the calling code&#39;s responsibility to check that the</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">// remaining NBT data is large enough to contain the tag&#39;s expected</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">// payload.</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;std::vector&lt;unsigned char&gt;::const_iterator</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;fast_find_named_tag(std::vector&lt;unsigned char&gt;::const_iterator nbt_start,</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                    std::vector&lt;unsigned char&gt;::const_iterator nbt_stop,</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                    <a class="code" href="namespacenbtview.html#afc3b190dfb9b456a2b36e19029d229b1">TypeCode</a> tag_type, <span class="keyword">const</span> std::string &amp;tag_name);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;std::pair&lt;std::string, Tag&gt; <a class="code" href="namespacenbtview.html#aa4c7f0bb2225d506fd0ad00d381f537f">read_binary</a>(std::istream &amp;input);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;std::pair&lt;std::string, Tag&gt; <a class="code" href="namespacenbtview.html#aa4c7f0bb2225d506fd0ad00d381f537f">read_binary</a>(std::vector&lt;unsigned char&gt; bytes);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;std::pair&lt;std::string, Tag&gt; <a class="code" href="namespacenbtview.html#aa4c7f0bb2225d506fd0ad00d381f537f">read_binary</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *data,</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                                        <span class="keywordtype">size_t</span> data_length);</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespacenbtview.html#a552afcf07de4c0e568601c95b4bb2486">write_binary</a>(<span class="keyword">const</span> <a class="code" href="namespacenbtview.html#a9fcb48c3df7749255fcc9f3f9e84f3fa">Tag</a> &amp;tag, std::string_view name, std::ostream &amp;output);</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespacenbtview.html#a552afcf07de4c0e568601c95b4bb2486">write_binary</a>(<span class="keyword">const</span> Compound &amp;tag, std::string_view name,</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                  std::ostream &amp;output);</div>
@@ -123,10 +123,10 @@ $(function() {
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// NBTVIEW_H_</span></div>
 <div class="ttc" id="aTag_8hpp_html"><div class="ttname"><a href="Tag_8hpp.html">Tag.hpp</a></div><div class="ttdoc">Interfaces for read/write access to NBT tag data.</div></div>
 <div class="ttc" id="anamespacenbtview_html"><div class="ttname"><a href="namespacenbtview.html">nbtview</a></div><div class="ttdoc">Utilities to read, write, and manipulate NBT data.</div><div class="ttdef"><b>Definition:</b> BinaryDeserializer.cpp:11</div></div>
-<div class="ttc" id="anamespacenbtview_html_a390fb78fe858b5c66d2f401f418bb769"><div class="ttname"><a href="namespacenbtview.html#a390fb78fe858b5c66d2f401f418bb769">nbtview::operator&lt;&lt;</a></div><div class="ttdeci">std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, const Tag &amp;tag)</div><div class="ttdoc">Outputs a string representation of a tag to a stream.</div><div class="ttdef"><b>Definition:</b> nbtview.cpp:87</div></div>
-<div class="ttc" id="anamespacenbtview_html_a552afcf07de4c0e568601c95b4bb2486"><div class="ttname"><a href="namespacenbtview.html#a552afcf07de4c0e568601c95b4bb2486">nbtview::write_binary</a></div><div class="ttdeci">void write_binary(const Tag &amp;tag, std::string_view name, std::ostream &amp;output)</div><div class="ttdoc">Serializes a tag to a stream.</div><div class="ttdef"><b>Definition:</b> nbtview.cpp:69</div></div>
+<div class="ttc" id="anamespacenbtview_html_a390fb78fe858b5c66d2f401f418bb769"><div class="ttname"><a href="namespacenbtview.html#a390fb78fe858b5c66d2f401f418bb769">nbtview::operator&lt;&lt;</a></div><div class="ttdeci">std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, const Tag &amp;tag)</div><div class="ttdoc">Outputs a string representation of a tag to a stream.</div><div class="ttdef"><b>Definition:</b> nbtview.cpp:88</div></div>
+<div class="ttc" id="anamespacenbtview_html_a552afcf07de4c0e568601c95b4bb2486"><div class="ttname"><a href="namespacenbtview.html#a552afcf07de4c0e568601c95b4bb2486">nbtview::write_binary</a></div><div class="ttdeci">void write_binary(const Tag &amp;tag, std::string_view name, std::ostream &amp;output)</div><div class="ttdoc">Serializes a tag to a stream.</div><div class="ttdef"><b>Definition:</b> nbtview.cpp:70</div></div>
 <div class="ttc" id="anamespacenbtview_html_a9fcb48c3df7749255fcc9f3f9e84f3fa"><div class="ttname"><a href="namespacenbtview.html#a9fcb48c3df7749255fcc9f3f9e84f3fa">nbtview::Tag</a></div><div class="ttdeci">std::variant&lt; End, Byte, Short, Int, Long, Float, Double, Byte_Array, String, List, Compound, Int_Array, Long_Array &gt; Tag</div><div class="ttdoc">Tag holds the value of an NBT tag.</div><div class="ttdef"><b>Definition:</b> Tag.hpp:62</div></div>
-<div class="ttc" id="anamespacenbtview_html_aa4c7f0bb2225d506fd0ad00d381f537f"><div class="ttname"><a href="namespacenbtview.html#aa4c7f0bb2225d506fd0ad00d381f537f">nbtview::read_binary</a></div><div class="ttdeci">std::pair&lt; std::string, Tag &gt; read_binary(std::istream &amp;input)</div><div class="ttdoc">Deserializes from a stream.</div><div class="ttdef"><b>Definition:</b> nbtview.cpp:41</div></div>
+<div class="ttc" id="anamespacenbtview_html_aa4c7f0bb2225d506fd0ad00d381f537f"><div class="ttname"><a href="namespacenbtview.html#aa4c7f0bb2225d506fd0ad00d381f537f">nbtview::read_binary</a></div><div class="ttdeci">std::pair&lt; std::string, Tag &gt; read_binary(std::istream &amp;input)</div><div class="ttdoc">Deserializes from a stream.</div><div class="ttdef"><b>Definition:</b> nbtview.cpp:40</div></div>
 <div class="ttc" id="anamespacenbtview_html_afc3b190dfb9b456a2b36e19029d229b1"><div class="ttname"><a href="namespacenbtview.html#afc3b190dfb9b456a2b36e19029d229b1">nbtview::TypeCode</a></div><div class="ttdeci">TypeCode</div><div class="ttdoc">TypeCode is a one-byte encoding of the data type of an NBT tag.</div><div class="ttdef"><b>Definition:</b> Tag.hpp:65</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

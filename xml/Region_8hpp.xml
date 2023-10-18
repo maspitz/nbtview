@@ -107,12 +107,13 @@
 <codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>std::ifstream<sp/>file;</highlight></codeline>
 <codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structnbtview_1_1Region" kindref="compound">Region</ref><sp/>metadata;</highlight></codeline>
 <codeline lineno="89"><highlight class="normal"></highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structnbtview_1_1Region_1a5ee581cd987bed3225b3204592786c45" kindref="member">Region::Sector_Data</ref><sp/>read_sector(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sector_index);</highlight></codeline>
-<codeline lineno="91"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"></highlight></codeline>
-<codeline lineno="93"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nbtview</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="94"><highlight class="normal"></highlight></codeline>
-<codeline lineno="95"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>NBT_REGION_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structnbtview_1_1Region_1a5ee581cd987bed3225b3204592786c45" kindref="member">Region::Sector_Data</ref><sp/>read_sectors(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sector_index,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sector_count);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structnbtview_1_1Region_1a5ee581cd987bed3225b3204592786c45" kindref="member">Region::Sector_Data</ref><sp/>read_data(uint64_t<sp/>offset,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>data_length);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nbtview</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>NBT_REGION_H_</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="nbtview/Region.hpp"/>
   </compounddef>

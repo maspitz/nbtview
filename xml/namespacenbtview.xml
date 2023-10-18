@@ -59,7 +59,28 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/nbtview.cpp" line="41" column="11" bodyfile="nbtview/nbtview.cpp" bodystart="41" bodyend="51" declfile="nbtview/nbtview.hpp" declline="56" declcolumn="11"/>
+        <location file="nbtview/nbtview.cpp" line="40" column="11" bodyfile="nbtview/nbtview.cpp" bodystart="40" bodyend="50" declfile="nbtview/nbtview.hpp" declline="55" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenbtview_1a554d192d3d961c1972fdb7a1eb3e22ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; std::string, <ref refid="namespacenbtview_1a9fcb48c3df7749255fcc9f3f9e84f3fa" kindref="member">Tag</ref> &gt;</type>
+        <definition>std::pair&lt; std::string, Tag &gt; nbtview::read_binary</definition>
+        <argsstring>(const unsigned char *data, size_t data_length)</argsstring>
+        <name>read_binary</name>
+        <param>
+          <type>const unsigned char *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>data_length</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/nbtview.cpp" line="52" column="11" bodyfile="nbtview/nbtview.cpp" bodystart="52" bodyend="64" declfile="nbtview/nbtview.hpp" declline="65" declcolumn="11"/>
       </memberdef>
       <memberdef kind="function" id="namespacenbtview_1a938ea9d0e3e51f465d050f8069887e20" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::pair&lt; std::string, <ref refid="namespacenbtview_1a9fcb48c3df7749255fcc9f3f9e84f3fa" kindref="member">Tag</ref> &gt;</type>
@@ -98,24 +119,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/nbtview.cpp" line="53" column="11" bodyfile="nbtview/nbtview.cpp" bodystart="53" bodyend="55" declfile="nbtview/nbtview.hpp" declline="64" declcolumn="11"/>
-      </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a1bcd6d97d058e58820f483830ab91add" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>std::pair&lt; std::string, <ref refid="namespacenbtview_1a9fcb48c3df7749255fcc9f3f9e84f3fa" kindref="member">Tag</ref> &gt;</type>
-        <definition>std::pair&lt; std::string, Tag &gt; nbtview::read_binary</definition>
-        <argsstring>(std::span&lt; unsigned char &gt; bytes)</argsstring>
-        <name>read_binary</name>
-        <param>
-          <type>std::span&lt; unsigned char &gt;</type>
-          <declname>bytes</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="nbtview/nbtview.cpp" line="57" column="11" bodyfile="nbtview/nbtview.cpp" bodystart="57" bodyend="67" declfile="nbtview/nbtview.hpp" declline="66" declcolumn="11"/>
+        <location file="nbtview/nbtview.cpp" line="66" column="11" bodyfile="nbtview/nbtview.cpp" bodystart="66" bodyend="68" declfile="nbtview/nbtview.hpp" declline="63" declcolumn="11"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="user-defined">
@@ -174,7 +178,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/nbtview.cpp" line="69" column="6" bodyfile="nbtview/nbtview.cpp" bodystart="69" bodyend="73" declfile="nbtview/nbtview.hpp" declline="86" declcolumn="6"/>
+        <location file="nbtview/nbtview.cpp" line="70" column="6" bodyfile="nbtview/nbtview.cpp" bodystart="70" bodyend="74" declfile="nbtview/nbtview.hpp" declline="86" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacenbtview_1afbb5f08ddadfd438a8d82539ea8ec7e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -199,7 +203,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/nbtview.cpp" line="74" column="6" bodyfile="nbtview/nbtview.cpp" bodystart="74" bodyend="79" declfile="nbtview/nbtview.hpp" declline="87" declcolumn="6"/>
+        <location file="nbtview/nbtview.cpp" line="75" column="6" bodyfile="nbtview/nbtview.cpp" bodystart="75" bodyend="80" declfile="nbtview/nbtview.hpp" declline="87" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacenbtview_1aadf85cee84299935966d79e35574dd55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -224,7 +228,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/nbtview.cpp" line="80" column="6" bodyfile="nbtview/nbtview.cpp" bodystart="80" bodyend="85" declfile="nbtview/nbtview.hpp" declline="89" declcolumn="6"/>
+        <location file="nbtview/nbtview.cpp" line="81" column="6" bodyfile="nbtview/nbtview.cpp" bodystart="81" bodyend="86" declfile="nbtview/nbtview.hpp" declline="89" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacenbtview_1a390fb78fe858b5c66d2f401f418bb769" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::ostream &amp;</type>
@@ -276,7 +280,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/nbtview.cpp" line="87" column="1" bodyfile="nbtview/nbtview.cpp" bodystart="87" bodyend="90" declfile="nbtview/nbtview.hpp" declline="103" declcolumn="1"/>
+        <location file="nbtview/nbtview.cpp" line="88" column="1" bodyfile="nbtview/nbtview.cpp" bodystart="88" bodyend="91" declfile="nbtview/nbtview.hpp" declline="103" declcolumn="1"/>
       </memberdef>
       <memberdef kind="function" id="namespacenbtview_1a66cfd2044b9c70f09690fac3901c0ce2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::ostream &amp;</type>
@@ -297,7 +301,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/nbtview.cpp" line="92" column="1" bodyfile="nbtview/nbtview.cpp" bodystart="92" bodyend="95" declfile="nbtview/nbtview.hpp" declline="104" declcolumn="1"/>
+        <location file="nbtview/nbtview.cpp" line="93" column="1" bodyfile="nbtview/nbtview.cpp" bodystart="93" bodyend="96" declfile="nbtview/nbtview.hpp" declline="104" declcolumn="1"/>
       </memberdef>
       <memberdef kind="function" id="namespacenbtview_1a3e30272ad6ec26c1630345d36477c40f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::ostream &amp;</type>
@@ -318,7 +322,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/nbtview.cpp" line="97" column="1" bodyfile="nbtview/nbtview.cpp" bodystart="97" bodyend="100" declfile="nbtview/nbtview.hpp" declline="105" declcolumn="1"/>
+        <location file="nbtview/nbtview.cpp" line="98" column="1" bodyfile="nbtview/nbtview.cpp" bodystart="98" bodyend="101" declfile="nbtview/nbtview.hpp" declline="105" declcolumn="1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="enum">
@@ -639,15 +643,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/nbtview.cpp" line="19" column="1" bodyfile="nbtview/nbtview.cpp" bodystart="19" bodyend="39" declfile="nbtview/nbtview.hpp" declline="41" declcolumn="1"/>
+        <location file="nbtview/nbtview.cpp" line="18" column="1" bodyfile="nbtview/nbtview.cpp" bodystart="18" bodyend="38" declfile="nbtview/nbtview.hpp" declline="40" declcolumn="1"/>
       </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a43354d58572bb75ca20767f91194f8c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacenbtview_1a1ce60d52b2a334e72db23f22822b8705" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>uint32_t</type>
         <definition>uint32_t nbtview::chunk_data_length</definition>
-        <argsstring>(std::span&lt; unsigned char &gt; chunk_header)</argsstring>
+        <argsstring>(const std::vector&lt; unsigned char &gt; &amp;chunk_header)</argsstring>
         <name>chunk_data_length</name>
         <param>
-          <type>std::span&lt; unsigned char &gt;</type>
+          <type>const std::vector&lt; unsigned char &gt; &amp;</type>
           <declname>chunk_header</declname>
         </param>
         <briefdescription>
@@ -656,7 +660,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Region.cpp" line="63" column="10" bodyfile="nbtview/Region.cpp" bodystart="63" bodyend="74"/>
+        <location file="nbtview/Region.cpp" line="69" column="10" bodyfile="nbtview/Region.cpp" bodystart="69" bodyend="80"/>
       </memberdef>
       <memberdef kind="function" id="namespacenbtview_1a792cf692f58bf3da1818184ad5f2dfd6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::string</type>
@@ -867,14 +871,18 @@
         </inbodydescription>
         <location file="nbtview/utils.hpp" line="52" column="13" bodyfile="nbtview/utils.hpp" bodystart="52" bodyend="65"/>
       </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a11276aad7ba3a66123c0e28acb20fc40" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacenbtview_1af44731ec89ee78b8a15db9ac0ed12b64" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>bool nbtview::has_compression_header</definition>
-        <argsstring>(const std::span&lt; unsigned char &gt; data)</argsstring>
+        <argsstring>(const unsigned char *data, size_t data_length)</argsstring>
         <name>has_compression_header</name>
         <param>
-          <type>const std::span&lt; unsigned char &gt;</type>
+          <type>const unsigned char *</type>
           <declname>data</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>data_length</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -882,16 +890,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.cpp" line="14" column="6" bodyfile="nbtview/zlib_utils.cpp" bodystart="14" bodyend="32" declfile="nbtview/zlib_utils.hpp" declline="20" declcolumn="6"/>
+        <location file="nbtview/zlib_utils.cpp" line="14" column="6" bodyfile="nbtview/zlib_utils.cpp" bodystart="14" bodyend="32" declfile="nbtview/zlib_utils.hpp" declline="19" declcolumn="6"/>
       </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a08a8444ba996ff3532885913b8bd7986" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacenbtview_1a17340db79f2b87e145da9e4a2da3dc8f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; unsigned char &gt;</type>
         <definition>std::vector&lt; unsigned char &gt; nbtview::decompress_data</definition>
-        <argsstring>(std::span&lt; unsigned char &gt; compressed_data)</argsstring>
+        <argsstring>(const unsigned char *compressed_data, size_t data_length)</argsstring>
         <name>decompress_data</name>
         <param>
-          <type>std::span&lt; unsigned char &gt;</type>
-          <declname>input_data</declname>
+          <type>const unsigned char *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>data_length</declname>
         </param>
         <briefdescription>
 <para>Decompress data into a vector of bytes. </para>
@@ -900,16 +912,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.cpp" line="116" column="1" bodyfile="nbtview/zlib_utils.cpp" bodystart="116" bodyend="125" declfile="nbtview/zlib_utils.hpp" declline="24" declcolumn="1"/>
+        <location file="nbtview/zlib_utils.cpp" line="115" column="13" bodyfile="nbtview/zlib_utils.cpp" bodystart="115" bodyend="125" declfile="nbtview/zlib_utils.hpp" declline="22" declcolumn="13"/>
       </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1aacbd100a5f0f9dc51843c4fb90b0feb3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacenbtview_1ae636739af4d439c8742a4b1fcefa07a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::pair&lt; std::vector&lt; unsigned char &gt;, <ref refid="structnbtview_1_1Inflation__Status" kindref="compound">Inflation_Status</ref> &gt;</type>
         <definition>std::pair&lt; std::vector&lt; unsigned char &gt;, Inflation_Status &gt; nbtview::inflate_sectors</definition>
-        <argsstring>(const std::span&lt; unsigned char &gt; input_data)</argsstring>
+        <argsstring>(const unsigned char *input_data, size_t input_length)</argsstring>
         <name>inflate_sectors</name>
         <param>
-          <type>const std::span&lt; unsigned char &gt;</type>
+          <type>const unsigned char *</type>
           <declname>input_data</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>input_length</declname>
         </param>
         <briefdescription>
 <para>Decompress compressed data into a vector of bytes. </para>
@@ -918,7 +934,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.cpp" line="128" column="1" bodyfile="nbtview/zlib_utils.cpp" bodystart="128" bodyend="141" declfile="nbtview/zlib_utils.hpp" declline="34" declcolumn="1"/>
+        <location file="nbtview/zlib_utils.cpp" line="128" column="1" bodyfile="nbtview/zlib_utils.cpp" bodystart="128" bodyend="141" declfile="nbtview/zlib_utils.hpp" declline="33" declcolumn="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

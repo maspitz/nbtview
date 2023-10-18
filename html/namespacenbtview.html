@@ -192,9 +192,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a62378fce3f65363cf1ac2855647f43cf"><td class="memItemLeft" align="right" valign="top"><a id="a62378fce3f65363cf1ac2855647f43cf"></a>
 std::vector&lt; unsigned char &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>fast_find_named_tag</b> (std::vector&lt; unsigned char &gt;::const_iterator nbt_start, std::vector&lt; unsigned char &gt;::const_iterator nbt_stop, <a class="el" href="namespacenbtview.html#afc3b190dfb9b456a2b36e19029d229b1">TypeCode</a> tag_type, const std::string &amp;tag_name)</td></tr>
 <tr class="separator:a62378fce3f65363cf1ac2855647f43cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43354d58572bb75ca20767f91194f8c7"><td class="memItemLeft" align="right" valign="top"><a id="a43354d58572bb75ca20767f91194f8c7"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>chunk_data_length</b> (std::span&lt; unsigned char &gt; chunk_header)</td></tr>
-<tr class="separator:a43354d58572bb75ca20767f91194f8c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ce60d52b2a334e72db23f22822b8705"><td class="memItemLeft" align="right" valign="top"><a id="a1ce60d52b2a334e72db23f22822b8705"></a>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>chunk_data_length</b> (const std::vector&lt; unsigned char &gt; &amp;chunk_header)</td></tr>
+<tr class="separator:a1ce60d52b2a334e72db23f22822b8705"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a792cf692f58bf3da1818184ad5f2dfd6"><td class="memItemLeft" align="right" valign="top"><a id="a792cf692f58bf3da1818184ad5f2dfd6"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>tag_to_string</b> (const <a class="el" href="namespacenbtview.html#a9fcb48c3df7749255fcc9f3f9e84f3fa">Tag</a> &amp;tag)</td></tr>
 <tr class="separator:a792cf692f58bf3da1818184ad5f2dfd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -226,29 +226,29 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>quoted_string<
 <tr class="memitem:a0ee9f2ba9bf67f7636003442cfd4d967"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a0ee9f2ba9bf67f7636003442cfd4d967">comma_delimited_array</a> (const std::vector&lt; T &gt; &amp;vec, const <a class="el" href="structnbtview_1_1array__format.html">array_format</a> &amp;fmt)</td></tr>
 <tr class="memdesc:a0ee9f2ba9bf67f7636003442cfd4d967"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a comma-delimited string representation of an array.  <a href="namespacenbtview.html#a0ee9f2ba9bf67f7636003442cfd4d967">More...</a><br /></td></tr>
 <tr class="separator:a0ee9f2ba9bf67f7636003442cfd4d967"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11276aad7ba3a66123c0e28acb20fc40"><td class="memItemLeft" align="right" valign="top"><a id="a11276aad7ba3a66123c0e28acb20fc40"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>has_compression_header</b> (const std::span&lt; unsigned char &gt; data)</td></tr>
-<tr class="separator:a11276aad7ba3a66123c0e28acb20fc40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08a8444ba996ff3532885913b8bd7986"><td class="memItemLeft" align="right" valign="top"><a id="a08a8444ba996ff3532885913b8bd7986"></a>
-std::vector&lt; unsigned char &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a08a8444ba996ff3532885913b8bd7986">decompress_data</a> (std::span&lt; unsigned char &gt; compressed_data)</td></tr>
-<tr class="memdesc:a08a8444ba996ff3532885913b8bd7986"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decompress data into a vector of bytes. <br /></td></tr>
-<tr class="separator:a08a8444ba996ff3532885913b8bd7986"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacbd100a5f0f9dc51843c4fb90b0feb3"><td class="memItemLeft" align="right" valign="top"><a id="aacbd100a5f0f9dc51843c4fb90b0feb3"></a>
-std::pair&lt; std::vector&lt; unsigned char &gt;, <a class="el" href="structnbtview_1_1Inflation__Status.html">Inflation_Status</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#aacbd100a5f0f9dc51843c4fb90b0feb3">inflate_sectors</a> (const std::span&lt; unsigned char &gt; input_data)</td></tr>
-<tr class="memdesc:aacbd100a5f0f9dc51843c4fb90b0feb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decompress compressed data into a vector of bytes. <br /></td></tr>
-<tr class="separator:aacbd100a5f0f9dc51843c4fb90b0feb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af44731ec89ee78b8a15db9ac0ed12b64"><td class="memItemLeft" align="right" valign="top"><a id="af44731ec89ee78b8a15db9ac0ed12b64"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>has_compression_header</b> (const unsigned char *data, size_t data_length)</td></tr>
+<tr class="separator:af44731ec89ee78b8a15db9ac0ed12b64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17340db79f2b87e145da9e4a2da3dc8f"><td class="memItemLeft" align="right" valign="top"><a id="a17340db79f2b87e145da9e4a2da3dc8f"></a>
+std::vector&lt; unsigned char &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a17340db79f2b87e145da9e4a2da3dc8f">decompress_data</a> (const unsigned char *compressed_data, size_t data_length)</td></tr>
+<tr class="memdesc:a17340db79f2b87e145da9e4a2da3dc8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decompress data into a vector of bytes. <br /></td></tr>
+<tr class="separator:a17340db79f2b87e145da9e4a2da3dc8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae636739af4d439c8742a4b1fcefa07a6"><td class="memItemLeft" align="right" valign="top"><a id="ae636739af4d439c8742a4b1fcefa07a6"></a>
+std::pair&lt; std::vector&lt; unsigned char &gt;, <a class="el" href="structnbtview_1_1Inflation__Status.html">Inflation_Status</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#ae636739af4d439c8742a4b1fcefa07a6">inflate_sectors</a> (const unsigned char *input_data, size_t input_length)</td></tr>
+<tr class="memdesc:ae636739af4d439c8742a4b1fcefa07a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decompress compressed data into a vector of bytes. <br /></td></tr>
+<tr class="separator:ae636739af4d439c8742a4b1fcefa07a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Input interface</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Deserialize from binary encoded input </p>
 </div></td></tr>
 <tr class="memitem:aa4c7f0bb2225d506fd0ad00d381f537f"><td class="memItemLeft" align="right" valign="top">std::pair&lt; std::string, <a class="el" href="namespacenbtview.html#a9fcb48c3df7749255fcc9f3f9e84f3fa">Tag</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#aa4c7f0bb2225d506fd0ad00d381f537f">read_binary</a> (std::istream &amp;input)</td></tr>
 <tr class="memdesc:aa4c7f0bb2225d506fd0ad00d381f537f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserializes from a stream.  <a href="namespacenbtview.html#aa4c7f0bb2225d506fd0ad00d381f537f">More...</a><br /></td></tr>
 <tr class="separator:aa4c7f0bb2225d506fd0ad00d381f537f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a554d192d3d961c1972fdb7a1eb3e22ce"><td class="memItemLeft" align="right" valign="top"><a id="a554d192d3d961c1972fdb7a1eb3e22ce"></a>
+std::pair&lt; std::string, <a class="el" href="namespacenbtview.html#a9fcb48c3df7749255fcc9f3f9e84f3fa">Tag</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>read_binary</b> (const unsigned char *data, size_t data_length)</td></tr>
+<tr class="separator:a554d192d3d961c1972fdb7a1eb3e22ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a938ea9d0e3e51f465d050f8069887e20"><td class="memItemLeft" align="right" valign="top">std::pair&lt; std::string, <a class="el" href="namespacenbtview.html#a9fcb48c3df7749255fcc9f3f9e84f3fa">Tag</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a938ea9d0e3e51f465d050f8069887e20">read_binary</a> (std::vector&lt; unsigned char &gt; bytes)</td></tr>
 <tr class="memdesc:a938ea9d0e3e51f465d050f8069887e20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserializes from a vector of bytes.  <a href="namespacenbtview.html#a938ea9d0e3e51f465d050f8069887e20">More...</a><br /></td></tr>
 <tr class="separator:a938ea9d0e3e51f465d050f8069887e20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1bcd6d97d058e58820f483830ab91add"><td class="memItemLeft" align="right" valign="top"><a id="a1bcd6d97d058e58820f483830ab91add"></a>
-std::pair&lt; std::string, <a class="el" href="namespacenbtview.html#a9fcb48c3df7749255fcc9f3f9e84f3fa">Tag</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>read_binary</b> (std::span&lt; unsigned char &gt; bytes)</td></tr>
-<tr class="separator:a1bcd6d97d058e58820f483830ab91add"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Output interface</div></td></tr>
 <tr class="memitem:a552afcf07de4c0e568601c95b4bb2486"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a552afcf07de4c0e568601c95b4bb2486">write_binary</a> (const <a class="el" href="namespacenbtview.html#a9fcb48c3df7749255fcc9f3f9e84f3fa">Tag</a> &amp;tag, std::string_view name, std::ostream &amp;output)</td></tr>
 <tr class="memdesc:a552afcf07de4c0e568601c95b4bb2486"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes a tag to a stream.  <a href="namespacenbtview.html#a552afcf07de4c0e568601c95b4bb2486">More...</a><br /></td></tr>

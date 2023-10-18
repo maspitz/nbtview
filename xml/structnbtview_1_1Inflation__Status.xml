@@ -14,7 +14,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.hpp" line="27" column="10" bodyfile="nbtview/zlib_utils.hpp" bodystart="27" bodyend="-1"/>
+        <location file="nbtview/zlib_utils.hpp" line="26" column="10" bodyfile="nbtview/zlib_utils.hpp" bodystart="26" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structnbtview_1_1Inflation__Status_1a5f4d4a4df0ad457e926e6c13d0602865" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -27,7 +27,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.hpp" line="28" column="10" bodyfile="nbtview/zlib_utils.hpp" bodystart="28" bodyend="-1"/>
+        <location file="nbtview/zlib_utils.hpp" line="27" column="10" bodyfile="nbtview/zlib_utils.hpp" bodystart="27" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structnbtview_1_1Inflation__Status_1ac30fc3b1943bd5b4972f4143603f874b" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -40,14 +40,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/zlib_utils.hpp" line="29" column="9" bodyfile="nbtview/zlib_utils.hpp" bodystart="29" bodyend="-1"/>
+        <location file="nbtview/zlib_utils.hpp" line="28" column="9" bodyfile="nbtview/zlib_utils.hpp" bodystart="28" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="nbtview/zlib_utils.hpp" line="26" column="1" bodyfile="nbtview/zlib_utils.hpp" bodystart="26" bodyend="30"/>
+    <location file="nbtview/zlib_utils.hpp" line="25" column="1" bodyfile="nbtview/zlib_utils.hpp" bodystart="25" bodyend="29"/>
     <listofallmembers>
       <member refid="structnbtview_1_1Inflation__Status_1a04829db8e81ddc5806acbd7475d0bec7" prot="public" virt="non-virtual"><scope>nbtview::Inflation_Status</scope><name>complete</name></member>
       <member refid="structnbtview_1_1Inflation__Status_1a5f4d4a4df0ad457e926e6c13d0602865" prot="public" virt="non-virtual"><scope>nbtview::Inflation_Status</scope><name>corrupt</name></member>

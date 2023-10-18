@@ -119,7 +119,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Region.hpp" line="51" column="10" bodyfile="nbtview/Region.cpp" bodystart="13" bodyend="26"/>
+        <location file="nbtview/Region.hpp" line="51" column="10" bodyfile="nbtview/Region.cpp" bodystart="12" bodyend="25"/>
       </memberdef>
       <memberdef kind="function" id="structnbtview_1_1Region_1a092cac9d992ff5bcc159fa2d4d87328e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -141,7 +141,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Region.hpp" line="55" column="10" bodyfile="nbtview/Region.cpp" bodystart="28" bodyend="44"/>
+        <location file="nbtview/Region.hpp" line="55" column="10" bodyfile="nbtview/Region.cpp" bodystart="27" bodyend="43"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
