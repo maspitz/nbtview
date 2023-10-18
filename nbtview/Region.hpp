@@ -87,7 +87,8 @@ class Region_File {
     std::ifstream file;
     Region metadata;
 
-    Region::Sector_Data read_sector(int sector_index);
+    Region::Sector_Data read_sectors(int sector_index, int sector_count);
+    Region::Sector_Data read_data(uint64_t offset, size_t data_length);
 };
 
 } // namespace nbtview

@@ -1,7 +1,6 @@
 #include <benchmark/benchmark.h>
 
 #include <fstream>
-#include <span>
 #include <vector>
 
 #include "Region.hpp"
@@ -24,7 +23,7 @@ static void BM_chunk_file_reads(benchmark::State &state) {
             }
             auto chunk_data = reg.get_chunk_data(i);
             auto [root_name, root_tag] =
-                nbtview::read_binary(std::span<unsigned char>(chunk_data));
+                nbtview::read_binary(chunk_data.data(), chunk_data.size());
 
             if (!std::holds_alternative<nbtview::Compound>(root_tag)) {
                 continue;
@@ -68,9 +67,10 @@ static void BM_chunk_decoding(benchmark::State &state) {
     std::vector<std::vector<unsigned char>> chunk_data;
     for (int i = 0; i < nbtview::Region::chunk_count; ++i) {
         chunk_data.push_back(reg.get_chunk_data(i));
-        while (nbtview::has_compression_header(chunk_data[i])) {
-            chunk_data[i] = nbtview::decompress_data(
-                std::span<unsigned char>(chunk_data[i]));
+        while (nbtview::has_compression_header(chunk_data[i].data(),
+                                               chunk_data[i].size())) {
+            chunk_data[i] = nbtview::decompress_data(chunk_data[i].data(),
+                                                     chunk_data[i].size());
         }
     }
 
@@ -82,8 +82,8 @@ static void BM_chunk_decoding(benchmark::State &state) {
             if (chunk_length == 0) {
                 continue;
             }
-            auto [root_name, root_tag] =
-                nbtview::read_binary(std::span<unsigned char>(chunk_data[i]));
+            auto [root_name, root_tag] = nbtview::read_binary(
+                chunk_data[i].data(), chunk_data[i].size());
 
             if (!std::holds_alternative<nbtview::Compound>(root_tag)) {
                 continue;

@@ -11,17 +11,16 @@
 #ifndef ZLIB_UTILS_H_
 #define ZLIB_UTILS_H_
 
-#include <span>
 #include <utility>
 #include <vector>
 
 namespace nbtview {
 
-bool has_compression_header(const std::span<unsigned char> data);
+bool has_compression_header(const unsigned char *data, size_t data_length);
 
 //! Decompress data into a vector of bytes.
-std::vector<unsigned char>
-decompress_data(std::span<unsigned char> compressed_data);
+std::vector<unsigned char> decompress_data(const unsigned char *compressed_data,
+                                           size_t data_length);
 
 struct Inflation_Status {
     bool complete;
@@ -31,7 +30,7 @@ struct Inflation_Status {
 
 //! Decompress compressed data into a vector of bytes.
 std::pair<std::vector<unsigned char>, Inflation_Status>
-inflate_sectors(const std::span<unsigned char> input_data);
+inflate_sectors(const unsigned char *input_data, size_t input_length);
 
 } // namespace nbtview
 

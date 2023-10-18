@@ -1,6 +1,5 @@
 #include <algorithm>
 #include <istream>
-#include <span>
 #include <string>
 #include <utility>
 #include <vector>
@@ -50,20 +49,22 @@ std::pair<std::string, Tag> read_binary(std::istream &input) {
     return read_binary(bytes);
 }
 
-std::pair<std::string, Tag> read_binary(std::vector<unsigned char> bytes) {
-    return read_binary(std::span<unsigned char>(bytes));
-}
-
-std::pair<std::string, Tag> read_binary(std::span<unsigned char> bytes) {
-    std::vector<unsigned char> data_holder;
-    if (has_compression_header(bytes)) {
-        data_holder = decompress_data(bytes);
-        bytes = std::span(data_holder);
+std::pair<std::string, Tag> read_binary(const unsigned char *data,
+                                        size_t data_length) {
+    std::vector<unsigned char> inflated_data_holder;
+    if (has_compression_header(data, data_length)) {
+        inflated_data_holder = decompress_data(data, data_length);
+        data = inflated_data_holder.data();
+        data_length = inflated_data_holder.size();
     }
-    BinaryDeserializer reader(bytes.data(), bytes.size());
+    BinaryDeserializer reader(data, data_length);
     auto root_data = reader.deserialize();
     auto &root_name = root_data.first;
     return {root_name, std::move(root_data.second)};
+}
+
+std::pair<std::string, Tag> read_binary(std::vector<unsigned char> bytes) {
+    return read_binary(bytes.data(), bytes.size());
 }
 
 void write_binary(const Tag &tag, std::string_view name, std::ostream &output) {

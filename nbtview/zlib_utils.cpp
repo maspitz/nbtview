@@ -1,18 +1,18 @@
 // zlib_utils.cpp
 
 #include <iostream>
-#include <span>
 #include <utility>
 #include <vector>
 
+#define ZLIB_CONST
 #include <zlib.h>
 
 #include "zlib_utils.hpp"
 
 namespace nbtview {
 
-bool has_compression_header(const std::span<unsigned char> data) {
-    if (data.size() < 4) {
+bool has_compression_header(const unsigned char *data, size_t data_length) {
+    if (data_length < 4) {
         return false;
     }
 
@@ -74,15 +74,15 @@ namespace zlib {
          * Returns Z_NEED_DICT, Z_STREAM_ERROR, Z_MEM_ERROR, Z_BUF_ERROR:
          * for various other conditions under which inflation cannot continue.
          * */
-        int do_inflate(std::span<unsigned char> input,
+        int do_inflate(const unsigned char *input, size_t input_length,
                        std::vector<unsigned char> &output) {
             if (stream_.avail_in > 0) {
                 std::cerr << "Warning: new input overrides existing unconsumed "
                              "input in Inflater."
                           << std::endl;
             }
-            stream_.avail_in = static_cast<uInt>(input.size());
-            stream_.next_in = static_cast<Bytef *>(input.data());
+            stream_.avail_in = static_cast<uInt>(input_length);
+            stream_.next_in = static_cast<const Bytef *>(input);
 
             int status = Z_OK;
             while ((stream_.avail_in > 0) && (status == Z_OK)) {
@@ -96,7 +96,7 @@ namespace zlib {
                               buffer_ + output_byte_count);
             }
 
-            input_bytes_read_ = input.size() - stream_.avail_in;
+            input_bytes_read_ = input_length - stream_.avail_in;
             return status;
         }
 
@@ -112,11 +112,11 @@ namespace zlib {
 
 } // namespace zlib
 
-std::vector<unsigned char>
-decompress_data(std::span<unsigned char> input_data) {
+std::vector<unsigned char> decompress_data(const unsigned char *data,
+                                           size_t data_length) {
     zlib::Inflater stream;
     std::vector<unsigned char> output_data;
-    int status = stream.do_inflate(input_data, output_data);
+    int status = stream.do_inflate(data, data_length, output_data);
     if (status != Z_STREAM_END) {
         throw std::runtime_error(
             "Could not decompress data (likely corrupt or incomplete)");
@@ -125,13 +125,13 @@ decompress_data(std::span<unsigned char> input_data) {
 }
 
 std::pair<std::vector<unsigned char>, Inflation_Status>
-inflate_sectors(const std::span<unsigned char> input_data) {
+inflate_sectors(const unsigned char *input_data, size_t input_length) {
     zlib::Inflater stream;
     std::vector<unsigned char> output;
     Inflation_Status stat{
         .complete = false, .corrupt = false, .corrupt_sector = -1};
 
-    int status = stream.do_inflate(input_data, output);
+    int status = stream.do_inflate(input_data, input_length, output);
     if (status == Z_STREAM_END) {
         stat.complete = true;
     } else if (status != Z_OK) {

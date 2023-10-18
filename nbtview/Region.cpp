@@ -2,7 +2,6 @@
 
 #include <fstream>
 #include <ios>
-#include <span>
 #include <string>
 #include <vector>
 
@@ -45,22 +44,29 @@ void Region::save_to_sectors(Sector_Data &offsets,
 
 Region_File::Region_File(const std::string &filename)
     : name(filename), file(filename) {
-    metadata.load_from_sectors(read_sector(0), read_sector(1));
+    metadata.load_from_sectors(read_sectors(0, 1), read_sectors(1, 1));
 }
 
-Region::Sector_Data Region_File::read_sector(int sector_index) {
-    Region::Sector_Data sector(Region::sector_length);
-    file.seekg(Region::sector_length * sector_index, std::ios::beg);
-    file.read(reinterpret_cast<char *>(sector.data()), sector.size());
+Region::Sector_Data Region_File::read_sectors(int sector_index,
+                                              int sector_count) {
+    return read_data(Region::sector_length * sector_index,
+                     Region::sector_length * sector_count);
+}
+
+Region::Sector_Data Region_File::read_data(uint64_t offset,
+                                           size_t data_length) {
+    Region::Sector_Data buffer(data_length);
+    file.seekg(offset, std::ios::beg);
+    file.read(reinterpret_cast<char *>(buffer.data()), buffer.size());
     if (!file) {
-        throw std::runtime_error("Could not read sector " +
-                                 std::to_string(sector_index) +
-                                 " of region file " + name);
+        throw std::runtime_error("Could not read from offset " +
+                                 std::to_string(offset) + " of region file " +
+                                 name);
     }
-    return sector;
+    return buffer;
 }
 
-uint32_t chunk_data_length(std::span<unsigned char> chunk_header) {
+uint32_t chunk_data_length(const std::vector<unsigned char> &chunk_header) {
     if (chunk_header.size() < 5) {
         throw std::runtime_error("Chunk header is too short");
     }
@@ -80,22 +86,18 @@ std::vector<unsigned char> Region_File::get_chunk_data(int chunk_index) {
         return std::vector<unsigned char>{};
     }
 
-    Region::Sector_Data first_sector = read_sector(sector_offset);
-
-    uint32_t data_length = chunk_data_length(first_sector);
+    const int chunk_header_length = 5;
+    uint64_t chunk_offset = Region::sector_length * sector_offset;
+    auto chunk_header = read_data(chunk_offset, chunk_header_length);
+    uint32_t data_length = chunk_data_length(chunk_header);
 
     if ((data_length + 5) > sector_count * Region::sector_length) {
         throw std::runtime_error("Reported encoded chunk length exceeds "
                                  "allocated sectors for chunk");
     }
 
-    std::vector<unsigned char> chunk_data(data_length);
-    file.seekg(Region::sector_length * sector_offset + 5, std::ios::beg);
-    file.read(reinterpret_cast<char *>(chunk_data.data()), data_length);
-    if (!file) {
-        throw std::runtime_error("Input error when reading chunk data");
-    }
-
+    auto chunk_data =
+        read_data(chunk_offset + chunk_header_length, data_length);
     return chunk_data;
 }
 
