@@ -12,11 +12,11 @@ namespace nbtview {
 
 // deserialize reads the tag type, tag name, and tag payload, and returns the
 // tag's name and value.
-std::pair<std::string, Tag> BinaryDeserializer::deserialize() {
+std::pair<std::string, TagData> BinaryDeserializer::deserialize() {
     // read type id byte
     TypeCode type = static_cast<TypeCode>(scanner.read<int8_t>());
     if (type == TypeCode::End) {
-        return std::make_pair("", Tag(End()));
+        return std::make_pair("", TagData(End()));
     }
     std::string tag_name = deserialize_string();
     return std::make_pair(tag_name, deserialize_typed_value(type));
@@ -25,11 +25,11 @@ std::pair<std::string, Tag> BinaryDeserializer::deserialize() {
 List BinaryDeserializer::deserialize_list() {
     auto list_type = static_cast<TypeCode>(scanner.read<int8_t>());
     auto list_length = scanner.read<int32_t>();
-    auto lst = List(list_type);
+    List lst;
     lst.reserve(list_length);
     for (int32_t idx = 0; idx < list_length; ++idx) {
-        auto next_tag = deserialize_typed_value(list_type);
-        lst.emplace_back(std::move(next_tag));
+        auto next_tag_data = deserialize_typed_value(list_type);
+        lst.emplace_back(std::move(next_tag_data));
     }
     return lst;
 }
@@ -55,7 +55,7 @@ std::string BinaryDeserializer::deserialize_string() {
     return scanner.read_string(bytes);
 }
 
-Tag BinaryDeserializer::deserialize_typed_value(TypeCode type) {
+TagData BinaryDeserializer::deserialize_typed_value(TypeCode type) {
     switch (type) {
     case TypeCode::Byte:
         return scanner.read<Byte>();
@@ -70,7 +70,7 @@ Tag BinaryDeserializer::deserialize_typed_value(TypeCode type) {
     case TypeCode::Double:
         return scanner.read<Double>();
     case TypeCode::Byte_Array:
-        return deserialize_array<Byte>();
+        return std::make_unique<Byte_Array>(deserialize_array<Byte>());
     case TypeCode::String:
         return deserialize_string();
     case TypeCode::List:

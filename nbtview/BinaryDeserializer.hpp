@@ -28,7 +28,7 @@ class BinaryDeserializer : public Deserializer {
         : scanner(buffer, buffer_length) {}
     ~BinaryDeserializer() = default;
 
-    std::pair<std::string, Tag> deserialize() override;
+    std::pair<std::string, TagData> deserialize() override;
 
   private:
     List deserialize_list();
@@ -38,7 +38,7 @@ class BinaryDeserializer : public Deserializer {
     template <typename T> std::vector<T> deserialize_array();
     std::string deserialize_string();
 
-    Tag deserialize_typed_value(TypeCode type);
+    TagData deserialize_typed_value(TypeCode type);
 };
 
 } // namespace nbtview
