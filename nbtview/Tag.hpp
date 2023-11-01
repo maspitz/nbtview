@@ -1,6 +1,6 @@
 /**
  * @file Tag.hpp
- * @brief Interfaces for read/write access to NBT tag data
+ * @brief Stores and provides access to NBT tag data
  * @author Michael Spitznagel
  * @copyright Copyright 2023 Michael Spitznagel. Released under the Boost
  * Software License 1.0
@@ -78,8 +78,6 @@ const char *typecode_string(TypeCode type) {
         return "Invalid TypeCode";
     }
 }
-
-class Tag;
 
 //! placeholder type to indicate the absence of a data value
 struct None {};
