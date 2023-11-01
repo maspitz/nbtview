@@ -52,7 +52,7 @@ fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
  *
  * @throw std::runtime_error if the input could not be decoded successfully.
  * */
-std::pair<std::string, Tag> read_binary(std::istream &input);
+std::pair<std::string, TagData> read_binary(std::istream &input);
 /**
  * @brief Deserializes from a vector of bytes.
  * @param bytes A vector of unsigned char.
@@ -60,10 +60,10 @@ std::pair<std::string, Tag> read_binary(std::istream &input);
  *
  * @throw std::runtime_error if the input could not be decoded successfully.
  * */
-std::pair<std::string, Tag> read_binary(std::vector<unsigned char> bytes);
+std::pair<std::string, TagData> read_binary(std::vector<unsigned char> bytes);
 
-std::pair<std::string, Tag> read_binary(const unsigned char *data,
-                                        size_t data_length);
+std::pair<std::string, TagData> read_binary(const unsigned char *data,
+                                            size_t data_length);
 /**
  * @}
  * */
@@ -83,7 +83,8 @@ std::pair<std::string, Tag> read_binary(const unsigned char *data,
  * parameters are provided because Compound and List are move-only classes,
  * which can prevent their implicit conversion to const Tag.
  * */
-void write_binary(const Tag &tag, std::string_view name, std::ostream &output);
+void write_binary(const TagData &tag, std::string_view name,
+                  std::ostream &output);
 void write_binary(const Compound &tag, std::string_view name,
                   std::ostream &output);
 void write_binary(const List &tag, std::string_view name, std::ostream &output);
@@ -100,7 +101,7 @@ void write_binary(const List &tag, std::string_view name, std::ostream &output);
  * parameters are provided because Compound and List are move-only classes,
  * which can prevent their implicit conversion to const Tag.
  * */
-std::ostream &operator<<(std::ostream &os, const Tag &tag);
+std::ostream &operator<<(std::ostream &os, const TagData &tag);
 std::ostream &operator<<(std::ostream &os, const Compound &tag);
 std::ostream &operator<<(std::ostream &os, const List &tag);
 /**
