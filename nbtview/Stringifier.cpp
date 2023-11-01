@@ -16,7 +16,7 @@ struct StringifyTag {
         std::string output_string;
         for (const auto &elt : x) {
             const std::string &elt_name(elt.first);
-            const Tag &elt_value(elt.second);
+            const TagData &elt_value(elt.second);
             if (output_string.empty()) {
                 output_string = "{";
             } else {
@@ -70,7 +70,7 @@ struct StringifyTag {
     }
 };
 
-std::string tag_to_string(const Tag &tag) {
+std::string tag_to_string(const TagData &tag) {
     return std::visit(StringifyTag(), tag);
 }
 
@@ -101,7 +101,7 @@ struct StringifyTagType {
     std::string operator()(const Long_Array &x) { return "Long_Array"; }
 };
 
-std::string tag_type_to_string(const Tag &tag) {
+std::string tag_type_to_string(const TagData &tag) {
     return std::visit(StringifyTagType(), tag);
 }
 
