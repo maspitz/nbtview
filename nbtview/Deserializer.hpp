@@ -19,12 +19,12 @@
 namespace nbtview {
 
 // Builder design pattern: the concrete subclasses of Deserializer are
-// responsible for building TagData objects.
+// responsible for building Tag objects.
 
 class Deserializer {
   public:
     virtual ~Deserializer() = default;
-    virtual std::pair<std::string, TagData> deserialize() = 0;
+    virtual std::pair<std::string, Tag> deserialize() = 0;
 };
 
 } // namespace nbtview

@@ -36,7 +36,7 @@ fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
     }
 }
 
-std::pair<std::string, TagData> read_binary(std::istream &input) {
+std::pair<std::string, Tag> read_binary(std::istream &input) {
     // Get stream size
     input.seekg(0, input.end);
     std::streampos n_bytes = input.tellg();
@@ -48,8 +48,8 @@ std::pair<std::string, TagData> read_binary(std::istream &input) {
     return read_binary(bytes);
 }
 
-std::pair<std::string, TagData> read_binary(const unsigned char *data,
-                                            size_t data_length) {
+std::pair<std::string, Tag> read_binary(const unsigned char *data,
+                                        size_t data_length) {
     std::vector<unsigned char> inflated_data_holder;
     if (has_compression_header(data, data_length)) {
         inflated_data_holder = decompress_data(data, data_length);
@@ -62,7 +62,7 @@ std::pair<std::string, TagData> read_binary(const unsigned char *data,
     return {root_name, std::move(root_data.second)};
 }
 
-std::pair<std::string, TagData> read_binary(std::vector<unsigned char> bytes) {
+std::pair<std::string, Tag> read_binary(std::vector<unsigned char> bytes) {
     return read_binary(bytes.data(), bytes.size());
 }
 

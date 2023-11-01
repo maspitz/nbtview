@@ -45,7 +45,7 @@ namespace detail {
             BinaryWriter::write(t->tag_type, output);
             BinaryWriter::write(static_cast<Int>(t->data.size()), output);
             for (Tag &elt : t->data) {
-                const TagData &td = elt.tag_data();
+                const Tag &td = elt.tag_data();
                 std::visit(*this, td);
                 std::visit(*this, elt.tag_data());
             }

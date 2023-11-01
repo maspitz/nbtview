@@ -12,11 +12,11 @@ namespace nbtview {
 
 // deserialize reads the tag type, tag name, and tag payload, and returns the
 // tag's name and value.
-std::pair<std::string, TagData> BinaryDeserializer::deserialize() {
+std::pair<std::string, Tag> BinaryDeserializer::deserialize() {
     // read type id byte
     TypeCode type = static_cast<TypeCode>(scanner.read<int8_t>());
     if (type == TypeCode::End) {
-        return std::make_pair("", TagData(End()));
+        return std::make_pair("", Tag(End()));
     }
     std::string tag_name = deserialize_string();
     return std::make_pair(tag_name, deserialize_typed_value(type));
@@ -55,7 +55,7 @@ std::string BinaryDeserializer::deserialize_string() {
     return scanner.read_string(bytes);
 }
 
-TagData BinaryDeserializer::deserialize_typed_value(TypeCode type) {
+Tag BinaryDeserializer::deserialize_typed_value(TypeCode type) {
     switch (type) {
     case TypeCode::Byte:
         return scanner.read<Byte>();

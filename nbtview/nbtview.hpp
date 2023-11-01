@@ -52,7 +52,7 @@ fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
  *
  * @throw std::runtime_error if the input could not be decoded successfully.
  * */
-std::pair<std::string, TagData> read_binary(std::istream &input);
+std::pair<std::string, Tag> read_binary(std::istream &input);
 /**
  * @brief Deserializes from a vector of bytes.
  * @param bytes A vector of unsigned char.
@@ -60,10 +60,10 @@ std::pair<std::string, TagData> read_binary(std::istream &input);
  *
  * @throw std::runtime_error if the input could not be decoded successfully.
  * */
-std::pair<std::string, TagData> read_binary(std::vector<unsigned char> bytes);
+std::pair<std::string, Tag> read_binary(std::vector<unsigned char> bytes);
 
-std::pair<std::string, TagData> read_binary(const unsigned char *data,
-                                            size_t data_length);
+std::pair<std::string, Tag> read_binary(const unsigned char *data,
+                                        size_t data_length);
 /**
  * @}
  * */
@@ -79,6 +79,7 @@ std::pair<std::string, TagData> read_binary(const unsigned char *data,
  *
  * @note The binary encoding of the tag is in the NBT format.
  * */
+void write_binary(const Tag &tag, std::string_view name, std::ostream &output);
 /**
  * @}
  * */
