@@ -8,7 +8,6 @@
 
 #include "BinaryDeserializer.hpp"
 #include "Serializer.hpp"
-#include "Stringifier.hpp"
 #include "Tag.hpp"
 #include "nbtview.hpp"
 
@@ -71,11 +70,6 @@ void write_binary(const Tag &tag, std::string_view name, std::ostream &output) {
     BinaryWriter::write(std::visit(TagID(), tag.tag_data()), output);
     BinaryWriter::write_string(name, output);
     std::visit(detail::PayloadSerializer{output}, tag.tag_data());
-}
-
-std::ostream &operator<<(std::ostream &os, const Tag &tag) {
-    os << tag_to_string(tag.tag_data());
-    return os;
 }
 
 } // namespace nbtview
