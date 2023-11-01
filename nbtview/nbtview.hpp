@@ -78,32 +78,7 @@ std::pair<std::string, TagData> read_binary(const unsigned char *data,
  * @param output An ostream opened with ios::binary.
  *
  * @note The binary encoding of the tag is in the NBT format.
- *
- * @note Overloads of the write_binary() function for Compound and List
- * parameters are provided because Compound and List are move-only classes,
- * which can prevent their implicit conversion to const Tag.
  * */
-void write_binary(const TagData &tag, std::string_view name,
-                  std::ostream &output);
-void write_binary(const Compound &tag, std::string_view name,
-                  std::ostream &output);
-void write_binary(const List &tag, std::string_view name, std::ostream &output);
-
-/**
- * @brief Outputs a string representation of a tag to a stream.
- * @param tag The tag to be written as a string.
- * @param name The name specified for the tag.
- * @param output An ostream opened with ios::binary.
- *
- * @note The string representation of the tag structure is in the SNBT format.
- *
- * @note Overloads of the stream insertion operator for Compound and List
- * parameters are provided because Compound and List are move-only classes,
- * which can prevent their implicit conversion to const Tag.
- * */
-std::ostream &operator<<(std::ostream &os, const TagData &tag);
-std::ostream &operator<<(std::ostream &os, const Compound &tag);
-std::ostream &operator<<(std::ostream &os, const List &tag);
 /**
  * @}
  * */
