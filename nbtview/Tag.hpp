@@ -11,15 +11,37 @@
 #ifndef NBT_TAG_H_
 #define NBT_TAG_H_
 
+#include <cstddef>
 #include <cstdint>
 #include <map>
 #include <memory>
+#include <stdexcept>
 #include <string>
 #include <variant>
 #include <vector>
 
 //! Utilities to read, write, and manipulate NBT data
 namespace nbtview {
+
+class Tag;
+
+//! TypeCode is a one-byte encoding of the data type of an NBT tag.
+enum class TypeCode : char {
+    End = 0,
+    Byte = 1,
+    Short = 2,
+    Int = 3,
+    Long = 4,
+    Float = 5,
+    Double = 6,
+    Byte_Array = 7,
+    String = 8,
+    List = 9,
+    Compound = 10,
+    Int_Array = 11,
+    Long_Array = 12,
+    None = 99
+};
 
 //! NBT End tag: marks the end of a Compound Tag's payload
 using End = unsigned char;
@@ -37,49 +59,207 @@ using Float = float;
 using Double = double;
 //! array of Byte
 using Byte_Array = std::vector<Byte>;
+using Byte_Array_Ptr = std::unique_ptr<Byte_Array>;
 //! string of characters (supports UTF-8)
 using String = std::string;
+using String_Ptr = std::unique_ptr<String>;
+//! array of Tag objects
+struct List {
+    TypeCode tag_type;
+    std::vector<Tag> data;
+};
+using List_Ptr = std::unique_ptr<List>;
+//! map from string to Tag objects
+using Compound = std::map<std::string, Tag>;
+using Compound_Ptr = std::unique_ptr<Compound>;
 //! array of Int
 using Int_Array = std::vector<Int>;
+using Int_Array_Ptr = std::unique_ptr<Int_Array>;
 //! array of Long
 using Long_Array = std::vector<Long>;
-class List;
-class Compound;
+using Long_Array_Ptr = std::unique_ptr<Long_Array>;
+//! placeholder type to indicate the absence of a data value
+struct None {};
+
+using TagData = std::variant<None, End, Byte, Short, Int, Long, Float, Double,
+                             Byte_Array_Ptr, String_Ptr, List_Ptr, Compound_Ptr,
+                             Int_Array_Ptr, Long_Array_Ptr>;
 
 /**
- *  @brief Tag holds the value of an NBT tag.
- *
- *  If the NBT tag has a name, it is stored in the Compound tag that contains
- *  it. The root tag's name (if it has one) is not stored.
- *
- *  You can use the functions provided by <a
- *  href="https://en.cppreference.com/w/cpp/header/variant">&lt;variant&gt;</a>
- *  to access a Tag's type and value. However, because you usually know what
- *  type you expect a given tag to be, it is generally more convenient to get an
- *  NBT value of that type via the Compound::get<T> method.
+ *  @brief Tag holds an NBT tag and provides basic access to it.
  */
-using Tag = std::variant<End, Byte, Short, Int, Long, Float, Double, Byte_Array,
-                         String, List, Compound, Int_Array, Long_Array>;
 
-//! TypeCode is a one-byte encoding of the data type of an NBT tag.
-enum class TypeCode : char {
-    End = 0,
-    Byte = 1,
-    Short = 2,
-    Int = 3,
-    Long = 4,
-    Float = 5,
-    Double = 6,
-    Byte_Array = 7,
-    String = 8,
-    List = 9,
-    Compound = 10,
-    Int_Array = 11,
-    Long_Array = 12
+class Tag {
+  public:
+    // Constructors
+    Tag() : data(None()) {}
+    Tag(End x) : data(x) {}
+    Tag(Byte x) : data(x) {}
+    Tag(Short x) : data(x) {}
+    Tag(Int x) : data(x) {}
+    Tag(Long x) : data(x) {}
+    Tag(Float x) : data(x) {}
+    Tag(Double x) : data(x) {}
+    Tag(Byte_Array &&x) : data(std::make_unique<Byte_Array>(std::move(x))) {}
+    Tag(const Byte_Array &x) : data(std::make_unique<Byte_Array>(x)) {}
+    Tag(String &&x) : data(std::make_unique<String>(std::move(x))) {}
+    Tag(const String &x) : data(std::make_unique<String>(x)) {}
+    Tag(List &&x) : data(std::make_unique<List>(std::move(x))) {}
+    Tag(Compound &&x) : data(std::make_unique<Compound>(std::move(x))) {}
+    Tag(Int_Array &&x) : data(std::make_unique<Int_Array>(std::move(x))) {}
+    Tag(const Int_Array &x) : data(std::make_unique<Int_Array>(x)) {}
+    Tag(Long_Array &&x) : data(std::make_unique<Long_Array>(std::move(x))) {}
+    Tag(const Long_Array &x) : data(std::make_unique<Long_Array>(x)) {}
+
+    // TODO consider a function that returns type of an entry.
+    /**
+     *  @brief Tests whether a Compound Tag contains a particular %Tag
+     *
+     *  @param name the name of the %Tag
+     */
+    bool contains(const std::string &name) const {
+        if (!std::holds_alternative<Compound_Ptr>(data)) {
+            throw std::runtime_error(
+                "Can't get named entries from a non-Compound Tag");
+        }
+        const auto &cmpd = std::get<Compound_Ptr>(data);
+        return cmpd->find(name) != cmpd->end();
+    }
+
+    // TODO write specializations so that we can get Compound& instead of just
+    // Compound_Ptr&
+    /**
+     * @brief Gets a data entry from a Compound Tag
+     *
+     * @tparam T the type of data to be accessed.
+     * @param name the name of the element to be accessed.
+     * @return Reference to the entry's data.
+     * @throw std::runtime_error if this is not a Compound Tag.
+     * @throw std::out_of_range if no element of that name is present.
+     * @throw std::runtime_error if the element of that name is not of type T.
+     */
+    template <typename T> T &get(const std::string &name) {
+        if (!std::holds_alternative<Compound_Ptr>(data)) {
+            throw std::runtime_error(
+                "Can't get named entries from a non-Compound Tag");
+        }
+        Tag &tg = std::get<Compound_Ptr>(data)->at(name);
+        if (!std::holds_alternative<T>(tg)) {
+            throw std::runtime_error("Element " + name +
+                                     " is not of the requested type");
+        }
+        return std::get<T>(tg);
+    }
+
+    /* So, here's the design question.
+     * Do we want ease of access in navigating a compound tag hierarchy?
+     * I.e,  my_region["level"]["structures"]["starts"]    (*)
+     * This can be accomplished by using operator[] to return a Tag.
+     *
+     * Or do we want access more like:
+     * my_region.get<Compound>("level").get<Compound>("structures").get<Compound>("starts")
+     * (**)
+     *
+     * (*) is more succinct, but note that we could introduce a separator syntax
+     * to achieve similar brevity in a customized accessor:
+     *
+     * my_region.path_get("/level/structures/starts")
+     *
+     * Or maybe use '.' as a separator.  Some JSON utilities might do this for
+     * nested fields.
+     *
+     * LET'S MAKE A WISH LIST:
+     *
+     * 1> Convenient access to nested tags   [soln: path based accessor adapter]
+     * 2> Easy access to maybe/optional tags  [soln: provide a std::optional
+     * accessor layer?]  [or None tag?] 3>
+     *
+     */
+
+    /**
+     * @brief Returns the size of a container %Tag.
+     *
+     * @return Number of elements of Tag.
+     * @throw  std::runtime_error If Tag is not of a container type: Array,
+     * String, List, or Compound.
+     */
+    std::size_t size() const {
+        if (std::holds_alternative<Byte_Array_Ptr>(data)) {
+            return std::get<Byte_Array_Ptr>(data)->size();
+        } else if (std::holds_alternative<String_Ptr>(data)) {
+            return std::get<String_Ptr>(data)->size();
+        } else if (std::holds_alternative<List_Ptr>(data)) {
+            return std::get<List_Ptr>(data)->data.size();
+        } else if (std::holds_alternative<Compound_Ptr>(data)) {
+            return std::get<Compound_Ptr>(data)->size();
+        } else if (std::holds_alternative<Int_Array_Ptr>(data)) {
+            return std::get<Int_Array_Ptr>(data)->size();
+        } else if (std::holds_alternative<Long_Array_Ptr>(data)) {
+            return std::get<Long_Array_Ptr>(data)->size();
+        } else {
+            throw std::runtime_error("Called size() on a non-container tag.");
+        }
+    }
+
+    /**
+     * @brief Checks if a Tag of container type is empty.
+     *
+     * @return True if empty.
+     * @throw  std::runtime_error If Tag is not of a container type: Array,
+     * String, List, or Compound.
+     */
+    bool empty() const {
+        if (std::holds_alternative<Byte_Array_Ptr>(data)) {
+            return std::get<Byte_Array_Ptr>(data)->empty();
+        } else if (std::holds_alternative<String_Ptr>(data)) {
+            return std::get<String_Ptr>(data)->empty();
+        } else if (std::holds_alternative<List_Ptr>(data)) {
+            return std::get<List_Ptr>(data)->data.empty();
+        } else if (std::holds_alternative<Compound_Ptr>(data)) {
+            return std::get<Compound_Ptr>(data)->empty();
+        } else if (std::holds_alternative<Int_Array_Ptr>(data)) {
+            return std::get<Int_Array_Ptr>(data)->empty();
+        } else if (std::holds_alternative<Long_Array_Ptr>(data)) {
+            return std::get<Long_Array_Ptr>(data)->empty();
+        } else {
+            throw std::runtime_error("Called empty() on a non-container tag.");
+        }
+    }
+
+    // methods for list and array tags
+    /**
+     * @brief Provides access to the data of a particular entry of a List %Tag
+     * or Array %Tag.
+     *
+     * @tparam T the type of elements in the container: Byte, Int, Long, or Tag.
+     * @param index the index of the element to be accessed.
+     * @return Read/write reference to the element.
+     * @throw std::out_of_range_error If index is out of range.
+     * @throw std::runtime_error  If T is of the wrong type or the %Tag is not a
+     * container.
+     */
+    template <typename T> T &get(size_t index) {
+        if (std::holds_alternative<std::unique_ptr<std::vector<T>>>(data)) {
+            return std::get<std::unique_ptr<std::vector<T>>>(data)->at(index);
+        } else {
+            throw std::runtime_error("Mismatch in requested tag data type.");
+        }
+    }
+
+    TagData &tag_data() { return data; }
+    const TagData &tag_data() const { return data; }
+
+  private:
+    // TagData is a variant type.  Some of its alternatives are unique_ptrs.
+    // *** Invariant: We require that `data` cannot be a null pointer. ***
+    // This is so that users of Tag::tag_data() may dereference without checking
+    // for null.
+    TagData data;
 };
 
 //! TagID is used with std::visit to get the TypeCode of a given Tag
 struct TagID {
+    auto operator()(const None &x) { return TypeCode::None; }
     auto operator()(const End &x) { return TypeCode::End; }
     auto operator()(const Byte &x) { return TypeCode::Byte; }
     auto operator()(const Short &x) { return TypeCode::Short; }
@@ -88,165 +268,18 @@ struct TagID {
     auto operator()(const Float &x) { return TypeCode::Float; }
     auto operator()(const Double &x) { return TypeCode::Double; }
     auto operator()(const Byte_Array &x) { return TypeCode::Byte_Array; }
+    auto operator()(const Byte_Array_Ptr &x) { return TypeCode::Byte_Array; }
     auto operator()(const String &x) { return TypeCode::String; }
+    auto operator()(const String_Ptr &x) { return TypeCode::String; }
     auto operator()(const List &x) { return TypeCode::List; }
+    auto operator()(const List_Ptr &x) { return TypeCode::List; }
     auto operator()(const Compound &x) { return TypeCode::Compound; }
+    auto operator()(const Compound_Ptr &x) { return TypeCode::Compound; }
     auto operator()(const Int_Array &x) { return TypeCode::Int_Array; }
+    auto operator()(const Int_Array_Ptr &x) { return TypeCode::Int_Array; }
     auto operator()(const Long_Array &x) { return TypeCode::Long_Array; }
+    auto operator()(const Long_Array_Ptr &x) { return TypeCode::Long_Array; }
 };
-
-/**
- * @brief  Compound is an associative container that holds Tags by their string
- * names.
- *
- *  The most typical use is to retrieve a reference
- *  to an existing tag of a given type using Compound::get, which can then be
- *  read or modified in place. New tags of a given type can be added via
- *  Compound::put<T>.
- *
- *  For less typical use, Compound does provide access via iterators as well
- *  as more access to Tag references with Compound::at() and in-place
- *  construction of elements with Compound::emplace().
- */
-class Compound {
-  public:
-    Compound() : data(std::make_unique<std::map<std::string, Tag>>()) {}
-
-    /**
-     *  @brief Tests whether the Compound contains a particular Tag
-     *
-     *  @tparam T the type of the Tag's data
-     *  @param name the name of the Tag
-     *  @return True only if the Compound contains a tag with both the correct
-     * name and type
-     */
-    template <typename T> bool contains(const std::string &name) const;
-
-    /**
-     * @brief   Provides access to the data of a particular %Tag in the
-     * %Compound
-     *
-     * @tparam T the type of the data to be accessed
-     * @param name the name of the %Tag to be accessed
-     * @return  Read/write reference to a %Tag's data.
-     * @throw  std::out_of_range  If @a name is not present.
-     * @throw  std::bad_variant_access  If @a T is the wrong type.
-     */
-    template <typename T> T &get(const std::string &name);
-
-    /**
-     *  @brief Assigns a value to a particular %Tag in the %Compound, inserting
-     * a new %Tag if no %Tag by that name already exists.
-     *
-     *  @tparam T the type of the data to be assigned
-     *  @param name the name of the tag to be assigned
-     *  @param value the value of the data to be assigned
-     */
-    template <typename T> void put(const std::string &name, T &&value);
-
-    using iterator = std::map<std::string, Tag>::iterator;
-    using const_iterator = std::map<std::string, Tag>::const_iterator;
-
-    auto begin() { return data->begin(); }
-    auto end() { return data->end(); }
-    auto begin() const { return data->begin(); }
-    auto end() const { return data->end(); }
-    auto cbegin() const { return data->cbegin(); }
-    auto cend() const { return data->cend(); }
-
-    size_t size() const { return data->size(); }
-    bool empty() const { return data->empty(); }
-
-    Tag &at(const std::string &key) { return data->at(key); }
-    const Tag &at(const std::string &key) const { return data->at(key); }
-
-    // construct element directly in the Compound
-    template <typename... Args>
-    std::pair<iterator, bool> emplace(Args &&...args) {
-        return data->emplace(std::forward<Args>(args)...);
-    }
-
-  private:
-    std::unique_ptr<std::map<std::string, Tag>> data;
-};
-
-/**
- *  @brief List is a sequence container that holds Tags of a particular type.
- *
- *  The type of values being contained is determined at constuction and is
- *  available from List::list_type()
- *
- *  List exposes access to its Tag contents via methods analogous to
- *  std::vector.
- *
- *  In addition, if you already know the list's value type, you may want to
- *  access elements via List::get<T>(pos).
- */
-class List {
-  public:
-    List(TypeCode type)
-        : data(std::make_unique<std::vector<Tag>>()), list_type_(type) {}
-
-    /**
-     *  @brief  Provides access to the data contained in the %List.
-     *  @tparam T The value type of the element to be accessed.
-     *  @param pos The index of the element to be accessed.
-     *  @return  Read/write reference to a Tag's value data.
-     *  @throw  std::out_of_range  If @a pos is an invalid index.
-     *  @throw  std::bad_variant_access  If @a T is the wrong type.
-     */
-    template <typename T> T &get(size_t pos);
-
-    TypeCode list_type() const { return list_type_; }
-
-    auto begin() { return data->begin(); }
-    auto end() { return data->end(); }
-    auto begin() const { return data->begin(); }
-    auto end() const { return data->end(); }
-    auto cbegin() const { return data->cbegin(); }
-    auto cend() const { return data->cend(); }
-
-    size_t size() const { return data->size(); }
-    bool empty() const { return data->empty(); }
-    void reserve(size_t new_cap) { data->reserve(new_cap); }
-
-    Tag &at(size_t position) { return data->at(position); }
-    const Tag &at(size_t position) const { return data->at(position); }
-
-    // construct element directly in the List
-    template <typename... Args> void emplace_back(Args &&...args) {
-        data->emplace_back(std::forward<Args>(args)...);
-    }
-
-    void push_back(Tag &&t);
-
-  private:
-    std::unique_ptr<std::vector<Tag>> data;
-    TypeCode list_type_;
-};
-
-template <typename T> void Compound::put(const std::string &name, T &&value) {
-    data->insert_or_assign(name, std::move(value));
-}
-
-template <typename T> T &Compound::get(const std::string &name) {
-    return std::get<T>(data->at(name));
-}
-
-template <typename T> bool Compound::contains(const std::string &name) const {
-    auto it = data->find(name);
-    if (it == data->end()) {
-        return false;
-    }
-    if (!std::holds_alternative<T>(it->second)) {
-        return false;
-    }
-    return true;
-}
-
-template <typename T> T &List::get(size_t pos) {
-    return std::get<T>(data->at(pos));
-}
 
 } // namespace nbtview
 

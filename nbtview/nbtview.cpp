@@ -37,7 +37,7 @@ fast_find_named_tag(std::vector<unsigned char>::const_iterator nbt_start,
     }
 }
 
-std::pair<std::string, Tag> read_binary(std::istream &input) {
+std::pair<std::string, TagData> read_binary(std::istream &input) {
     // Get stream size
     input.seekg(0, input.end);
     std::streampos n_bytes = input.tellg();
@@ -49,8 +49,8 @@ std::pair<std::string, Tag> read_binary(std::istream &input) {
     return read_binary(bytes);
 }
 
-std::pair<std::string, Tag> read_binary(const unsigned char *data,
-                                        size_t data_length) {
+std::pair<std::string, TagData> read_binary(const unsigned char *data,
+                                            size_t data_length) {
     std::vector<unsigned char> inflated_data_holder;
     if (has_compression_header(data, data_length)) {
         inflated_data_holder = decompress_data(data, data_length);
@@ -63,40 +63,18 @@ std::pair<std::string, Tag> read_binary(const unsigned char *data,
     return {root_name, std::move(root_data.second)};
 }
 
-std::pair<std::string, Tag> read_binary(std::vector<unsigned char> bytes) {
+std::pair<std::string, TagData> read_binary(std::vector<unsigned char> bytes) {
     return read_binary(bytes.data(), bytes.size());
 }
 
 void write_binary(const Tag &tag, std::string_view name, std::ostream &output) {
-    BinaryWriter::write(std::visit(TagID(), tag), output);
+    BinaryWriter::write(std::visit(TagID(), tag.tag_data()), output);
     BinaryWriter::write_string(name, output);
-    std::visit(detail::PayloadSerializer{output}, tag);
-}
-void write_binary(const Compound &tag, std::string_view name,
-                  std::ostream &output) {
-    BinaryWriter::write(TagID()(tag), output);
-    BinaryWriter::write_string(name, output);
-    detail::PayloadSerializer{output}(tag);
-}
-void write_binary(const List &tag, std::string_view name,
-                  std::ostream &output) {
-    BinaryWriter::write(TagID()(tag), output);
-    BinaryWriter::write_string(name, output);
-    detail::PayloadSerializer{output}(tag);
+    std::visit(detail::PayloadSerializer{output}, tag.tag_data());
 }
 
 std::ostream &operator<<(std::ostream &os, const Tag &tag) {
-    os << tag_to_string(tag);
-    return os;
-}
-
-std::ostream &operator<<(std::ostream &os, const Compound &tag) {
-    os << tag_to_string(tag);
-    return os;
-}
-
-std::ostream &operator<<(std::ostream &os, const List &tag) {
-    os << tag_to_string(tag);
+    os << tag_to_string(tag.tag_data());
     return os;
 }
 
