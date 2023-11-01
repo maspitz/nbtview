@@ -24,7 +24,7 @@ namespace nbtview {
 class Deserializer {
   public:
     virtual ~Deserializer() = default;
-    virtual std::pair<std::string, Tag> deserialize() = 0;
+    virtual std::pair<std::string, TagData> deserialize() = 0;
 };
 
 } // namespace nbtview

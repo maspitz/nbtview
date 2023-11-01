@@ -57,7 +57,7 @@ TEST_CASE("nbtview::write_binary functions") {
     }
 
     SUBCASE("Serialize string tags") {
-        nbt::Tag empty_compound(nbt::String{"Hello"});
+        nbt::TagData empty_compound(nbt::String{"Hello"});
         nbt::write_binary(empty_compound, "Tag", output);
         auto v_root_string_tag =
             std::vector<char>{0x08, 0x00, 0x03, 'T', 'a', 'g', 0x00,
@@ -68,7 +68,7 @@ TEST_CASE("nbtview::write_binary functions") {
 
     SUBCASE("Serialize list tags") {
         SUBCASE("List tag of longs") {
-            nbt::Tag list_tag(nbt::List{nbt::TypeCode::Long});
+            nbt::TagData list_tag(nbt::List{nbt::TypeCode::Long});
             nbt::List &myList = std::get<nbt::List>(list_tag);
             myList.push_back(nbt::Long(10));
             myList.push_back(nbt::Long(15));
