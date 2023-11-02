@@ -1,6 +1,7 @@
 // BinaryDeserializer.cpp
 
 #include <utility>
+#include <variant>
 #include <vector>
 
 #include "Tag.hpp"
@@ -56,7 +57,7 @@ std::string BinaryDeserializer::deserialize_string() {
     return scanner.read_string(bytes);
 }
 
-Tag BinaryDeserializer::deserialize_typed_value(TypeCode type) {
+TagValue BinaryDeserializer::deserialize_typed_value(TypeCode type) {
     switch (type) {
     case TypeCode::Byte:
         return scanner.read<Byte>();
@@ -71,7 +72,7 @@ Tag BinaryDeserializer::deserialize_typed_value(TypeCode type) {
     case TypeCode::Double:
         return scanner.read<Double>();
     case TypeCode::Byte_Array:
-        return std::make_unique<Byte_Array>(deserialize_array<Byte>());
+        return deserialize_array<Byte>();
     case TypeCode::String:
         return deserialize_string();
     case TypeCode::List:
