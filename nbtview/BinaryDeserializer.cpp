@@ -16,7 +16,7 @@ std::pair<std::string, Tag> BinaryDeserializer::deserialize() {
     // read type id byte
     TypeCode type = static_cast<TypeCode>(scanner.read<int8_t>());
     if (type == TypeCode::End) {
-        return std::make_pair("", Tag(End()));
+        return {"", Tag(End())};
     }
     std::string tag_name = deserialize_string();
     return std::make_pair(tag_name, deserialize_typed_value(type));
