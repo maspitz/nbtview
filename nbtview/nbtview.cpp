@@ -67,9 +67,9 @@ std::pair<std::string, Tag> read_binary(std::vector<unsigned char> bytes) {
 }
 
 void write_binary(const Tag &tag, std::string_view name, std::ostream &output) {
-    BinaryWriter::write(std::visit(TagID(), tag.tag_data()), output);
+    BinaryWriter::write(std::visit(TagID(), tag.get_value()), output);
     BinaryWriter::write_string(name, output);
-    std::visit(detail::PayloadSerializer{output}, tag.tag_data());
+    std::visit(detail::PayloadSerializer{output}, tag.get_value());
 }
 
 } // namespace nbtview
