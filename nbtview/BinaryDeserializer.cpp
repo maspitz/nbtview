@@ -35,14 +35,15 @@ List BinaryDeserializer::deserialize_list() {
 }
 
 Compound BinaryDeserializer::deserialize_compound() {
-    auto cmpd = Compound();
+    Compound cmpd;
     while (true) {
-        auto next_tag = deserialize();
-        if (std::holds_alternative<End>(next_tag.second)) {
-            return cmpd;
+        auto [next_name, next_tag] = deserialize();
+        if (next_tag.is<nbtview::End>()) {
+            break;
         }
-        cmpd.emplace(std::move(next_tag.first), std::move(next_tag.second));
+        cmpd.emplace(std::move(next_name), std::move(next_tag));
     }
+    return cmpd;
 }
 
 template <typename T> std::vector<T> BinaryDeserializer::deserialize_array() {
