@@ -224,13 +224,6 @@ class Tag {
     }
 };
 
-const TypeCode List::list_type() const {
-    if (empty()) {
-        return TypeCode::End;
-    } else {
-        return data[0].get_id();
-    }
-}
 
 void Compound::insert(const std::string &key, const Tag &value) {
     data[key] = value;
@@ -238,6 +231,8 @@ void Compound::insert(const std::string &key, const Tag &value) {
 
 bool Compound::contains(const std::string &key) const {
     return data.find(key) != data.end();
+const TypeCode list_type(const List &lst) {
+    return lst.empty() ? TypeCode::End : lst[0].get_id();
 }
 
 std::string to_string(const Tag &tag);
