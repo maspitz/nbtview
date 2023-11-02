@@ -11,6 +11,7 @@
 #ifndef NBT_TAG_H_
 #define NBT_TAG_H_
 
+#include <concepts>
 #include <cstddef>
 #include <cstdint>
 #include <map>
@@ -171,7 +172,9 @@ class Tag {
     TagValue value;
 
   public:
-    template <typename T> Tag(const T &v) : value(v) {}
+    template <typename T>
+        requires std::constructible_from<TagValue, T>
+    Tag(T &&v) : value(std::forward<T>(v)) {}
     Tag() : value(None{}) {}
 
     template <typename T> T &get() { return std::get<T>(value); }
