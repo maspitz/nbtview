@@ -35,35 +35,33 @@ namespace detail {
         void operator()(const Long &t) { BinaryWriter::write(t, output); }
         void operator()(const Float &t) { BinaryWriter::write(t, output); }
         void operator()(const Double &t) { BinaryWriter::write(t, output); }
-        void operator()(const Byte_Array_Ptr &t) {
-            BinaryWriter::write_vector(*t, output);
+        void operator()(const Byte_Array &t) {
+            BinaryWriter::write_vector(t, output);
         }
-        void operator()(const String_Ptr &t) {
-            BinaryWriter::write_string(*t, output);
+        void operator()(const String &t) {
+            BinaryWriter::write_string(t, output);
         }
-        void operator()(const List_Ptr &t) {
-            BinaryWriter::write(t->tag_type, output);
-            BinaryWriter::write(static_cast<Int>(t->data.size()), output);
-            for (Tag &elt : t->data) {
-                const Tag &td = elt.tag_data();
-                std::visit(*this, td);
-                std::visit(*this, elt.tag_data());
+        void operator()(const List &t) {
+            BinaryWriter::write(static_cast<Byte>(list_type(t)), output);
+            BinaryWriter::write(static_cast<Int>(t.size()), output);
+            for (const Tag &elt : t) {
+                std::visit(*this, elt.get_value());
             }
         }
-        void operator()(const Compound_Ptr &t) {
-            for (auto &kv : *t) {
-                BinaryWriter::write(std::visit(TagID(), kv.second.tag_data()),
+        void operator()(const Compound &t) {
+            for (auto &[tag_name, tag_data] : t) {
+                BinaryWriter::write(std::visit(TagID(), tag_data.get_value()),
                                     output);
-                BinaryWriter::write_string(kv.first, output);
-                std::visit(*this, kv.second.tag_data());
+                BinaryWriter::write_string(tag_name, output);
+                std::visit(*this, tag_data.get_value());
             }
             BinaryWriter::write(End(0), output);
         }
-        void operator()(const Int_Array_Ptr &t) {
-            BinaryWriter::write_vector(*t, output);
+        void operator()(const Int_Array &t) {
+            BinaryWriter::write_vector(t, output);
         }
-        void operator()(const Long_Array_Ptr &t) {
-            BinaryWriter::write_vector(*t, output);
+        void operator()(const Long_Array &t) {
+            BinaryWriter::write_vector(t, output);
         }
     };
 
