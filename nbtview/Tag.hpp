@@ -378,9 +378,23 @@ std::string to_string(const Tag &tag) {
     return std::visit(ToStringVisitor{}, tag.get_value());
 }
 
+/** @name Output interface
+ * @{
+ * */
+/**
+ * @brief Outputs a string representation of a tag to a stream.
+ * @param tag The tag to be written as a string.
+ * @param name The name specified for the tag.
+ * @param os An ostream suitable for text output.
+ *
+ * @note The string representation of the tag structure is in the SNBT format.
+ * */
 std::ostream &operator<<(std::ostream &os, const Tag &tag) {
     return (os << to_string(tag));
 }
+/**
+ * @}
+ * */
 
 } // namespace nbtview
 
