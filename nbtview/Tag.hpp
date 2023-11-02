@@ -101,50 +101,14 @@ using Byte_Array = std::vector<Byte>;
 //! string of characters (supports UTF-8)
 using String = std::string;
 //! array of Tag objects
-class List;
+using List = std::vector<Tag>;
 //! map from string to Tag objects
-class Compound;
+using Compound = std::map<std::string, Tag>;
 //! array of Int
 using Int_Array = std::vector<Int>;
 //! array of Long
 using Long_Array = std::vector<Long>;
 
-class List {
-  private:
-    std::vector<Tag> data;
-
-  public:
-    // inline void push_back(const Tag &value);
-    // inline Tag &operator[](size_t index);
-    void push_back(const Tag &value) { data.push_back(value); }
-    Tag &operator[](size_t index) { return data[index]; }
-    const Tag &operator[](size_t index) const { return data[index]; }
-    auto begin() { return data.begin(); }
-    const auto begin() const { return data.begin(); }
-    auto end() { return data.end(); }
-    const auto end() const { return data.end(); }
-    const std::size_t size() const { return data.size(); }
-    const bool empty() const { return data.empty(); }
-    const TypeCode list_type() const;
-};
-
-class Compound {
-  private:
-    std::map<std::string, Tag> data;
-
-  public:
-    inline void insert(const std::string &key, const Tag &value);
-    Tag &operator[](const std::string &key) { return data[key]; }
-    Tag &operator[](std::string &&key) { return data[std::move(key)]; }
-    bool contains(const std::string &key) const;
-
-    auto begin() { return data.begin(); }
-    const auto begin() const { return data.begin(); }
-    auto end() { return data.end(); }
-    const auto end() const { return data.end(); }
-    const std::size_t size() const { return data.size(); }
-    const bool empty() const { return data.empty(); }
-};
 using TagValue =
     std::variant<None, End, Byte, Short, Int, Long, Float, Double, Byte_Array,
                  String, List, Compound, Int_Array, Long_Array>;
@@ -227,13 +191,6 @@ class Tag {
     }
 };
 
-
-void Compound::insert(const std::string &key, const Tag &value) {
-    data[key] = value;
-}
-
-bool Compound::contains(const std::string &key) const {
-    return data.find(key) != data.end();
 const TypeCode list_type(const List &lst) {
     return lst.empty() ? TypeCode::End : lst[0].get_id();
 }
