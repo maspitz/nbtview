@@ -144,6 +144,9 @@ class Compound {
     const std::size_t size() const { return data.size(); }
     const bool empty() const { return data.empty(); }
 };
+using TagValue =
+    std::variant<None, End, Byte, Short, Int, Long, Float, Double, Byte_Array,
+                 String, List, Compound, Int_Array, Long_Array>;
 
 //! TagID is used with std::visit to get the TypeCode of a given Tag
 struct TagID {
@@ -164,13 +167,8 @@ struct TagID {
 };
 
 class Tag {
-  public:
-    using Value =
-        std::variant<None, End, Byte, Short, Int, Long, Float, Double,
-                     Byte_Array, String, List, Compound, Int_Array, Long_Array>;
-
   private:
-    Value value;
+    TagValue value;
 
   public:
     template <typename T> Tag(const T &v) : value(v) {}
@@ -180,8 +178,8 @@ class Tag {
 
     template <typename T> const T &get() const { return std::get<T>(value); }
 
-    Value &get_value() { return value; }
-    const Value &get_value() const { return value; }
+    TagValue &get_value() { return value; }
+    const TagValue &get_value() const { return value; }
 
     const TypeCode get_id() const { return std::visit(TagID(), value); }
 
