@@ -156,13 +156,13 @@ class Tag {
     }
 };
 
-const TypeCode list_type(const List &lst) {
+inline const TypeCode list_type(const List &lst) {
     return lst.empty() ? TypeCode::End : lst[0].get_id();
 }
 
-std::string to_string(const Tag &tag);
+inline std::string to_string(const Tag &tag);
 
-const char *typecode_to_string(TypeCode type) {
+inline const char *typecode_to_string(TypeCode type) {
     switch (type) {
     case TypeCode::End:
         return "End";
@@ -197,7 +197,7 @@ const char *typecode_to_string(TypeCode type) {
     }
 }
 
-std::string tag_id_string(const Tag &tag) {
+inline std::string tag_id_string(const Tag &tag) {
     auto id = tag.get_id();
     if (id == TypeCode::List) {
         return tag.empty() ? "List of End"
@@ -260,7 +260,7 @@ std::string array_to_string(const T &iterable, const std::string &array_prefix,
     return output_string;
 }
 
-std::string to_string(const Tag &tag) {
+inline std::string to_string(const Tag &tag) {
     struct ToStringVisitor {
         std::string operator()(const None x) const { return "<<NONE>>"; }
         std::string operator()(const End x) const { return "<<END_TAG>>"; }
@@ -314,7 +314,7 @@ std::string to_string(const Tag &tag) {
  *
  * @note The string representation of the tag structure is in the SNBT format.
  * */
-std::ostream &operator<<(std::ostream &os, const Tag &tag) {
+inline std::ostream &operator<<(std::ostream &os, const Tag &tag) {
     return (os << to_string(tag));
 }
 /**
