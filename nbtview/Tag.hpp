@@ -45,41 +45,6 @@ enum class TypeCode : char {
     None = 99
 };
 
-const char *typecode_string(TypeCode type) {
-    switch (type) {
-    case TypeCode::End:
-        return "End";
-    case TypeCode::Byte:
-        return "Byte";
-    case TypeCode::Short:
-        return "Short";
-    case TypeCode::Int:
-        return "Int";
-    case TypeCode::Long:
-        return "Long";
-    case TypeCode::Float:
-        return "Float";
-    case TypeCode::Double:
-        return "Double";
-    case TypeCode::Byte_Array:
-        return "Byte_Array";
-    case TypeCode::String:
-        return "String";
-    case TypeCode::List:
-        return "List";
-    case TypeCode::Compound:
-        return "Compound";
-    case TypeCode::Int_Array:
-        return "Int_Array";
-    case TypeCode::Long_Array:
-        return "Long_Array";
-    case TypeCode::None:
-        return "None";
-    default:
-        return "Invalid TypeCode";
-    }
-}
-
 //! placeholder type to indicate the absence of a data value
 struct None {};
 //! NBT End tag: marks the end of a Compound Tag's payload
