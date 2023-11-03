@@ -7,15 +7,17 @@
 #include "nbtview.hpp"
 #include "zlib_utils.hpp"
 
+namespace nbt = nbtview;
+
 static void BM_chunk_file_reads(benchmark::State &state) {
     const auto filename = "test_data/r.0.0.mca";
     int region_x = 0;
     int region_z = 0;
-    nbtview::Region_File reg(filename);
+    nbt::Region_File reg(filename);
 
     // timing loop
     for (auto _ : state) {
-        for (int i = 0; i < nbtview::Region::chunk_count; ++i) {
+        for (int i = 0; i < nbt::Region::chunk_count; ++i) {
             auto chunk_offset = reg.chunk_offset(i);
             auto chunk_length = reg.chunk_length(i);
             if (chunk_length == 0) {
@@ -23,28 +25,27 @@ static void BM_chunk_file_reads(benchmark::State &state) {
             }
             auto chunk_data = reg.get_chunk_data(i);
             auto [root_name, root_tag] =
-                nbtview::read_binary(chunk_data.data(), chunk_data.size());
+                nbt::read_binary(chunk_data.data(), chunk_data.size());
 
-            if (!std::holds_alternative<nbtview::Compound>(root_tag)) {
+            if (root_tag.is<nbt::Compound>() == false) {
                 continue;
             }
-            nbtview::Compound &root = std::get<nbtview::Compound>(root_tag);
-
-            if (!root.contains<nbtview::Compound>("Level")) {
+            if (root_tag.contains("Level") == false) {
                 continue;
             }
-            nbtview::Compound &level = root.get<nbtview::Compound>("Level");
+            nbt::Tag &level = root_tag["Level"];
 
-            if (!level.contains<nbtview::Int>("xPos") ||
-                !level.contains<nbtview::Int>("zPos")) {
+            if (!level.is<nbt::Compound>() || !level.contains("xPos") ||
+                !level.contains("yPos")) {
                 continue;
             }
-            nbtview::Int xPos = level.get<nbtview::Int>("xPos");
-            nbtview::Int zPos = level.get<nbtview::Int>("zPos");
+
+            nbt::Int xPos = level["xPos"].get<nbt::Int>();
+            nbt::Int zPos = level["zPos"].get<nbt::Int>();
 
             // let local_x, local_z be chunk coordinates local to this region.
-            nbtview::Int local_x = xPos & 0x1f;
-            nbtview::Int local_z = zPos & 0x1f;
+            nbt::Int local_x = xPos & 0x1f;
+            nbt::Int local_z = zPos & 0x1f;
             benchmark::DoNotOptimize(xPos); // Prevent optimization
             benchmark::DoNotOptimize(zPos);
             benchmark::DoNotOptimize(local_x);
@@ -62,49 +63,44 @@ static void BM_chunk_decoding(benchmark::State &state) {
 
     // read and decompress chunk data
 
-    nbtview::Region_File reg(filename);
+    nbt::Region_File reg(filename);
 
     std::vector<std::vector<unsigned char>> chunk_data;
-    for (int i = 0; i < nbtview::Region::chunk_count; ++i) {
+    for (int i = 0; i < nbt::Region::chunk_count; ++i) {
         chunk_data.push_back(reg.get_chunk_data(i));
-        while (nbtview::has_compression_header(chunk_data[i].data(),
-                                               chunk_data[i].size())) {
-            chunk_data[i] = nbtview::decompress_data(chunk_data[i].data(),
-                                                     chunk_data[i].size());
+        while (nbt::has_compression_header(chunk_data[i].data(),
+                                           chunk_data[i].size())) {
+            chunk_data[i] = nbt::decompress_data(chunk_data[i].data(),
+                                                 chunk_data[i].size());
         }
     }
 
     // timing loop: deserialize chunk data, etc.
     for (auto _ : state) {
-        for (int i = 0; i < nbtview::Region::chunk_count; ++i) {
+        for (int i = 0; i < nbt::Region::chunk_count; ++i) {
             auto chunk_offset = reg.chunk_offset(i);
             auto chunk_length = reg.chunk_length(i);
             if (chunk_length == 0) {
                 continue;
             }
-            auto [root_name, root_tag] = nbtview::read_binary(
-                chunk_data[i].data(), chunk_data[i].size());
+            auto [root_name, root_tag] =
+                nbt::read_binary(chunk_data[i].data(), chunk_data[i].size());
 
-            if (!std::holds_alternative<nbtview::Compound>(root_tag)) {
+            if (!root_tag.is<nbt::Compound>() || !root_tag.contains("Level")) {
                 continue;
             }
-            nbtview::Compound &root = std::get<nbtview::Compound>(root_tag);
 
-            if (!root.contains<nbtview::Compound>("Level")) {
+            nbt::Tag &level = root_tag["Level"];
+
+            if (!level.contains("xPos") || !level.contains("zPos")) {
                 continue;
             }
-            nbtview::Compound &level = root.get<nbtview::Compound>("Level");
-
-            if (!level.contains<nbtview::Int>("xPos") ||
-                !level.contains<nbtview::Int>("zPos")) {
-                continue;
-            }
-            nbtview::Int xPos = level.get<nbtview::Int>("xPos");
-            nbtview::Int zPos = level.get<nbtview::Int>("zPos");
+            nbt::Int xPos = level["xPos"].get<nbt::Int>();
+            nbt::Int zPos = level["zPos"].get<nbt::Int>();
 
             // let local_x, local_z be chunk coordinates local to this region.
-            nbtview::Int local_x = xPos & 0x1f;
-            nbtview::Int local_z = zPos & 0x1f;
+            nbt::Int local_x = xPos & 0x1f;
+            nbt::Int local_z = zPos & 0x1f;
             benchmark::DoNotOptimize(xPos); // Prevent optimization
             benchmark::DoNotOptimize(zPos);
             benchmark::DoNotOptimize(local_x);
