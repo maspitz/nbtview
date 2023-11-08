@@ -139,6 +139,7 @@ class Tag {
         return 0;
     }
 
+    // Compound wrapper methods
     /**
      *  @brief Tests whether a Compound Tag contains a particular %Tag
      *
@@ -149,6 +150,22 @@ class Tag {
     }
     Tag &operator[](const std::string &key) {
         return std::get<Compound>(value)[key];
+    }
+    // using Compound = std::map<std::string, Tag>;
+    std::pair<Compound::iterator, bool> emplace(const std::string &name,
+                                                const Tag &t) {
+        return std::get<Compound>(value).emplace(name, t);
+    }
+    std::pair<Compound::iterator, bool> emplace(std::string &&name,
+                                                const Tag &t) {
+        return std::get<Compound>(value).emplace(std::move(name), t);
+    }
+    std::pair<Compound::iterator, bool> emplace(const std::string &name,
+                                                Tag &&t) {
+        return std::get<Compound>(value).emplace(name, std::move(t));
+    }
+    std::pair<Compound::iterator, bool> emplace(std::string &&name, Tag &&t) {
+        return std::get<Compound>(value).emplace(std::move(name), std::move(t));
     }
 
     // List wrapper methods
