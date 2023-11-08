@@ -150,10 +150,14 @@ class Tag {
     Tag &operator[](const std::string &key) {
         return std::get<Compound>(value)[key];
     }
+
+    // List wrapper methods
     Tag &operator[](size_t index) { return std::get<List>(value)[index]; }
     const Tag &operator[](size_t index) const {
         return std::get<List>(value)[index];
     }
+    void push_back(const Tag &t) { std::get<List>(value).push_back(t); }
+    void push_back(Tag &&t) { std::get<List>(value).push_back(std::move(t)); }
 };
 
 inline const TypeCode list_type(const List &lst) {
