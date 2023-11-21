@@ -23,16 +23,15 @@ TEST_CASE("nbtview: Test reading of chunk data from region file") {
             }
             auto chunk_data = reg.get_chunk_data(i);
             auto [root_name, root_tag] = nbt::read_binary(chunk_data);
-            CHECK(std::holds_alternative<nbt::Compound>(root_tag));
-            nbt::Compound &root = std::get<nbt::Compound>(root_tag);
-
-            CHECK(root.contains<nbt::Compound>("Level"));
-            nbt::Compound &level = root.get<nbt::Compound>("Level");
-
-            CHECK(level.contains<nbt::Int>("xPos"));
-            CHECK(level.contains<nbt::Int>("zPos"));
-            nbt::Int xPos = level.get<nbt::Int>("xPos");
-            nbt::Int zPos = level.get<nbt::Int>("zPos");
+            CHECK(root_tag.is<nbt::Compound>());
+            CHECK(root_tag.contains("Level"));
+            auto &level = root_tag["Level"];
+            CHECK(level.contains("xPos"));
+            CHECK(level.contains("zPos"));
+            CHECK(level["xPos"].is<nbt::Int>());
+            CHECK(level["zPos"].is<nbt::Int>());
+            nbt::Int xPos = level["xPos"].get<nbt::Int>();
+            nbt::Int zPos = level["zPos"].get<nbt::Int>();
             CHECK(region_x == xPos >> 5);
             CHECK(region_z == zPos >> 5);
 
