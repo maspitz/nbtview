@@ -9,11 +9,9 @@
     <innerclass refid="classnbtview_1_1Deserializer" prot="public">nbtview::Deserializer</innerclass>
     <innerclass refid="structnbtview_1_1Region" prot="public">nbtview::Region</innerclass>
     <innerclass refid="classnbtview_1_1Region__File" prot="public">nbtview::Region_File</innerclass>
-    <innerclass refid="structnbtview_1_1StringifyTag" prot="public">nbtview::StringifyTag</innerclass>
-    <innerclass refid="structnbtview_1_1StringifyTagType" prot="public">nbtview::StringifyTagType</innerclass>
+    <innerclass refid="structnbtview_1_1None" prot="public">nbtview::None</innerclass>
     <innerclass refid="structnbtview_1_1TagID" prot="public">nbtview::TagID</innerclass>
-    <innerclass refid="classnbtview_1_1Compound" prot="public">nbtview::Compound</innerclass>
-    <innerclass refid="classnbtview_1_1List" prot="public">nbtview::List</innerclass>
+    <innerclass refid="classnbtview_1_1Tag" prot="public">nbtview::Tag</innerclass>
     <innerclass refid="structnbtview_1_1array__format" prot="public">nbtview::array_format</innerclass>
     <innerclass refid="structnbtview_1_1Inflation__Status" prot="public">nbtview::Inflation_Status</innerclass>
     <innernamespace refid="namespacenbtview_1_1detail">nbtview::detail</innernamespace>
@@ -22,8 +20,8 @@
       <header>Input interface</header>
       <description><para>Deserialize from binary encoded input </para>
 </description>
-      <memberdef kind="function" id="namespacenbtview_1aa4c7f0bb2225d506fd0ad00d381f537f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>std::pair&lt; std::string, <ref refid="namespacenbtview_1a9fcb48c3df7749255fcc9f3f9e84f3fa" kindref="member">Tag</ref> &gt;</type>
+      <memberdef kind="function" id="nbtview_8cpp_1aa4c7f0bb2225d506fd0ad00d381f537f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; std::string, <ref refid="classnbtview_1_1Tag" kindref="compound">Tag</ref> &gt;</type>
         <definition>std::pair&lt; std::string, Tag &gt; nbtview::read_binary</definition>
         <argsstring>(std::istream &amp;input)</argsstring>
         <name>read_binary</name>
@@ -59,10 +57,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/nbtview.cpp" line="40" column="11" bodyfile="nbtview/nbtview.cpp" bodystart="40" bodyend="50" declfile="nbtview/nbtview.hpp" declline="55" declcolumn="11"/>
+        <location file="nbtview/nbtview.cpp" line="39" column="11" bodyfile="nbtview/nbtview.cpp" bodystart="39" bodyend="49" declfile="nbtview/nbtview.hpp" declline="55" declcolumn="11"/>
       </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a554d192d3d961c1972fdb7a1eb3e22ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>std::pair&lt; std::string, <ref refid="namespacenbtview_1a9fcb48c3df7749255fcc9f3f9e84f3fa" kindref="member">Tag</ref> &gt;</type>
+      <memberdef kind="function" id="nbtview_8cpp_1a554d192d3d961c1972fdb7a1eb3e22ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; std::string, <ref refid="classnbtview_1_1Tag" kindref="compound">Tag</ref> &gt;</type>
         <definition>std::pair&lt; std::string, Tag &gt; nbtview::read_binary</definition>
         <argsstring>(const unsigned char *data, size_t data_length)</argsstring>
         <name>read_binary</name>
@@ -80,10 +78,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/nbtview.cpp" line="52" column="11" bodyfile="nbtview/nbtview.cpp" bodystart="52" bodyend="64" declfile="nbtview/nbtview.hpp" declline="65" declcolumn="11"/>
+        <location file="nbtview/nbtview.cpp" line="51" column="11" bodyfile="nbtview/nbtview.cpp" bodystart="51" bodyend="63" declfile="nbtview/nbtview.hpp" declline="65" declcolumn="11"/>
       </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a938ea9d0e3e51f465d050f8069887e20" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>std::pair&lt; std::string, <ref refid="namespacenbtview_1a9fcb48c3df7749255fcc9f3f9e84f3fa" kindref="member">Tag</ref> &gt;</type>
+      <memberdef kind="function" id="nbtview_8cpp_1a938ea9d0e3e51f465d050f8069887e20" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; std::string, <ref refid="classnbtview_1_1Tag" kindref="compound">Tag</ref> &gt;</type>
         <definition>std::pair&lt; std::string, Tag &gt; nbtview::read_binary</definition>
         <argsstring>(std::vector&lt; unsigned char &gt; bytes)</argsstring>
         <name>read_binary</name>
@@ -119,18 +117,18 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/nbtview.cpp" line="66" column="11" bodyfile="nbtview/nbtview.cpp" bodystart="66" bodyend="68" declfile="nbtview/nbtview.hpp" declline="63" declcolumn="11"/>
+        <location file="nbtview/nbtview.cpp" line="65" column="11" bodyfile="nbtview/nbtview.cpp" bodystart="65" bodyend="67" declfile="nbtview/nbtview.hpp" declline="63" declcolumn="11"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="user-defined">
       <header>Output interface</header>
-      <memberdef kind="function" id="namespacenbtview_1a552afcf07de4c0e568601c95b4bb2486" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="nbtview_8cpp_1a552afcf07de4c0e568601c95b4bb2486" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void nbtview::write_binary</definition>
         <argsstring>(const Tag &amp;tag, std::string_view name, std::ostream &amp;output)</argsstring>
         <name>write_binary</name>
         <param>
-          <type>const <ref refid="namespacenbtview_1a9fcb48c3df7749255fcc9f3f9e84f3fa" kindref="member">Tag</ref> &amp;</type>
+          <type>const <ref refid="classnbtview_1_1Tag" kindref="compound">Tag</ref> &amp;</type>
           <declname>tag</declname>
         </param>
         <param>
@@ -170,69 +168,17 @@
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="note"><para>The binary encoding of the tag is in the NBT format.</para>
-</simplesect>
-<simplesect kind="note"><para>Overloads of the <ref refid="namespacenbtview_1a552afcf07de4c0e568601c95b4bb2486" kindref="member">write_binary()</ref> function for <ref refid="classnbtview_1_1Compound" kindref="compound">Compound</ref> and <ref refid="classnbtview_1_1List" kindref="compound">List</ref> parameters are provided because <ref refid="classnbtview_1_1Compound" kindref="compound">Compound</ref> and <ref refid="classnbtview_1_1List" kindref="compound">List</ref> are move-only classes, which can prevent their implicit conversion to const Tag. </para>
+<simplesect kind="note"><para>The binary encoding of the tag is in the NBT format. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/nbtview.cpp" line="70" column="6" bodyfile="nbtview/nbtview.cpp" bodystart="70" bodyend="74" declfile="nbtview/nbtview.hpp" declline="86" declcolumn="6"/>
+        <location file="nbtview/nbtview.cpp" line="69" column="6" bodyfile="nbtview/nbtview.cpp" bodystart="69" bodyend="73" declfile="nbtview/nbtview.hpp" declline="82" declcolumn="6"/>
       </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1afbb5f08ddadfd438a8d82539ea8ec7e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void nbtview::write_binary</definition>
-        <argsstring>(const Compound &amp;tag, std::string_view name, std::ostream &amp;output)</argsstring>
-        <name>write_binary</name>
-        <param>
-          <type>const <ref refid="classnbtview_1_1Compound" kindref="compound">Compound</ref> &amp;</type>
-          <declname>tag</declname>
-        </param>
-        <param>
-          <type>std::string_view</type>
-          <declname>name</declname>
-        </param>
-        <param>
-          <type>std::ostream &amp;</type>
-          <declname>output</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="nbtview/nbtview.cpp" line="75" column="6" bodyfile="nbtview/nbtview.cpp" bodystart="75" bodyend="80" declfile="nbtview/nbtview.hpp" declline="87" declcolumn="6"/>
-      </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1aadf85cee84299935966d79e35574dd55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void nbtview::write_binary</definition>
-        <argsstring>(const List &amp;tag, std::string_view name, std::ostream &amp;output)</argsstring>
-        <name>write_binary</name>
-        <param>
-          <type>const <ref refid="classnbtview_1_1List" kindref="compound">List</ref> &amp;</type>
-          <declname>tag</declname>
-        </param>
-        <param>
-          <type>std::string_view</type>
-          <declname>name</declname>
-        </param>
-        <param>
-          <type>std::ostream &amp;</type>
-          <declname>output</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="nbtview/nbtview.cpp" line="81" column="6" bodyfile="nbtview/nbtview.cpp" bodystart="81" bodyend="86" declfile="nbtview/nbtview.hpp" declline="89" declcolumn="6"/>
-      </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a390fb78fe858b5c66d2f401f418bb769" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="Tag_8hpp_1ae76f4d3336baad88fae92d675f39b36a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::ostream &amp;</type>
-        <definition>std::ostream &amp; nbtview::operator&lt;&lt;</definition>
+        <definition>std::ostream&amp; nbtview::operator&lt;&lt;</definition>
         <argsstring>(std::ostream &amp;os, const Tag &amp;tag)</argsstring>
         <name>operator&lt;&lt;</name>
         <param>
@@ -240,7 +186,7 @@
           <declname>os</declname>
         </param>
         <param>
-          <type>const <ref refid="namespacenbtview_1a9fcb48c3df7749255fcc9f3f9e84f3fa" kindref="member">Tag</ref> &amp;</type>
+          <type>const <ref refid="classnbtview_1_1Tag" kindref="compound">Tag</ref> &amp;</type>
           <declname>tag</declname>
         </param>
         <briefdescription>
@@ -265,71 +211,27 @@
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>output</parametername>
+<parametername>os</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>An ostream opened with ios::binary.</para>
+<para>An ostream suitable for text output.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="note"><para>The string representation of the tag structure is in the SNBT format.</para>
-</simplesect>
-<simplesect kind="note"><para>Overloads of the stream insertion operator for <ref refid="classnbtview_1_1Compound" kindref="compound">Compound</ref> and <ref refid="classnbtview_1_1List" kindref="compound">List</ref> parameters are provided because <ref refid="classnbtview_1_1Compound" kindref="compound">Compound</ref> and <ref refid="classnbtview_1_1List" kindref="compound">List</ref> are move-only classes, which can prevent their implicit conversion to const Tag. </para>
+<simplesect kind="note"><para>The string representation of the tag structure is in the SNBT format. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/nbtview.cpp" line="88" column="1" bodyfile="nbtview/nbtview.cpp" bodystart="88" bodyend="91" declfile="nbtview/nbtview.hpp" declline="103" declcolumn="1"/>
-      </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a66cfd2044b9c70f09690fac3901c0ce2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>std::ostream &amp;</type>
-        <definition>std::ostream &amp; nbtview::operator&lt;&lt;</definition>
-        <argsstring>(std::ostream &amp;os, const Compound &amp;tag)</argsstring>
-        <name>operator&lt;&lt;</name>
-        <param>
-          <type>std::ostream &amp;</type>
-          <declname>os</declname>
-        </param>
-        <param>
-          <type>const <ref refid="classnbtview_1_1Compound" kindref="compound">Compound</ref> &amp;</type>
-          <declname>tag</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="nbtview/nbtview.cpp" line="93" column="1" bodyfile="nbtview/nbtview.cpp" bodystart="93" bodyend="96" declfile="nbtview/nbtview.hpp" declline="104" declcolumn="1"/>
-      </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a3e30272ad6ec26c1630345d36477c40f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>std::ostream &amp;</type>
-        <definition>std::ostream &amp; nbtview::operator&lt;&lt;</definition>
-        <argsstring>(std::ostream &amp;os, const List &amp;tag)</argsstring>
-        <name>operator&lt;&lt;</name>
-        <param>
-          <type>std::ostream &amp;</type>
-          <declname>os</declname>
-        </param>
-        <param>
-          <type>const <ref refid="classnbtview_1_1List" kindref="compound">List</ref> &amp;</type>
-          <declname>tag</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="nbtview/nbtview.cpp" line="98" column="1" bodyfile="nbtview/nbtview.cpp" bodystart="98" bodyend="101" declfile="nbtview/nbtview.hpp" declline="105" declcolumn="1"/>
+        <location file="nbtview/Tag.hpp" line="338" column="8" bodyfile="nbtview/Tag.hpp" bodystart="338" bodyend="340"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="enum">
-      <memberdef kind="enum" id="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1" prot="public" static="no" strong="yes">
+      <memberdef kind="enum" id="Tag_8hpp_1afc3b190dfb9b456a2b36e19029d229b1" prot="public" static="no" strong="yes">
         <type>char</type>
         <name>TypeCode</name>
-        <enumvalue id="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1a87557f11575c0ad78e4e28abedc13b6e" prot="public">
+        <enumvalue id="Tag_8hpp_1afc3b190dfb9b456a2b36e19029d229b1a87557f11575c0ad78e4e28abedc13b6e" prot="public">
           <name>End</name>
           <initializer>= 0</initializer>
           <briefdescription>
@@ -337,7 +239,7 @@
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
-        <enumvalue id="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1aa245c3230debe5c956484ecc6fa93877" prot="public">
+        <enumvalue id="Tag_8hpp_1afc3b190dfb9b456a2b36e19029d229b1aa245c3230debe5c956484ecc6fa93877" prot="public">
           <name>Byte</name>
           <initializer>= 1</initializer>
           <briefdescription>
@@ -345,7 +247,7 @@
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
-        <enumvalue id="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1a30bb747c98bccdd11b3f89e644c4d0ad" prot="public">
+        <enumvalue id="Tag_8hpp_1afc3b190dfb9b456a2b36e19029d229b1a30bb747c98bccdd11b3f89e644c4d0ad" prot="public">
           <name>Short</name>
           <initializer>= 2</initializer>
           <briefdescription>
@@ -353,7 +255,7 @@
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
-        <enumvalue id="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1a1686a6c336b71b36d77354cea19a8b52" prot="public">
+        <enumvalue id="Tag_8hpp_1afc3b190dfb9b456a2b36e19029d229b1a1686a6c336b71b36d77354cea19a8b52" prot="public">
           <name>Int</name>
           <initializer>= 3</initializer>
           <briefdescription>
@@ -361,7 +263,7 @@
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
-        <enumvalue id="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1a8394f0347c184cf156ac5924dccb773b" prot="public">
+        <enumvalue id="Tag_8hpp_1afc3b190dfb9b456a2b36e19029d229b1a8394f0347c184cf156ac5924dccb773b" prot="public">
           <name>Long</name>
           <initializer>= 4</initializer>
           <briefdescription>
@@ -369,7 +271,7 @@
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
-        <enumvalue id="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1a22ae0e2b89e5e3d477f988cc36d3272b" prot="public">
+        <enumvalue id="Tag_8hpp_1afc3b190dfb9b456a2b36e19029d229b1a22ae0e2b89e5e3d477f988cc36d3272b" prot="public">
           <name>Float</name>
           <initializer>= 5</initializer>
           <briefdescription>
@@ -377,7 +279,7 @@
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
-        <enumvalue id="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1ad909d38d705ce75386dd86e611a82f5b" prot="public">
+        <enumvalue id="Tag_8hpp_1afc3b190dfb9b456a2b36e19029d229b1ad909d38d705ce75386dd86e611a82f5b" prot="public">
           <name>Double</name>
           <initializer>= 6</initializer>
           <briefdescription>
@@ -385,7 +287,7 @@
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
-        <enumvalue id="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1a250e13bca3f244aa4a45b3322c1de3d8" prot="public">
+        <enumvalue id="Tag_8hpp_1afc3b190dfb9b456a2b36e19029d229b1a250e13bca3f244aa4a45b3322c1de3d8" prot="public">
           <name>Byte_Array</name>
           <initializer>= 7</initializer>
           <briefdescription>
@@ -393,7 +295,7 @@
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
-        <enumvalue id="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1a27118326006d3829667a400ad23d5d98" prot="public">
+        <enumvalue id="Tag_8hpp_1afc3b190dfb9b456a2b36e19029d229b1a27118326006d3829667a400ad23d5d98" prot="public">
           <name>String</name>
           <initializer>= 8</initializer>
           <briefdescription>
@@ -401,7 +303,7 @@
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
-        <enumvalue id="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1a4ee29ca12c7d126654bd0e5275de6135" prot="public">
+        <enumvalue id="Tag_8hpp_1afc3b190dfb9b456a2b36e19029d229b1a4ee29ca12c7d126654bd0e5275de6135" prot="public">
           <name>List</name>
           <initializer>= 9</initializer>
           <briefdescription>
@@ -409,7 +311,7 @@
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
-        <enumvalue id="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1a26154ea007c65f860de5333a555a56cf" prot="public">
+        <enumvalue id="Tag_8hpp_1afc3b190dfb9b456a2b36e19029d229b1a26154ea007c65f860de5333a555a56cf" prot="public">
           <name>Compound</name>
           <initializer>= 10</initializer>
           <briefdescription>
@@ -417,7 +319,7 @@
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
-        <enumvalue id="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1ab91d062a81ee9431cc0253ac157bd98b" prot="public">
+        <enumvalue id="Tag_8hpp_1afc3b190dfb9b456a2b36e19029d229b1ab91d062a81ee9431cc0253ac157bd98b" prot="public">
           <name>Int_Array</name>
           <initializer>= 11</initializer>
           <briefdescription>
@@ -425,9 +327,17 @@
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
-        <enumvalue id="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1a9048cc28d3a136fb157529b21ac3055e" prot="public">
+        <enumvalue id="Tag_8hpp_1afc3b190dfb9b456a2b36e19029d229b1a9048cc28d3a136fb157529b21ac3055e" prot="public">
           <name>Long_Array</name>
           <initializer>= 12</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Tag_8hpp_1afc3b190dfb9b456a2b36e19029d229b1a6adf97f83acf6453d4a6a4b1070f3754" prot="public">
+          <name>None</name>
+          <initializer>= 99</initializer>
           <briefdescription>
           </briefdescription>
           <detaileddescription>
@@ -440,25 +350,25 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Tag.hpp" line="65" column="1" bodyfile="nbtview/Tag.hpp" bodystart="65" bodyend="79"/>
+        <location file="nbtview/Tag.hpp" line="31" column="1" bodyfile="nbtview/Tag.hpp" bodystart="31" bodyend="46"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="typedef">
-      <memberdef kind="typedef" id="namespacenbtview_1abac20ead73188ab8094137b5b4bbd5f2" prot="public" static="no">
+      <memberdef kind="typedef" id="Tag_8hpp_1abac20ead73188ab8094137b5b4bbd5f2" prot="public" static="no">
         <type>unsigned char</type>
         <definition>using nbtview::End = typedef unsigned char</definition>
         <argsstring></argsstring>
         <name>End</name>
         <briefdescription>
-<para>NBT End tag: marks the end of a <ref refid="classnbtview_1_1Compound" kindref="compound">Compound</ref> Tag&apos;s payload. </para>
+<para>NBT End tag: marks the end of a Compound <ref refid="classnbtview_1_1Tag" kindref="compound">Tag</ref>&apos;s payload. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Tag.hpp" line="25" column="1" bodyfile="nbtview/Tag.hpp" bodystart="25" bodyend="-1"/>
+        <location file="nbtview/Tag.hpp" line="51" column="1" bodyfile="nbtview/Tag.hpp" bodystart="51" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="namespacenbtview_1af68b4d9024e97e56e47b022e65b25f15" prot="public" static="no">
+      <memberdef kind="typedef" id="Tag_8hpp_1af68b4d9024e97e56e47b022e65b25f15" prot="public" static="no">
         <type>int8_t</type>
         <definition>using nbtview::Byte = typedef int8_t</definition>
         <argsstring></argsstring>
@@ -470,9 +380,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Tag.hpp" line="27" column="1" bodyfile="nbtview/Tag.hpp" bodystart="27" bodyend="-1"/>
+        <location file="nbtview/Tag.hpp" line="53" column="1" bodyfile="nbtview/Tag.hpp" bodystart="53" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="namespacenbtview_1a135ffec411a1c14822713fd40959fdf6" prot="public" static="no">
+      <memberdef kind="typedef" id="Tag_8hpp_1a135ffec411a1c14822713fd40959fdf6" prot="public" static="no">
         <type>int16_t</type>
         <definition>using nbtview::Short = typedef int16_t</definition>
         <argsstring></argsstring>
@@ -484,9 +394,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Tag.hpp" line="29" column="1" bodyfile="nbtview/Tag.hpp" bodystart="29" bodyend="-1"/>
+        <location file="nbtview/Tag.hpp" line="55" column="1" bodyfile="nbtview/Tag.hpp" bodystart="55" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="namespacenbtview_1a6fedb4bc19422081c525566dfec4b89b" prot="public" static="no">
+      <memberdef kind="typedef" id="Tag_8hpp_1a6fedb4bc19422081c525566dfec4b89b" prot="public" static="no">
         <type>int32_t</type>
         <definition>using nbtview::Int = typedef int32_t</definition>
         <argsstring></argsstring>
@@ -498,9 +408,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Tag.hpp" line="31" column="1" bodyfile="nbtview/Tag.hpp" bodystart="31" bodyend="-1"/>
+        <location file="nbtview/Tag.hpp" line="57" column="1" bodyfile="nbtview/Tag.hpp" bodystart="57" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="namespacenbtview_1ac0fddc63117df18c01dd94b78621bce0" prot="public" static="no">
+      <memberdef kind="typedef" id="Tag_8hpp_1ac0fddc63117df18c01dd94b78621bce0" prot="public" static="no">
         <type>int64_t</type>
         <definition>using nbtview::Long = typedef int64_t</definition>
         <argsstring></argsstring>
@@ -512,9 +422,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Tag.hpp" line="33" column="1" bodyfile="nbtview/Tag.hpp" bodystart="33" bodyend="-1"/>
+        <location file="nbtview/Tag.hpp" line="59" column="1" bodyfile="nbtview/Tag.hpp" bodystart="59" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="namespacenbtview_1a40ef7b380a31d7abd2744a2f9d2725c3" prot="public" static="no">
+      <memberdef kind="typedef" id="Tag_8hpp_1a40ef7b380a31d7abd2744a2f9d2725c3" prot="public" static="no">
         <type>float</type>
         <definition>using nbtview::Float = typedef float</definition>
         <argsstring></argsstring>
@@ -526,9 +436,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Tag.hpp" line="35" column="1" bodyfile="nbtview/Tag.hpp" bodystart="35" bodyend="-1"/>
+        <location file="nbtview/Tag.hpp" line="61" column="1" bodyfile="nbtview/Tag.hpp" bodystart="61" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="namespacenbtview_1a06f91b24dbf822dbf7d54103059e1da0" prot="public" static="no">
+      <memberdef kind="typedef" id="Tag_8hpp_1a06f91b24dbf822dbf7d54103059e1da0" prot="public" static="no">
         <type>double</type>
         <definition>using nbtview::Double = typedef double</definition>
         <argsstring></argsstring>
@@ -540,10 +450,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Tag.hpp" line="37" column="1" bodyfile="nbtview/Tag.hpp" bodystart="37" bodyend="-1"/>
+        <location file="nbtview/Tag.hpp" line="63" column="1" bodyfile="nbtview/Tag.hpp" bodystart="63" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="namespacenbtview_1ac568dd2508ef25a79f4527b5b30c2175" prot="public" static="no">
-        <type>std::vector&lt; <ref refid="namespacenbtview_1af68b4d9024e97e56e47b022e65b25f15" kindref="member">Byte</ref> &gt;</type>
+      <memberdef kind="typedef" id="Tag_8hpp_1ac568dd2508ef25a79f4527b5b30c2175" prot="public" static="no">
+        <type>std::vector&lt; <ref refid="Tag_8hpp_1af68b4d9024e97e56e47b022e65b25f15" kindref="member">Byte</ref> &gt;</type>
         <definition>using nbtview::Byte_Array = typedef std::vector&lt;Byte&gt;</definition>
         <argsstring></argsstring>
         <name>Byte_Array</name>
@@ -554,9 +464,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Tag.hpp" line="39" column="1" bodyfile="nbtview/Tag.hpp" bodystart="39" bodyend="-1"/>
+        <location file="nbtview/Tag.hpp" line="65" column="1" bodyfile="nbtview/Tag.hpp" bodystart="65" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="namespacenbtview_1a8763725f06fd8f86ba0393bf56d78761" prot="public" static="no">
+      <memberdef kind="typedef" id="Tag_8hpp_1a8763725f06fd8f86ba0393bf56d78761" prot="public" static="no">
         <type>std::string</type>
         <definition>using nbtview::String = typedef std::string</definition>
         <argsstring></argsstring>
@@ -568,10 +478,38 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Tag.hpp" line="41" column="1" bodyfile="nbtview/Tag.hpp" bodystart="41" bodyend="-1"/>
+        <location file="nbtview/Tag.hpp" line="67" column="1" bodyfile="nbtview/Tag.hpp" bodystart="67" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="namespacenbtview_1aedc8581c15b590af57635d606a2c73a0" prot="public" static="no">
-        <type>std::vector&lt; <ref refid="namespacenbtview_1a6fedb4bc19422081c525566dfec4b89b" kindref="member">Int</ref> &gt;</type>
+      <memberdef kind="typedef" id="Tag_8hpp_1acd24fbf075c34a11c8c0b38c4a1b9adb" prot="public" static="no">
+        <type>std::vector&lt; <ref refid="classnbtview_1_1Tag" kindref="compound">Tag</ref> &gt;</type>
+        <definition>using nbtview::List = typedef std::vector&lt;Tag&gt;</definition>
+        <argsstring></argsstring>
+        <name>List</name>
+        <briefdescription>
+<para>array of <ref refid="classnbtview_1_1Tag" kindref="compound">Tag</ref> objects </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="69" column="1" bodyfile="nbtview/Tag.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="Tag_8hpp_1ac7fc87b9f955bdb806db77eca81aafde" prot="public" static="no">
+        <type>std::map&lt; std::string, <ref refid="classnbtview_1_1Tag" kindref="compound">Tag</ref> &gt;</type>
+        <definition>using nbtview::Compound = typedef std::map&lt;std::string, Tag&gt;</definition>
+        <argsstring></argsstring>
+        <name>Compound</name>
+        <briefdescription>
+<para>map from string to <ref refid="classnbtview_1_1Tag" kindref="compound">Tag</ref> objects </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="71" column="1" bodyfile="nbtview/Tag.hpp" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="Tag_8hpp_1aedc8581c15b590af57635d606a2c73a0" prot="public" static="no">
+        <type>std::vector&lt; <ref refid="Tag_8hpp_1a6fedb4bc19422081c525566dfec4b89b" kindref="member">Int</ref> &gt;</type>
         <definition>using nbtview::Int_Array = typedef std::vector&lt;Int&gt;</definition>
         <argsstring></argsstring>
         <name>Int_Array</name>
@@ -582,10 +520,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Tag.hpp" line="43" column="1" bodyfile="nbtview/Tag.hpp" bodystart="43" bodyend="-1"/>
+        <location file="nbtview/Tag.hpp" line="73" column="1" bodyfile="nbtview/Tag.hpp" bodystart="73" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="namespacenbtview_1af706de40c93703c773c7475bf3075a81" prot="public" static="no">
-        <type>std::vector&lt; <ref refid="namespacenbtview_1ac0fddc63117df18c01dd94b78621bce0" kindref="member">Long</ref> &gt;</type>
+      <memberdef kind="typedef" id="Tag_8hpp_1af706de40c93703c773c7475bf3075a81" prot="public" static="no">
+        <type>std::vector&lt; <ref refid="Tag_8hpp_1ac0fddc63117df18c01dd94b78621bce0" kindref="member">Long</ref> &gt;</type>
         <definition>using nbtview::Long_Array = typedef std::vector&lt;Long&gt;</definition>
         <argsstring></argsstring>
         <name>Long_Array</name>
@@ -596,27 +534,24 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Tag.hpp" line="45" column="1" bodyfile="nbtview/Tag.hpp" bodystart="45" bodyend="-1"/>
+        <location file="nbtview/Tag.hpp" line="75" column="1" bodyfile="nbtview/Tag.hpp" bodystart="75" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="namespacenbtview_1a9fcb48c3df7749255fcc9f3f9e84f3fa" prot="public" static="no">
-        <type>std::variant&lt; <ref refid="namespacenbtview_1abac20ead73188ab8094137b5b4bbd5f2" kindref="member">End</ref>, <ref refid="namespacenbtview_1af68b4d9024e97e56e47b022e65b25f15" kindref="member">Byte</ref>, <ref refid="namespacenbtview_1a135ffec411a1c14822713fd40959fdf6" kindref="member">Short</ref>, <ref refid="namespacenbtview_1a6fedb4bc19422081c525566dfec4b89b" kindref="member">Int</ref>, <ref refid="namespacenbtview_1ac0fddc63117df18c01dd94b78621bce0" kindref="member">Long</ref>, <ref refid="namespacenbtview_1a40ef7b380a31d7abd2744a2f9d2725c3" kindref="member">Float</ref>, <ref refid="namespacenbtview_1a06f91b24dbf822dbf7d54103059e1da0" kindref="member">Double</ref>, <ref refid="namespacenbtview_1ac568dd2508ef25a79f4527b5b30c2175" kindref="member">Byte_Array</ref>, <ref refid="namespacenbtview_1a8763725f06fd8f86ba0393bf56d78761" kindref="member">String</ref>, <ref refid="classnbtview_1_1List" kindref="compound">List</ref>, <ref refid="classnbtview_1_1Compound" kindref="compound">Compound</ref>, <ref refid="namespacenbtview_1aedc8581c15b590af57635d606a2c73a0" kindref="member">Int_Array</ref>, <ref refid="namespacenbtview_1af706de40c93703c773c7475bf3075a81" kindref="member">Long_Array</ref> &gt;</type>
-        <definition>using nbtview::Tag = typedef std::variant&lt;End, Byte, Short, Int, Long, Float, Double, Byte_Array, String, List, Compound, Int_Array, Long_Array&gt;</definition>
+      <memberdef kind="typedef" id="Tag_8hpp_1a7079e76929422395d595651f1666a6c8" prot="public" static="no">
+        <type>std::variant&lt; <ref refid="structnbtview_1_1None" kindref="compound">None</ref>, <ref refid="Tag_8hpp_1abac20ead73188ab8094137b5b4bbd5f2" kindref="member">End</ref>, <ref refid="Tag_8hpp_1af68b4d9024e97e56e47b022e65b25f15" kindref="member">Byte</ref>, <ref refid="Tag_8hpp_1a135ffec411a1c14822713fd40959fdf6" kindref="member">Short</ref>, <ref refid="Tag_8hpp_1a6fedb4bc19422081c525566dfec4b89b" kindref="member">Int</ref>, <ref refid="Tag_8hpp_1ac0fddc63117df18c01dd94b78621bce0" kindref="member">Long</ref>, <ref refid="Tag_8hpp_1a40ef7b380a31d7abd2744a2f9d2725c3" kindref="member">Float</ref>, <ref refid="Tag_8hpp_1a06f91b24dbf822dbf7d54103059e1da0" kindref="member">Double</ref>, <ref refid="Tag_8hpp_1ac568dd2508ef25a79f4527b5b30c2175" kindref="member">Byte_Array</ref>, <ref refid="Tag_8hpp_1a8763725f06fd8f86ba0393bf56d78761" kindref="member">String</ref>, <ref refid="Tag_8hpp_1acd24fbf075c34a11c8c0b38c4a1b9adb" kindref="member">List</ref>, <ref refid="Tag_8hpp_1ac7fc87b9f955bdb806db77eca81aafde" kindref="member">Compound</ref>, <ref refid="Tag_8hpp_1aedc8581c15b590af57635d606a2c73a0" kindref="member">Int_Array</ref>, <ref refid="Tag_8hpp_1af706de40c93703c773c7475bf3075a81" kindref="member">Long_Array</ref> &gt;</type>
+        <definition>using nbtview::TagValue = typedef std::variant&lt;None, End, Byte, Short, Int, Long, Float, Double, Byte_Array, String, List, Compound, Int_Array, Long_Array&gt;</definition>
         <argsstring></argsstring>
-        <name>Tag</name>
+        <name>TagValue</name>
         <briefdescription>
-<para>Tag holds the value of an NBT tag. </para>
         </briefdescription>
         <detaileddescription>
-<para>If the NBT tag has a name, it is stored in the <ref refid="classnbtview_1_1Compound" kindref="compound">Compound</ref> tag that contains it. The root tag&apos;s name (if it has one) is not stored.</para>
-<para>You can use the functions provided by <ulink url="https://en.cppreference.com/w/cpp/header/variant">&lt;variant&gt;</ulink> to access a Tag&apos;s type and value. However, because you usually know what type you expect a given tag to be, it is generally more convenient to get an NBT value of that type via the <ref refid="classnbtview_1_1Compound_1aa3e34fe1fd2f862e82e135c8c3a8a1fe" kindref="member">Compound::get&lt;T&gt;</ref> method. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Tag.hpp" line="61" column="1" bodyfile="nbtview/Tag.hpp" bodystart="62" bodyend="-1"/>
+        <location file="nbtview/Tag.hpp" line="77" column="1" bodyfile="nbtview/Tag.hpp" bodystart="79" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="func">
-      <memberdef kind="function" id="namespacenbtview_1a62378fce3f65363cf1ac2855647f43cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="nbtview_8cpp_1a62378fce3f65363cf1ac2855647f43cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; unsigned char &gt;::const_iterator</type>
         <definition>std::vector&lt; unsigned char &gt;::const_iterator nbtview::fast_find_named_tag</definition>
         <argsstring>(std::vector&lt; unsigned char &gt;::const_iterator nbt_start, std::vector&lt; unsigned char &gt;::const_iterator nbt_stop, TypeCode tag_type, const std::string &amp;tag_name)</argsstring>
@@ -630,7 +565,7 @@
           <declname>nbt_stop</declname>
         </param>
         <param>
-          <type><ref refid="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1" kindref="member">TypeCode</ref></type>
+          <type><ref refid="Tag_8hpp_1afc3b190dfb9b456a2b36e19029d229b1" kindref="member">TypeCode</ref></type>
           <declname>tag_type</declname>
         </param>
         <param>
@@ -643,9 +578,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/nbtview.cpp" line="18" column="1" bodyfile="nbtview/nbtview.cpp" bodystart="18" bodyend="38" declfile="nbtview/nbtview.hpp" declline="40" declcolumn="1"/>
+        <location file="nbtview/nbtview.cpp" line="17" column="1" bodyfile="nbtview/nbtview.cpp" bodystart="17" bodyend="37" declfile="nbtview/nbtview.hpp" declline="40" declcolumn="1"/>
       </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a1ce60d52b2a334e72db23f22822b8705" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="Region_8cpp_1a1ce60d52b2a334e72db23f22822b8705" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>uint32_t</type>
         <definition>uint32_t nbtview::chunk_data_length</definition>
         <argsstring>(const std::vector&lt; unsigned char &gt; &amp;chunk_header)</argsstring>
@@ -662,13 +597,30 @@
         </inbodydescription>
         <location file="nbtview/Region.cpp" line="69" column="10" bodyfile="nbtview/Region.cpp" bodystart="69" bodyend="80"/>
       </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a792cf692f58bf3da1818184ad5f2dfd6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="Tag_8hpp_1afd64d6ab3e2819cfedfb6ab516ff1fb8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="Tag_8hpp_1afc3b190dfb9b456a2b36e19029d229b1" kindref="member">TypeCode</ref></type>
+        <definition>const TypeCode nbtview::list_type</definition>
+        <argsstring>(const List &amp;lst)</argsstring>
+        <name>list_type</name>
+        <param>
+          <type>const <ref refid="Tag_8hpp_1acd24fbf075c34a11c8c0b38c4a1b9adb" kindref="member">List</ref> &amp;</type>
+          <declname>lst</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="180" column="23" bodyfile="nbtview/Tag.hpp" bodystart="180" bodyend="182"/>
+      </memberdef>
+      <memberdef kind="function" id="Tag_8hpp_1a19413d7bf905e9348269c64d23877c2b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::string</type>
-        <definition>std::string nbtview::tag_to_string</definition>
+        <definition>std::string nbtview::to_string</definition>
         <argsstring>(const Tag &amp;tag)</argsstring>
-        <name>tag_to_string</name>
+        <name>to_string</name>
         <param>
-          <type>const <ref refid="namespacenbtview_1a9fcb48c3df7749255fcc9f3f9e84f3fa" kindref="member">Tag</ref> &amp;</type>
+          <type>const <ref refid="classnbtview_1_1Tag" kindref="compound">Tag</ref> &amp;</type>
           <declname>tag</declname>
         </param>
         <briefdescription>
@@ -677,100 +629,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Stringifier.cpp" line="73" column="13" bodyfile="nbtview/Stringifier.cpp" bodystart="73" bodyend="75" declfile="nbtview/Stringifier.hpp" declline="24" declcolumn="13"/>
+        <location file="nbtview/Tag.hpp" line="284" column="20" bodyfile="nbtview/Tag.hpp" bodystart="284" bodyend="325" declfile="nbtview/Tag.hpp" declline="184" declcolumn="20"/>
       </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a5856db957caf969d2b2ff9b1b50d8f67" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>std::string</type>
-        <definition>std::string nbtview::tag_to_string</definition>
-        <argsstring>(const List &amp;tag)</argsstring>
-        <name>tag_to_string</name>
-        <param>
-          <type>const <ref refid="classnbtview_1_1List" kindref="compound">List</ref> &amp;</type>
-          <declname>tag</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="nbtview/Stringifier.cpp" line="83" column="13" bodyfile="nbtview/Stringifier.cpp" bodystart="83" bodyend="83" declfile="nbtview/Stringifier.hpp" declline="25" declcolumn="13"/>
-      </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a581ba1225cbd921ed202039c9a8faddd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>std::string</type>
-        <definition>std::string nbtview::tag_to_string</definition>
-        <argsstring>(const Compound &amp;tag)</argsstring>
-        <name>tag_to_string</name>
-        <param>
-          <type>const <ref refid="classnbtview_1_1Compound" kindref="compound">Compound</ref> &amp;</type>
-          <declname>tag</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="nbtview/Stringifier.cpp" line="84" column="13" bodyfile="nbtview/Stringifier.cpp" bodystart="84" bodyend="84" declfile="nbtview/Stringifier.hpp" declline="26" declcolumn="13"/>
-      </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a407053dbe431b26db62ae49c816d70c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>std::string</type>
-        <definition>std::string nbtview::tag_type_to_string</definition>
-        <argsstring>(const Tag &amp;tag)</argsstring>
-        <name>tag_type_to_string</name>
-        <param>
-          <type>const <ref refid="namespacenbtview_1a9fcb48c3df7749255fcc9f3f9e84f3fa" kindref="member">Tag</ref> &amp;</type>
-          <declname>tag</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="nbtview/Stringifier.cpp" line="104" column="13" bodyfile="nbtview/Stringifier.cpp" bodystart="104" bodyend="106" declfile="nbtview/Stringifier.hpp" declline="28" declcolumn="13"/>
-      </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a0bd7f6345e97652211a472943d4ffd9a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>std::string</type>
-        <definition>std::string nbtview::tag_type_to_string</definition>
-        <argsstring>(const List &amp;tag)</argsstring>
-        <name>tag_type_to_string</name>
-        <param>
-          <type>const <ref refid="classnbtview_1_1List" kindref="compound">List</ref> &amp;</type>
-          <declname>tag</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="nbtview/Stringifier.cpp" line="108" column="13" bodyfile="nbtview/Stringifier.cpp" bodystart="108" bodyend="110" declfile="nbtview/Stringifier.hpp" declline="29" declcolumn="13"/>
-      </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a02eba78aa9223937ff2ec6237d422c6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>std::string</type>
-        <definition>std::string nbtview::tag_type_to_string</definition>
-        <argsstring>(const Compound &amp;tag)</argsstring>
-        <name>tag_type_to_string</name>
-        <param>
-          <type>const <ref refid="classnbtview_1_1Compound" kindref="compound">Compound</ref> &amp;</type>
-          <declname>tag</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="nbtview/Stringifier.cpp" line="111" column="13" bodyfile="nbtview/Stringifier.cpp" bodystart="111" bodyend="113" declfile="nbtview/Stringifier.hpp" declline="30" declcolumn="13"/>
-      </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a10e959b60f48cfa9e2bdee220abaf4fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>std::string</type>
-        <definition>std::string nbtview::tag_code_to_string</definition>
+      <memberdef kind="function" id="Tag_8hpp_1af36f2787f855262d3b6db2180a6a8e69" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>const char *</type>
+        <definition>const char* nbtview::typecode_to_string</definition>
         <argsstring>(TypeCode type)</argsstring>
-        <name>tag_code_to_string</name>
+        <name>typecode_to_string</name>
         <param>
-          <type><ref refid="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1" kindref="member">TypeCode</ref></type>
+          <type><ref refid="Tag_8hpp_1afc3b190dfb9b456a2b36e19029d229b1" kindref="member">TypeCode</ref></type>
           <declname>type</declname>
         </param>
         <briefdescription>
@@ -779,9 +646,104 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Stringifier.cpp" line="115" column="13" bodyfile="nbtview/Stringifier.cpp" bodystart="115" bodyend="146" declfile="nbtview/Stringifier.hpp" declline="32" declcolumn="13"/>
+        <location file="nbtview/Tag.hpp" line="186" column="19" bodyfile="nbtview/Tag.hpp" bodystart="186" bodyend="219"/>
       </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a2e368e409169b9c433f16763be3f0b37" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="Tag_8hpp_1aadd1428b5a597277ba6f19a5f142025c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string nbtview::tag_id_string</definition>
+        <argsstring>(const Tag &amp;tag)</argsstring>
+        <name>tag_id_string</name>
+        <param>
+          <type>const <ref refid="classnbtview_1_1Tag" kindref="compound">Tag</ref> &amp;</type>
+          <declname>tag</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="221" column="20" bodyfile="nbtview/Tag.hpp" bodystart="221" bodyend="230"/>
+      </memberdef>
+      <memberdef kind="function" id="Tag_8hpp_1a3b3df6934db5cf34b130c7b00832a41a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>std::string</type>
+        <definition>std::string nbtview::associative_to_string</definition>
+        <argsstring>(const T &amp;iterable)</argsstring>
+        <name>associative_to_string</name>
+        <param>
+          <type>const T &amp;</type>
+          <declname>iterable</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="232" column="25" bodyfile="nbtview/Tag.hpp" bodystart="232" bodyend="250"/>
+      </memberdef>
+      <memberdef kind="function" id="Tag_8hpp_1aebcc6d183158b9c1f9a3bee2aa4370d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>std::string</type>
+        <definition>std::string nbtview::sequential_to_string</definition>
+        <argsstring>(const T &amp;iterable, const std::string &amp;array_prefix)</argsstring>
+        <name>sequential_to_string</name>
+        <param>
+          <type>const T &amp;</type>
+          <declname>iterable</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>array_prefix</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="253" column="13" bodyfile="nbtview/Tag.hpp" bodystart="253" bodyend="266"/>
+      </memberdef>
+      <memberdef kind="function" id="Tag_8hpp_1a7dcb721dffa0bf9291ebde4d8ed52762" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>std::string</type>
+        <definition>std::string nbtview::array_to_string</definition>
+        <argsstring>(const T &amp;iterable, const std::string &amp;array_prefix, const std::string &amp;element_suffix)</argsstring>
+        <name>array_to_string</name>
+        <param>
+          <type>const T &amp;</type>
+          <declname>iterable</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>array_prefix</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>element_suffix</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Tag.hpp" line="269" column="13" bodyfile="nbtview/Tag.hpp" bodystart="269" bodyend="282"/>
+      </memberdef>
+      <memberdef kind="function" id="utils_8hpp_1a2e368e409169b9c433f16763be3f0b37" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool nbtview::snbt_requires_quoting</definition>
         <argsstring>(const std::string &amp;str)</argsstring>
@@ -798,7 +760,7 @@
         </inbodydescription>
         <location file="nbtview/utils.hpp" line="20" column="13" bodyfile="nbtview/utils.hpp" bodystart="20" bodyend="23"/>
       </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a99f417945a3700f4c8a19d670f19c3a7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="utils_8hpp_1a99f417945a3700f4c8a19d670f19c3a7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::string</type>
         <definition>std::string nbtview::quoted_string</definition>
         <argsstring>(const std::string &amp;str)</argsstring>
@@ -815,7 +777,7 @@
         </inbodydescription>
         <location file="nbtview/utils.hpp" line="25" column="20" bodyfile="nbtview/utils.hpp" bodystart="25" bodyend="29"/>
       </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a0ee9f2ba9bf67f7636003442cfd4d967" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="utils_8hpp_1a0ee9f2ba9bf67f7636003442cfd4d967" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename T</type>
@@ -871,7 +833,7 @@
         </inbodydescription>
         <location file="nbtview/utils.hpp" line="52" column="13" bodyfile="nbtview/utils.hpp" bodystart="52" bodyend="65"/>
       </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1af44731ec89ee78b8a15db9ac0ed12b64" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="zlib__utils_8cpp_1af44731ec89ee78b8a15db9ac0ed12b64" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>bool nbtview::has_compression_header</definition>
         <argsstring>(const unsigned char *data, size_t data_length)</argsstring>
@@ -892,7 +854,7 @@
         </inbodydescription>
         <location file="nbtview/zlib_utils.cpp" line="14" column="6" bodyfile="nbtview/zlib_utils.cpp" bodystart="14" bodyend="32" declfile="nbtview/zlib_utils.hpp" declline="19" declcolumn="6"/>
       </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1a17340db79f2b87e145da9e4a2da3dc8f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="zlib__utils_8cpp_1a17340db79f2b87e145da9e4a2da3dc8f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; unsigned char &gt;</type>
         <definition>std::vector&lt; unsigned char &gt; nbtview::decompress_data</definition>
         <argsstring>(const unsigned char *compressed_data, size_t data_length)</argsstring>
@@ -914,7 +876,7 @@
         </inbodydescription>
         <location file="nbtview/zlib_utils.cpp" line="115" column="13" bodyfile="nbtview/zlib_utils.cpp" bodystart="115" bodyend="125" declfile="nbtview/zlib_utils.hpp" declline="22" declcolumn="13"/>
       </memberdef>
-      <memberdef kind="function" id="namespacenbtview_1ae636739af4d439c8742a4b1fcefa07a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="zlib__utils_8cpp_1ae636739af4d439c8742a4b1fcefa07a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::pair&lt; std::vector&lt; unsigned char &gt;, <ref refid="structnbtview_1_1Inflation__Status" kindref="compound">Inflation_Status</ref> &gt;</type>
         <definition>std::pair&lt; std::vector&lt; unsigned char &gt;, Inflation_Status &gt; nbtview::inflate_sectors</definition>
         <argsstring>(const unsigned char *input_data, size_t input_length)</argsstring>
@@ -938,10 +900,9 @@
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Utilities to read, write, and manipulate NBT data. </para>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="nbtview/BinaryDeserializer.cpp" line="11" column="1"/>
+    <location file="nbtview/BinaryDeserializer.cpp" line="12" column="1"/>
   </compounddef>
 </doxygen>

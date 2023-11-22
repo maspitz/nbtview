@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['int_124',['Int',['../namespacenbtview.html#a6fedb4bc19422081c525566dfec4b89b',1,'nbtview']]],
-  ['int_5farray_125',['Int_Array',['../namespacenbtview.html#aedc8581c15b590af57635d606a2c73a0',1,'nbtview']]]
+  ['float_107',['Float',['../Tag_8hpp.html#a40ef7b380a31d7abd2744a2f9d2725c3',1,'nbtview']]]
 ];

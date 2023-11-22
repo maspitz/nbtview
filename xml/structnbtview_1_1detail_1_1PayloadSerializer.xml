@@ -18,13 +18,13 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="structnbtview_1_1detail_1_1PayloadSerializer_1a58c57b2301d0ea826e93d563de31c6ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structnbtview_1_1detail_1_1PayloadSerializer_1a005b314bb28881e16c4b7f9dc725bd47" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void nbtview::detail::PayloadSerializer::operator()</definition>
-        <argsstring>(const End &amp;t)</argsstring>
+        <argsstring>(const None &amp;t)</argsstring>
         <name>operator()</name>
         <param>
-          <type>const <ref refid="namespacenbtview_1abac20ead73188ab8094137b5b4bbd5f2" kindref="member">End</ref> &amp;</type>
+          <type>const <ref refid="structnbtview_1_1None" kindref="compound">None</ref> &amp;</type>
           <declname>t</declname>
         </param>
         <briefdescription>
@@ -35,13 +35,13 @@
         </inbodydescription>
         <location file="nbtview/Serializer.hpp" line="30" column="14" bodyfile="nbtview/Serializer.hpp" bodystart="30" bodyend="30"/>
       </memberdef>
-      <memberdef kind="function" id="structnbtview_1_1detail_1_1PayloadSerializer_1ad8daa4d868aea208f026a21945aeee58" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structnbtview_1_1detail_1_1PayloadSerializer_1a58c57b2301d0ea826e93d563de31c6ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void nbtview::detail::PayloadSerializer::operator()</definition>
-        <argsstring>(const Byte &amp;t)</argsstring>
+        <argsstring>(const End &amp;t)</argsstring>
         <name>operator()</name>
         <param>
-          <type>const <ref refid="namespacenbtview_1af68b4d9024e97e56e47b022e65b25f15" kindref="member">Byte</ref> &amp;</type>
+          <type>const <ref refid="Tag_8hpp_1abac20ead73188ab8094137b5b4bbd5f2" kindref="member">End</ref> &amp;</type>
           <declname>t</declname>
         </param>
         <briefdescription>
@@ -52,13 +52,13 @@
         </inbodydescription>
         <location file="nbtview/Serializer.hpp" line="31" column="14" bodyfile="nbtview/Serializer.hpp" bodystart="31" bodyend="31"/>
       </memberdef>
-      <memberdef kind="function" id="structnbtview_1_1detail_1_1PayloadSerializer_1a09ca912301985c896e9d37c09aca8a3c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structnbtview_1_1detail_1_1PayloadSerializer_1ad8daa4d868aea208f026a21945aeee58" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void nbtview::detail::PayloadSerializer::operator()</definition>
-        <argsstring>(const Short &amp;t)</argsstring>
+        <argsstring>(const Byte &amp;t)</argsstring>
         <name>operator()</name>
         <param>
-          <type>const <ref refid="namespacenbtview_1a135ffec411a1c14822713fd40959fdf6" kindref="member">Short</ref> &amp;</type>
+          <type>const <ref refid="Tag_8hpp_1af68b4d9024e97e56e47b022e65b25f15" kindref="member">Byte</ref> &amp;</type>
           <declname>t</declname>
         </param>
         <briefdescription>
@@ -69,13 +69,13 @@
         </inbodydescription>
         <location file="nbtview/Serializer.hpp" line="32" column="14" bodyfile="nbtview/Serializer.hpp" bodystart="32" bodyend="32"/>
       </memberdef>
-      <memberdef kind="function" id="structnbtview_1_1detail_1_1PayloadSerializer_1a353363e8f4c8806da1de444748f85005" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structnbtview_1_1detail_1_1PayloadSerializer_1a09ca912301985c896e9d37c09aca8a3c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void nbtview::detail::PayloadSerializer::operator()</definition>
-        <argsstring>(const Int &amp;t)</argsstring>
+        <argsstring>(const Short &amp;t)</argsstring>
         <name>operator()</name>
         <param>
-          <type>const <ref refid="namespacenbtview_1a6fedb4bc19422081c525566dfec4b89b" kindref="member">Int</ref> &amp;</type>
+          <type>const <ref refid="Tag_8hpp_1a135ffec411a1c14822713fd40959fdf6" kindref="member">Short</ref> &amp;</type>
           <declname>t</declname>
         </param>
         <briefdescription>
@@ -86,13 +86,13 @@
         </inbodydescription>
         <location file="nbtview/Serializer.hpp" line="33" column="14" bodyfile="nbtview/Serializer.hpp" bodystart="33" bodyend="33"/>
       </memberdef>
-      <memberdef kind="function" id="structnbtview_1_1detail_1_1PayloadSerializer_1a930e0843fb94124fcfc981372df9064c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structnbtview_1_1detail_1_1PayloadSerializer_1a353363e8f4c8806da1de444748f85005" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void nbtview::detail::PayloadSerializer::operator()</definition>
-        <argsstring>(const Long &amp;t)</argsstring>
+        <argsstring>(const Int &amp;t)</argsstring>
         <name>operator()</name>
         <param>
-          <type>const <ref refid="namespacenbtview_1ac0fddc63117df18c01dd94b78621bce0" kindref="member">Long</ref> &amp;</type>
+          <type>const <ref refid="Tag_8hpp_1a6fedb4bc19422081c525566dfec4b89b" kindref="member">Int</ref> &amp;</type>
           <declname>t</declname>
         </param>
         <briefdescription>
@@ -103,13 +103,13 @@
         </inbodydescription>
         <location file="nbtview/Serializer.hpp" line="34" column="14" bodyfile="nbtview/Serializer.hpp" bodystart="34" bodyend="34"/>
       </memberdef>
-      <memberdef kind="function" id="structnbtview_1_1detail_1_1PayloadSerializer_1ad78c7a0120c5c5a2415d977f9bc6bdde" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structnbtview_1_1detail_1_1PayloadSerializer_1a930e0843fb94124fcfc981372df9064c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void nbtview::detail::PayloadSerializer::operator()</definition>
-        <argsstring>(const Float &amp;t)</argsstring>
+        <argsstring>(const Long &amp;t)</argsstring>
         <name>operator()</name>
         <param>
-          <type>const <ref refid="namespacenbtview_1a40ef7b380a31d7abd2744a2f9d2725c3" kindref="member">Float</ref> &amp;</type>
+          <type>const <ref refid="Tag_8hpp_1ac0fddc63117df18c01dd94b78621bce0" kindref="member">Long</ref> &amp;</type>
           <declname>t</declname>
         </param>
         <briefdescription>
@@ -120,13 +120,13 @@
         </inbodydescription>
         <location file="nbtview/Serializer.hpp" line="35" column="14" bodyfile="nbtview/Serializer.hpp" bodystart="35" bodyend="35"/>
       </memberdef>
-      <memberdef kind="function" id="structnbtview_1_1detail_1_1PayloadSerializer_1a211d530649ae585391241fa0ab1fbc77" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structnbtview_1_1detail_1_1PayloadSerializer_1ad78c7a0120c5c5a2415d977f9bc6bdde" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void nbtview::detail::PayloadSerializer::operator()</definition>
-        <argsstring>(const Double &amp;t)</argsstring>
+        <argsstring>(const Float &amp;t)</argsstring>
         <name>operator()</name>
         <param>
-          <type>const <ref refid="namespacenbtview_1a06f91b24dbf822dbf7d54103059e1da0" kindref="member">Double</ref> &amp;</type>
+          <type>const <ref refid="Tag_8hpp_1a40ef7b380a31d7abd2744a2f9d2725c3" kindref="member">Float</ref> &amp;</type>
           <declname>t</declname>
         </param>
         <briefdescription>
@@ -137,13 +137,13 @@
         </inbodydescription>
         <location file="nbtview/Serializer.hpp" line="36" column="14" bodyfile="nbtview/Serializer.hpp" bodystart="36" bodyend="36"/>
       </memberdef>
-      <memberdef kind="function" id="structnbtview_1_1detail_1_1PayloadSerializer_1ae1c664e89c50e8522a1dd029fa3795be" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structnbtview_1_1detail_1_1PayloadSerializer_1a211d530649ae585391241fa0ab1fbc77" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void nbtview::detail::PayloadSerializer::operator()</definition>
-        <argsstring>(const Byte_Array &amp;t)</argsstring>
+        <argsstring>(const Double &amp;t)</argsstring>
         <name>operator()</name>
         <param>
-          <type>const <ref refid="namespacenbtview_1ac568dd2508ef25a79f4527b5b30c2175" kindref="member">Byte_Array</ref> &amp;</type>
+          <type>const <ref refid="Tag_8hpp_1a06f91b24dbf822dbf7d54103059e1da0" kindref="member">Double</ref> &amp;</type>
           <declname>t</declname>
         </param>
         <briefdescription>
@@ -152,7 +152,24 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Serializer.hpp" line="37" column="14" bodyfile="nbtview/Serializer.hpp" bodystart="37" bodyend="39"/>
+        <location file="nbtview/Serializer.hpp" line="37" column="14" bodyfile="nbtview/Serializer.hpp" bodystart="37" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="structnbtview_1_1detail_1_1PayloadSerializer_1ae1c664e89c50e8522a1dd029fa3795be" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nbtview::detail::PayloadSerializer::operator()</definition>
+        <argsstring>(const Byte_Array &amp;t)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="Tag_8hpp_1ac568dd2508ef25a79f4527b5b30c2175" kindref="member">Byte_Array</ref> &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nbtview/Serializer.hpp" line="38" column="14" bodyfile="nbtview/Serializer.hpp" bodystart="38" bodyend="40"/>
       </memberdef>
       <memberdef kind="function" id="structnbtview_1_1detail_1_1PayloadSerializer_1ab936cbca88c10e329781b4cb1183628e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -160,7 +177,7 @@
         <argsstring>(const String &amp;t)</argsstring>
         <name>operator()</name>
         <param>
-          <type>const <ref refid="namespacenbtview_1a8763725f06fd8f86ba0393bf56d78761" kindref="member">String</ref> &amp;</type>
+          <type>const <ref refid="Tag_8hpp_1a8763725f06fd8f86ba0393bf56d78761" kindref="member">String</ref> &amp;</type>
           <declname>t</declname>
         </param>
         <briefdescription>
@@ -169,7 +186,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Serializer.hpp" line="40" column="14" bodyfile="nbtview/Serializer.hpp" bodystart="40" bodyend="42"/>
+        <location file="nbtview/Serializer.hpp" line="41" column="14" bodyfile="nbtview/Serializer.hpp" bodystart="41" bodyend="43"/>
       </memberdef>
       <memberdef kind="function" id="structnbtview_1_1detail_1_1PayloadSerializer_1a03fc9b323c584f40a2bb21b7ad75f923" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -177,7 +194,7 @@
         <argsstring>(const List &amp;t)</argsstring>
         <name>operator()</name>
         <param>
-          <type>const <ref refid="classnbtview_1_1List" kindref="compound">List</ref> &amp;</type>
+          <type>const <ref refid="Tag_8hpp_1acd24fbf075c34a11c8c0b38c4a1b9adb" kindref="member">List</ref> &amp;</type>
           <declname>t</declname>
         </param>
         <briefdescription>
@@ -186,7 +203,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Serializer.hpp" line="43" column="14" bodyfile="nbtview/Serializer.hpp" bodystart="43" bodyend="49"/>
+        <location file="nbtview/Serializer.hpp" line="44" column="14" bodyfile="nbtview/Serializer.hpp" bodystart="44" bodyend="50"/>
       </memberdef>
       <memberdef kind="function" id="structnbtview_1_1detail_1_1PayloadSerializer_1acb0bf4d219fc0a7ab11cb6e61f26d4df" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -194,7 +211,7 @@
         <argsstring>(const Compound &amp;t)</argsstring>
         <name>operator()</name>
         <param>
-          <type>const <ref refid="classnbtview_1_1Compound" kindref="compound">Compound</ref> &amp;</type>
+          <type>const <ref refid="Tag_8hpp_1ac7fc87b9f955bdb806db77eca81aafde" kindref="member">Compound</ref> &amp;</type>
           <declname>t</declname>
         </param>
         <briefdescription>
@@ -203,7 +220,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Serializer.hpp" line="50" column="14" bodyfile="nbtview/Serializer.hpp" bodystart="50" bodyend="57"/>
+        <location file="nbtview/Serializer.hpp" line="51" column="14" bodyfile="nbtview/Serializer.hpp" bodystart="51" bodyend="59"/>
       </memberdef>
       <memberdef kind="function" id="structnbtview_1_1detail_1_1PayloadSerializer_1ad9769fa16afa37b246b3af7c0e790b9a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -211,7 +228,7 @@
         <argsstring>(const Int_Array &amp;t)</argsstring>
         <name>operator()</name>
         <param>
-          <type>const <ref refid="namespacenbtview_1aedc8581c15b590af57635d606a2c73a0" kindref="member">Int_Array</ref> &amp;</type>
+          <type>const <ref refid="Tag_8hpp_1aedc8581c15b590af57635d606a2c73a0" kindref="member">Int_Array</ref> &amp;</type>
           <declname>t</declname>
         </param>
         <briefdescription>
@@ -220,7 +237,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Serializer.hpp" line="58" column="14" bodyfile="nbtview/Serializer.hpp" bodystart="58" bodyend="60"/>
+        <location file="nbtview/Serializer.hpp" line="60" column="14" bodyfile="nbtview/Serializer.hpp" bodystart="60" bodyend="62"/>
       </memberdef>
       <memberdef kind="function" id="structnbtview_1_1detail_1_1PayloadSerializer_1a070496509be2a5dee6a6ced2b3724ae3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -228,7 +245,7 @@
         <argsstring>(const Long_Array &amp;t)</argsstring>
         <name>operator()</name>
         <param>
-          <type>const <ref refid="namespacenbtview_1af706de40c93703c773c7475bf3075a81" kindref="member">Long_Array</ref> &amp;</type>
+          <type>const <ref refid="Tag_8hpp_1af706de40c93703c773c7475bf3075a81" kindref="member">Long_Array</ref> &amp;</type>
           <declname>t</declname>
         </param>
         <briefdescription>
@@ -237,7 +254,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/Serializer.hpp" line="61" column="14" bodyfile="nbtview/Serializer.hpp" bodystart="61" bodyend="63"/>
+        <location file="nbtview/Serializer.hpp" line="63" column="14" bodyfile="nbtview/Serializer.hpp" bodystart="63" bodyend="65"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -271,8 +288,9 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="nbtview/Serializer.hpp" line="27" column="5" bodyfile="nbtview/Serializer.hpp" bodystart="27" bodyend="64"/>
+    <location file="nbtview/Serializer.hpp" line="27" column="5" bodyfile="nbtview/Serializer.hpp" bodystart="27" bodyend="66"/>
     <listofallmembers>
+      <member refid="structnbtview_1_1detail_1_1PayloadSerializer_1a005b314bb28881e16c4b7f9dc725bd47" prot="public" virt="non-virtual"><scope>nbtview::detail::PayloadSerializer</scope><name>operator()</name></member>
       <member refid="structnbtview_1_1detail_1_1PayloadSerializer_1a58c57b2301d0ea826e93d563de31c6ad" prot="public" virt="non-virtual"><scope>nbtview::detail::PayloadSerializer</scope><name>operator()</name></member>
       <member refid="structnbtview_1_1detail_1_1PayloadSerializer_1ad8daa4d868aea208f026a21945aeee58" prot="public" virt="non-virtual"><scope>nbtview::detail::PayloadSerializer</scope><name>operator()</name></member>
       <member refid="structnbtview_1_1detail_1_1PayloadSerializer_1a09ca912301985c896e9d37c09aca8a3c" prot="public" virt="non-virtual"><scope>nbtview::detail::PayloadSerializer</scope><name>operator()</name></member>

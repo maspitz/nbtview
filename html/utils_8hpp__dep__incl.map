@@ -1,0 +1,8 @@
+<map id="nbtview/utils.hpp" name="nbtview/utils.hpp">
+<area shape="rect" id="node1" title="Fundamental conversion routines for NBT data." alt="" coords="213,5,348,32"/>
+<area shape="rect" id="node2" href="$Tag_8hpp.html" title="Stores and provides access to NBT tag data." alt="" coords="217,80,345,107"/>
+<area shape="rect" id="node3" href="$BinaryDeserializer_8hpp.html" title="Read binary encoded NBT data." alt="" coords="5,229,231,256"/>
+<area shape="rect" id="node4" href="$Deserializer_8hpp.html" title="Abstract Interface for the deserialization of NBT data." alt="" coords="92,155,275,181"/>
+<area shape="rect" id="node5" href="$nbtview_8hpp.html" title="Interface to operations on NBT structured data." alt="" coords="299,155,457,181"/>
+<area shape="rect" id="node6" href="$Serializer_8hpp.html" title="Methods for binary serialization of NBT data." alt="" coords="481,155,648,181"/>
+</map>

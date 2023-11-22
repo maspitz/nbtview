@@ -18,7 +18,7 @@
         <location file="nbtview/Deserializer.hpp" line="26" column="13"/>
       </memberdef>
       <memberdef kind="function" id="classnbtview_1_1Deserializer_1ab7f51da91148d6c1934ae6fcc4de18b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
-        <type>std::pair&lt; std::string, <ref refid="namespacenbtview_1a9fcb48c3df7749255fcc9f3f9e84f3fa" kindref="member">Tag</ref> &gt;</type>
+        <type>std::pair&lt; std::string, <ref refid="classnbtview_1_1Tag" kindref="compound">Tag</ref> &gt;</type>
         <definition>virtual std::pair&lt;std::string, Tag&gt; nbtview::Deserializer::deserialize</definition>
         <argsstring>()=0</argsstring>
         <name>deserialize</name>

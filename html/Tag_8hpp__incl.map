@@ -1,9 +1,14 @@
 <map id="nbtview/Tag.hpp" name="nbtview/Tag.hpp">
-<area shape="rect" id="node1" title="Interfaces for read/write access to NBT tag data." alt="" coords="191,5,319,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,72,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="96,80,147,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="171,80,248,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="272,80,331,107"/>
-<area shape="rect" id="node6" title=" " alt="" coords="355,80,423,107"/>
-<area shape="rect" id="node7" title=" " alt="" coords="447,80,510,107"/>
+<area shape="rect" id="node1" title="Stores and provides access to NBT tag data." alt="" coords="399,5,527,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,85,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="110,80,181,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="205,80,272,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="296,80,347,107"/>
+<area shape="rect" id="node6" title=" " alt="" coords="371,80,448,107"/>
+<area shape="rect" id="node7" title=" " alt="" coords="473,80,559,107"/>
+<area shape="rect" id="node8" title=" " alt="" coords="608,155,667,181"/>
+<area shape="rect" id="node9" title=" " alt="" coords="635,80,703,107"/>
+<area shape="rect" id="node10" title=" " alt="" coords="813,155,875,181"/>
+<area shape="rect" id="node11" href="$utils_8hpp.html" title="Fundamental conversion routines for NBT data." alt="" coords="727,80,806,107"/>
+<area shape="rect" id="node12" title=" " alt="" coords="729,155,788,181"/>
 </map>

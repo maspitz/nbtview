@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['long_126',['Long',['../namespacenbtview.html#ac0fddc63117df18c01dd94b78621bce0',1,'nbtview']]],
-  ['long_5farray_127',['Long_Array',['../namespacenbtview.html#af706de40c93703c773c7475bf3075a81',1,'nbtview']]]
+  ['int_108',['Int',['../Tag_8hpp.html#a6fedb4bc19422081c525566dfec4b89b',1,'nbtview']]],
+  ['int_5farray_109',['Int_Array',['../Tag_8hpp.html#aedc8581c15b590af57635d606a2c73a0',1,'nbtview']]]
 ];

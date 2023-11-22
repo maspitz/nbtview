@@ -69,34 +69,43 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
-<a href="#enum-members">Enumerations</a>  </div>
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">Tag.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Interfaces for read/write access to NBT tag data.  
+<p>Stores and provides access to NBT tag data.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;cstdint&gt;</code><br />
+<div class="textblock"><code>#include &lt;concepts&gt;</code><br />
+<code>#include &lt;cstddef&gt;</code><br />
+<code>#include &lt;cstdint&gt;</code><br />
 <code>#include &lt;map&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
+<code>#include &lt;stdexcept&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;variant&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
+<code>#include &quot;<a class="el" href="utils_8hpp_source.html">utils.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Tag.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="Tag_8hpp__incl.png" border="0" usemap="#anbtview_2Tag_8hpp" alt=""/></div>
 <map name="anbtview_2Tag_8hpp" id="anbtview_2Tag_8hpp">
-<area shape="rect" title="Interfaces for read/write access to NBT tag data." alt="" coords="191,5,319,32"/>
-<area shape="rect" title=" " alt="" coords="5,80,72,107"/>
-<area shape="rect" title=" " alt="" coords="96,80,147,107"/>
-<area shape="rect" title=" " alt="" coords="171,80,248,107"/>
-<area shape="rect" title=" " alt="" coords="272,80,331,107"/>
-<area shape="rect" title=" " alt="" coords="355,80,423,107"/>
-<area shape="rect" title=" " alt="" coords="447,80,510,107"/>
+<area shape="rect" title="Stores and provides access to NBT tag data." alt="" coords="399,5,527,32"/>
+<area shape="rect" title=" " alt="" coords="5,80,85,107"/>
+<area shape="rect" title=" " alt="" coords="110,80,181,107"/>
+<area shape="rect" title=" " alt="" coords="205,80,272,107"/>
+<area shape="rect" title=" " alt="" coords="296,80,347,107"/>
+<area shape="rect" title=" " alt="" coords="371,80,448,107"/>
+<area shape="rect" title=" " alt="" coords="473,80,559,107"/>
+<area shape="rect" title=" " alt="" coords="608,155,667,181"/>
+<area shape="rect" title=" " alt="" coords="635,80,703,107"/>
+<area shape="rect" title=" " alt="" coords="813,155,875,181"/>
+<area shape="rect" href="utils_8hpp.html" title="Fundamental conversion routines for NBT data." alt="" coords="727,80,806,107"/>
+<area shape="rect" title=" " alt="" coords="729,155,788,181"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -104,12 +113,11 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="Tag_8hpp__dep__incl.png" border="0" usemap="#anbtview_2Tag_8hppdep" alt=""/></div>
 <map name="anbtview_2Tag_8hppdep" id="anbtview_2Tag_8hppdep">
-<area shape="rect" title="Interfaces for read/write access to NBT tag data." alt="" coords="314,5,442,32"/>
+<area shape="rect" title="Stores and provides access to NBT tag data." alt="" coords="217,5,345,32"/>
 <area shape="rect" href="BinaryDeserializer_8hpp.html" title="Read binary encoded NBT data." alt="" coords="5,155,231,181"/>
 <area shape="rect" href="Deserializer_8hpp.html" title="Abstract Interface for the deserialization of NBT data." alt="" coords="92,80,275,107"/>
 <area shape="rect" href="nbtview_8hpp.html" title="Interface to operations on NBT structured data." alt="" coords="299,80,457,107"/>
 <area shape="rect" href="Serializer_8hpp.html" title="Methods for binary serialization of NBT data." alt="" coords="481,80,648,107"/>
-<area shape="rect" href="Stringifier_8hpp_source.html" title=" " alt="" coords="673,80,841,107"/>
 </map>
 </div>
 </div>
@@ -117,75 +125,76 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnbtview_1_1None.html">nbtview::None</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">placeholder type to indicate the absence of a data value  <a href="structnbtview_1_1None.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnbtview_1_1TagID.html">nbtview::TagID</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structnbtview_1_1TagID.html" title="TagID is used with std::visit to get the TypeCode of a given Tag.">TagID</a> is used with std::visit to get the TypeCode of a given Tag.  <a href="structnbtview_1_1TagID.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structnbtview_1_1TagID.html" title="TagID is used with std::visit to get the TypeCode of a given Tag.">TagID</a> is used with std::visit to get the TypeCode of a given <a class="el" href="classnbtview_1_1Tag.html">Tag</a>.  <a href="structnbtview_1_1TagID.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnbtview_1_1Compound.html">nbtview::Compound</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classnbtview_1_1Compound.html" title="Compound is an associative container that holds Tags by their string names.">Compound</a> is an associative container that holds Tags by their string names.  <a href="classnbtview_1_1Compound.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnbtview_1_1List.html">nbtview::List</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classnbtview_1_1List.html" title="List is a sequence container that holds Tags of a particular type.">List</a> is a sequence container that holds Tags of a particular type.  <a href="classnbtview_1_1List.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:namespacenbtview"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html">nbtview</a></td></tr>
-<tr class="memdesc:namespacenbtview"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utilities to read, write, and manipulate NBT data. <br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnbtview_1_1Tag.html">nbtview::Tag</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:abac20ead73188ab8094137b5b4bbd5f2"><td class="memItemLeft" align="right" valign="top"><a id="abac20ead73188ab8094137b5b4bbd5f2"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#abac20ead73188ab8094137b5b4bbd5f2">nbtview::End</a> = unsigned char</td></tr>
-<tr class="memdesc:abac20ead73188ab8094137b5b4bbd5f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">NBT End tag: marks the end of a <a class="el" href="classnbtview_1_1Compound.html" title="Compound is an associative container that holds Tags by their string names.">Compound</a> Tag's payload. <br /></td></tr>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Tag_8hpp.html#abac20ead73188ab8094137b5b4bbd5f2">nbtview::End</a> = unsigned char</td></tr>
+<tr class="memdesc:abac20ead73188ab8094137b5b4bbd5f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">NBT End tag: marks the end of a Compound <a class="el" href="classnbtview_1_1Tag.html">Tag</a>'s payload. <br /></td></tr>
 <tr class="separator:abac20ead73188ab8094137b5b4bbd5f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af68b4d9024e97e56e47b022e65b25f15"><td class="memItemLeft" align="right" valign="top"><a id="af68b4d9024e97e56e47b022e65b25f15"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#af68b4d9024e97e56e47b022e65b25f15">nbtview::Byte</a> = int8_t</td></tr>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Tag_8hpp.html#af68b4d9024e97e56e47b022e65b25f15">nbtview::Byte</a> = int8_t</td></tr>
 <tr class="memdesc:af68b4d9024e97e56e47b022e65b25f15"><td class="mdescLeft">&#160;</td><td class="mdescRight">8-bit signed integer <br /></td></tr>
 <tr class="separator:af68b4d9024e97e56e47b022e65b25f15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a135ffec411a1c14822713fd40959fdf6"><td class="memItemLeft" align="right" valign="top"><a id="a135ffec411a1c14822713fd40959fdf6"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a135ffec411a1c14822713fd40959fdf6">nbtview::Short</a> = int16_t</td></tr>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Tag_8hpp.html#a135ffec411a1c14822713fd40959fdf6">nbtview::Short</a> = int16_t</td></tr>
 <tr class="memdesc:a135ffec411a1c14822713fd40959fdf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">16-bit signed integer <br /></td></tr>
 <tr class="separator:a135ffec411a1c14822713fd40959fdf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6fedb4bc19422081c525566dfec4b89b"><td class="memItemLeft" align="right" valign="top"><a id="a6fedb4bc19422081c525566dfec4b89b"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a6fedb4bc19422081c525566dfec4b89b">nbtview::Int</a> = int32_t</td></tr>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Tag_8hpp.html#a6fedb4bc19422081c525566dfec4b89b">nbtview::Int</a> = int32_t</td></tr>
 <tr class="memdesc:a6fedb4bc19422081c525566dfec4b89b"><td class="mdescLeft">&#160;</td><td class="mdescRight">32-bit signed integer <br /></td></tr>
 <tr class="separator:a6fedb4bc19422081c525566dfec4b89b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0fddc63117df18c01dd94b78621bce0"><td class="memItemLeft" align="right" valign="top"><a id="ac0fddc63117df18c01dd94b78621bce0"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#ac0fddc63117df18c01dd94b78621bce0">nbtview::Long</a> = int64_t</td></tr>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Tag_8hpp.html#ac0fddc63117df18c01dd94b78621bce0">nbtview::Long</a> = int64_t</td></tr>
 <tr class="memdesc:ac0fddc63117df18c01dd94b78621bce0"><td class="mdescLeft">&#160;</td><td class="mdescRight">64-bit signed integer <br /></td></tr>
 <tr class="separator:ac0fddc63117df18c01dd94b78621bce0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40ef7b380a31d7abd2744a2f9d2725c3"><td class="memItemLeft" align="right" valign="top"><a id="a40ef7b380a31d7abd2744a2f9d2725c3"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a40ef7b380a31d7abd2744a2f9d2725c3">nbtview::Float</a> = float</td></tr>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Tag_8hpp.html#a40ef7b380a31d7abd2744a2f9d2725c3">nbtview::Float</a> = float</td></tr>
 <tr class="memdesc:a40ef7b380a31d7abd2744a2f9d2725c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">32-bit floating point data <br /></td></tr>
 <tr class="separator:a40ef7b380a31d7abd2744a2f9d2725c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06f91b24dbf822dbf7d54103059e1da0"><td class="memItemLeft" align="right" valign="top"><a id="a06f91b24dbf822dbf7d54103059e1da0"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a06f91b24dbf822dbf7d54103059e1da0">nbtview::Double</a> = double</td></tr>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Tag_8hpp.html#a06f91b24dbf822dbf7d54103059e1da0">nbtview::Double</a> = double</td></tr>
 <tr class="memdesc:a06f91b24dbf822dbf7d54103059e1da0"><td class="mdescLeft">&#160;</td><td class="mdescRight">64-bit floating point data <br /></td></tr>
 <tr class="separator:a06f91b24dbf822dbf7d54103059e1da0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac568dd2508ef25a79f4527b5b30c2175"><td class="memItemLeft" align="right" valign="top"><a id="ac568dd2508ef25a79f4527b5b30c2175"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#ac568dd2508ef25a79f4527b5b30c2175">nbtview::Byte_Array</a> = std::vector&lt; Byte &gt;</td></tr>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Tag_8hpp.html#ac568dd2508ef25a79f4527b5b30c2175">nbtview::Byte_Array</a> = std::vector&lt; Byte &gt;</td></tr>
 <tr class="memdesc:ac568dd2508ef25a79f4527b5b30c2175"><td class="mdescLeft">&#160;</td><td class="mdescRight">array of Byte <br /></td></tr>
 <tr class="separator:ac568dd2508ef25a79f4527b5b30c2175"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8763725f06fd8f86ba0393bf56d78761"><td class="memItemLeft" align="right" valign="top"><a id="a8763725f06fd8f86ba0393bf56d78761"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a8763725f06fd8f86ba0393bf56d78761">nbtview::String</a> = std::string</td></tr>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Tag_8hpp.html#a8763725f06fd8f86ba0393bf56d78761">nbtview::String</a> = std::string</td></tr>
 <tr class="memdesc:a8763725f06fd8f86ba0393bf56d78761"><td class="mdescLeft">&#160;</td><td class="mdescRight">string of characters (supports UTF-8) <br /></td></tr>
 <tr class="separator:a8763725f06fd8f86ba0393bf56d78761"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd24fbf075c34a11c8c0b38c4a1b9adb"><td class="memItemLeft" align="right" valign="top"><a id="acd24fbf075c34a11c8c0b38c4a1b9adb"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Tag_8hpp.html#acd24fbf075c34a11c8c0b38c4a1b9adb">nbtview::List</a> = std::vector&lt; Tag &gt;</td></tr>
+<tr class="memdesc:acd24fbf075c34a11c8c0b38c4a1b9adb"><td class="mdescLeft">&#160;</td><td class="mdescRight">array of <a class="el" href="classnbtview_1_1Tag.html">Tag</a> objects <br /></td></tr>
+<tr class="separator:acd24fbf075c34a11c8c0b38c4a1b9adb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7fc87b9f955bdb806db77eca81aafde"><td class="memItemLeft" align="right" valign="top"><a id="ac7fc87b9f955bdb806db77eca81aafde"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Tag_8hpp.html#ac7fc87b9f955bdb806db77eca81aafde">nbtview::Compound</a> = std::map&lt; std::string, Tag &gt;</td></tr>
+<tr class="memdesc:ac7fc87b9f955bdb806db77eca81aafde"><td class="mdescLeft">&#160;</td><td class="mdescRight">map from string to <a class="el" href="classnbtview_1_1Tag.html">Tag</a> objects <br /></td></tr>
+<tr class="separator:ac7fc87b9f955bdb806db77eca81aafde"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aedc8581c15b590af57635d606a2c73a0"><td class="memItemLeft" align="right" valign="top"><a id="aedc8581c15b590af57635d606a2c73a0"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#aedc8581c15b590af57635d606a2c73a0">nbtview::Int_Array</a> = std::vector&lt; Int &gt;</td></tr>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Tag_8hpp.html#aedc8581c15b590af57635d606a2c73a0">nbtview::Int_Array</a> = std::vector&lt; Int &gt;</td></tr>
 <tr class="memdesc:aedc8581c15b590af57635d606a2c73a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">array of Int <br /></td></tr>
 <tr class="separator:aedc8581c15b590af57635d606a2c73a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af706de40c93703c773c7475bf3075a81"><td class="memItemLeft" align="right" valign="top"><a id="af706de40c93703c773c7475bf3075a81"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#af706de40c93703c773c7475bf3075a81">nbtview::Long_Array</a> = std::vector&lt; Long &gt;</td></tr>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Tag_8hpp.html#af706de40c93703c773c7475bf3075a81">nbtview::Long_Array</a> = std::vector&lt; Long &gt;</td></tr>
 <tr class="memdesc:af706de40c93703c773c7475bf3075a81"><td class="mdescLeft">&#160;</td><td class="mdescRight">array of Long <br /></td></tr>
 <tr class="separator:af706de40c93703c773c7475bf3075a81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fcb48c3df7749255fcc9f3f9e84f3fa"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a9fcb48c3df7749255fcc9f3f9e84f3fa">nbtview::Tag</a> = std::variant&lt; End, Byte, Short, Int, Long, Float, Double, Byte_Array, String, List, Compound, Int_Array, Long_Array &gt;</td></tr>
-<tr class="memdesc:a9fcb48c3df7749255fcc9f3f9e84f3fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tag holds the value of an NBT tag.  <a href="namespacenbtview.html#a9fcb48c3df7749255fcc9f3f9e84f3fa">More...</a><br /></td></tr>
-<tr class="separator:a9fcb48c3df7749255fcc9f3f9e84f3fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7079e76929422395d595651f1666a6c8"><td class="memItemLeft" align="right" valign="top"><a id="a7079e76929422395d595651f1666a6c8"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>nbtview::TagValue</b> = std::variant&lt; None, End, Byte, Short, Int, Long, Float, Double, Byte_Array, String, List, Compound, Int_Array, Long_Array &gt;</td></tr>
+<tr class="separator:a7079e76929422395d595651f1666a6c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:afc3b190dfb9b456a2b36e19029d229b1"><td class="memItemLeft" align="right" valign="top"><a id="afc3b190dfb9b456a2b36e19029d229b1"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#afc3b190dfb9b456a2b36e19029d229b1">nbtview::TypeCode</a> : char { <br />
+<tr class="memitem:afc3b190dfb9b456a2b36e19029d229b1"><td class="memItemLeft" align="right" valign="top"><a id="afc3b190dfb9b456a2b36e19029d229b1"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Tag_8hpp.html#afc3b190dfb9b456a2b36e19029d229b1">nbtview::TypeCode</a> : char { <br />
 &#160;&#160;<b>End</b> = 0
 , <b>Byte</b> = 1
 , <b>Short</b> = 2
@@ -202,17 +211,97 @@ Enumerations</h2></td></tr>
 , <b>Int_Array</b> = 11
 , <br />
 &#160;&#160;<b>Long_Array</b> = 12
+, <b>None</b> = 99
 <br />
  }</td></tr>
 <tr class="memdesc:afc3b190dfb9b456a2b36e19029d229b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">TypeCode is a one-byte encoding of the data type of an NBT tag. <br /></td></tr>
 <tr class="separator:afc3b190dfb9b456a2b36e19029d229b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:afd64d6ab3e2819cfedfb6ab516ff1fb8"><td class="memItemLeft" align="right" valign="top"><a id="afd64d6ab3e2819cfedfb6ab516ff1fb8"></a>
+const TypeCode&#160;</td><td class="memItemRight" valign="bottom"><b>nbtview::list_type</b> (const List &amp;lst)</td></tr>
+<tr class="separator:afd64d6ab3e2819cfedfb6ab516ff1fb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19413d7bf905e9348269c64d23877c2b"><td class="memItemLeft" align="right" valign="top"><a id="a19413d7bf905e9348269c64d23877c2b"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>nbtview::to_string</b> (const Tag &amp;tag)</td></tr>
+<tr class="separator:a19413d7bf905e9348269c64d23877c2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af36f2787f855262d3b6db2180a6a8e69"><td class="memItemLeft" align="right" valign="top"><a id="af36f2787f855262d3b6db2180a6a8e69"></a>
+const char *&#160;</td><td class="memItemRight" valign="bottom"><b>nbtview::typecode_to_string</b> (TypeCode type)</td></tr>
+<tr class="separator:af36f2787f855262d3b6db2180a6a8e69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadd1428b5a597277ba6f19a5f142025c"><td class="memItemLeft" align="right" valign="top"><a id="aadd1428b5a597277ba6f19a5f142025c"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>nbtview::tag_id_string</b> (const Tag &amp;tag)</td></tr>
+<tr class="separator:aadd1428b5a597277ba6f19a5f142025c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b3df6934db5cf34b130c7b00832a41a"><td class="memTemplParams" colspan="2"><a id="a3b3df6934db5cf34b130c7b00832a41a"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a3b3df6934db5cf34b130c7b00832a41a"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><b>nbtview::associative_to_string</b> (const T &amp;iterable)</td></tr>
+<tr class="separator:a3b3df6934db5cf34b130c7b00832a41a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebcc6d183158b9c1f9a3bee2aa4370d8"><td class="memTemplParams" colspan="2"><a id="aebcc6d183158b9c1f9a3bee2aa4370d8"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:aebcc6d183158b9c1f9a3bee2aa4370d8"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><b>nbtview::sequential_to_string</b> (const T &amp;iterable, const std::string &amp;array_prefix)</td></tr>
+<tr class="separator:aebcc6d183158b9c1f9a3bee2aa4370d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dcb721dffa0bf9291ebde4d8ed52762"><td class="memTemplParams" colspan="2"><a id="a7dcb721dffa0bf9291ebde4d8ed52762"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a7dcb721dffa0bf9291ebde4d8ed52762"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><b>nbtview::array_to_string</b> (const T &amp;iterable, const std::string &amp;array_prefix, const std::string &amp;element_suffix)</td></tr>
+<tr class="separator:a7dcb721dffa0bf9291ebde4d8ed52762"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Output interface</div></td></tr>
+<tr class="memitem:ae76f4d3336baad88fae92d675f39b36a"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Tag_8hpp.html#ae76f4d3336baad88fae92d675f39b36a">nbtview::operator&lt;&lt;</a> (std::ostream &amp;os, const Tag &amp;tag)</td></tr>
+<tr class="memdesc:ae76f4d3336baad88fae92d675f39b36a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs a string representation of a tag to a stream.  <a href="Tag_8hpp.html#ae76f4d3336baad88fae92d675f39b36a">More...</a><br /></td></tr>
+<tr class="separator:ae76f4d3336baad88fae92d675f39b36a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Interfaces for read/write access to NBT tag data. </p>
+<div class="textblock"><p>Stores and provides access to NBT tag data. </p>
 <dl class="section author"><dt>Author</dt><dd>Michael Spitznagel </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright 2023 Michael Spitznagel. Released under the Boost Software License 1.0</dd></dl>
 <p><a href="https://github.com/maspitz/nbtview">https://github.com/maspitz/nbtview</a> </p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="ae76f4d3336baad88fae92d675f39b36a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae76f4d3336baad88fae92d675f39b36a">&#9670;&nbsp;</a></span>operator&lt;&lt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream&amp; nbtview::operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classnbtview_1_1Tag.html">Tag</a> &amp;&#160;</td>
+          <td class="paramname"><em>tag</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Outputs a string representation of a tag to a stream. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tag</td><td>The tag to be written as a string. </td></tr>
+    <tr><td class="paramname">name</td><td>The name specified for the tag. </td></tr>
+    <tr><td class="paramname">os</td><td>An ostream suitable for text output.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>The string representation of the tag structure is in the SNBT format. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1

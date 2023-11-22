@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structnbtview_1_1None" kind="struct" language="C++" prot="public">
+    <compoundname>nbtview::None</compoundname>
+    <includes refid="Tag_8hpp" local="no">Tag.hpp</includes>
+    <briefdescription>
+<para>placeholder type to indicate the absence of a data value </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nbtview/Tag.hpp" line="49" column="1" bodyfile="nbtview/Tag.hpp" bodystart="49" bodyend="49"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -68,7 +68,6 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#namespaces">Namespaces</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">nbtview.hpp File Reference</div>  </div>
@@ -87,27 +86,26 @@ Include dependency graph for nbtview.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="nbtview_8hpp__incl.png" border="0" usemap="#anbtview_2nbtview_8hpp" alt=""/></div>
 <map name="anbtview_2nbtview_8hpp" id="anbtview_2nbtview_8hpp">
-<area shape="rect" title="Interface to operations on NBT structured data." alt="" coords="79,5,236,32"/>
+<area shape="rect" title="Interface to operations on NBT structured data." alt="" coords="219,5,376,32"/>
 <area shape="rect" title=" " alt="" coords="5,80,69,107"/>
-<area shape="rect" title=" " alt="" coords="37,155,96,181"/>
-<area shape="rect" title=" " alt="" coords="302,80,362,107"/>
-<area shape="rect" title=" " alt="" coords="121,155,183,181"/>
-<area shape="rect" href="Tag_8hpp.html" title="Interfaces for read/write access to NBT tag data." alt="" coords="205,80,277,107"/>
-<area shape="rect" title=" " alt="" coords="403,155,469,181"/>
-<area shape="rect" title=" " alt="" coords="493,155,544,181"/>
-<area shape="rect" title=" " alt="" coords="208,155,285,181"/>
-<area shape="rect" title=" " alt="" coords="310,155,378,181"/>
+<area shape="rect" title=" " alt="" coords="128,229,187,256"/>
+<area shape="rect" title=" " alt="" coords="267,80,327,107"/>
+<area shape="rect" title=" " alt="" coords="954,229,1017,256"/>
+<area shape="rect" href="Tag_8hpp.html" title="Stores and provides access to NBT tag data." alt="" coords="475,80,547,107"/>
+<area shape="rect" title=" " alt="" coords="195,155,275,181"/>
+<area shape="rect" title=" " alt="" coords="299,155,370,181"/>
+<area shape="rect" title=" " alt="" coords="395,155,461,181"/>
+<area shape="rect" title=" " alt="" coords="485,155,536,181"/>
+<area shape="rect" title=" " alt="" coords="560,155,637,181"/>
+<area shape="rect" title=" " alt="" coords="662,155,749,181"/>
+<area shape="rect" title=" " alt="" coords="773,155,841,181"/>
+<area shape="rect" href="utils_8hpp.html" title="Fundamental conversion routines for NBT data." alt="" coords="865,155,943,181"/>
+<area shape="rect" title=" " alt="" coords="871,229,929,256"/>
 </map>
 </div>
 </div>
 <p><a href="nbtview_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:namespacenbtview"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html">nbtview</a></td></tr>
-<tr class="memdesc:namespacenbtview"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utilities to read, write, and manipulate NBT data. <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a62378fce3f65363cf1ac2855647f43cf"><td class="memItemLeft" align="right" valign="top"><a id="a62378fce3f65363cf1ac2855647f43cf"></a>
@@ -116,41 +114,138 @@ std::vector&lt; unsigned char &gt;::const_iterator&#160;</td><td class="memItemR
 <tr><td colspan="2"><div class="groupHeader">Input interface</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Deserialize from binary encoded input </p>
 </div></td></tr>
-<tr class="memitem:aa4c7f0bb2225d506fd0ad00d381f537f"><td class="memItemLeft" align="right" valign="top">std::pair&lt; std::string, Tag &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#aa4c7f0bb2225d506fd0ad00d381f537f">nbtview::read_binary</a> (std::istream &amp;input)</td></tr>
-<tr class="memdesc:aa4c7f0bb2225d506fd0ad00d381f537f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserializes from a stream.  <a href="namespacenbtview.html#aa4c7f0bb2225d506fd0ad00d381f537f">More...</a><br /></td></tr>
+<tr class="memitem:aa4c7f0bb2225d506fd0ad00d381f537f"><td class="memItemLeft" align="right" valign="top">std::pair&lt; std::string, Tag &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>nbtview::read_binary</b> (std::istream &amp;input)</td></tr>
+<tr class="memdesc:aa4c7f0bb2225d506fd0ad00d381f537f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserializes from a stream.  <a href="nbtview_8cpp.html#aa4c7f0bb2225d506fd0ad00d381f537f">More...</a><br /></td></tr>
 <tr class="separator:aa4c7f0bb2225d506fd0ad00d381f537f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a938ea9d0e3e51f465d050f8069887e20"><td class="memItemLeft" align="right" valign="top">std::pair&lt; std::string, Tag &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a938ea9d0e3e51f465d050f8069887e20">nbtview::read_binary</a> (std::vector&lt; unsigned char &gt; bytes)</td></tr>
-<tr class="memdesc:a938ea9d0e3e51f465d050f8069887e20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserializes from a vector of bytes.  <a href="namespacenbtview.html#a938ea9d0e3e51f465d050f8069887e20">More...</a><br /></td></tr>
+<tr class="memitem:a938ea9d0e3e51f465d050f8069887e20"><td class="memItemLeft" align="right" valign="top">std::pair&lt; std::string, Tag &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>nbtview::read_binary</b> (std::vector&lt; unsigned char &gt; bytes)</td></tr>
+<tr class="memdesc:a938ea9d0e3e51f465d050f8069887e20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserializes from a vector of bytes.  <a href="nbtview_8cpp.html#a938ea9d0e3e51f465d050f8069887e20">More...</a><br /></td></tr>
 <tr class="separator:a938ea9d0e3e51f465d050f8069887e20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a554d192d3d961c1972fdb7a1eb3e22ce"><td class="memItemLeft" align="right" valign="top"><a id="a554d192d3d961c1972fdb7a1eb3e22ce"></a>
 std::pair&lt; std::string, Tag &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>nbtview::read_binary</b> (const unsigned char *data, size_t data_length)</td></tr>
 <tr class="separator:a554d192d3d961c1972fdb7a1eb3e22ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Output interface</div></td></tr>
-<tr class="memitem:a552afcf07de4c0e568601c95b4bb2486"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a552afcf07de4c0e568601c95b4bb2486">nbtview::write_binary</a> (const Tag &amp;tag, std::string_view name, std::ostream &amp;output)</td></tr>
-<tr class="memdesc:a552afcf07de4c0e568601c95b4bb2486"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes a tag to a stream.  <a href="namespacenbtview.html#a552afcf07de4c0e568601c95b4bb2486">More...</a><br /></td></tr>
+<tr class="memitem:a552afcf07de4c0e568601c95b4bb2486"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><b>nbtview::write_binary</b> (const Tag &amp;tag, std::string_view name, std::ostream &amp;output)</td></tr>
+<tr class="memdesc:a552afcf07de4c0e568601c95b4bb2486"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes a tag to a stream.  <a href="nbtview_8cpp.html#a552afcf07de4c0e568601c95b4bb2486">More...</a><br /></td></tr>
 <tr class="separator:a552afcf07de4c0e568601c95b4bb2486"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afbb5f08ddadfd438a8d82539ea8ec7e4"><td class="memItemLeft" align="right" valign="top"><a id="afbb5f08ddadfd438a8d82539ea8ec7e4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>nbtview::write_binary</b> (const Compound &amp;tag, std::string_view name, std::ostream &amp;output)</td></tr>
-<tr class="separator:afbb5f08ddadfd438a8d82539ea8ec7e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aadf85cee84299935966d79e35574dd55"><td class="memItemLeft" align="right" valign="top"><a id="aadf85cee84299935966d79e35574dd55"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>nbtview::write_binary</b> (const List &amp;tag, std::string_view name, std::ostream &amp;output)</td></tr>
-<tr class="separator:aadf85cee84299935966d79e35574dd55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a390fb78fe858b5c66d2f401f418bb769"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenbtview.html#a390fb78fe858b5c66d2f401f418bb769">nbtview::operator&lt;&lt;</a> (std::ostream &amp;os, const Tag &amp;tag)</td></tr>
-<tr class="memdesc:a390fb78fe858b5c66d2f401f418bb769"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs a string representation of a tag to a stream.  <a href="namespacenbtview.html#a390fb78fe858b5c66d2f401f418bb769">More...</a><br /></td></tr>
-<tr class="separator:a390fb78fe858b5c66d2f401f418bb769"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66cfd2044b9c70f09690fac3901c0ce2"><td class="memItemLeft" align="right" valign="top"><a id="a66cfd2044b9c70f09690fac3901c0ce2"></a>
-std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>nbtview::operator&lt;&lt;</b> (std::ostream &amp;os, const Compound &amp;tag)</td></tr>
-<tr class="separator:a66cfd2044b9c70f09690fac3901c0ce2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e30272ad6ec26c1630345d36477c40f"><td class="memItemLeft" align="right" valign="top"><a id="a3e30272ad6ec26c1630345d36477c40f"></a>
-std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>nbtview::operator&lt;&lt;</b> (std::ostream &amp;os, const List &amp;tag)</td></tr>
-<tr class="separator:a3e30272ad6ec26c1630345d36477c40f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interface to operations on NBT structured data. </p>
 <dl class="section author"><dt>Author</dt><dd>Michael Spitznagel </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright 2023 Michael Spitznagel. Released under the Boost Software License 1.0</dd></dl>
 <p><a href="https://github.com/maspitz/nbtview">https://github.com/maspitz/nbtview</a> </p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="aa4c7f0bb2225d506fd0ad00d381f537f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4c7f0bb2225d506fd0ad00d381f537f">&#9670;&nbsp;</a></span>read_binary() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; std::string, Tag &gt; nbtview::read_binary </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>input</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Deserializes from a stream. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>An istream opened with ios::binary. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pair consisting of the decoded root tag's name and payload.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::runtime_error</td><td>if the input could not be decoded successfully. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a938ea9d0e3e51f465d050f8069887e20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a938ea9d0e3e51f465d050f8069887e20">&#9670;&nbsp;</a></span>read_binary() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; std::string, Tag &gt; nbtview::read_binary </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; unsigned char &gt;&#160;</td>
+          <td class="paramname"><em>bytes</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Deserializes from a vector of bytes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bytes</td><td>A vector of unsigned char. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pair consisting of the decoded root tag's name and payload.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::runtime_error</td><td>if the input could not be decoded successfully. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a552afcf07de4c0e568601c95b4bb2486"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a552afcf07de4c0e568601c95b4bb2486">&#9670;&nbsp;</a></span>write_binary()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nbtview::write_binary </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classnbtview_1_1Tag.html">Tag</a> &amp;&#160;</td>
+          <td class="paramname"><em>tag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>output</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Serializes a tag to a stream. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tag</td><td>The tag to be serialized. </td></tr>
+    <tr><td class="paramname">name</td><td>The name specified for the tag. </td></tr>
+    <tr><td class="paramname">output</td><td>An ostream opened with ios::binary.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>The binary encoding of the tag is in the NBT format. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1

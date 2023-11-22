@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['inflate_5fsectors_103',['inflate_sectors',['../namespacenbtview.html#ae636739af4d439c8742a4b1fcefa07a6',1,'nbtview']]]
+  ['load_5ffrom_5fsectors_90',['load_from_sectors',['../structnbtview_1_1Region.html#ab8226905ed9d57657d6c1602828dc0a8',1,'nbtview::Region']]]
 ];

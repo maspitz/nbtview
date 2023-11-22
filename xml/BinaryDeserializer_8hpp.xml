@@ -12,7 +12,7 @@
       <node id="4">
         <label>cstdint</label>
       </node>
-      <node id="14">
+      <node id="16">
         <label>variant</label>
       </node>
       <node id="6">
@@ -24,8 +24,11 @@
       <node id="7">
         <label>string</label>
       </node>
-      <node id="12">
+      <node id="14">
         <label>map</label>
+      </node>
+      <node id="18">
+        <label>regex</label>
       </node>
       <node id="10">
         <label>Deserializer.hpp</label>
@@ -46,18 +49,42 @@
       <node id="11">
         <label>Tag.hpp</label>
         <link refid="Tag_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
         <childnode refid="12" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
         <childnode refid="9" relation="include">
         </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>cstddef</label>
+      </node>
+      <node id="17">
+        <label>utils.hpp</label>
+        <link refid="utils_8hpp"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>concepts</label>
       </node>
       <node id="8">
         <label>type_traits</label>
@@ -74,7 +101,7 @@
         <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="13">
+      <node id="15">
         <label>memory</label>
       </node>
       <node id="3">
@@ -117,7 +144,7 @@
 <codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="Deserializer_8hpp" kindref="compound">Deserializer.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="Tag_8hpp" kindref="compound">Tag.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenbtview" kindref="compound">nbtview</ref><sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">nbtview<sp/>{</highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight></codeline>
 <codeline lineno="22" refid="classnbtview_1_1BinaryDeserializer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnbtview_1_1BinaryDeserializer" kindref="compound">BinaryDeserializer</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classnbtview_1_1Deserializer" kindref="compound">Deserializer</ref><sp/>{</highlight></codeline>
 <codeline lineno="23"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
@@ -131,14 +158,14 @@
 <codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>std::pair&lt;std::string,<sp/>Tag&gt;<sp/>deserialize()<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnbtview_1_1List" kindref="compound">List</ref><sp/>deserialize_list();</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="Tag_8hpp_1acd24fbf075c34a11c8c0b38c4a1b9adb" kindref="member">List</ref><sp/>deserialize_list();</highlight></codeline>
 <codeline lineno="35"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnbtview_1_1Compound" kindref="compound">Compound</ref><sp/>deserialize_compound();</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="Tag_8hpp_1ac7fc87b9f955bdb806db77eca81aafde" kindref="member">Compound</ref><sp/>deserialize_compound();</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight></codeline>
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;<sp/>std::vector&lt;T&gt;<sp/>deserialize_array();</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>deserialize_string();</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacenbtview_1a9fcb48c3df7749255fcc9f3f9e84f3fa" kindref="member">Tag</ref><sp/>deserialize_typed_value(<ref refid="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1" kindref="member">TypeCode</ref><sp/>type);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>TagValue<sp/>deserialize_typed_value(<ref refid="Tag_8hpp_1afc3b190dfb9b456a2b36e19029d229b1" kindref="member">TypeCode</ref><sp/>type);</highlight></codeline>
 <codeline lineno="42"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
 <codeline lineno="44"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nbtview</highlight><highlight class="normal"></highlight></codeline>

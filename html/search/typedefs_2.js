@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['end_122',['End',['../namespacenbtview.html#abac20ead73188ab8094137b5b4bbd5f2',1,'nbtview']]]
+  ['double_105',['Double',['../Tag_8hpp.html#a06f91b24dbf822dbf7d54103059e1da0',1,'nbtview']]]
 ];

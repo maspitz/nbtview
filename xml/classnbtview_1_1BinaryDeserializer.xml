@@ -54,7 +54,7 @@
         <location file="nbtview/BinaryDeserializer.hpp" line="29" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classnbtview_1_1BinaryDeserializer_1aeb8d769ca662cfc539701169f36c4440" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
-        <type>std::pair&lt; std::string, <ref refid="namespacenbtview_1a9fcb48c3df7749255fcc9f3f9e84f3fa" kindref="member">Tag</ref> &gt;</type>
+        <type>std::pair&lt; std::string, <ref refid="classnbtview_1_1Tag" kindref="compound">Tag</ref> &gt;</type>
         <definition>std::pair&lt; std::string, Tag &gt; nbtview::BinaryDeserializer::deserialize</definition>
         <argsstring>() override</argsstring>
         <name>deserialize</name>
@@ -65,12 +65,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryDeserializer.hpp" line="31" column="15" bodyfile="nbtview/BinaryDeserializer.cpp" bodystart="15" bodyend="23"/>
+        <location file="nbtview/BinaryDeserializer.hpp" line="31" column="15" bodyfile="nbtview/BinaryDeserializer.cpp" bodystart="16" bodyend="24"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
       <memberdef kind="function" id="classnbtview_1_1BinaryDeserializer_1ad6a07979a034e2bdfacdc02b9026d7ab" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classnbtview_1_1List" kindref="compound">List</ref></type>
+        <type><ref refid="Tag_8hpp_1acd24fbf075c34a11c8c0b38c4a1b9adb" kindref="member">List</ref></type>
         <definition>List nbtview::BinaryDeserializer::deserialize_list</definition>
         <argsstring>()</argsstring>
         <name>deserialize_list</name>
@@ -80,10 +80,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryDeserializer.hpp" line="34" column="10" bodyfile="nbtview/BinaryDeserializer.cpp" bodystart="25" bodyend="35"/>
+        <location file="nbtview/BinaryDeserializer.hpp" line="34" column="10" bodyfile="nbtview/BinaryDeserializer.cpp" bodystart="26" bodyend="36"/>
       </memberdef>
       <memberdef kind="function" id="classnbtview_1_1BinaryDeserializer_1a970d35120bbe68ffbcf53edf57693e15" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classnbtview_1_1Compound" kindref="compound">Compound</ref></type>
+        <type><ref refid="Tag_8hpp_1ac7fc87b9f955bdb806db77eca81aafde" kindref="member">Compound</ref></type>
         <definition>Compound nbtview::BinaryDeserializer::deserialize_compound</definition>
         <argsstring>()</argsstring>
         <name>deserialize_compound</name>
@@ -93,7 +93,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryDeserializer.hpp" line="36" column="14" bodyfile="nbtview/BinaryDeserializer.cpp" bodystart="37" bodyend="46"/>
+        <location file="nbtview/BinaryDeserializer.hpp" line="36" column="14" bodyfile="nbtview/BinaryDeserializer.cpp" bodystart="38" bodyend="48"/>
       </memberdef>
       <memberdef kind="function" id="classnbtview_1_1BinaryDeserializer_1a454654869ea00aa105105e858c2cdec2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -111,7 +111,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryDeserializer.hpp" line="38" column="29" bodyfile="nbtview/BinaryDeserializer.cpp" bodystart="48" bodyend="51"/>
+        <location file="nbtview/BinaryDeserializer.hpp" line="38" column="29" bodyfile="nbtview/BinaryDeserializer.cpp" bodystart="50" bodyend="53"/>
       </memberdef>
       <memberdef kind="function" id="classnbtview_1_1BinaryDeserializer_1a2eb269662f450ca94db089ed540a0637" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::string</type>
@@ -124,15 +124,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryDeserializer.hpp" line="39" column="17" bodyfile="nbtview/BinaryDeserializer.cpp" bodystart="53" bodyend="56"/>
+        <location file="nbtview/BinaryDeserializer.hpp" line="39" column="17" bodyfile="nbtview/BinaryDeserializer.cpp" bodystart="55" bodyend="58"/>
       </memberdef>
-      <memberdef kind="function" id="classnbtview_1_1BinaryDeserializer_1a7afe8c7fc6e49c28933b495e9fa00fc7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="namespacenbtview_1a9fcb48c3df7749255fcc9f3f9e84f3fa" kindref="member">Tag</ref></type>
-        <definition>Tag nbtview::BinaryDeserializer::deserialize_typed_value</definition>
+      <memberdef kind="function" id="classnbtview_1_1BinaryDeserializer_1a44d70d5178eee6a20ab02f180ba3443b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TagValue</type>
+        <definition>TagValue nbtview::BinaryDeserializer::deserialize_typed_value</definition>
         <argsstring>(TypeCode type)</argsstring>
         <name>deserialize_typed_value</name>
         <param>
-          <type><ref refid="namespacenbtview_1afc3b190dfb9b456a2b36e19029d229b1" kindref="member">TypeCode</ref></type>
+          <type><ref refid="Tag_8hpp_1afc3b190dfb9b456a2b36e19029d229b1" kindref="member">TypeCode</ref></type>
           <declname>type</declname>
         </param>
         <briefdescription>
@@ -141,7 +141,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nbtview/BinaryDeserializer.hpp" line="41" column="9" bodyfile="nbtview/BinaryDeserializer.cpp" bodystart="58" bodyend="87"/>
+        <location file="nbtview/BinaryDeserializer.hpp" line="41" column="14" bodyfile="nbtview/BinaryDeserializer.cpp" bodystart="60" bodyend="89"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -180,7 +180,7 @@
       <member refid="classnbtview_1_1BinaryDeserializer_1a970d35120bbe68ffbcf53edf57693e15" prot="private" virt="non-virtual"><scope>nbtview::BinaryDeserializer</scope><name>deserialize_compound</name></member>
       <member refid="classnbtview_1_1BinaryDeserializer_1ad6a07979a034e2bdfacdc02b9026d7ab" prot="private" virt="non-virtual"><scope>nbtview::BinaryDeserializer</scope><name>deserialize_list</name></member>
       <member refid="classnbtview_1_1BinaryDeserializer_1a2eb269662f450ca94db089ed540a0637" prot="private" virt="non-virtual"><scope>nbtview::BinaryDeserializer</scope><name>deserialize_string</name></member>
-      <member refid="classnbtview_1_1BinaryDeserializer_1a7afe8c7fc6e49c28933b495e9fa00fc7" prot="private" virt="non-virtual"><scope>nbtview::BinaryDeserializer</scope><name>deserialize_typed_value</name></member>
+      <member refid="classnbtview_1_1BinaryDeserializer_1a44d70d5178eee6a20ab02f180ba3443b" prot="private" virt="non-virtual"><scope>nbtview::BinaryDeserializer</scope><name>deserialize_typed_value</name></member>
       <member refid="classnbtview_1_1BinaryDeserializer_1ad7a51dc64726231fb9d1abe0d939307f" prot="private" virt="non-virtual"><scope>nbtview::BinaryDeserializer</scope><name>scanner</name></member>
       <member refid="classnbtview_1_1BinaryDeserializer_1a698e2dd8d41c31bdc87db3ee73f7dd4a" prot="public" virt="non-virtual"><scope>nbtview::BinaryDeserializer</scope><name>~BinaryDeserializer</name></member>
       <member refid="classnbtview_1_1Deserializer_1a091616f8a82c35fe5c7d838c38c15a4b" prot="public" virt="virtual"><scope>nbtview::BinaryDeserializer</scope><name>~Deserializer</name></member>

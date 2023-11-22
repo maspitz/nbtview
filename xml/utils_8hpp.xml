@@ -5,7 +5,7 @@
     <includes local="no">regex</includes>
     <includes local="no">string</includes>
     <includes local="no">vector</includes>
-    <includedby refid="Stringifier_8cpp" local="yes">nbtview/Stringifier.cpp</includedby>
+    <includedby refid="Tag_8hpp" local="yes">nbtview/Tag.hpp</includedby>
     <incdepgraph>
       <node id="3">
         <label>string</label>
@@ -27,6 +27,44 @@
         </childnode>
       </node>
     </incdepgraph>
+    <invincdepgraph>
+      <node id="6">
+        <label>nbtview/Serializer.hpp</label>
+        <link refid="Serializer_8hpp"/>
+      </node>
+      <node id="4">
+        <label>nbtview/Deserializer.hpp</label>
+        <link refid="Deserializer_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>nbtview/nbtview.hpp</label>
+        <link refid="nbtview_8hpp"/>
+      </node>
+      <node id="2">
+        <label>nbtview/Tag.hpp</label>
+        <link refid="Tag_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>nbtview/utils.hpp</label>
+        <link refid="utils_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>nbtview/BinaryDeserializer.hpp</label>
+        <link refid="BinaryDeserializer_8hpp"/>
+      </node>
+    </invincdepgraph>
     <innerclass refid="structnbtview_1_1array__format" prot="public">nbtview::array_format</innerclass>
     <innernamespace refid="namespacenbtview">nbtview</innernamespace>
     <briefdescription>
@@ -48,7 +86,7 @@
 <codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight></codeline>
-<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenbtview" kindref="compound">nbtview</ref><sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">nbtview<sp/>{</highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>snbt_requires_quoting(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;str)<sp/>{</highlight></codeline>
 <codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>std::regex<sp/>pattern(</highlight><highlight class="stringliteral">&quot;^[a-zA-Z0-9_\\-\\.\\+]*$&quot;</highlight><highlight class="normal">);</highlight></codeline>
@@ -71,7 +109,7 @@
 <codeline lineno="41"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
 <codeline lineno="51"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
-<codeline lineno="52" refid="namespacenbtview_1a0ee9f2ba9bf67f7636003442cfd4d967" refkind="member"><highlight class="normal">std::string<sp/><ref refid="namespacenbtview_1a0ee9f2ba9bf67f7636003442cfd4d967" kindref="member">comma_delimited_array</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;T&gt;<sp/>&amp;vec,</highlight></codeline>
+<codeline lineno="52" refid="utils_8hpp_1a0ee9f2ba9bf67f7636003442cfd4d967" refkind="member"><highlight class="normal">std::string<sp/><ref refid="utils_8hpp_1a0ee9f2ba9bf67f7636003442cfd4d967" kindref="member">comma_delimited_array</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;T&gt;<sp/>&amp;vec,</highlight></codeline>
 <codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structnbtview_1_1array__format" kindref="compound">array_format</ref><sp/>&amp;fmt)<sp/>{</highlight></codeline>
 <codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>output_string;</highlight></codeline>
 <codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>!=<sp/>vec.size();<sp/>++i)<sp/>{</highlight></codeline>

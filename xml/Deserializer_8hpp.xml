@@ -7,17 +7,23 @@
     <includes refid="Tag_8hpp" local="yes">Tag.hpp</includes>
     <includedby refid="BinaryDeserializer_8hpp" local="yes">nbtview/BinaryDeserializer.hpp</includedby>
     <incdepgraph>
-      <node id="5">
+      <node id="7">
         <label>cstdint</label>
       </node>
-      <node id="8">
+      <node id="11">
         <label>variant</label>
+      </node>
+      <node id="10">
+        <label>stdexcept</label>
       </node>
       <node id="2">
         <label>string</label>
       </node>
-      <node id="6">
+      <node id="8">
         <label>map</label>
+      </node>
+      <node id="14">
+        <label>regex</label>
       </node>
       <node id="1">
         <label>nbtview/Deserializer.hpp</label>
@@ -29,7 +35,7 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="9">
+      <node id="12">
         <label>vector</label>
       </node>
       <node id="3">
@@ -44,14 +50,38 @@
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
         <childnode refid="8" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
       </node>
-      <node id="7">
+      <node id="6">
+        <label>cstddef</label>
+      </node>
+      <node id="13">
+        <label>utils.hpp</label>
+        <link refid="utils_8hpp"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>concepts</label>
+      </node>
+      <node id="9">
         <label>memory</label>
       </node>
     </incdepgraph>
@@ -89,10 +119,10 @@
 <codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>DESERIALIZER_H_</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DESERIALIZER_H_</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenbtview" kindref="compound">nbtview</ref><sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">nbtview<sp/>{</highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Builder<sp/>design<sp/>pattern:<sp/>the<sp/>concrete<sp/>subclasses<sp/>of<sp/>Deserializer<sp/>are</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>responsible<sp/>for<sp/>building<sp/>TagData<sp/>objects.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>responsible<sp/>for<sp/>building<sp/>Tag<sp/>objects.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
 <codeline lineno="24" refid="classnbtview_1_1Deserializer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnbtview_1_1Deserializer" kindref="compound">Deserializer</ref><sp/>{</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>

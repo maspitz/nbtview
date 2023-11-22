@@ -81,7 +81,7 @@ $(function() {
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Deserializer_8hpp.html">Deserializer.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Tag_8hpp.html">Tag.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenbtview.html">nbtview</a> {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">namespace </span>nbtview {</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
 <div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classnbtview_1_1BinaryDeserializer.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="classnbtview_1_1BinaryDeserializer.html">BinaryDeserializer</a> : <span class="keyword">public</span> <a class="code" href="classnbtview_1_1Deserializer.html">Deserializer</a> {</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;  <span class="keyword">private</span>:</div>
@@ -95,29 +95,27 @@ $(function() {
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    std::pair&lt;std::string, Tag&gt; deserialize() <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classnbtview_1_1List.html">List</a> deserialize_list();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="Tag_8hpp.html#acd24fbf075c34a11c8c0b38c4a1b9adb">List</a> deserialize_list();</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="classnbtview_1_1Compound.html">Compound</a> deserialize_compound();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="Tag_8hpp.html#ac7fc87b9f955bdb806db77eca81aafde">Compound</a> deserialize_compound();</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; std::vector&lt;T&gt; deserialize_array();</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    std::string deserialize_string();</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="namespacenbtview.html#a9fcb48c3df7749255fcc9f3f9e84f3fa">Tag</a> deserialize_typed_value(<a class="code" href="namespacenbtview.html#afc3b190dfb9b456a2b36e19029d229b1">TypeCode</a> type);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    TagValue deserialize_typed_value(<a class="code" href="Tag_8hpp.html#afc3b190dfb9b456a2b36e19029d229b1">TypeCode</a> type);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;};</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;} <span class="comment">// namespace nbtview</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// BINARYDESERIALIZER_H_</span></div>
 <div class="ttc" id="aBinaryReader_8hpp_html"><div class="ttname"><a href="BinaryReader_8hpp.html">BinaryReader.hpp</a></div><div class="ttdoc">Read big-endian numeric values, arrays, and strings.</div></div>
 <div class="ttc" id="aDeserializer_8hpp_html"><div class="ttname"><a href="Deserializer_8hpp.html">Deserializer.hpp</a></div><div class="ttdoc">Abstract Interface for the deserialization of NBT data.</div></div>
-<div class="ttc" id="aTag_8hpp_html"><div class="ttname"><a href="Tag_8hpp.html">Tag.hpp</a></div><div class="ttdoc">Interfaces for read/write access to NBT tag data.</div></div>
+<div class="ttc" id="aTag_8hpp_html"><div class="ttname"><a href="Tag_8hpp.html">Tag.hpp</a></div><div class="ttdoc">Stores and provides access to NBT tag data.</div></div>
+<div class="ttc" id="aTag_8hpp_html_ac7fc87b9f955bdb806db77eca81aafde"><div class="ttname"><a href="Tag_8hpp.html#ac7fc87b9f955bdb806db77eca81aafde">nbtview::Compound</a></div><div class="ttdeci">std::map&lt; std::string, Tag &gt; Compound</div><div class="ttdoc">map from string to Tag objects</div><div class="ttdef"><b>Definition:</b> Tag.hpp:71</div></div>
+<div class="ttc" id="aTag_8hpp_html_acd24fbf075c34a11c8c0b38c4a1b9adb"><div class="ttname"><a href="Tag_8hpp.html#acd24fbf075c34a11c8c0b38c4a1b9adb">nbtview::List</a></div><div class="ttdeci">std::vector&lt; Tag &gt; List</div><div class="ttdoc">array of Tag objects</div><div class="ttdef"><b>Definition:</b> Tag.hpp:69</div></div>
+<div class="ttc" id="aTag_8hpp_html_afc3b190dfb9b456a2b36e19029d229b1"><div class="ttname"><a href="Tag_8hpp.html#afc3b190dfb9b456a2b36e19029d229b1">nbtview::TypeCode</a></div><div class="ttdeci">TypeCode</div><div class="ttdoc">TypeCode is a one-byte encoding of the data type of an NBT tag.</div><div class="ttdef"><b>Definition:</b> Tag.hpp:31</div></div>
 <div class="ttc" id="aclassnbtview_1_1BinaryDeserializer_html"><div class="ttname"><a href="classnbtview_1_1BinaryDeserializer.html">nbtview::BinaryDeserializer</a></div><div class="ttdef"><b>Definition:</b> BinaryDeserializer.hpp:22</div></div>
 <div class="ttc" id="aclassnbtview_1_1BinaryReader_html"><div class="ttname"><a href="classnbtview_1_1BinaryReader.html">nbtview::BinaryReader</a></div><div class="ttdef"><b>Definition:</b> BinaryReader.hpp:30</div></div>
-<div class="ttc" id="aclassnbtview_1_1Compound_html"><div class="ttname"><a href="classnbtview_1_1Compound.html">nbtview::Compound</a></div><div class="ttdoc">Compound is an associative container that holds Tags by their string names.</div><div class="ttdef"><b>Definition:</b> Tag.hpp:111</div></div>
 <div class="ttc" id="aclassnbtview_1_1Deserializer_html"><div class="ttname"><a href="classnbtview_1_1Deserializer.html">nbtview::Deserializer</a></div><div class="ttdef"><b>Definition:</b> Deserializer.hpp:24</div></div>
-<div class="ttc" id="aclassnbtview_1_1List_html"><div class="ttname"><a href="classnbtview_1_1List.html">nbtview::List</a></div><div class="ttdoc">List is a sequence container that holds Tags of a particular type.</div><div class="ttdef"><b>Definition:</b> Tag.hpp:185</div></div>
-<div class="ttc" id="anamespacenbtview_html"><div class="ttname"><a href="namespacenbtview.html">nbtview</a></div><div class="ttdoc">Utilities to read, write, and manipulate NBT data.</div><div class="ttdef"><b>Definition:</b> BinaryDeserializer.cpp:11</div></div>
-<div class="ttc" id="anamespacenbtview_html_a9fcb48c3df7749255fcc9f3f9e84f3fa"><div class="ttname"><a href="namespacenbtview.html#a9fcb48c3df7749255fcc9f3f9e84f3fa">nbtview::Tag</a></div><div class="ttdeci">std::variant&lt; End, Byte, Short, Int, Long, Float, Double, Byte_Array, String, List, Compound, Int_Array, Long_Array &gt; Tag</div><div class="ttdoc">Tag holds the value of an NBT tag.</div><div class="ttdef"><b>Definition:</b> Tag.hpp:62</div></div>
-<div class="ttc" id="anamespacenbtview_html_afc3b190dfb9b456a2b36e19029d229b1"><div class="ttname"><a href="namespacenbtview.html#afc3b190dfb9b456a2b36e19029d229b1">nbtview::TypeCode</a></div><div class="ttdeci">TypeCode</div><div class="ttdoc">TypeCode is a one-byte encoding of the data type of an NBT tag.</div><div class="ttdef"><b>Definition:</b> Tag.hpp:65</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
