@@ -17,13 +17,10 @@ TEST_CASE("nbtview::BinaryDeserializer explicit compound tags") {
 
         nbt::BinaryDeserializer reader(v_empty_compound_tag.data(),
                                        v_empty_compound_tag.size());
-        auto root_data = reader.deserialize();
-        auto root_name = root_data.first;
+        auto [root_name, root_data] = reader.deserialize();
         CHECK(root_name == "");
-
-        CHECK(std::holds_alternative<nbt::Compound>(root_data.second));
-        auto &cmpd = std::get<nbt::Compound>(root_data.second);
-        CHECK(cmpd.size() == 0);
+        CHECK(root_data.is<nbt::Compound>());
+        CHECK(root_data.size() == 0);
     }
 
     SUBCASE("root string tag") {
@@ -32,12 +29,10 @@ TEST_CASE("nbtview::BinaryDeserializer explicit compound tags") {
                                  0x05, 'H',  'e',  'l', 'l', 'o'};
         nbt::BinaryDeserializer reader(v_root_string_tag.data(),
                                        v_root_string_tag.size());
-        auto root_data = reader.deserialize();
-        auto root_name = root_data.first;
+        auto [root_name, root_data] = reader.deserialize();
         CHECK(root_name == "Tag");
 
-        CHECK(std::holds_alternative<nbt::String>(root_data.second));
-        auto str_data = std::get<nbt::String>(root_data.second);
-        CHECK(str_data == "Hello");
+        CHECK(root_data.is<nbt::String>());
+        CHECK(root_data.get<nbt::String>() == "Hello");
     }
 }

@@ -1,6 +1,7 @@
 // BinaryDeserializer.cpp
 
 #include <utility>
+#include <variant>
 #include <vector>
 
 #include "Tag.hpp"
@@ -16,7 +17,7 @@ std::pair<std::string, Tag> BinaryDeserializer::deserialize() {
     // read type id byte
     TypeCode type = static_cast<TypeCode>(scanner.read<int8_t>());
     if (type == TypeCode::End) {
-        return std::make_pair("", Tag(End()));
+        return {"", Tag(End())};
     }
     std::string tag_name = deserialize_string();
     return std::make_pair(tag_name, deserialize_typed_value(type));
@@ -25,24 +26,25 @@ std::pair<std::string, Tag> BinaryDeserializer::deserialize() {
 List BinaryDeserializer::deserialize_list() {
     auto list_type = static_cast<TypeCode>(scanner.read<int8_t>());
     auto list_length = scanner.read<int32_t>();
-    auto lst = List(list_type);
+    List lst;
     lst.reserve(list_length);
     for (int32_t idx = 0; idx < list_length; ++idx) {
-        auto next_tag = deserialize_typed_value(list_type);
-        lst.emplace_back(std::move(next_tag));
+        auto next_tag_data = deserialize_typed_value(list_type);
+        lst.emplace_back(std::move(next_tag_data));
     }
     return lst;
 }
 
 Compound BinaryDeserializer::deserialize_compound() {
-    auto cmpd = Compound();
+    Compound cmpd;
     while (true) {
-        auto next_tag = deserialize();
-        if (std::holds_alternative<End>(next_tag.second)) {
-            return cmpd;
+        auto [next_name, next_tag] = deserialize();
+        if (next_tag.is<nbtview::End>()) {
+            break;
         }
-        cmpd.emplace(std::move(next_tag.first), std::move(next_tag.second));
+        cmpd.emplace(std::move(next_name), std::move(next_tag));
     }
+    return cmpd;
 }
 
 template <typename T> std::vector<T> BinaryDeserializer::deserialize_array() {
@@ -55,7 +57,7 @@ std::string BinaryDeserializer::deserialize_string() {
     return scanner.read_string(bytes);
 }
 
-Tag BinaryDeserializer::deserialize_typed_value(TypeCode type) {
+TagValue BinaryDeserializer::deserialize_typed_value(TypeCode type) {
     switch (type) {
     case TypeCode::Byte:
         return scanner.read<Byte>();

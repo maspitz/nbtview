@@ -27,6 +27,7 @@ namespace detail {
     struct PayloadSerializer {
         std::ostream &output;
 
+        void operator()(const None &t) {}
         void operator()(const End &t) { BinaryWriter::write(t, output); }
         void operator()(const Byte &t) { BinaryWriter::write(t, output); }
         void operator()(const Short &t) { BinaryWriter::write(t, output); }
@@ -41,17 +42,18 @@ namespace detail {
             BinaryWriter::write_string(t, output);
         }
         void operator()(const List &t) {
-            BinaryWriter::write(t.list_type(), output);
+            BinaryWriter::write(static_cast<Byte>(list_type(t)), output);
             BinaryWriter::write(static_cast<Int>(t.size()), output);
             for (const Tag &elt : t) {
-                std::visit(*this, elt);
+                std::visit(*this, elt.get_value());
             }
         }
         void operator()(const Compound &t) {
-            for (const auto &kv : t) {
-                BinaryWriter::write(std::visit(TagID(), kv.second), output);
-                BinaryWriter::write_string(kv.first, output);
-                std::visit(*this, kv.second);
+            for (auto &[tag_name, tag_data] : t) {
+                BinaryWriter::write(std::visit(TagID(), tag_data.get_value()),
+                                    output);
+                BinaryWriter::write_string(tag_name, output);
+                std::visit(*this, tag_data.get_value());
             }
             BinaryWriter::write(End(0), output);
         }

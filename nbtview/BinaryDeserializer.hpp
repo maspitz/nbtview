@@ -38,7 +38,7 @@ class BinaryDeserializer : public Deserializer {
     template <typename T> std::vector<T> deserialize_array();
     std::string deserialize_string();
 
-    Tag deserialize_typed_value(TypeCode type);
+    TagValue deserialize_typed_value(TypeCode type);
 };
 
 } // namespace nbtview

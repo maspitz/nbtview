@@ -8,7 +8,6 @@
 
 #include "BinaryDeserializer.hpp"
 #include "Serializer.hpp"
-#include "Stringifier.hpp"
 #include "Tag.hpp"
 #include "nbtview.hpp"
 
@@ -68,36 +67,9 @@ std::pair<std::string, Tag> read_binary(std::vector<unsigned char> bytes) {
 }
 
 void write_binary(const Tag &tag, std::string_view name, std::ostream &output) {
-    BinaryWriter::write(std::visit(TagID(), tag), output);
+    BinaryWriter::write(std::visit(TagID(), tag.get_value()), output);
     BinaryWriter::write_string(name, output);
-    std::visit(detail::PayloadSerializer{output}, tag);
-}
-void write_binary(const Compound &tag, std::string_view name,
-                  std::ostream &output) {
-    BinaryWriter::write(TagID()(tag), output);
-    BinaryWriter::write_string(name, output);
-    detail::PayloadSerializer{output}(tag);
-}
-void write_binary(const List &tag, std::string_view name,
-                  std::ostream &output) {
-    BinaryWriter::write(TagID()(tag), output);
-    BinaryWriter::write_string(name, output);
-    detail::PayloadSerializer{output}(tag);
-}
-
-std::ostream &operator<<(std::ostream &os, const Tag &tag) {
-    os << tag_to_string(tag);
-    return os;
-}
-
-std::ostream &operator<<(std::ostream &os, const Compound &tag) {
-    os << tag_to_string(tag);
-    return os;
-}
-
-std::ostream &operator<<(std::ostream &os, const List &tag) {
-    os << tag_to_string(tag);
-    return os;
+    std::visit(detail::PayloadSerializer{output}, tag.get_value());
 }
 
 } // namespace nbtview

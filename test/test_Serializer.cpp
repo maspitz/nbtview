@@ -57,8 +57,8 @@ TEST_CASE("nbtview::write_binary functions") {
     }
 
     SUBCASE("Serialize string tags") {
-        nbt::Tag empty_compound(nbt::String{"Hello"});
-        nbt::write_binary(empty_compound, "Tag", output);
+        nbt::Tag string_tag("Hello");
+        nbt::write_binary(string_tag, "Tag", output);
         auto v_root_string_tag =
             std::vector<char>{0x08, 0x00, 0x03, 'T', 'a', 'g', 0x00,
                               0x05, 'H',  'e',  'l', 'l', 'o'};
@@ -68,10 +68,9 @@ TEST_CASE("nbtview::write_binary functions") {
 
     SUBCASE("Serialize list tags") {
         SUBCASE("List tag of longs") {
-            nbt::Tag list_tag(nbt::List{nbt::TypeCode::Long});
-            nbt::List &myList = std::get<nbt::List>(list_tag);
-            myList.push_back(nbt::Long(10));
-            myList.push_back(nbt::Long(15));
+            nbt::Tag list_tag(nbt::List{});
+            list_tag.push_back(nbt::Long(10));
+            list_tag.push_back(nbt::Long(15));
             nbt::write_binary(list_tag, "A", output);
             auto v_empty_compound_tag = std::vector<char>{
                 0x09,                   // TypeCode::List
@@ -89,13 +88,13 @@ TEST_CASE("nbtview::write_binary functions") {
 
     SUBCASE("Serialize compound tags") {
         SUBCASE("Empty compound tag (unnamed)") {
-            nbt::Compound empty_compound;
+            nbt::Tag empty_compound(nbt::Compound{});
             nbt::write_binary(empty_compound, "", output);
             auto v_empty_compound_tag =
                 std::vector<char>{0x0a, 0x00, 0x00, 0x00};
             CHECK(stream_chars(output) == v_empty_compound_tag);
         }
-        nbt::Compound ham;
+        nbt::Tag ham(nbt::Compound{});
         ham.emplace("Hampus", nbt::Float(0.75));
         nbt::Compound egg;
         egg.emplace("Eggbert", nbt::Float(0.50));
@@ -125,8 +124,8 @@ TEST_CASE("nbtview::write_binary functions") {
         }
         SUBCASE("Nested Compound tag") {
             nbt::Compound nested;
-            nested.put("ham", std::move(ham));
-            nested.put("egg", std::move(egg));
+            nested["ham"] = std::move(ham);
+            nested["egg"] = egg;
             auto v_nested = std::vector<char>{
                 0x0a,                                    // Compound
                 0x00, 0x06, 'n', 'e', 's', 't', 'e', 'd' // "nested"

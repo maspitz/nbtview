@@ -19,7 +19,7 @@
 namespace nbtview {
 
 // Builder design pattern: the concrete subclasses of Deserializer are
-// responsible for building TagData objects.
+// responsible for building Tag objects.
 
 class Deserializer {
   public:
