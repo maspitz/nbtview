@@ -72,14 +72,10 @@ if (BUILD_TESTS)
     add_test(NAME ${TARGET_NAME} COMMAND ${TARGET_NAME})
   endfunction()
 
-  add_nbtview_test(test_BinaryReader test/test_BinaryReader.cpp)
-  add_nbtview_test(test_BinaryWriter test/test_BinaryWriter.cpp)
   add_nbtview_test(test_Serializer test/test_Serializer.cpp)
-  add_nbtview_test(test_BinaryDeserializer test/test_BinaryDeserializer.cpp)
   add_nbtview_test(test_nbtview test/test_nbtview.cpp)
-  add_nbtview_test(test_Chunks test/test_Chunks.cpp)
 
-  add_executable(tests test/test_main.cpp test/test_Region.cpp test/test_bigtest.cpp)
+  add_executable(tests test/test_main.cpp test/test_BinaryWriter.cpp test/test_BinaryReader.cpp test/test_Chunks.cpp test/test_BinaryDeserializer.cpp test/test_Region.cpp test/test_bigtest.cpp)
   target_link_libraries(tests PRIVATE nbtview GTest::GTest)
   add_test(NAME tests COMMAND tests)
 
