@@ -63,6 +63,8 @@ if (BUILD_TESTS)
   include(CTest)
   enable_testing()
 
+  find_package(GTest REQUIRED)
+
   function(add_nbtview_test TARGET_NAME SOURCE_FILE)
     add_executable(${TARGET_NAME} ${SOURCE_FILE})
     target_link_libraries(${TARGET_NAME} PRIVATE nbtview)
@@ -75,9 +77,11 @@ if (BUILD_TESTS)
   add_nbtview_test(test_Serializer test/test_Serializer.cpp)
   add_nbtview_test(test_BinaryDeserializer test/test_BinaryDeserializer.cpp)
   add_nbtview_test(test_nbtview test/test_nbtview.cpp)
-  add_nbtview_test(test_bigtest test/test_bigtest.cpp)
-  add_nbtview_test(test_Region test/test_Region.cpp)
   add_nbtview_test(test_Chunks test/test_Chunks.cpp)
+
+  add_executable(tests test/test_main.cpp test/test_Region.cpp test/test_bigtest.cpp)
+  target_link_libraries(tests PRIVATE nbtview GTest::GTest)
+  add_test(NAME tests COMMAND tests)
 
   # provision test data
   file(COPY test/test_data DESTINATION ${PROJECT_BINARY_DIR}/)
