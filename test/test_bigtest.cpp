@@ -14,81 +14,81 @@ TEST_CASE("nbtview: bigtest.nbt values") {
     const auto filename = "test_data/bigtest.nbt";
     std::ifstream bigtest_stream(filename);
     auto [root_name, root_tag] = nbt::read_binary(bigtest_stream);
-    auto &root_compound = std::get<nbt::Compound>(root_tag);
+    CHECK(root_tag.is<nbt::Compound>());
     CHECK(root_name == "Level");
 
     SUBCASE("byteTest") {
-        CHECK(root_compound.contains<nbt::Byte>("byteTest"));
-        CHECK(root_compound.get<nbt::Byte>("byteTest") == 127);
+        CHECK(root_tag.contains("byteTest"));
+        CHECK(root_tag["byteTest"].get<nbt::Byte>() == 127);
     }
     SUBCASE("longTest") {
-        CHECK(root_compound.contains<nbt::Long>("longTest"));
-        CHECK(root_compound.get<nbt::Long>("longTest") == 9223372036854775807L);
+        CHECK(root_tag.contains("longTest"));
+        CHECK(root_tag["longTest"].get<nbt::Long>() == 9223372036854775807L);
     }
     SUBCASE("shortTest") {
-        CHECK(root_compound.contains<nbt::Short>("shortTest"));
-        CHECK(root_compound.get<nbt::Short>("shortTest") == 32767);
+        CHECK(root_tag.contains("shortTest"));
+        CHECK(root_tag["shortTest"].get<nbt::Short>() == 32767);
     }
     SUBCASE("stringTest") {
-        CHECK(root_compound.contains<nbt::String>("stringTest"));
-        CHECK(root_compound.get<nbt::String>("stringTest") ==
+        CHECK(root_tag.contains("stringTest"));
+        CHECK(root_tag["stringTest"].get<nbt::String>() ==
               "HELLO WORLD THIS IS A TEST STRING ÅÄÖ!");
     }
     SUBCASE("floatTest") {
-        CHECK(root_compound.contains<nbt::Float>("floatTest"));
-        CHECK(root_compound.get<nbt::Float>("floatTest") ==
+        CHECK(root_tag.contains("floatTest"));
+        CHECK(root_tag["floatTest"].get<nbt::Float>() ==
               doctest::Approx(0.49823147));
     }
     SUBCASE("intTest") {
-        CHECK(root_compound.contains<nbt::Int>("intTest"));
-        CHECK(root_compound.get<nbt::Int>("intTest") == 2147483647);
+        CHECK(root_tag.contains("intTest"));
+        CHECK(root_tag["intTest"].get<nbt::Int>() == 2147483647);
     }
     SUBCASE("doubleTest") {
-        CHECK(root_compound.contains<nbt::Double>("doubleTest"));
-        CHECK(root_compound.get<nbt::Double>("doubleTest") ==
+        CHECK(root_tag.contains("doubleTest"));
+        CHECK(root_tag["doubleTest"].get<nbt::Double>() ==
               doctest::Approx(0.4931287132182315));
     }
     SUBCASE("nested compound test") {
-        CHECK(root_compound.contains<nbt::Compound>("nested compound test"));
-        auto &nested = root_compound.get<nbt::Compound>("nested compound test");
+        CHECK(root_tag.contains("nested compound test"));
+        auto &nested = root_tag["nested compound test"];
         SUBCASE("egg") {
-            auto &egg = nested.get<nbt::Compound>("egg");
-            CHECK(egg.get<nbt::String>("name") == "Eggbert");
-            CHECK(egg.get<nbt::Float>("value") == doctest::Approx(0.5));
+            auto &egg = nested["egg"];
+            CHECK(egg["name"].get<nbt::String>() == "Eggbert");
+            CHECK(egg["value"].get<nbt::Float>() == doctest::Approx(0.5));
         }
         SUBCASE("ham") {
-            auto &ham = nested.get<nbt::Compound>("ham");
-            CHECK(ham.get<nbt::String>("name") == "Hampus");
-            CHECK(ham.get<nbt::Float>("value") == doctest::Approx(0.75));
+            auto &ham = nested["ham"];
+            CHECK(ham["name"].get<nbt::String>() == "Hampus");
+            CHECK(ham["value"].get<nbt::Float>() == doctest::Approx(0.75));
         }
     }
     SUBCASE("list test (long)") {
-        auto &list_long = root_compound.get<nbt::List>("listTest (long)");
-        CHECK(list_long.list_type() == nbt::TypeCode::Long);
+        auto &list_long = root_tag["listTest (long)"].get<nbt::List>();
+        CHECK(nbt::list_type(list_long) == nbt::TypeCode::Long);
         REQUIRE(list_long.size() == 5);
         auto longvals = std::vector<nbt::Long>{11, 12, 13, 14, 15};
         for (std::size_t i = 0; i < list_long.size(); ++i) {
-            CHECK(list_long.get<nbt::Long>(i) == longvals[i]);
+            CHECK(list_long[i].get<nbt::Long>() == longvals[i]);
         }
     }
     SUBCASE("list test (compound)") {
-        auto &list_cmpd = root_compound.get<nbt::List>("listTest (compound)");
-        CHECK(list_cmpd.list_type() == nbt::TypeCode::Compound);
+        auto &list_cmpd = root_tag["listTest (compound)"].get<nbt::List>();
+        CHECK(nbt::list_type(list_cmpd) == nbt::TypeCode::Compound);
         REQUIRE(list_cmpd.size() == 2);
-        auto &cmpd0 = list_cmpd.get<nbt::Compound>(0);
-        CHECK(cmpd0.get<nbt::Long>("created-on") == 1264099775885L);
-        CHECK(cmpd0.get<nbt::String>("name") == "Compound tag #0");
-        auto &cmpd1 = list_cmpd.get<nbt::Compound>(1);
-        CHECK(cmpd1.get<nbt::Long>("created-on") == 1264099775885L);
-        CHECK(cmpd1.get<nbt::String>("name") == "Compound tag #1");
+        auto &cmpd0 = list_cmpd[0].get<nbt::Compound>();
+        CHECK(cmpd0["created-on"].get<nbt::Long>() == 1264099775885L);
+        CHECK(cmpd0["name"].get<nbt::String>() == "Compound tag #0");
+        auto &cmpd1 = list_cmpd[1].get<nbt::Compound>();
+        CHECK(cmpd1["created-on"].get<nbt::Long>() == 1264099775885L);
+        CHECK(cmpd1["name"].get<nbt::String>() == "Compound tag #1");
     }
     SUBCASE("byteArrayTest") {
         auto byte_array_name = "byteArrayTest "
                                "(the first 1000 values of (n*n*255+n*7)%100, "
                                "starting with n=0 (0, 62, 34, 16, 8, ...))";
 
-        CHECK(root_compound.contains<nbt::Byte_Array>(byte_array_name));
-        auto &byte_array = root_compound.get<nbt::Byte_Array>(byte_array_name);
+        CHECK(root_tag.contains(byte_array_name));
+        auto &byte_array = root_tag[byte_array_name].get<nbt::Byte_Array>();
         REQUIRE(byte_array.size() == 1000);
         for (int n = 0; n < 1000; ++n) {
             CHECK(byte_array[n] == (n * n * 255 + n * 7) % 100);
