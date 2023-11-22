@@ -139,6 +139,14 @@ class Tag {
         return 0;
     }
 
+    // Conversion operators
+    explicit operator Int() const {
+        if (std::holds_alternative<Int>(value)) {
+            return std::get<Int>(value);
+        }
+        throw std::bad_variant_access();
+    }
+
     // Compound wrapper methods
     /**
      *  @brief Tests whether a Compound Tag contains a particular %Tag

@@ -41,7 +41,11 @@ TEST_CASE("nbtview: bigtest.nbt values") {
     }
     SUBCASE("intTest") {
         CHECK(root_tag.contains("intTest"));
-        CHECK(root_tag["intTest"].get<nbt::Int>() == 2147483647);
+        CHECK(static_cast<nbt::Int>(root_tag["intTest"]) == 2147483647);
+    }
+    SUBCASE("intTest (2)") {
+        auto intTest = nbt::Int(root_tag["intTest"]);
+        CHECK(intTest == 2147483647);
     }
     SUBCASE("doubleTest") {
         CHECK(root_tag.contains("doubleTest"));
