@@ -65,16 +65,7 @@ if (BUILD_TESTS)
 
   find_package(GTest REQUIRED)
 
-  function(add_nbtview_test TARGET_NAME SOURCE_FILE)
-    add_executable(${TARGET_NAME} ${SOURCE_FILE})
-    target_link_libraries(${TARGET_NAME} PRIVATE nbtview)
-    target_include_directories(${TARGET_NAME} PRIVATE "${PROJECT_SOURCE_DIR}/doctest")
-    add_test(NAME ${TARGET_NAME} COMMAND ${TARGET_NAME})
-  endfunction()
-
-  add_nbtview_test(test_Serializer test/test_Serializer.cpp)
-
-  add_executable(tests test/test_main.cpp test/test_BinaryWriter.cpp test/test_BinaryReader.cpp test/test_Chunks.cpp test/test_BinaryDeserializer.cpp test/test_nbtview.cpp test/test_Region.cpp test/test_bigtest.cpp)
+  add_executable(tests test/test_main.cpp test/test_BinaryWriter.cpp test/test_BinaryReader.cpp test/test_Chunks.cpp test/test_BinaryDeserializer.cpp test/test_nbtview.cpp test/test_Region.cpp test/test_Serializer.cpp test/test_bigtest.cpp)
   target_link_libraries(tests PRIVATE nbtview GTest::GTest)
   add_test(NAME tests COMMAND tests)
 
